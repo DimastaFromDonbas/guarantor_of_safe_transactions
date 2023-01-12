@@ -21,7 +21,7 @@ function Body() {
                 <li className='list-promo-item'> 
 
                     <p>
-                        Сервис несет хуйню
+                        Сервис несет тогтик
                         <br/>
                         за проведение сделок
                     </p>
