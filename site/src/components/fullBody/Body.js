@@ -5,7 +5,7 @@ import img2 from '../../image/business-negotiate.jpg'
 import img1 from '../../image/support.jpg'
 
 function Body() {
-    return <div className="container-body-v1">
+    return <div className="container-body-v1 bg-img">
             <div className='promo-description'>
             <div className='block-main-v1'>
                 <h1>gamesgun.ru - лучший гарант безопасных сделок!</h1>
@@ -19,7 +19,7 @@ function Body() {
             </div>
             <ul className='ist-promo'>
                 <li className='list-promo-item'> 
-                    <img></img>
+
                     <p>
                         Сервис несет ответственность
                         <br/>
@@ -27,7 +27,7 @@ function Body() {
                     </p>
                 </li>
                 <li className='list-promo-item'>
-                    <img></img>
+  
                     <p>
                         Сервис работает 24 часа в сутки
                         <br/>
@@ -35,7 +35,7 @@ function Body() {
                     </p>
                 </li>
                 <li className='list-promo-item'>
-                    <img></img>
+
                     <p>Комиссия меньше 10%</p>
                 </li>
             </ul>
@@ -142,7 +142,7 @@ function Body() {
                 </div>
             </div>
         </div>
-        <div className='container'>
+        <div className='container bg-img'>
             <div className='block-text-free'>
                 <p className='text-free'>
                 <b>Самый надежный гарант игровых сделок.</b>
@@ -175,7 +175,7 @@ function Body() {
                 </p>
             </div>
         </div>
-        <div className='promote-slider promote-slider__showcase'>
+        <div className='promote-slider promote-slider__showcase bg-img'>
             <div className='container'>
                 <div className='promote-slider_holder'>
                     <ul className="promote-slider_list">
@@ -192,7 +192,7 @@ function Body() {
                                 <span className='showcase_info'>
                                     <span className='showcase_title'>Разрешение споров</span>
                                 </span>
-                                <img className='showcase_pic show-img-1' src={img2}></img>
+                                <img className='showcase_pic show-img-1' src={img2} alt='qq'></img>
                             </Link>
                         </li>
                         <li className='promote-slider_item'>
@@ -200,14 +200,14 @@ function Body() {
                                 <span className='showcase_info'>
                                 <span className='showcase_title'>Отзывы</span>
                                 </span>
-                                <img className='showcase_pic show-img-1' src={img3}></img>
+                                <img className='showcase_pic show-img-1' src={img3} alt='ss'></img>
                             </Link>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div className='container'>
+        <div className='container bg-img'>
             <div className='block-text-free'>
                 <p class="text-free"><b>gamesgun.ru</b> - предлагает безопасные сделки в интернете с сайтами, доменами, социальными сетями, аккаунтами онлайн-игр,
                     информационными услугами и многим другим. Вконтакте - крупнейшая социальная сеть на просторах СНГ,
