@@ -17,7 +17,7 @@ function Header() {
               </div>
               </div>
               <div className="flex-nav-link-registr ">
-              <Link className="color-nav-link color" to="#">Войти</Link>
+              <Link className="color-nav-link color" to="#" style={{display: 'flex', flexDirection: 'row'}}>Войти <div style={{width: '1px', height: '16px', border: '0.5px solid rgb(170, 170, 171)', position: 'relative', left: '12.5px', top: '4px'}}></div></Link>
               <Link className="color-nav-link color" to="#">Регистрация</Link>
               </div>
               </div>
