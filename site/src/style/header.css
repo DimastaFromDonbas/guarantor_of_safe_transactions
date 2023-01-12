@@ -2,6 +2,19 @@
     color: #fab81b;
 }
 
+.palca {
+    display: inline-block;
+}
+
+.palca::before {
+    content:'';
+    position: absolute;
+    height: 10px;
+    width: 1px;
+    left: 0;
+    top: 10px;
+    background-color:#aaaaab;
+}
 .color-nav-link {
     text-decoration: none;
     color: rgb(170, 170, 171);
