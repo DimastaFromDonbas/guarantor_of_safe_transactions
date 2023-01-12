@@ -1,6 +1,20 @@
-.footer {
+.footer{
     font-size: 15px;
     position: relative;
     z-index: 2;
     will-change: transform;
+}
+
+.footer_panel {
+    border-color: rgba(255, 255, 255, 0.1);
+    border-style: solid;
+    border-width: 1px 0;
+    background: rgba(0, 0, 0, 0.35);
+    height: 103px;
+}
+
+.footer_holder {
+    padding: 43px 15px 58px;
+    margin: auto;
+    position: relative;
 }

@@ -276,3 +276,7 @@ bottom: 0;
     right: 20px;
     z-index: 2;
 }
+
+.bg-img{
+    background-image: url(../image/div.png);
+}

@@ -1,8 +1,9 @@
+import '../../style/footer.css'
 
 function Footer() {
     let date = new Date()
     let year = date.getFullYear()
-    return <div className="footer">
+    return <div className="footer bg-img">
         <div className="footer_panel">
         <div class="container footer_holder">
             <p class="footer_copyright">© 2017– {year} Гарант сервис gamesgun.ru</p>
