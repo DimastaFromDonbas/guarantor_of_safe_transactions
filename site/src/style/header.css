@@ -8,11 +8,34 @@
 }
 
 .flex-nav-link {
+    margin-left: 75px;
     display: flex;
     width: 300px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-nav-link-registr{
+    display: flex;
+    width: 150px;
     justify-content: space-between;
 }
 
 .imgWith {
-    width: 30px;
+    width: 40px;
+}
+
+.nav-main-header {
+    display: flex;
+}
+
+.navbar-header {
+    background-color: #27272B;
+    padding-right: 50px;
+    padding-left: 50px;
+    height: 66px;
+    opacity: 85;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
