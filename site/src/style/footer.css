@@ -1,0 +1,6 @@
+.footer {
+    font-size: 15px;
+    position: relative;
+    z-index: 2;
+    will-change: transform;
+}
