@@ -1,4 +1,18 @@
-.header-hover a {
+.color:hover{
+    color: #fab81b;
+}
+
+.color-nav-link {
     text-decoration: none;
-    color: red ;
+    color: rgb(170, 170, 171);
+}
+
+.flex-nav-link {
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.imgWith {
+    width: 30px;
 }

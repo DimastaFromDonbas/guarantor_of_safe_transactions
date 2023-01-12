@@ -3,6 +3,7 @@
     position: relative;
     z-index: 2;
     will-change: transform;
+    background-color: rgb(39, 39, 43);
 }
 
 .footer_panel {
@@ -17,4 +18,33 @@
     padding: 43px 15px 58px;
     margin: auto;
     position: relative;
+    margin-left: 145px;
+}
+
+.footer_copyright {
+    float: left;
+    line-height: 18px;
+    margin-left: 86px;
+    color: #999;
+}
+
+.footer-menu {
+    float: left;
+    line-height: 18px;
+}
+
+.footer-menu_item {
+    padding: 0 12px 0 0;
+    float: left;
+    position: relative;
+    list-style: none;
+}
+
+.footer-menu_link {
+    list-style: none;
+    color: #999;
+}
+
+.container .footer_holder {
+    margin-left: 145px;
 }

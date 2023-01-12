@@ -248,16 +248,16 @@
 
 .showcase_pic {
     opacity: 0.5;
--webkit-transition: ease .5s;
-transition: ease .5s;
+    -webkit-transition: ease .5s;
+    transition: ease .5s;
 }
 
 .showcase_pic:before {
     position: absolute;
-left: 0;
-right: 0;
-top: 0;
-bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 
 .show-img-1:hover {
@@ -279,4 +279,5 @@ bottom: 0;
 
 .bg-img{
     background-image: url(../image/div.png);
+    font-family: "Roboto Condensed","Arial Narrow",Arial,sans-serif;
 }
