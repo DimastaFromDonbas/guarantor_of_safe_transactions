@@ -23,7 +23,7 @@
 .flex-nav-link {
     margin-left: 75px;
     display: flex;
-    width: 300px;
+    width: 330px;
     justify-content: space-between;
     align-items: center;
 }
@@ -32,6 +32,7 @@
     display: flex;
     width: 150px;
     justify-content: space-between;
+    margin-right: 20px;
 }
 
 .imgWith {
