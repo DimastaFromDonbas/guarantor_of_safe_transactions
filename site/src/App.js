@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/fullBody/Login";
+import UserInput from "./components/fullBody/UserInput";
+import UserSoglos from "./components/fullBody/UserSoglos";
 import Main from "./components/Main";
 function App() {
   return  <>
@@ -8,8 +10,9 @@ function App() {
         <Route path="#"/>
         <Route path="#"/>
         <Route path="#" />
-        <Route path="#" />
-        <Route path="/login" element = {<Login />}/>
+        <Route path="/login" element ={<UserInput />} />
+        <Route path="/registr" element = {<Login />}/>
+        <Route path="/rules" element = {<UserSoglos />}/>
       </Routes>
      </>
 }

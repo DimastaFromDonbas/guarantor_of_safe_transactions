@@ -60,7 +60,7 @@ function Body() {
                 <PersonAddAltIcon style={{width: '60px',height: '60px',marginRight: '10px',marginLeft: '-3px'}}></PersonAddAltIcon>
                 <div>
                     <h4 class="header-inner_title">Регистрация</h4>
-                    <p>Услуги нашего сервиса безопасных сделок предоставляются только после того, как оба участника <Link className='link-hover-effects' to="/login">регистрируются</Link> на сайте.
+                    <p>Услуги нашего сервиса безопасных сделок предоставляются только после того, как оба участника <Link className='link-hover-effects' to="/registr">регистрируются</Link> на сайте.
                     </p>
                 </div>
                 </li>

@@ -10,7 +10,7 @@ function Footer() {
             <p class="footer_copyright">© 2017– {year} Гарант сервис gamesgun.ru</p>
                 <ul class="footer-menu">
                     <li class="footer-menu_item">
-                        <Link class="footer-menu_link" to='#' target="_blank">Пользовательское соглашение</Link>
+                        <Link class="footer-menu_link" to='/rules' >Пользовательское соглашение</Link>
                     </li>
                 </ul>
         </div>

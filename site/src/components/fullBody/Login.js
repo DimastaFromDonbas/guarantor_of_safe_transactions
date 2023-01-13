@@ -35,7 +35,7 @@ function Login() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <div style={{display:"flex"}}>
-                        <Form.Check style={{marginRight: '5px'}} type="checkbox" />  <Link className="link-hover-effects" to="#">Я ознакомлен с "Пользовательским соглашением"</Link>
+                        <Form.Check style={{marginRight: '5px'}} type="checkbox" />  <Link className="link-hover-effects" to="/rules">Я ознакомлен с "Пользовательским соглашением"</Link>
                         </div>
                     </Form.Group>
                     <button className="btn-class-v2">Отправить</button>
