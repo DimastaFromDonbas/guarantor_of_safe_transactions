@@ -128,13 +128,14 @@
 }
 
 .list-steps {
-    padding: 0 0 0 70px;
     margin: 0;
 }
 
 .promo-steps .step {
     padding-bottom: 30px;
     list-style: none;
+    display: flex;
+    align-items: center;
 }
 
 .promote-slider__showcase {
@@ -157,7 +158,7 @@
 .info-card {
     float: left;
     width: 257px;
-    margin-left: 70px;
+    margin-left: 35px;
     margin-bottom: 20px;
 }
 
@@ -171,6 +172,9 @@
     margin-bottom: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
     font-family: "Roboto Condensed","Arial Narrow",Arial,sans-serif;
+    display: flex;
+    align-items: center;
+    height: 75px;
 }
 
 .promote-slider_holder {
@@ -178,9 +182,18 @@
     justify-content: center;
 }
 
+.link-hover-effects {
+    color: #f25322;
+    text-decoration: none;
+    transition: color .15s ease-out;
+}
+
+.link-hover-effects:hover {
+    color: #fd7e14;
+}
+
 .info-card .card-header .card-header-text {
     position: relative;
-    height: 46px;
     line-height: 50px;
     font-size: 20px;
     color: #FFF;

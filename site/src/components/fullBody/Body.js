@@ -3,9 +3,22 @@ import '../../style/body.css'
 import img3 from '../../image/bg-reviews.jpg'
 import img2 from '../../image/business-negotiate.jpg'
 import img1 from '../../image/support.jpg'
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import SecurityIcon from '@mui/icons-material/Security';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import HandshakeIcon from '@mui/icons-material/Handshake';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 
 function Body() {
     return <div className="container-body-v1 bg-img">
+                <HeadsetMicIcon></HeadsetMicIcon>
         <div className='promo-description'>
             <div className='block-main-v1'>
                 <h1>gamesgun.ru - лучший гарант безопасных сделок!</h1>
@@ -19,7 +32,7 @@ function Body() {
             </div>
             <ul className='ist-promo'>
                 <li className='list-promo-item'>
-
+                    <SecurityIcon style={{width: '70px', height:'70px'}}></SecurityIcon>
                     <p>
                         Сервис несет ответственность
                         <br />
@@ -27,7 +40,7 @@ function Body() {
                     </p>
                 </li>
                 <li className='list-promo-item'>
-
+                <CalendarMonthIcon style={{width: '70px', height:'70px'}}></CalendarMonthIcon>
                     <p>
                         Сервис работает 24 часа в сутки
                         <br />
@@ -35,7 +48,7 @@ function Body() {
                     </p>
                 </li>
                 <li className='list-promo-item'>
-
+                    <CurrencyExchangeIcon style={{width: '70px', height:'70px'}}></CurrencyExchangeIcon>
                     <p>Комиссия меньше 10%</p>
                 </li>
             </ul>
@@ -44,28 +57,39 @@ function Body() {
             <h3 class="header-inner_title">Как это работает</h3>
             <ul className='list-steps'>
                 <li className='step'>
+                <PersonAddAltIcon style={{width: '60px',height: '60px',marginRight: '10px',marginLeft: '-3px'}}></PersonAddAltIcon>
+                <div>
                     <h4 class="header-inner_title">Регистрация</h4>
-                    <p>Услуги нашего сервиса безопасных сделок предоставляются только после того, как оба участника
-                        <a href="/register">регистрируются</a>на сайте.
+                    <p>Услуги нашего сервиса безопасных сделок предоставляются только после того, как оба участника <Link className='link-hover-effects' href="#r">регистрируются</Link> на сайте.
                     </p>
+                </div>
                 </li>
                 <li className='step'>
+                    <QuestionAnswerIcon style={{width: '60px',height: '60px',marginRight: '10px',marginLeft: '-5px'}}></QuestionAnswerIcon>
+                    
+                    <div>
                     <h4 class="header-inner_title">Обсуждение условий сделки</h4>
                     <p>
                         Участники обсуждают характеристики товара и сумму оплаты,
                         выбирают платежную систему (Яндекс.Деньги, QIWI, WebMoney или Банковская
                         карта), принимают решение о сумме залога либо его отсутствии.
                     </p>
+                    </div>
                 </li>
                 <li className='step'>
+                    <AddCircleIcon style={{width: '60px',height: '60px',marginRight: '10px',marginLeft: '-5px'}}></AddCircleIcon>
+                    <div>
                     <h4 class="header-inner_title">Открытие сделки</h4>
                     <p>
                         Один из участников открывает сделку, другой её принимает. Если установлена опция залога, то оба участника
                         вносят залог. Если на данном этапе что-то идёт не так (второй участник пропал или не внёс залог), то сделка
                         отменяется, залоги возвращаются. Для общения и передачи информации используется внутренний чат.
                     </p>
+                    </div>
                 </li>
                 <li className='step'>
+                    <QueryBuilderIcon style={{width: '60px',height: '60px',marginRight: '10px',marginLeft: '-5px'}}></QueryBuilderIcon>
+                    <div>
                     <h4 class="header-inner_title">Исполнение обязательств</h4>
                     <p>
                         Покупатель вносит деньги на баланс сделки, залоги сразу же
@@ -73,15 +97,19 @@ function Body() {
                         переводит деньги с баланса на баланс продавца. Продавец может отказаться
                         от сделки и вернуть деньги покупателю. Суть в том, что участники могут
                         переводит деньги с баланса только на баланс друг друга, но не на свои. В
-                        случае спора участники могут обратиться к гаранту сделок (<a href="/disputes">арбитраж</a>)
+                        случае спора участники могут обратиться к гаранту сделок (<Link className='link-hover-effects' href="#">арбитраж</Link>)
                     </p>
+                    </div>
                 </li>
                 <li className='step'>
+                    <HandshakeIcon style={{width: '60px',height: '60px',marginRight: '10px',marginLeft: '-4px'}}></HandshakeIcon>
+                    <div>
                     <h4 class="header-inner_title">Закрытие сделки</h4>
                     <p>
                         Если на балансе сделки нет денег, то один из участников её закрывает, залоги возвращаются. Сделка через
                         гаранта завершена.
                     </p>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -92,47 +120,58 @@ function Body() {
                         <li className='promote-slider_item promote-slider_item_list'>
                             <div className='info-card '>
                                 <div className='card-header'>
+                                <SecurityIcon style={{color: "aliceblue", marginRight: '5px'}}></SecurityIcon>
                                     <span className='card-header-text'>
                                         Надежность
                                     </span>
                                 </div>
                                 <div className='card-body'>
+                                    <CheckCircleIcon style={{width: "20px",marginRight: '2px'}}></CheckCircleIcon>
                                     Персональный аттестат Webmoney, идентифицированы Qiwi, Яндекс Деньги
                                     <br />
                                     <br />
+                                    <CheckCircleIcon style={{width: "20px",marginRight: '2px'}}></CheckCircleIcon>
                                     Больше года на рынке безопасных сделок
                                     <br />
                                     <br />
+                                    <CheckCircleIcon style={{width: "20px",marginRight: '2px'}}></CheckCircleIcon>
                                     Система вычисления вероятности того, что пользователь мошшенник
                                     <br />
                                     <br />
+                                    <CheckCircleIcon style={{width: "20px",marginRight: '2px'}}></CheckCircleIcon>
                                     Актуальный черный список с автоматической проверкой всех пользователей
                                 </div>
                             </div>
                             <div className='info-card '>
                                 <div className='card-header'>
+                                    <AdminPanelSettingsIcon style={{color: "aliceblue", marginRight: '5px'}}></AdminPanelSettingsIcon>
                                     <span className='card-header-text'>
                                         Конфиденциальность
                                     </span>
                                 </div>
                                 <div className='card-body'>
+                                    <CheckCircleIcon style={{width: "20px",marginRight: '2px'}}></CheckCircleIcon>
                                     Сделка проходит на специальной странице, в закрытом чате, доступ к которому имеют только 2 участника и модератор сервиса.
                                     <br />
                                     <br />
+                                    <CheckCircleIcon style={{width: "20px",marginRight: '2px'}}></CheckCircleIcon>
                                     Запрет публикации данных для идентификации учетных записей.
                                     <br />
                                 </div>
                             </div>
                             <div className='info-card '>
                                 <div className='card-header'>
+                                    <ThumbUpIcon style={{color: "aliceblue", marginRight: '5px'}}></ThumbUpIcon>
                                     <span className='card-header-text'>
                                         Удобство
                                     </span>
                                 </div>
                                 <div className='card-body'>
+                                    <CheckCircleIcon style={{width: "20px",marginRight: '2px'}}></CheckCircleIcon>
                                     Наглядное представление сервиса
                                     <br />
                                     <br />
+                                    <CheckCircleIcon style={{width: "20px",marginRight: '2px'}}></CheckCircleIcon>
                                     Удобство использования безопасной сделки.
 
                                 </div>

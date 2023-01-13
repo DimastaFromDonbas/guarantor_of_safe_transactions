@@ -48,3 +48,7 @@
 .container .footer_holder {
     margin-left: 145px;
 }
+
+.footer-menu_link:hover {
+    color: #999;
+}
