@@ -294,3 +294,27 @@
     background-image: url(../image/div.png);
     font-family: "Roboto Condensed","Arial Narrow",Arial,sans-serif;
 }
+
+.icon-chat-sizes {
+    width: 60px !important;
+    height: 60px !important;
+}
+
+.chat-icon {
+    color: aliceblue;
+    position: fixed;
+    z-index: 100;
+    bottom: 1.4285714286em;
+    right: 1.4285714286em;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 5px 38px rgb(0 0 0 / 15%);
+    box-shadow: 0 5px 38px rgb(0 0 0 / 15%);
+    cursor: pointer;
+    -webkit-transition: visibility 0s linear .2s,opacity linear .2s;
+    -o-transition: visibility 0s linear .2s,opacity linear .2s;
+    transition: visibility 0s linear .2s,opacity linear .2s;
+
+}
