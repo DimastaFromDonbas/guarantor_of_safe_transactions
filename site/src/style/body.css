@@ -68,8 +68,6 @@
     vertical-align: middle;
     font-size: 14px;
     font-weight: 700;
-    /* line-height: 14px; */
-    color: #f9f5e1;
     text-transform: uppercase;
     text-shadow: 0 -1px rgba(71, 0, 0, 0.3);
     border-radius: 1px;
@@ -92,7 +90,7 @@
 .promo-block-text-center {
     padding: 13px 18px 13px 23px;
     color: #c0c0c0;
-    font-size: 14px;
+    font-size: 16px;
     margin: 0;
 }
 
@@ -111,6 +109,10 @@
     vertical-align: top;
     white-space: nowrap;
     color: #b8b8a2;
+}
+
+.list-promo-item p {
+    font-size: 17px;
 }
 
 .promo-steps {
@@ -292,6 +294,7 @@
 
 .bg-img{
     background-image: url(../image/div.png);
+    background-color: #202020;
     font-family: "Roboto Condensed","Arial Narrow",Arial,sans-serif;
 }
 
@@ -316,5 +319,79 @@
     -webkit-transition: visibility 0s linear .2s,opacity linear .2s;
     -o-transition: visibility 0s linear .2s,opacity linear .2s;
     transition: visibility 0s linear .2s,opacity linear .2s;
+}
 
+.wraper {
+    width: 1110px;
+    margin-top: 30px;
+    margin-bottom: 103px;
+    margin-right: 146px;
+    margin-left: 146px;
+}
+
+.login-inner_title{
+    font-size: 30px;
+    line-height: 42px;
+    color: #f9f5e1;
+    margin-bottom: 15px;
+    word-wrap: break-word;
+}
+.hr-viss {
+    border: 0;
+    height: 1px;
+    background-color: #59595c;
+    margin: 0 0 16px;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.width-form {
+    width: 380px;
+}
+
+.color-input-name {
+    color: #fff;
+}
+
+.btn-class-v2:hover {
+    background: #fff;
+    border-color: #fff;
+    color: #191e23;
+}
+
+.btn-class-v2 {
+    color: #f25322;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: 0 0;
+    border: 2px solid #f25322;
+    -webkit-transition: all ease .5s;
+    transition: all ease .5s;
+    font-family: "Roboto Condensed","Arial Narrow",Arial,sans-serif;
+    display: inline-flex;
+    -ms-flex-align: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 -1px rgba(71, 0, 0, 0.3);
+    border-radius: 1px;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 44px;
+    width: 110px;
+    padding: 0 35px;
+    white-space: nowrap;
 }
