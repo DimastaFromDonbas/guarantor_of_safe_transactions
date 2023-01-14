@@ -90,51 +90,49 @@ function Login() {
         }
       },[emailError, passwordError,passwordNoChect,checked])
 
-      async function getTocken () {
-        try {
-          const result = await axios.post(`auth/login`, {
-            email: 'user@mail.ru',
-            password: '12345'
-          }, {
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              "Content-type": `application/json`,
-              withCredentials: true,
-            mode: 'no-cors',
-            },
-          });
-          return console.log('result', result);
-        } catch (e) {
-          console.error(e);
-        }
-      }
-
-
+      // async function getTocken () {
+      //   try {
+      //     const result = await axios.post(`auth/login`, {
+      //       email: 'user@mail.ru',
+      //       password: '12345'
+      //     }, {
+      //       headers: {
+      //         'Access-Control-Allow-Origin': '*',
+      //         "Content-type": `application/json`,
+      //         withCredentials: true,
+      //       mode: 'no-cors',
+      //       },
+      //     });
+      //     return console.log('result', result);
+      //   } catch (e) {
+      //     console.error(e);
+      //   }
+      // }
 
     return <div className="bg-img">
         <Header/>
-        <div class="wraper">
-            <h3 class="header-inner_title login-inner_title">Регистрация</h3>
+        <div className="wraper">
+            <h3 className="header-inner_title login-inner_title">Регистрация</h3>
                 <hr className="hr-viss"/>
                 <Form className="width-form">
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" controlId="formBasicEmailV1">
                     <Form.Label className="color-input-name">Имя пользователя</Form.Label>
                         <Form.Control type="text" placeholder="" />
                         <Form.Text className="text-muted">
                         Пожалуйста, используйте только латинские буквы.
                         </Form.Text>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="formBasicEmailV2">
                     <Form.Label className="color-input-name">Действующий e-mail:</Form.Label>
                         <Form.Control onBlur={e => blurHandler(e)} name='login' value={login} onChange={loginUser} type="email" placeholder="" />
                         {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div> }
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Group className="mb-3" controlId="formBasicPasswordV1">
                         <Form.Label className="color-input-name">Пароль:</Form.Label>
                         <Form.Control onBlur={e => blurHandler(e)} name='password' value={password} onChange={passwordUser} type="password" placeholder="" />
                         {(passwordDirty && passwordError) && <div style={{color: 'red'}}>{passwordError}</div>}
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Group className="mb-3" controlId="formBasicPasswordV2">
                         <Form.Label className="color-input-name">Подтвердить пароль:</Form.Label>
                         <Form.Control value={passwordV2} onChange={passwordV2User} type="password" placeholder="" />
                         {passwordNoChect && <div style={{color: 'red'}}>{passwordNoChect}</div>}
@@ -147,7 +145,6 @@ function Login() {
                     <button disabled={!formValid} className="btn-class-v2">Отправить</button>
                 </Form>
         </div>
-        <button className="btn-class-v2" onClick={getTocken}>Отправить</button>
         <Footer/>
 </div>
 }

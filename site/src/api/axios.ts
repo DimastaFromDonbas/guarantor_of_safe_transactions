@@ -1,5 +1,4 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+
 import axios from "axios";
 // const LOCAL_URL = 'https://localhost:7004/api/'
 /*const host =

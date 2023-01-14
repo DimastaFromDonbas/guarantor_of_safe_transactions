@@ -6,11 +6,11 @@ function Footer() {
     let year = date.getFullYear()
     return <div className="footer bg-img">
         <div className="footer_panel">
-        <div class="container footer_holder">
-            <p class="footer_copyright">© 2017– {year} Гарант сервис gamesgun.ru</p>
-                <ul class="footer-menu">
-                    <li class="footer-menu_item">
-                        <Link class="footer-menu_link" to='/rules' >Пользовательское соглашение</Link>
+        <div className="container footer_holder">
+            <p className="footer_copyright">© 2017– {year} Гарант сервис gamesgun.ru</p>
+                <ul className="footer-menu">
+                    <li className="footer-menu_item">
+                        <Link className="footer-menu_link" to='/rules' >Пользовательское соглашение</Link>
                     </li>
                 </ul>
         </div>

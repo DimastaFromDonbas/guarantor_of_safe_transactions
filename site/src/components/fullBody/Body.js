@@ -54,12 +54,12 @@ function Body() {
             </ul>
         </div>
         <div className='promo-steps'>
-            <h3 class="header-inner_title">Как это работает</h3>
+            <h3 className="header-inner_title">Как это работает</h3>
             <ul className='list-steps'>
                 <li className='step'>
                 <PersonAddAltIcon style={{width: '60px',height: '60px',marginRight: '10px',marginLeft: '-3px'}}></PersonAddAltIcon>
                 <div>
-                    <h4 class="header-inner_title">Регистрация</h4>
+                    <h4 className="header-inner_title">Регистрация</h4>
                     <p>Услуги нашего сервиса безопасных сделок предоставляются только после того, как оба участника <Link className='link-hover-effects' to="/registr">регистрируются</Link> на сайте.
                     </p>
                 </div>
@@ -68,7 +68,7 @@ function Body() {
                     <QuestionAnswerIcon style={{width: '60px',height: '60px',marginRight: '10px',marginLeft: '-5px'}}></QuestionAnswerIcon>
                     
                     <div>
-                    <h4 class="header-inner_title">Обсуждение условий сделки</h4>
+                    <h4 className="header-inner_title">Обсуждение условий сделки</h4>
                     <p>
                         Участники обсуждают характеристики товара и сумму оплаты,
                         выбирают платежную систему (Яндекс.Деньги, QIWI, WebMoney или Банковская
@@ -79,7 +79,7 @@ function Body() {
                 <li className='step'>
                     <AddCircleIcon style={{width: '60px',height: '60px',marginRight: '10px',marginLeft: '-5px'}}></AddCircleIcon>
                     <div>
-                    <h4 class="header-inner_title">Открытие сделки</h4>
+                    <h4 className="header-inner_title">Открытие сделки</h4>
                     <p>
                         Один из участников открывает сделку, другой её принимает. Если установлена опция залога, то оба участника
                         вносят залог. Если на данном этапе что-то идёт не так (второй участник пропал или не внёс залог), то сделка
@@ -90,7 +90,7 @@ function Body() {
                 <li className='step'>
                     <QueryBuilderIcon style={{width: '60px',height: '60px',marginRight: '10px',marginLeft: '-5px'}}></QueryBuilderIcon>
                     <div>
-                    <h4 class="header-inner_title">Исполнение обязательств</h4>
+                    <h4 className="header-inner_title">Исполнение обязательств</h4>
                     <p>
                         Покупатель вносит деньги на баланс сделки, залоги сразу же
                         блокируются. Продавец видит это и передаёт товар, после чего покупатель
@@ -104,7 +104,7 @@ function Body() {
                 <li className='step'>
                     <HandshakeIcon style={{width: '60px',height: '60px',marginRight: '10px',marginLeft: '-4px'}}></HandshakeIcon>
                     <div>
-                    <h4 class="header-inner_title">Закрытие сделки</h4>
+                    <h4 className="header-inner_title">Закрытие сделки</h4>
                     <p>
                         Если на балансе сделки нет денег, то один из участников её закрывает, залоги возвращаются. Сделка через
                         гаранта завершена.
