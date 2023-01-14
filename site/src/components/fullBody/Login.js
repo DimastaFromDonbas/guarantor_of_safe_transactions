@@ -5,7 +5,16 @@ import Header from "./Header";
 import validator from 'validator';
 import { useState } from "react";
 import { useEffect } from "react";
+import axios from "../../api/axios";
 
+/*export const getBrands = async (size = 5000, index= 0) => {
+  try {
+    const result = await axios.get(`/Brands/GetAll`);
+    return result.data;
+  } catch (e) {
+    console.error(e);
+  }
+};*/
 
 function Login() {
 
@@ -81,6 +90,25 @@ function Login() {
         }
       },[emailError, passwordError,passwordNoChect,checked])
 
+      async function getTocken () {
+        try {
+          const result = await axios.post(`auth/login`, {
+            email: 'user@mail.ru',
+            password: '12345'
+          }, {
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              "Content-type": `application/json`,
+              withCredentials: true,
+            mode: 'no-cors',
+            },
+          });
+          return console.log('result', result);
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
 
 
     return <div className="bg-img">
@@ -119,6 +147,7 @@ function Login() {
                     <button disabled={!formValid} className="btn-class-v2">Отправить</button>
                 </Form>
         </div>
+        <button className="btn-class-v2" onClick={getTocken}>Отправить</button>
         <Footer/>
 </div>
 }
