@@ -45,7 +45,7 @@ function Login() {
       function passwordUser(e) {
         setPassword(e.currentTarget.value)
         if(!validator.isStrongPassword(e.currentTarget.value)) {
-          setPasswordError( 'Минимальная длина 8 ,а так же 1 символ')
+          setPasswordError( 'Минимальная длина 8 ,а так же 1 знак')
           if(!e.currentTarget.value){
             setPasswordError('Пароль не может быть пустым')
           }
