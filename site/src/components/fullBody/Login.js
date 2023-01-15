@@ -124,7 +124,7 @@ function Login() {
                         </div>
                     </Form.Group>
                     {/* <button disabled={!formValid} onClick={() => axiosRegistration(login, password)} className="btn-class-v2">Отправить</button> */}
-                    <button  onSubmit={() => axiosRegistration(login, password)} className="btn-class-v2">Отправить</button>
+                    <button disabled={!formValid} onClick={offReserch} onSubmit={() => axiosRegistration(login, password)} className="btn-class-v2">Отправить</button>
 
                 </Form>
         </div>
