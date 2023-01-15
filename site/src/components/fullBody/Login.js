@@ -46,8 +46,8 @@ function Login() {
   
       function passwordUser(e) {
         setPassword(e.currentTarget.value)
-        if(!validator.isStrongPassword(e.currentTarget.value)) {
-          setPasswordError( 'Минимальная длина 8 ,а так же 1 знак')
+        if(!validator.isStrongPassword(e.currentTarget.value, {minSymbols: 0,minUppercase: 0})) {
+          setPasswordError( 'Минимальная длина 8' )
           if(!e.currentTarget.value){
             setPasswordError('Пароль не может быть пустым')
           }
@@ -58,7 +58,7 @@ function Login() {
 
       function passwordV2User(a) {
         setPasswordV2(a.currentTarget.value)
-        if(!validator.isStrongPassword(a.currentTarget.value)) {
+        if(!validator.isStrongPassword(a.currentTarget.value, {minSymbols: 0,minUppercase: 0})) {
           setpasswordNoChect('Некоректный пароль')
           if(!a.currentTarget.value){
             setpasswordNoChect('Пароль не может быть пустым')
