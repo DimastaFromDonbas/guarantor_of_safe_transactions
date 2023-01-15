@@ -19,7 +19,7 @@ export default axios;
 
 
 export const axiosRegistration = async (email:string, password:string) => {
-  const {data} = await axios.post('api/user/registration', {email, password, role: 'ADMIN'})
+  const {data} = await axios.post('api/user/registration', {email, password, role: 'ADMIN', nickname: 'zalupa'})
   localStorage.setItem('token', data.token)
   console.log('registration', jwt_decode(data.token))
   return jwt_decode(data.token)
