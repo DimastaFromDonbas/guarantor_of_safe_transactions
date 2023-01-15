@@ -56,6 +56,10 @@ function UserInput() {
           setFormValid(true)
         }
       },[emailError, passwordError])
+
+      function offReserch(e) {
+        e.preventDefault()
+      }
   
     return <div className="bg-img">
         <Header/>
@@ -76,7 +80,7 @@ function UserInput() {
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                          <Link className="link-hover-effects" to="/registr">Нет учетной записи? Зарегистрируйте!</Link>
                     </Form.Group>
-                    <button disabled={!formValid} className="btn-class-v2">Войти</button>
+                    <button disabled={!formValid} onClick={offReserch} className="btn-class-v2">Войти</button>
                 </Form>
                 <button onClick={() => axiosLogin(login, password)} className="btn-class-v2">Войти</button>
         </div>
