@@ -7,9 +7,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { axiosRegistration } from "../../api/axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { reducerTypes } from "../../store/Users/types";
 
 
 function Login() {
+    const dispatch = useDispatch();
     const [nickname, setNickname] = useState("");
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
@@ -93,6 +96,13 @@ function Login() {
        // navigate('/login')
       }
 
+      async function getUsers(e) {
+        offReserch(e);
+        dispatch({
+          type: reducerTypes.GET_USERS,
+          payload: [await axiosRegistration(login, password, nickname)]
+        });
+      }
 
     return <div className="bg-img">
         <Header/>
@@ -128,10 +138,7 @@ function Login() {
                         </div>
                     </Form.Group>
                     {/* <button disabled={!formValid} onClick={() => axiosRegistration(login, password)} className="btn-class-v2">Отправить</button> */}
-                    <button disabled={!formValid} onClick={(e) => {
-                      offReserch(e);
-                      axiosRegistration(login, password, nickname);
-                      }} onSubmit={() => axiosRegistration(login, password)} className="btn-class-v2">Отправить</button>
+                    <button disabled={!formValid} onClick={(e) => getUsers(e)} className="btn-class-v2">Отправить</button>
 
                 </Form>
         </div>
