@@ -89,6 +89,10 @@ function Login() {
           setFormValid(true)
         }
       },[emailError, passwordError,passwordNoChect,checked])
+      
+      function offReserch(e) {
+        e.preventDefault()
+      }
 
       // async function getTocken () {
       //   try {
@@ -142,7 +146,7 @@ function Login() {
                         <Form.Check checked={!checked} onChange={() => setChecked(!checked)} style={{marginRight: '5px'}} type="checkbox" />  <Link className="link-hover-effects" to="/rules">Я ознакомлен с "Пользовательским соглашением"</Link>
                         </div>
                     </Form.Group>
-                    <button disabled={!formValid} className="btn-class-v2">Отправить</button>
+                    <button disabled={!formValid} onClick={offReserch} className="btn-class-v2">Отправить</button>
                 </Form>
         </div>
         <Footer/>
