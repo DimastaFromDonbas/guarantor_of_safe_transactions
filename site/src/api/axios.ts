@@ -18,7 +18,7 @@ axios.defaults.baseURL = `http://${host}/`;
 export default axios;
 
 
-export const registration = async (email:string, password:string) => {
+export const axiosRegistration = async (email:string, password:string) => {
   const {data} = await axios.post('api/user/registration', {email, password, role: 'ADMIN'})
   localStorage.setItem('token', data.token)
   console.log('registration', jwt_decode(data.token))
