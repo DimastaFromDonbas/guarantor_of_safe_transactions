@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function Login() {
-
+    const [nickname, setNickname] = useState("");
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [passwordV2, setPasswordV2] = useState("");
@@ -33,6 +33,10 @@ function Login() {
           break;
           default:
         }
+      }
+
+      function changeNickname(e) {
+        setNickname(e.currentTarget.value)
       }
   
       function loginUser(e) {
@@ -98,7 +102,7 @@ function Login() {
                 <Form className="width-form">
                     <Form.Group className="mb-3" controlId="formBasicEmailV1">
                     <Form.Label className="color-input-name">Имя пользователя</Form.Label>
-                        <Form.Control type="text" placeholder="" />
+                    <Form.Control name='nickname' value={nickname} onChange={changeNickname} type="text" placeholder="" />
                         <Form.Text className="text-muted">
                         Пожалуйста, используйте только латинские буквы.
                         </Form.Text>
@@ -126,7 +130,7 @@ function Login() {
                     {/* <button disabled={!formValid} onClick={() => axiosRegistration(login, password)} className="btn-class-v2">Отправить</button> */}
                     <button disabled={!formValid} onClick={(e) => {
                       offReserch(e);
-                      axiosRegistration(login, password);
+                      axiosRegistration(login, password, nickname);
                       }} onSubmit={() => axiosRegistration(login, password)} className="btn-class-v2">Отправить</button>
 
                 </Form>
