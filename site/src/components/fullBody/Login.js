@@ -5,12 +5,9 @@ import Header from "./Header";
 import validator from 'validator';
 import { useState } from "react";
 import { useEffect } from "react";
-import { getTocken } from "../../api/axios";
-import { getUsers } from "../../api/axios";
 
 function Login() {
 
-    const [tocken, setTocken] = useState('');
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [passwordV2, setPasswordV2] = useState("");
@@ -121,7 +118,6 @@ function Login() {
                 </Form>
         </div>
         {/* <button onClick={() => getUsers(tocken)} className="btn-class-v2">Отправить</button> */}
-        <button onClick={() => setTocken(getTocken)} className="btn-class-v2">Отправить</button>
         <Footer/>
 </div>
 }

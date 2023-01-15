@@ -1,5 +1,6 @@
 
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 // const LOCAL_URL = 'https://localhost:7004/api/'
 /*const host =
   process.env.NODE_ENV === "development"
@@ -16,7 +17,29 @@ axios.defaults.baseURL = `http://${host}/`;
 
 export default axios;
 
-export async function getTocken () {
+
+export const registration = async (email:string, password:string) => {
+  const {data} = await axios.post('api/user/registration', {email, password, role: 'ADMIN'})
+  localStorage.setItem('token', data.token)
+  console.log('registration', jwt_decode(data.token))
+  return jwt_decode(data.token)
+}
+
+export const axiosLogin = async (email:string, password:string) => {
+  const {data} = await axios.post('api/user/login', {email, password})
+  localStorage.setItem('token', data.token)
+  console.log('login' ,jwt_decode(data.token))
+  return jwt_decode(data.token)
+}
+
+export const check = async () => {
+  const {data} = await axios.get('api/user/auth' )
+  localStorage.setItem('token', data.token)
+  console.log('check', jwt_decode(data.token))
+  return jwt_decode(data.token)
+}
+
+/*export async function getTocken () {
   try {
     const result = await axios.post(`auth/login`, {
       email: 'user@mail.ru',
@@ -35,10 +58,10 @@ export async function getTocken () {
   } catch (e) {
     console.error(e);
   }
-}
+}*/
 
 
-export async function getUsers () {
+/*export async function getUsers () {
   const token = JSON.parse(sessionStorage.getItem("auth") || '')?.token;
   try {
     const result = await axios.get(`users`, {
@@ -54,5 +77,5 @@ export async function getUsers () {
   } catch (e) {
     console.error(e);
   }
-}
+}*/
 
