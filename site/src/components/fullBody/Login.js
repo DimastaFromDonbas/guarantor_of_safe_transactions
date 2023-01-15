@@ -85,8 +85,8 @@ function Login() {
       },[emailError, passwordError,passwordNoChect,checked])
       
       function offReserch(e) {
-        e.preventDefault()
-        navigate('/login')
+        e.preventDefault();
+       // navigate('/login')
       }
 
 
@@ -124,8 +124,8 @@ function Login() {
                         </div>
                     </Form.Group>
                     {/* <button disabled={!formValid} onClick={() => axiosRegistration(login, password)} className="btn-class-v2">Отправить</button> */}
-                    <button disabled={!formValid} onClick={() => {
-                      offReserch();
+                    <button disabled={!formValid} onClick={(e) => {
+                      offReserch(e);
                       axiosRegistration(login, password);
                       }} onSubmit={() => axiosRegistration(login, password)} className="btn-class-v2">Отправить</button>
 

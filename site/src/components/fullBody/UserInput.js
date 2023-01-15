@@ -39,7 +39,7 @@ function UserInput() {
   
       function passwordUser(e) {
         setPassword(e.currentTarget.value)
-        if(e.target.value.length < 6) {
+        if(e.target.value.length < 4) {
           setPasswordError('Некоректный пароль')
           if(!e.target.value){
             setPasswordError('Пароль не может быть пустым')
@@ -80,12 +80,11 @@ function UserInput() {
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                          <Link className="link-hover-effects" to="/registr">Нет учетной записи? Зарегистрируйте!</Link>
                     </Form.Group>
-                    <button disabled={!formValid} onClick={offReserch} className="btn-class-v2">Войти</button>
+                    <button disabled={!formValid} onClick={(e) => {
+                      offReserch(e);
+                      axiosLogin(login, password);
+                      }} className="btn-class-v2">Войти</button>
                 </Form>
-                <button onClick={() => {
-                  offReserch();
-                  axiosLogin(login, password);
-                  }} className="btn-class-v2">Войти</button>
         </div>
         <Footer/>
     </div>
