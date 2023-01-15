@@ -82,7 +82,10 @@ function UserInput() {
                     </Form.Group>
                     <button disabled={!formValid} onClick={offReserch} className="btn-class-v2">Войти</button>
                 </Form>
-                <button onClick={() => axiosLogin(login, password)} className="btn-class-v2">Войти</button>
+                <button onClick={() => {
+                  offReserch();
+                  axiosLogin(login, password);
+                  }} className="btn-class-v2">Войти</button>
         </div>
         <Footer/>
     </div>
