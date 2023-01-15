@@ -3,11 +3,15 @@ import { Link } from "react-router-dom"
 import Footer from "./Footer"
 import Header from "./Header"
 import { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
 import validator from 'validator';
 import { axiosLogin } from "../../api/axios";
+import { reducerTypes } from "../../store/Users/types";
+import jwt_decode from "jwt-decode";
 
 function UserInput() {
 
+    const dispatch = useDispatch();
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [emailDirty, setEmailDirty] = useState(false);
@@ -60,6 +64,14 @@ function UserInput() {
       function offReserch(e) {
         e.preventDefault()
       }
+
+      async function getUsers(e) {
+        offReserch(e);
+        dispatch({
+          type: reducerTypes.GET_USERS,
+          payload: [await axiosLogin(login, password)]
+        });
+      }
   
     return <div className="bg-img">
         <Header/>
@@ -80,10 +92,7 @@ function UserInput() {
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                          <Link className="link-hover-effects" to="/registr">Нет учетной записи? Зарегистрируйте!</Link>
                     </Form.Group>
-                    <button disabled={!formValid} onClick={(e) => {
-                      offReserch(e);
-                      axiosLogin(login, password);
-                      }} className="btn-class-v2">Войти</button>
+                    <button disabled={!formValid} onClick={(e) => getUsers(e)} className="btn-class-v2">Войти</button>
                 </Form>
         </div>
         <Footer/>
