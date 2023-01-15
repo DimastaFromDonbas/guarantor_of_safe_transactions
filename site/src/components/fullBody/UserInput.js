@@ -4,6 +4,7 @@ import Footer from "./Footer"
 import Header from "./Header"
 import { useEffect, useState } from "react";
 import validator from 'validator';
+import { axiosLogin } from "../../api/axios";
 
 function UserInput() {
 
@@ -81,6 +82,7 @@ function UserInput() {
                     </Form.Group>
                     <button disabled={!formValid} onClick={offReserch} className="btn-class-v2">Войти</button>
                 </Form>
+                <button onClick={() => axiosLogin(login, password)} className="btn-class-v2">Войти</button>
         </div>
         <Footer/>
     </div>
