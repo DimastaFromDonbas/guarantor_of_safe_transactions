@@ -5,6 +5,7 @@ import Header from "./Header";
 import validator from 'validator';
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 
@@ -18,6 +19,7 @@ function Login() {
     const [passwordNoChect, setpasswordNoChect] = useState('Пароль не может быть пустым')
     const [checked , setChecked] = useState(true)
     const [ formValid, setFormValid] = useState(false);
+    const navigate = useNavigate()
 
     const blurHandler = (e) => {
         switch(e.currentTarget.name) {
@@ -42,8 +44,8 @@ function Login() {
   
       function passwordUser(e) {
         setPassword(e.currentTarget.value)
-        if(e.currentTarget.value.length < 6) {
-          setPasswordError('Некоректный пароль')
+        if(!validator.isStrongPassword(e.currentTarget.value)) {
+          setPasswordError( 'Минимальная длина 8 ,а так же 1 символ')
           if(!e.currentTarget.value){
             setPasswordError('Пароль не может быть пустым')
           }
@@ -54,7 +56,7 @@ function Login() {
 
       function passwordV2User(a) {
         setPasswordV2(a.currentTarget.value)
-        if(a.currentTarget.value.length < 6) {
+        if(!validator.isStrongPassword(a.currentTarget.value)) {
           setpasswordNoChect('Некоректный пароль')
           if(!a.currentTarget.value){
             setpasswordNoChect('Пароль не может быть пустым')
@@ -82,6 +84,7 @@ function Login() {
       
       function offReserch(e) {
         e.preventDefault()
+        navigate('/login')
       }
 
 
