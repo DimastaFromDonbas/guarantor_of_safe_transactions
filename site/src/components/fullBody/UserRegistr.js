@@ -100,7 +100,7 @@ function Login() {
         offReserch(e);
         dispatch({
           type: reducerTypes.GET_USERS,
-          payload: [await axiosRegistration(login, password, nickname)]
+          payload: await axiosRegistration(login, password, nickname)
         });
       }
 

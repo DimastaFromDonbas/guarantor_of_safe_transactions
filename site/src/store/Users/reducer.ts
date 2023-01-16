@@ -3,18 +3,18 @@ import { reducerTypes } from "./types";
 import { IUser } from "../../interfaces/users";
 
 export interface IUsersReducer {
-  users: IUser[] | null;
+  user: IUser | {};
 }
 
 export const INITIAL: IUsersReducer = {
-users: [{
+user: {
   id: 1,
   email: "123@gmail.com",
   password: "Dima12345" || null,
   role: "admin",
   score: 0,
   nickname: "dima_Zayka",
-}],
+},
 };
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {

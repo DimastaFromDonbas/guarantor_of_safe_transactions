@@ -69,7 +69,7 @@ function UserInput() {
         offReserch(e);
         dispatch({
           type: reducerTypes.GET_USERS,
-          payload: [await axiosLogin(login, password)]
+          payload: await axiosLogin(login, password)
         });
       }
   
