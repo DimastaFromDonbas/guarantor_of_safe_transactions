@@ -19,8 +19,8 @@ user: {
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
   switch (type) {
-    case reducerTypes.GET_USERS:
-      return { ...state, users: payload };
+    case reducerTypes.GET_USER:
+      return { ...state, user: payload };
     default:
       return state;
   }
