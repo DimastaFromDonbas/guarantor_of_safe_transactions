@@ -49,3 +49,14 @@ export const axiosChangeNickname = async (nickname: 'string', id: number, passwo
   console.log('nickname', data);
   return data;
 }
+
+export const axiosChangePassword = async (newPassword: 'string', id: number, password: 'string') => {
+  const {data} = await axios.post('api/user/password', {newPassword, id, password}, {
+    headers: {
+      "Access-Control-Allow-Origin": true,
+      "Content-type": `application/json`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    }});
+  console.log('password', data);
+  return data;
+}

@@ -73,6 +73,24 @@ class UserController {
         }
     }
 
+    async changePassword(req, res, next) {
+        const {newPassword, id, password} = req.body
+        const user = await User.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(password, user.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if (newPassword) {
+            await User.update({password: newPassword}, {where: {id: id}})
+           return res.json({...user.dataValues, password: newPassword})
+        } else {
+            return next(ApiError.internal('Указано неверное имя пользователя'))
+        }
+    }
+
     /*async addRole(dto: AddRoleDto) {
         const user = await this.userRepository.findByPk(dto.userId);
         const role = await this.roleService.getRoleByValue(dto.value);
