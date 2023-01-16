@@ -53,3 +53,44 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.user-profile-block {
+    background: rgba(39, 39, 43, 0.93);
+    position: absolute;
+    height: auto;
+    margin-top: 45px;
+    margin-left: -72px;
+}
+
+.nav-detail_item {
+    display: block;
+    position: relative;
+    padding: 10px 0;
+}
+
+.nav-detail_link {
+    text-decoration: none;
+    color: #aaaaab;
+    font-size: 14px;
+    padding: 12px 16px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.nav-detail_list {
+    padding: 0;
+    margin: 0;
+}
+
+.nav-detail_link:hover {
+    color: #fab81b ;
+}
+
+.hoverArrow {
+    color: #aaaaab;
+    cursor: pointer;
+}
+
+.hoverArrow:hover {
+    color: #fab81b;
+}
