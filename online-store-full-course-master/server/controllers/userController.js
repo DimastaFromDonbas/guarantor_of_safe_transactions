@@ -50,6 +50,37 @@ class UserController {
         const token = generateJwt(req.user.id, req.user.email, req.user.role, req.user.nickname, req.user.score)
         return res.json({token})
     }
+
+    async changeNickname(req, res, next) {
+        const {nickname, id, password} = req.body
+        const user = await User.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(password, user.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if (nickname) {
+            await user.$set('nickname', nickname)
+            return user
+        } else {
+            return next(ApiError.internal('Указано неверное имя пользователя'))
+        }
+    }
+
+    /*async addRole(dto: AddRoleDto) {
+        const user = await this.userRepository.findByPk(dto.userId);
+        const role = await this.roleService.getRoleByValue(dto.value);
+        if (role && user) {
+            await user.$add('role', role.id);
+            return dto;
+        }
+        throw new HttpException('Пользователь или роль не найдены', HttpStatus.NOT_FOUND);
+    }*/
+
+
+
 }
 
 module.exports = new UserController()
