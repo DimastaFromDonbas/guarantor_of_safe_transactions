@@ -99,7 +99,7 @@ function Login() {
       async function getUsers(e) {
         offReserch(e);
         dispatch({
-          type: reducerTypes.GET_USERS,
+          type: reducerTypes.GET_USER,
           payload: await axiosRegistration(login, password, nickname)
         });
       }

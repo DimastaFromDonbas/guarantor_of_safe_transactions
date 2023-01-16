@@ -1,8 +1,8 @@
 export const reducerTypes = {
-    GET_USERS: "reducer/GET_USERS",
+    GET_USER: "reducer/GET_USER",
   };
   
   export const sagaTypes = {
-    GET_USERS: "saga/GET_USERS",
+    GET_USER: "saga/GET_USER",
   };
   
