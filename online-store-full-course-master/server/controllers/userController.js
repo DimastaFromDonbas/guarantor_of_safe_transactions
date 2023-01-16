@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {User, Basket} = require('../models/models')
 
-const generateJwt = (id, email, role, nickname, score) => {
+const generateJwt = (id, email, role, nickname, score, password) => {
     return jwt.sign(
-        {id, email, role, nickname, score},
+        {id, email, role, nickname, score, password},
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     )
@@ -28,7 +28,7 @@ class UserController {
         const hashPassword = await bcrypt.hash(password, 5)
         const user = await User.create({email, role, password: hashPassword, nickname})
         const basket = await Basket.create({userId: user.id})
-        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score)
+        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, user.password)
         return res.json({token})
     }
 
@@ -42,12 +42,12 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score)
+        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, password)
         return res.json({token})
     }
 
     async check(req, res, next) {
-        const token = generateJwt(req.user.id, req.user.email, req.user.role, req.user.nickname, req.user.score)
+        const token = generateJwt(req.user.id, req.user.email, req.user.role, req.user.nickname, req.user.score, req.user.password)
         return res.json({token})
     }
 
@@ -61,9 +61,13 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
+        const checkNickname = await User.findOne({where: {nickname}})
+        if (checkNickname) {
+            return next(ApiError.badRequest('Пользователь с таким именем уже существует'))
+        }
         if (nickname) {
-            await user.$set('nickname', nickname)
-            return user
+            await User.update({nickname: nickname}, {where: {id: id}})
+           return res.json({...user.dataValues, nickname: nickname})
         } else {
             return next(ApiError.internal('Указано неверное имя пользователя'))
         }
