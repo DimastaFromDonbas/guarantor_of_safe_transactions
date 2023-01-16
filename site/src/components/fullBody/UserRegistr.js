@@ -9,6 +9,9 @@ import { axiosRegistration } from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from "../../store/Users/types";
+import { axiosChangeNickname } from "../../api/axios";
+import { useAppSelector } from "../../store/reduxHooks";
+
 
 function Login() {
     const dispatch = useDispatch();
@@ -24,6 +27,7 @@ function Login() {
     const [checked , setChecked] = useState(true)
     const [ formValid, setFormValid] = useState(false);
     const navigate = useNavigate()
+    const {user} = useAppSelector ((store) => store.user)
 
     const blurHandler = (e) => {
         switch(e.currentTarget.name) {
@@ -103,6 +107,14 @@ function Login() {
         });
       }
 
+      async function getNicknames(e) {
+        offReserch(e);
+        dispatch({
+          type: reducerTypes.GET_USER,
+          payload: await axiosChangeNickname(nickname, user.id, user.password)
+        });
+      }
+
     return <div className="bg-img">
         <Header/>
         <div className="wraper">
@@ -140,6 +152,7 @@ function Login() {
                     <button disabled={!formValid} onClick={(e) => getUsers(e)} className="btn-class-v2">Отправить</button>
 
                 </Form>
+                <button onClick={(e) => getNicknames(e)} className="btn-class-v2">Сменить ник</button>
         </div>
         {/* <button onClick={() => getUsers(tocken)} className="btn-class-v2">Отправить</button> */}
         <Footer/>
