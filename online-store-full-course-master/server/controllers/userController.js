@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {User, Basket} = require('../models/models')
 
-const generateJwt = (id, email, role, nickname, score) => {
+const generateJwt = (id, email, role, nickname, score, password) => {
     return jwt.sign(
-        {id, email, role, nickname, score},
+        {id, email, role, nickname, score, password},
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     )
@@ -28,7 +28,7 @@ class UserController {
         const hashPassword = await bcrypt.hash(password, 5)
         const user = await User.create({email, role, password: hashPassword, nickname})
         const basket = await Basket.create({userId: user.id})
-        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score)
+        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, user.password)
         return res.json({token})
     }
 
@@ -42,14 +42,67 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score)
+        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, password)
         return res.json({token})
     }
 
     async check(req, res, next) {
-        const token = generateJwt(req.user.id, req.user.email, req.user.role, req.user.nickname, req.user.score)
+        const token = generateJwt(req.user.id, req.user.email, req.user.role, req.user.nickname, req.user.score, req.user.password)
         return res.json({token})
     }
+
+    async changeNickname(req, res, next) {
+        const {nickname, id, password} = req.body
+        const user = await User.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(password, user.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        const checkNickname = await User.findOne({where: {nickname}})
+        if (checkNickname) {
+            return next(ApiError.badRequest('Пользователь с таким именем уже существует'))
+        }
+        if (nickname) {
+            await User.update({nickname: nickname}, {where: {id: id}})
+           return res.json({...user.dataValues, nickname: nickname})
+        } else {
+            return next(ApiError.internal('Указано неверное имя пользователя'))
+        }
+    }
+
+    async changePassword(req, res, next) {
+        const {newPassword, id, password} = req.body
+        const user = await User.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(password, user.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if (newPassword) {
+            await User.update({password: newPassword}, {where: {id: id}})
+           return res.json({...user.dataValues, password: newPassword})
+        } else {
+            return next(ApiError.internal('Указано неверное имя пользователя'))
+        }
+    }
+
+    /*async addRole(dto: AddRoleDto) {
+        const user = await this.userRepository.findByPk(dto.userId);
+        const role = await this.roleService.getRoleByValue(dto.value);
+        if (role && user) {
+            await user.$add('role', role.id);
+            return dto;
+        }
+        throw new HttpException('Пользователь или роль не найдены', HttpStatus.NOT_FOUND);
+    }*/
+
+
+
 }
 
 module.exports = new UserController()

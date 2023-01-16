@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from "../../store/Users/types";
 
-
 function Login() {
     const dispatch = useDispatch();
     const [nickname, setNickname] = useState("");
