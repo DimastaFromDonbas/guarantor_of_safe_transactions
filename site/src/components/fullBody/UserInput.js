@@ -8,6 +8,7 @@ import validator from 'validator';
 import { axiosLogin } from "../../api/axios";
 import { reducerTypes } from "../../store/Users/types";
 import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 function UserInput() {
 
@@ -19,6 +20,7 @@ function UserInput() {
     const [emailError, setEmailError] = useState("Логин не может быть пустым");
     const [passwordError, setPasswordError] = useState("Пароль не может быть пустым");
     const [ formValid, setFormValid] = useState(false);
+    const navigate = useNavigate()
 
     const blurHandler = (e) => {
         switch(e.currentTarget.name) {
@@ -71,6 +73,7 @@ function UserInput() {
           type: reducerTypes.GET_USER,
           payload: await axiosLogin(login, password)
         });
+        navigate('/')
       }
   
     return <div className="bg-img">

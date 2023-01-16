@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 import '../../style/header.css'
 import HomeIcon from '@mui/icons-material/Home';
 import { useAppSelector } from "../../store/reduxHooks";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 function Header() {
 
@@ -29,8 +30,9 @@ function Header() {
               </div>}
               </div>
               { user?.id?
-                <div className="flex-nav-link-registr ">
+                <div style={{display: "flex",justifyContent: "space-between",marginRight: "110px"}}>
                 <Link className="color-nav-link color" to="/login" style={{display: 'flex', flexDirection: 'row'}}>{user.nickname}</Link>
+                <KeyboardArrowDownIcon style={{color: "#aaaaab"}}></KeyboardArrowDownIcon>
                 </div>
                 :
                 <div className="flex-nav-link-registr ">
