@@ -5,7 +5,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import { useAppSelector } from "../../store/reduxHooks";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
 
@@ -13,7 +12,6 @@ function Header() {
 
   const {user} = useAppSelector ((store) => store.user)
   const [checked, setChecked] = useState(false)
-  const navigate = useNavigate()
   const dispatch = useDispatch();
 
   function clickArrowdown() {

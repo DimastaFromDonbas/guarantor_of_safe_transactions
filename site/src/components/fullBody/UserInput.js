@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import validator from 'validator';
 import { axiosLogin } from "../../api/axios";
 import { reducerTypes } from "../../store/Users/types";
-import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 function UserInput() {
