@@ -148,7 +148,6 @@ function Login() {
                     <button disabled={!formValid} onClick={(e) => getUsers(e)} className="btn-class-v2">Отправить</button>
 
                 </Form>
-                <button onClick={(e) => getNicknames(e)} className="btn-class-v2">Сменить ник</button>
         </div>
         <Footer/>
 </div>
