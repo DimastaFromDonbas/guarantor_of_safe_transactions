@@ -54,6 +54,7 @@ function Settings() {
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label className="color-input-name">Введите ваш пароль:</Form.Label>
                             <Form.Control value={password} onChange={getPassword} name='password' type="password" placeholder="" />
+                            {user.password!==password? <div style={{color: 'red'}}>Проверьте пароль, вы ошиблись</div> : ''}
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         </Form.Group>
