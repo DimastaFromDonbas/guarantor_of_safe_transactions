@@ -39,7 +39,7 @@ function Settings() {
         } else {
             setFormValid(false)
         }
-      },[nickname, password])
+      },[nickname, password, user.password])
 
     return <div className="bg-img">
         <Header />
