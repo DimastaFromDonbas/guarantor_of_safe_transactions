@@ -66,3 +66,9 @@ export const axiosCreateDeal = async (name:string, buyer:string, seller: string,
   console.log('create deal', data)
   return data;
 }
+
+export const axiosGetDeal = async (email:string, password:string) => {
+  const {data} = await axios.post('api/deal/getOne', {email, password});
+  console.log('get deal', data)
+  return data;
+}
