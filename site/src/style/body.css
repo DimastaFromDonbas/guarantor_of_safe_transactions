@@ -232,7 +232,6 @@
 
 .link-hover-effects:hover {
     color: #fd7e14;
-    transform: scale(1.1);
 }
 
 .info-card .card-header .card-header-text {
@@ -395,6 +394,10 @@
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+}
+
+.width-form {
+    width: 720px;
 }
 
 .color-input-name {
