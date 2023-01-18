@@ -9,7 +9,14 @@ export interface IUsersReducer {
 }
 
 export const INITIAL: IUsersReducer = {
-  user: {},
+  user: {
+    id: 1,
+    email: "string",
+    password: "Dima1020111" || null,
+    role: "Админ",
+    score: 0,
+    nickname: "string",
+  },
   deals: [],
 };
 

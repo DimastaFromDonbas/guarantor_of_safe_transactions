@@ -34,13 +34,13 @@ function Deals() {
                     <div className="dial-flex_box">
                         <div>
                         <Form.Label htmlFor="inputPassword5">Мои сделки</Form.Label>
-                        <button className="spec-btn-ux"><Link style={{textDecoration: "none", color: 'white', fontSize: '14px'}} to = '#'>Сделать сделку <AddCircleOutlineIcon></AddCircleOutlineIcon></Link></button>
+                        <button className="spec-btn-ux"><Link style={{textDecoration: "none", color: 'white', fontSize: '14px'}} to = '/makedeal'>Сделать сделку <AddCircleOutlineIcon></AddCircleOutlineIcon></Link></button>
                         </div>
-                        <table class="trades-table">
+                        <table className="trades-table">
                                     <thead>
                                         <tr>
                                             <th>Номер</th>
-                                            <th style={{width: "25%"}}>Название</th>
+                                            <th>Название</th>
                                             <th>Номер сделки</th>
                                             <th>Сумма</th>
                                             <th>Статус</th>
