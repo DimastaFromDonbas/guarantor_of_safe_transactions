@@ -7,14 +7,7 @@ export interface IUsersReducer {
 }
 
 export const INITIAL: IUsersReducer = {
-user: {
-  id: 1,
-  email: "123@gmail.com",
-  password: "Dima12345" || null,
-  role: "admin",
-  score: 0,
-  nickname: "dima_Zayka",
-},
+user: {},
 };
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {

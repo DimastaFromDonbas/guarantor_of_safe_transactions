@@ -10,6 +10,16 @@ const User = sequelize.define('user', {
     nickname: {type: DataTypes.STRING, unique: true},
 })
 
+const Deal = sequelize.define('deal', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING},
+    buyer: {type: DataTypes.STRING},
+    seller: {type: DataTypes.STRING},
+    sum: {type: DataTypes.INTEGER},
+    status: {type: DataTypes.INTEGER, defaultValue: 0},
+    description: {type: DataTypes.STRING},
+})
+
 const Basket = sequelize.define('basket', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
@@ -51,7 +61,6 @@ const TypeBrand = sequelize.define('type_brand', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
-
 User.hasOne(Basket)
 Basket.belongsTo(User)
 
@@ -81,6 +90,7 @@ Brand.belongsToMany(Type, {through: TypeBrand })
 
 module.exports = {
     User,
+    Deal,
     Basket,
     BasketDevice,
     Device,

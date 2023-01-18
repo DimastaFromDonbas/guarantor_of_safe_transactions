@@ -35,11 +35,11 @@ function UserInput() {
   
       function loginUser(e) {
         setLogin(e.currentTarget.value)
-        if(!validator.isEmail(e.currentTarget.value)) {
-          setEmailError('Некоректный логин')
-        } else {
+        // if(!validator.isEmail(e.currentTarget.value)) {
+        //   setEmailError('Некоректный логин')
+        // } else {
           setEmailError('')
-        }
+        //}
       }
   
       function passwordUser(e) {
