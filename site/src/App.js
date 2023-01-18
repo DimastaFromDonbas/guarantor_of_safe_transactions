@@ -4,13 +4,15 @@ import UserInput from "./components/fullBody/UserInput";
 import UserSoglos from "./components/fullBody/UserSoglos";
 import Main from "./components/Main";
 import Settings from "./components/fullBody/Settings";
+import Makedeal from "./components/fullBody/Makedeal";
+
 function App() {
   return  <>
       <Routes>
         <Route path="/" element = {<Main/>}/>
         <Route path="#"/>
         <Route path="#"/>
-        <Route path="#"/>
+        <Route path="/makedeal" element={<Makedeal/>}/>
         <Route path="/settings" element={<Settings/>}/>
         <Route path="/login" element ={<UserInput />} />
         <Route path="/registr" element = {<UserRegistr />}/>
