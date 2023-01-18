@@ -192,11 +192,12 @@
 .link-hover-effects {
     color: #f25322;
     text-decoration: none;
-    transition: color .15s ease-out;
+    transition: all .3s ease-out;
 }
 
 .link-hover-effects:hover {
     color: #fd7e14;
+    font-size: 17px;
 }
 
 .info-card .card-header .card-header-text {
@@ -493,4 +494,15 @@
     background-color: #FE1F1A;
     border-radius: 4px;
     background: none;
+}
+
+.hovet-effect {
+    width: 70px !important;
+    height: 70px !important;
+    transition: .3s !important;
+}
+
+.hovet-effect:hover {
+    transform: translateY(-8px);
+    color: #f1f8fa;
 }

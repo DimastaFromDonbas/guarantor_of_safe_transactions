@@ -26,7 +26,7 @@ function Body() {
             </div>
             <ul className='ist-promo'>
                 <li className='list-promo-item'>
-                    <SecurityIcon style={{width: '70px', height:'70px'}}></SecurityIcon>
+                    <SecurityIcon className='hovet-effect'></SecurityIcon>
                     <p>
                         Сервис несет ответственность
                         <br />
@@ -34,7 +34,7 @@ function Body() {
                     </p>
                 </li>
                 <li className='list-promo-item'>
-                <CalendarMonthIcon style={{width: '70px', height:'70px'}}></CalendarMonthIcon>
+                <CalendarMonthIcon className='hovet-effect'></CalendarMonthIcon>
                     <p>
                         Сервис работает 24 часа в сутки
                         <br />
@@ -42,7 +42,7 @@ function Body() {
                     </p>
                 </li>
                 <li className='list-promo-item'>
-                    <CurrencyExchangeIcon style={{width: '70px', height:'70px'}}></CurrencyExchangeIcon>
+                    <CurrencyExchangeIcon className='hovet-effect'></CurrencyExchangeIcon>
                     <p>Комиссия меньше 10%</p>
                 </li>
             </ul>
