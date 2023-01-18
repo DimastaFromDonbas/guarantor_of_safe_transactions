@@ -15,7 +15,7 @@ export const INITIAL: IUsersReducer = {
     password: "Dima1020111" || null,
     role: "Админ",
     score: 0,
-    nickname: "string",
+    nickname: "test",
   },
   deals: [],
 };
