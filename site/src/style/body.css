@@ -563,6 +563,7 @@
 .wrap {
     margin: 30px 146px 103px 146px !important;
     max-width: 1111px !important;
+    min-height: calc(100vh - 339px);
 }
 
 .form-size-flex {
