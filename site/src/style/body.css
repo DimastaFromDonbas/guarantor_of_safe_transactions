@@ -11,6 +11,7 @@
     margin-bottom: 20px;
     padding: 15px;
     margin-top: 20px;
+    border-radius: 20px;
 }
 
 .container-body-v1 {
@@ -78,6 +79,7 @@
     min-width: 180px;
     padding: 0 35px;
     white-space: nowrap;
+    border-radius: 20px;
 }
 
 .promo-block-text {
@@ -123,6 +125,7 @@
     color: #f9f5e1;
     width: 1110px;
     margin-bottom: 100px;
+    border-radius: 20px;
 }
 
 .promo-steps h3 {

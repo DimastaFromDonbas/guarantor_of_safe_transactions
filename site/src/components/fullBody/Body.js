@@ -24,12 +24,6 @@ function Body() {
                 <h1>gamesgun.ru - лучший гарант безопасных сделок!</h1>
                 <button className='btn-class-v1'>Открыть новую сделку</button>
             </div>
-            <div className='promo-block-text'>
-                <p className='promo-block-text-center'>
-                    gamesgun.ru — автоматический сервис безопасных сделок, разработанный командой pwLVL при технической поддержке L2on.
-                    За годы работы мы накопили большой багаж знаний и опыта. gamesgun.ru является универсальным гарантом сделок в онлайн-играх, фрилансе, а также в любых других дистанционных продажах товаров и услуг, и надежно обеспечивает безопасность как покупателям, так и продавцам.
-                </p>
-            </div>
             <ul className='ist-promo'>
                 <li className='list-promo-item'>
                     <SecurityIcon style={{width: '70px', height:'70px'}}></SecurityIcon>
