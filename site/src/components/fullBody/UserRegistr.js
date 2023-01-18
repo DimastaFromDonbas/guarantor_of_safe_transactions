@@ -8,8 +8,6 @@ import { useEffect } from "react";
 import { axiosRegistration } from "../../api/axios";
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from "../../store/Users/types";
-import { axiosChangeNickname } from "../../api/axios";
-import { useAppSelector } from "../../store/reduxHooks";
 
 
 function Login() {
@@ -25,7 +23,6 @@ function Login() {
     const [passwordNoChect, setpasswordNoChect] = useState('Пароль не может быть пустым')
     const [checked , setChecked] = useState(true)
     const [ formValid, setFormValid] = useState(false);
-    const {user} = useAppSelector ((store) => store.user)
 
     const blurHandler = (e) => {
         switch(e.currentTarget.name) {
@@ -101,14 +98,6 @@ function Login() {
         dispatch({
           type: reducerTypes.GET_USER,
           payload: await axiosRegistration(login, password, nickname)
-        });
-      }
-
-      async function getNicknames(e) {
-        offReserch(e);
-        dispatch({
-          type: reducerTypes.GET_USER,
-          payload: await axiosChangeNickname(nickname, user.id, user.password)
         });
       }
 

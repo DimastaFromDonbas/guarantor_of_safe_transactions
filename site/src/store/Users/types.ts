@@ -1,5 +1,6 @@
 export const reducerTypes = {
     GET_USER: "reducer/GET_USER",
+    GET_DEAL: "reducer/GET_DEAL",
   };
   
   export const sagaTypes = {

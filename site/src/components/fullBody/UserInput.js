@@ -4,7 +4,6 @@ import Footer from "./Footer"
 import Header from "./Header"
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
-import validator from 'validator';
 import { axiosLogin } from "../../api/axios";
 import { reducerTypes } from "../../store/Users/types";
 import { useNavigate } from "react-router-dom";
@@ -35,11 +34,11 @@ function UserInput() {
   
       function loginUser(e) {
         setLogin(e.currentTarget.value)
-        if(!validator.isEmail(e.currentTarget.value)) {
-          setEmailError('Некоректный логин')
-        } else {
+        // if(!validator.isEmail(e.currentTarget.value)) {
+        //   setEmailError('Некоректный логин')
+        // } else {
           setEmailError('')
-        }
+        //}
       }
   
       function passwordUser(e) {
