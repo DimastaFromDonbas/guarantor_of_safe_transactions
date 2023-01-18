@@ -48,9 +48,11 @@
     background: #fff;
     border-color: #fff;
     color: #191e23;
+    transform: translateY(6px);
 }
 
 .btn-class-v1 {
+    transition: all .3s;
     color: #f25322;
     -webkit-box-shadow: none;
     box-shadow: none;
