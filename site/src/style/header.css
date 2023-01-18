@@ -1,5 +1,10 @@
 .color:hover{
     color: #fab81b;
+    transform: scale(1.1);
+}
+
+.color {
+    transition: all .5s;
 }
 
 .palca {
@@ -63,12 +68,14 @@
     max-height: 0;
     transition: ease .5s;
     border-radius: 0 0 16px 16px;
+    transition: all .5s !important;
 }
 
 .nav-detail_item {
     display: block;
     position: relative;
     padding: 10px 0;
+    transition: all 1s !important;
 }
 
 .nav-detail_link {
@@ -78,11 +85,13 @@
     padding: 12px 16px;
     white-space: nowrap;
     overflow: hidden;
+    transition: all 1s;
 }
 
 .nav-detail_list {
     padding: 0;
     margin: 0;
+    transition: all 1s !important;
 }
 
 .nav-detail_link:hover {
@@ -92,6 +101,18 @@
 .hoverArrow {
     color: #aaaaab;
     cursor: pointer;
+    transition: all .5s !important;
+}
+
+.transformArrow {
+    transform: rotate(-180deg);
+    color: #aaaaab;
+    cursor: pointer;
+    transition: all .5s !important;
+}
+
+.transformArrow:hover {
+    color: #fab81b;
 }
 
 .hoverArrow:hover {
@@ -105,4 +126,5 @@
 .active {
     overflow: visible;
     max-height: 100%;
+    transition: all 1.2s !important;
 }

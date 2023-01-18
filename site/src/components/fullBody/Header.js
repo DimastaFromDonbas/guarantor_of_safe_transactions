@@ -50,9 +50,9 @@ function Header() {
               </div>}
               </div>
               { user?.id?
-                <div style={{display: "flex",justifyContent: "space-between"}}>
+                <div  onClick = {clickArrowdown} style={{display: "flex",justifyContent: "space-between"}}>
                 <Link className="color-nav-link color" to="#" style={{display: 'flex', flexDirection: 'row'}}>{user.nickname}</Link>
-                <KeyboardArrowDownIcon  onClick = {clickArrowdown} className="hoverArrow"></KeyboardArrowDownIcon>
+                <KeyboardArrowDownIcon className={!checked? "hoverArrow" : "transformArrow"}></KeyboardArrowDownIcon>
                   <div className={checked?"user-profile-block js-profile-block_open active": "user-profile-block js-profile-block_open"}>
                         <ul className="nav-detail_list">
                             <li className="nav-detail_item"><Link className="nav-detail_link" to="/systemmessages">Системные сообщения</Link></li>
