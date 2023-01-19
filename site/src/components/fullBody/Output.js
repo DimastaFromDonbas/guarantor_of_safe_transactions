@@ -35,7 +35,7 @@ function Output() {
                         <h2>Мой счет</h2>
                         <div className="account-wrap__sum sum-account">
                             <div className="sum-account__label">На счету: {user.score} руб</div>
-                            <Link className="sum-account__btn-orange btn-orange" to="#">Пополнить счет</Link>
+                            <Link className="sum-account__btn-orange btn-orange" to="/payments">Пополнить счет</Link>
                         </div>
                     </div>
                     <div className="account-wrap__nav nav-account">

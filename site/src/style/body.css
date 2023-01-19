@@ -810,3 +810,70 @@
 .flex-box-0 {
     min-height: calc(100vh - 200px);
 }
+
+.promo-description_payments {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    text-align: center;
+    padding: 15px;
+    background: rgba(17, 17, 18, 0.65);
+}
+
+.header-title-thre {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 42px;
+    color: #f9f5e1;
+}
+
+.text-free {
+    margin: 50px 0;
+    font-size: 20px;
+    margin-bottom: 20px;
+    line-height: 1.5rem;
+    color: #b8b8a2;
+    text-align: initial;
+}
+
+.accordion {
+    background-color: #191e23;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.accordion .section {
+    width: 100%;
+    height: inherit;
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0px 12px 0px 24px;
+    color: #fff;
+    font: bold 16px/58px Quantico, Arial, Helvetica, sans-serif;
+    text-align: left;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.panel {
+    padding: 20px 18px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.header-title-thre a {
+    color: #f25322;
+    text-decoration: none;
+}
+
+.header-title-thre a:hover {
+    color: #fa7f5a;
+}
