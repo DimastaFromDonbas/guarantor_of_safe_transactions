@@ -6,6 +6,8 @@ import Main from "./components/Main";
 import Settings from "./components/fullBody/Settings";
 import Makedeal from "./components/fullBody/Makedeal";
 import Deals from "./components/fullBody/Deals";
+import MainChat from "./components/ChatTest/Main";
+import Chat from "./components/ChatTest/Chat";
 import Output from './components/fullBody/Output';
 import Payments from './components/fullBody/Payments';
 
@@ -22,6 +24,8 @@ function App() {
         <Route path="/login" element ={<UserInput />} />
         <Route path="/registr" element = {<UserRegistr />}/>
         <Route path="/rules" element = {<UserSoglos />}/>
+        <Route path="/test" element = {<MainChat />}/>
+        <Route path="/chat" element={<Chat />} />
       </Routes>
      </>
 }

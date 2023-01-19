@@ -5,11 +5,13 @@ const userRouter = require('./userRouter')
 const brandRouter = require('./brandRouter')
 const typeRouter = require('./typeRouter')
 const dealRouter = require('./dealRouter')
+const chatRouter = require('./chatRouter')
 
 router.use('/user', userRouter)
 router.use('/type', typeRouter)
 router.use('/brand', brandRouter)
 router.use('/device', deviceRouter)
 router.use('/deal', dealRouter)
+router.use('/chat', chatRouter)
 
 module.exports = router
