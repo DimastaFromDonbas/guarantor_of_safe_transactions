@@ -7,7 +7,7 @@ import jwt_decode from "jwt-decode";
     ? (process.env.REACT_APP_LOCAL_API_HOST || "localhost:5000")
     : window.location.host;*/
 
-    const host = "localhost:5000";
+    const host = "http://35.160.120.126:10000";
 
 axios.defaults.baseURL = `http://${host}/`;
 
