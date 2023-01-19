@@ -30,11 +30,8 @@ function Makedeal() {
 
     function sumFull(e) {
         setSum(e.currentTarget.value)
-        if(e.target.value.length < 2) {
-            setErrorSumm('Некоректная сумма')
           if(!e.target.value){
-            setErrorSumm('Поле не может быть пустым')
-          }
+            setErrorSumm('Введите сумму')
         } else {
             setErrorSumm('')
         }
@@ -42,7 +39,7 @@ function Makedeal() {
 
     function emailFull(e) {
         if(!validator.isEmail(e.currentTarget.value)) {
-            setErrorroleEmail('Некоректный логин')
+            setErrorroleEmail('Логин введен не верно')
           } else {
             setErrorroleEmail('')
           }
@@ -50,11 +47,9 @@ function Makedeal() {
 
     function nameFull(e) {
         setname(e.currentTarget.value)
-        if(e.target.value.length < 6) {
-            setErrorName('Некоректное название')
           if(!e.target.value){
-            setErrorName('Название не может быть пустым')
-          }
+            setErrorName('Введите навазние сделки')
+
         } else {
             setErrorName('')
         }
@@ -105,7 +100,7 @@ function Makedeal() {
                         onChange={(e) => nameFull(e)}
                     />
                     </div>
-                    {errorName && <div style={{textAlign: "center", color: 'red', marginLeft: '20px'}}>{errorName}</div> }
+                    {errorName && <div style={{textAlign: "center", color: 'red', marginLeft: '-15px'}}>{errorName}</div> }
                     </div>
                     <div className="form-size-flex">
                     <div style={{display: "flex", flexDirection: "row"}}>
@@ -152,7 +147,7 @@ function Makedeal() {
                         id="inputText"
                     />
                     </div>
-                    {errorSumm && <div style={{textAlign: "center", color: 'red', marginLeft: '-30px'}}>{errorSumm}</div> }
+                    {errorSumm && <div style={{textAlign: "center", color: 'red', marginLeft: '-85px'}}>{errorSumm}</div> }
                     </div>
                 </div>
                 <div className="name-add_sell">
