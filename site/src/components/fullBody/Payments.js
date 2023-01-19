@@ -17,7 +17,7 @@ function Payments() {
                         <h2 className="header-title-thre mt-5"><CurrencyBitcoinIcon style={{width: '35px', height: '35px'}}></CurrencyBitcoinIcon> Пополнение счета Monero (XMR)</h2>
                         <div className="text-free">
                             Кошелек Monero (XMR) для пополнения: 
-                            <h2></h2>
+                            <h2> </h2>
                         </div>
                     </div>
                     <div className="header-title-thre">
