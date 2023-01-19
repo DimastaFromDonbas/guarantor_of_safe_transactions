@@ -43,7 +43,7 @@ function Settings() {
 
     return <div className="bg-img">
         <Header />
-            <div style={{paddingBottom: "117px"}} className="wraper">
+            <div style={{paddingBottom: "117px", minHeight: "calc(100vh - 339px)"}} className="wraper">
                 <h3 className="header-inner_title login-inner_title">Настройки</h3>
                     <hr className="hr-viss"/>
                     <Form className="width-form">

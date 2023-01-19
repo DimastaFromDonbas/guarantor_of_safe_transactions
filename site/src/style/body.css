@@ -567,7 +567,7 @@
 
 .form-size-flex {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom: 2px solid;
@@ -603,6 +603,7 @@
     border-radius: 10px;
     background: #E48731;
     border: 2px ;
+    color: white;
 }
 
 .trades-table {
