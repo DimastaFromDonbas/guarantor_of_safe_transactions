@@ -40,12 +40,11 @@ function Output() {
                     </div>
                     <div className="account-wrap__nav nav-account">
                         <div className="nav-account__tabs">
-                            <button onClick={(e) => visibleItem(e)} name ='0' className={item === 0 ? "nav-account__link activ-link" : "nav-account__link"}>История пополнений</button>
-                            <button onClick={(e) => visibleItem(e)} name ='1' className={item === 1 ? "nav-account__link activ-link" : "nav-account__link"}>Перевод по реквизитам</button>
-                            <button onClick={(e) => visibleItem(e)} name ='2' className={item === 2 ? "nav-account__link activ-link" : "nav-account__link"}>Перевод пользователю</button>
+                            <button onClick={(e) => visibleItem(e)} name = '0' className={item === 0 ? "nav-account__link activ-link" : "nav-account__link"}>История пополнений</button>
+                            <button onClick={(e) => visibleItem(e)} name = '1' className={item === 1 ? "nav-account__link activ-link" : "nav-account__link"}>Перевод по реквизитам</button>
+                            <button onClick={(e) => visibleItem(e)} name = '2' className={item === 2 ? "nav-account__link activ-link" : "nav-account__link"}>Перевод пользователю</button>
                         </div>
-
-                        <div style={item === 1 ?{display: 'block'}: {display: 'none'}} className="flex-box-1">
+                        <div style={item === 1 ? {display: 'block'}: {display: 'none'}} className="flex-box-1">
                         <div className="nav-account__content">
                             <div className="nav-account__operation operation">
                                 <div className="operation__heading">Операция №{data}</div>
@@ -99,7 +98,7 @@ function Output() {
                         <p className="text-alert">История выводов по реквизитам пуста</p>
                     </div>
                     </div>
-                        <div style={item === 0 ?{display: 'block'}: {display: 'none'}} className="flex-box-0">
+                        <div style={item === 0 ? {display: 'block'}: {display: 'none'}} className="flex-box-0">
                             <div className="nav-account__content">
                                 <div className="account-wrap__about-info" style={{marginTop: "40px"}}>
                                     <p>stom-pro.ru не является банком, платежной системой или другой финансовой организацией и не ведет
@@ -114,7 +113,7 @@ function Output() {
                                 <p className="output-sum">Сумма</p>
                             </div>
                     </div>
-                        <div style={item === 2 ?{display: 'block'}: {display: 'none'}} className="flex-box-2">
+                        <div style={item === 2 ? {display: 'block'}: {display: 'none'}} className="flex-box-2">
                         <div className="nav-account__content">
                             <div className="nav-account__operation operation">
                                 <div className="operation__heading">Операция №{data}</div>
