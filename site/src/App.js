@@ -6,12 +6,14 @@ import Main from "./components/Main";
 import Settings from "./components/fullBody/Settings";
 import Makedeal from "./components/fullBody/Makedeal";
 import Deals from "./components/fullBody/Deals";
+import Output from './components/fullBody/Output';
 
 function App() {
   return  <>
       <Routes>
         <Route path="/" element = {<Main/>}/>
         <Route path="#"/>
+        <Route path="/output" element={<Output />}/>
         <Route path="/deals" element={<Deals />}/>
         <Route path="/makedeal" element={<Makedeal/>}/>
         <Route path="/settings" element={<Settings/>}/>
