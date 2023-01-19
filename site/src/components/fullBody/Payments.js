@@ -1,7 +1,7 @@
 import Footer from "./Footer";
 import Header from "./Header";
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
-import { Link } from "react-router-dom";
+
 
 function Payments() {
     return <div className="bg-img">
