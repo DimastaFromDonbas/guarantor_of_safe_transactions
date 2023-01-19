@@ -30,11 +30,11 @@ function Payments() {
                     </div>
                     <div className="panel">
                     <h2 className="header-title-thre">- Перейдите на один представленых обменников ниже.</h2>
-                    <h3 className="header-title-thre">- <Link to='https://myxa.cc/exchange_sberrub_to_xmr/'>Муха</Link></h3>
-                    <h3 className="header-title-thre">- <Link to='https://coinblinker.com/visa-mastercard-rur-to-monero.html'>CoinBlinker</Link></h3>
-                    <h3 className="header-title-thre">- <Link to='https://moment.express/?ref=f0cfa286-56c3-48a8-8e62-80a3fd9b0eab'>Момент</Link></h3>
-                    <h3 className="header-title-thre">- <Link to='https://xchange.cash/sberbank-to-monero.html'>Xchange</Link></h3>
-                    <h3 className="header-title-thre">- <Link to='https://top-exchange.com/'>Top-Exchange</Link></h3>
+                    <h3 className="header-title-thre">- <a href='https://myxa.cc/exchange_sberrub_to_xmr/'>Муха</a></h3>
+                    <h3 className="header-title-thre">- <a href='https://coinblinker.com/visa-mastercard-rur-to-monero.html'>CoinBlinker</a></h3>
+                    <h3 className="header-title-thre">- <a href='https://moment.express/?ref=f0cfa286-56c3-48a8-8e62-80a3fd9b0eab'>Момент</a></h3>
+                    <h3 className="header-title-thre">- <a href='https://xchange.cash/sberbank-to-monero.html'>Xchange</a></h3>
+                    <h3 className="header-title-thre">- <a href='https://top-exchange.com/'>Top-Exchange</a></h3>
                     </div>
                     <div className="accordion">
                         <div className="section">
