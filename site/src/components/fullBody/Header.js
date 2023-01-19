@@ -37,7 +37,7 @@ function Header() {
               { user?.id? 
                 <div style={{ marginLeft: "25px",display: "flex",width: "600px",justifyContent: "space-between",alignItems: "center"}} >
                 <Link className="color-nav-link color" to="/deals">МОИ СДЕЛКИ</Link>
-                <Link className="color-nav-link color" to="#">МОЙ СЧЕТ:{user.score} РУБ.</Link>
+                <Link className="color-nav-link color" to="/output">МОЙ СЧЕТ:{user.score} РУБ.</Link>
                 <Link className="color-nav-link color" to="#">ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="#">ОТЗЫВЫ</Link>
