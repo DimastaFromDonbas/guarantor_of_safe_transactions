@@ -18,7 +18,7 @@ import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 
 function Body() {
     return <div className="container-body-v1 bg-img">
-                <HeadsetMicIcon className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
+            <HeadsetMicIcon className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
         <div className='promo-description'>
             <div className='block-main-v1'>
                 <h1>gamesgun.ru - лучший гарант безопасных сделок!</h1>

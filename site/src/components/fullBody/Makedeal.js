@@ -6,6 +6,7 @@ import Header from "./Header"
 import { useAppSelector } from "../../store/reduxHooks"
 import { axiosCreateDeal } from "../../api/axios"
 import validator from 'validator';
+import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 
 function Makedeal() {
     const {user} = useAppSelector ((store) => store.user)
@@ -88,6 +89,7 @@ function Makedeal() {
 
     return <div className="bg-img"> 
         <Header />
+        <HeadsetMicIcon className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
             <div className="container wrap">
                 <div className="name-add_sell">
                     <div className="form-size-flex">

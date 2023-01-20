@@ -10,12 +10,13 @@ import MainChat from "./components/ChatTest/Main";
 import Chat from "./components/ChatTest/Chat";
 import Output from './components/fullBody/Output';
 import Payments from './components/fullBody/Payments';
+import SystemMessages from './components/fullBody/SystemMessages';
 
 function App() {
   return  <>
       <Routes>
         <Route path="/" element = {<Main/>}/>
-        <Route path="#" />
+        <Route path="/systemmessages" element={<SystemMessages />}/>
         <Route path="/payments" element={<Payments />}/>
         <Route path="/output" element={<Output />}/>
         <Route path="/deals" element={<Deals />}/>

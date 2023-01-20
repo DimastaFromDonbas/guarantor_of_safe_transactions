@@ -6,6 +6,7 @@ import { reducerTypes } from "../../store/Users/types";
 import { axiosChangeNickname } from "../../api/axios";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../store/reduxHooks";
+import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 
 function Settings() {
 
@@ -43,6 +44,7 @@ function Settings() {
 
     return <div className="bg-img">
         <Header />
+        <HeadsetMicIcon className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
             <div style={{paddingBottom: "117px", minHeight: "calc(100vh - 339px)"}} className="wraper">
                 <h3 className="header-inner_title login-inner_title">Настройки</h3>
                     <hr className="hr-viss"/>

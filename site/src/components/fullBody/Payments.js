@@ -1,12 +1,14 @@
 import Footer from "./Footer";
 import Header from "./Header";
-import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
+import Monero from '../../image/monero-xmr-logo.svg'
+import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 
 
 function Payments() {
     return <div className="bg-img">
         <Header />
             <div className="container wrap">
+            <HeadsetMicIcon className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
                 <div className="promo-description_payments">
                     <div className="alert-block alert-block_info">
                         <p className="text-alert">Уважаемые пользователи! Тчательно проверяйте все данные перед платежем, правильно
@@ -14,7 +16,7 @@ function Payments() {
                             После пополнения, отправьте чек об оплате в чат технической поддержки</p>
                     </div>
                     <div className="payments">
-                        <h2 className="header-title-thre mt-5"><CurrencyBitcoinIcon style={{width: '35px', height: '35px'}}></CurrencyBitcoinIcon> Пополнение счета Monero (XMR)</h2>
+                        <h2 className="header-title-thre mt-5"><img alt="img-monero" style={{width: "25px"}} src={Monero}></img> Пополнение счета Monero (XMR)</h2>
                         <div className="text-free">
                             Кошелек Monero (XMR) для пополнения: 
                             <h2> </h2>
