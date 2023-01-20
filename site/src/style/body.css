@@ -877,3 +877,45 @@
 .header-title-thre a:hover {
     color: #fa7f5a;
 }
+
+.chat {
+    width: 375px;
+    height: 452px;
+    position: absolute;
+    background-color: #312e2e;
+    border-radius: 10px;
+    position: fixed;
+    z-index: 100;
+    bottom: 6.43em;
+    right: 1.4285714286em;
+    box-shadow: 0 5px 38px rgb(0 0 0 / 15%);
+    cursor: pointer;
+    -webkit-transition: visibility 0s linear .2s,opacity linear .2s;
+    -o-transition: visibility 0s linear .2s,opacity linear .2s;
+    transition: visibility 0s linear .2s,opacity linear .2s;
+    transition: ease .5s !important;
+    border: 1.5px solid #f25322
+}
+
+.chat-header {
+    height: 70px;
+    background: rgba(17, 17, 18, 0.65);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: .5px solid #f25322;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.img-helper {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1.5px solid bisque;
+}
+
+.helper-nickName {
+    margin-left: 10px;
+    color: #d7ebe7;
+}

@@ -15,10 +15,28 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
+import Helper from '../../image/helper.png'
+import { useState } from 'react'
 
 function Body() {
+
+    const [checked, setChecked] = useState(false)
+
     return <div className="container-body-v1 bg-img">
-            <HeadsetMicIcon className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
+        {checked?
+                <div className='chat'>
+                <div className='chat-header'>
+                    <img alt='img-helper' className='img-helper' src={Helper}></img>
+                    <div className='helper-nickName'>
+                        <div style={{fontWeight: "bold"}}>Служба поддержки</div>
+                        <div style={{fontSize: '12px'}}>Онлайн</div>
+                    </div>
+                </div>
+                <div></div>
+                <div></div>
+            </div>:
+            ''}
+            <HeadsetMicIcon onClick={() => setChecked(!checked)} className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
         <div className='promo-description'>
             <div className='block-main-v1'>
                 <h1>gamesgun.ru - лучший гарант безопасных сделок!</h1>
