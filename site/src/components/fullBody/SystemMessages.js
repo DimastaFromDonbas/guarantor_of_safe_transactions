@@ -6,17 +6,10 @@ import { useState } from "react";
 
 function SystemMessages() {
 
-    const [huy, setHuy] = useState('')
 
     const {checkAlertSystemMessage,deals} = useAppSelector ((store) => store.user)
+    let dateParceUser = new Date(Date.parse(deals[0]?.createdAt) + 3600000*12).toString()
 
-    let dateParceUser = Date.parse(deals[0]?.createdAt) + 3600000*12
-    console.log(dateParceUser, typeof dateParceUser , new Date(dateParceUser))
-
-    async function dateMessage(dateParceUser) {
-        setHuy(await new Date(dateParceUser))
-    }
-    dateMessage()
     return <div className="bg-img">
         <Header />
             <div className="container wrap">
@@ -26,10 +19,8 @@ function SystemMessages() {
                     {checkAlertSystemMessage ? 
                     <div style={{color: 'red'}}>
                         Сообщение от stom-pro.ru 
-                        {huy}
-                        
                         Доброго времени суток, gleb2022 
-                        
+                        {dateParceUser}
                         В соответствии, с пунктом правил Пользовательского соглашения 5.2.11 финансовые операции временно приостановлены, как и доступ к сделкам во избежание возможной легализации средств, полученных преступным путем. 
                         Данная сумма устанавливается автоматически, исходя из сделки/сделок на момент первого перевода. 
                         Для Вас установлена сумма минимального перевода 10800 RUB 
