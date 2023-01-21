@@ -26,7 +26,7 @@ function Deals() {
     useEffect(() => {
         getDeal();
         // eslint-disable-next-line
-      },[])
+      },[user])
 
     return <div className="bg-img">
         <Header />

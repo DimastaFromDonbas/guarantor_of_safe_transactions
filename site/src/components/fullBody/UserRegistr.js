@@ -23,6 +23,7 @@ function Login() {
     const [passwordNoChect, setpasswordNoChect] = useState('Пароль не может быть пустым')
     const [checked , setChecked] = useState(true)
     const [ formValid, setFormValid] = useState(false);
+    const [ error, setError] = useState('');
 
     const blurHandler = (e) => {
         switch(e.currentTarget.name) {
@@ -95,9 +96,12 @@ function Login() {
 
       async function getUsers(e) {
         offReserch(e);
-        dispatch({
+        const result = await axiosRegistration(login, password, nickname);
+        if (typeof result === 'string') {
+          setError(result)
+        } else dispatch({
           type: reducerTypes.GET_USER,
-          payload: await axiosRegistration(login, password, nickname)
+          payload: result
         });
       }
 

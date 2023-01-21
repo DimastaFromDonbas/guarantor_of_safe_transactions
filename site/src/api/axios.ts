@@ -7,7 +7,7 @@ import jwt_decode from "jwt-decode";
     ? (process.env.REACT_APP_LOCAL_API_HOST || "localhost:5000")
     : window.location.host;*/
 
-    const host = "http://35.160.120.126:10000";
+    const host = "localhost:5000";
 
 axios.defaults.baseURL = `http://${host}/`;
 
@@ -19,10 +19,14 @@ export default axios;
 
 
 export const axiosRegistration = async (email:string, password:string, nickname: string) => {
-  const {data} = await axios.post('api/user/registration', {email, password, role: 'ADMIN', nickname});
+  try {const {data} = await axios.post('api/user/registration', {email, password, role: 'ADMIN', nickname});
   localStorage.setItem('token', data.token);
   console.log('registration', jwt_decode(data.token))
-  return jwt_decode(data.token)
+  return jwt_decode(data.token)}
+  catch (error: any){
+    console.log(error?.response?.data?.message)
+    return error?.response?.data?.message
+  }
 }
 
 export const axiosLogin = async (email:string, password:string) => {
