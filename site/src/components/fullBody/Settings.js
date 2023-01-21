@@ -22,6 +22,7 @@ function Settings() {
     const [newPassword, setNewPassword] = useState('')
     const [passwordError, setPasswordError] = useState("");
     const [NewPasswordError, setNewPasswordError] = useState("");
+    const [ errorLogin, setErrorLogin] = useState('');
 
     function changeNickname(e) {
         setNickname(e.currentTarget.value)
@@ -66,9 +67,17 @@ function Settings() {
 
     async function getNicknames(e) {
         e.preventDefault()
+        const result = await axiosChangeNickname(nickname, user.id, user.password)
+        if(typeof result === 'string') {
+           if( result === 'Пользователь с таким именем уже существует') {
+            setErrorLogin(result)
+           } else {
+            return ;
+           }
+        }
         dispatch({
           type: reducerTypes.GET_USER,
-          payload: await axiosChangeNickname(nickname, user.id, user.password)
+          payload: result
         });
     }
 
@@ -113,6 +122,7 @@ function Settings() {
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className="color-input-name">Сменить ваше имя:</Form.Label>
                                 <Form.Control value={nickname} onChange={changeNickname} name='login' type="email" placeholder="" />
+                                {errorLogin? <div style={{color: 'red'}}>{errorLogin}</div> : ''}
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label className="color-input-name">Введите ваш пароль:</Form.Label>
@@ -125,7 +135,7 @@ function Settings() {
                         </Form>
                         <Form className="width-form">
                             <Form.Group className="mb-3" controlId="formBasicEmailV2">
-                            <Form.Label className="color-input-name">Сменить ваш пароль:</Form.Label>
+                            <Form.Label className="color-input-name">Новый пароль:</Form.Label>
                                 <Form.Control value={newPassword} onChange={getNewPasswordOnChange} name='login' type="password" placeholder="" />
                                 {NewPasswordError? <div style={{color: 'red'}}>{NewPasswordError}</div> : ''}
                            </Form.Group>
