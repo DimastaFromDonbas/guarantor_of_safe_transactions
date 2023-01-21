@@ -52,9 +52,12 @@ export const check = async () => {
 }
 
 export const axiosChangeNickname = async (nickname: 'string', id: number, password: 'string') => {
-  const {data} = await axios.post('api/user/nickname', {nickname, id, password}, getConfig());
+  try {const {data} = await axios.post('api/user/nickname', {nickname, id, password}, getConfig());
   console.log('nickname', data);
-  return data;
+  return data;}
+  catch (e: any) {
+    return e?.response?.data?.message
+  }
 }
 
 export const axiosChangePassword = async (newPassword: 'string', id: number, password: 'string') => {

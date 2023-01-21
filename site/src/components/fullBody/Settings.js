@@ -68,6 +68,7 @@ function Settings() {
     async function getNicknames(e) {
         e.preventDefault()
         const result = await axiosChangeNickname(nickname, user.id, user.password)
+        console.log('result', typeof result , typeof result === 'string')
         if(typeof result === 'string') {
            if( result === 'Пользователь с таким именем уже существует') {
             setErrorLogin(result)
