@@ -40,6 +40,8 @@ class UserController {
         }
         let comparePassword = bcrypt.compareSync(password, user.password)
         if (!comparePassword) {
+
+            console.log('password', password, user.password, await bcrypt.hash(password, 5))
             return next(ApiError.internal('Указан неверный пароль'))
         }
         const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, password)
@@ -84,7 +86,8 @@ class UserController {
             return next(ApiError.internal('Указан неверный пароль'))
         }
         if (newPassword) {
-            await User.update({password: newPassword}, {where: {id: id}})
+            const hashPassword = await bcrypt.hash(newPassword, 5)
+            await User.update({password: hashPassword}, {where: {id: id}})
            return res.json({...user.dataValues, password: newPassword})
         } else {
             return next(ApiError.internal('Указано неверное имя пользователя'))
@@ -101,7 +104,10 @@ class UserController {
         throw new HttpException('Пользователь или роль не найдены', HttpStatus.NOT_FOUND);
     }*/
 
-
+    async getAllUsers(req, res, next) {
+        const users = await User.findAll()
+        return res.json({users})
+    }
 
 }
 
