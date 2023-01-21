@@ -927,3 +927,24 @@
     overflow: visible;
     transition: all 1.2s !important;
 }
+
+.bell-color {
+    color: red;
+    animation-duration: .2s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+@keyframes slidein {
+    from {
+        transition: all .3s;
+        transform: rotate(5deg);
+    }
+
+    to {
+        transition: .3s;
+        transform: rotate(-5deg);
+    }
+  }

@@ -3,6 +3,7 @@ export const reducerTypes = {
     GET_DEAL: "reducer/GET_DEAL",
     GET_REFILL: 'reducer/GET_REFILL',
     GET_MY_REFILLS: 'reducer/GET_MY_REFILLS',
+    GET_CHECK_SYSTEM: 'reducer/GET_CHECK_SYSTEM'
   };
   
   export const sagaTypes = {

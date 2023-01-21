@@ -4,15 +4,36 @@ import '../../style/header.css'
 import HomeIcon from '@mui/icons-material/Home';
 import { useAppSelector } from "../../store/reduxHooks";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+
 
 function Header() {
 
-  const {user} = useAppSelector ((store) => store.user)
+  const {user,deals} = useAppSelector ((store) => store.user)
   const [checked, setChecked] = useState(false)
+  const [bellState, setBellState] = useState(false)
   const dispatch = useDispatch();
+
+  let now = new Date();
+  let dateParceUser = Date.parse(deals[0]?.createdAt)
+  let dateParceNow = Date.parse(now)
+
+  function getDateMessege() {
+    if(dateParceNow - dateParceUser > 3600000*12) {
+      setBellState(true)
+      dispatch({
+        type: reducerTypes.GET_CHECK_SYSTEM,
+        payload: true,
+      });
+    }
+  }
+
+  useEffect(() => {
+    getDateMessege()
+  },[deals])
 
   function clickArrowdown() {
     if (checked) {
@@ -50,12 +71,13 @@ function Header() {
               </div>}
               </div>
               { user?.id?
-                <div  onClick = {clickArrowdown} style={{display: "flex",justifyContent: "space-between"}}>
+                <div onClick = {clickArrowdown} style={{display: "flex",justifyContent: "space-between"}}>
                 <Link className="color-nav-link color" to="#" style={{display: 'flex', flexDirection: 'row'}}>{user.nickname}</Link>
                 <KeyboardArrowDownIcon className={!checked? "hoverArrow" : "transformArrow"}></KeyboardArrowDownIcon>
+                {bellState ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}
                   <div className={checked?"user-profile-block js-profile-block_open active": "user-profile-block js-profile-block_open"}>
                         <ul className="nav-detail_list">
-                            <li className="nav-detail_item"><Link className="nav-detail_link" to="/systemmessages">Системные сообщения</Link></li>
+                            <li className="nav-detail_item"><Link className="nav-detail_link" to="/systemmessages">Системные сообщения {bellState ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}</Link></li>
                               <li className="nav-detail_item"><Link className="nav-detail_link" to="/settings">Мои настройки</Link></li>
                              <li className="nav-detail_item border-exit"><Link onClick={getUsers} className="nav-detail_link" to="/">Выход</Link></li>
                            </ul>
