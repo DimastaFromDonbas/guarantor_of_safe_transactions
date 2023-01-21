@@ -24,7 +24,7 @@ function Body() {
 
     return <div className="container-body-v1 bg-img">
         {checked?
-                <div className='chat'>
+                <div className='chat activ-chat'>
                 <div className='chat-header'>
                     <img alt='img-helper' className='img-helper' src={Helper}></img>
                     <div className='helper-nickName'>

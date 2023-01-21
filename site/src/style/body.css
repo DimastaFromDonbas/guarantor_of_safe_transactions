@@ -893,8 +893,10 @@
     -webkit-transition: visibility 0s linear .2s,opacity linear .2s;
     -o-transition: visibility 0s linear .2s,opacity linear .2s;
     transition: visibility 0s linear .2s,opacity linear .2s;
-    transition: ease .5s !important;
-    border: 1.5px solid #f25322
+    transition: ease 1.5s !important;
+    border: 1.5px solid #f25322;
+    max-height: 0 ;
+    overflow: hidden;
 }
 
 .chat-header {
@@ -918,4 +920,10 @@
 .helper-nickName {
     margin-left: 10px;
     color: #d7ebe7;
+}
+
+.activ-chat {
+    max-height: 100%;
+    overflow: visible;
+    transition: all 1.2s !important;
 }
