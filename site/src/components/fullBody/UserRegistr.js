@@ -23,7 +23,8 @@ function Login() {
     const [passwordNoChect, setpasswordNoChect] = useState('Пароль не может быть пустым')
     const [checked , setChecked] = useState(true)
     const [ formValid, setFormValid] = useState(false);
-    const [ error, setError] = useState('');
+    const [ errorLogin, setErrorLogin] = useState('');
+    const [ errorEmail, setErrorEmail] = useState('');
 
     const blurHandler = (e) => {
         switch(e.currentTarget.name) {
@@ -39,10 +40,12 @@ function Login() {
 
       function changeNickname(e) {
         setNickname(e.currentTarget.value)
+        setErrorLogin('')
       }
   
       function loginUser(e) {
         setLogin(e.currentTarget.value)
+        setErrorEmail('')
         if(!validator.isEmail(e.currentTarget.value)) {
           setEmailError('Некоректный логин')
         } else {
@@ -98,7 +101,9 @@ function Login() {
         offReserch(e);
         const result = await axiosRegistration(login, password, nickname);
         if (typeof result === 'string') {
-          setError(result)
+          result === 'Пользователь с таким email уже существует' ? 
+          setErrorEmail(result):
+          setErrorLogin(result)
         } else dispatch({
           type: reducerTypes.GET_USER,
           payload: result
@@ -114,6 +119,7 @@ function Login() {
                     <Form.Group className="mb-3" controlId="formBasicEmailV1">
                     <Form.Label className="color-input-name">Имя пользователя</Form.Label>
                     <Form.Control name='nickname' value={nickname} onChange={changeNickname} type="text" placeholder="" />
+                    {errorLogin? <div style={{color: 'red'}}>{errorLogin}</div> : ''}
                         <Form.Text className="text-muted">
                         Пожалуйста, используйте только латинские буквы.
                         </Form.Text>
@@ -121,6 +127,7 @@ function Login() {
                         <Form.Group className="mb-3" controlId="formBasicEmailV2">
                     <Form.Label className="color-input-name">Действующий e-mail:</Form.Label>
                         <Form.Control onBlur={e => blurHandler(e)} name='login' value={login} onChange={loginUser} type="email" placeholder="" />
+                        {errorEmail? <div style={{color: 'red'}}>{errorEmail}</div> : ''}
                         {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div> }
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPasswordV1">
