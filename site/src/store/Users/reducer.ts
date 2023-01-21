@@ -2,10 +2,13 @@ import { IAction } from "../utils";
 import { reducerTypes } from "./types";
 import { IUser } from "../../interfaces/users";
 import { IDeal } from "../../interfaces/deal";
+import { IRefill } from "../../interfaces/refill";
 
 export interface IUsersReducer {
   user: IUser | {};
   deals: IDeal[];
+  refill: IRefill | {};
+  myRefills: IRefill[];
 }
 
 export const INITIAL: IUsersReducer = {
@@ -18,6 +21,8 @@ export const INITIAL: IUsersReducer = {
     nickname: "test",
   },
   deals: [],
+  refill: {},
+  myRefills: []
 };
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
@@ -26,6 +31,10 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, user: payload };
     case reducerTypes.GET_DEAL:
       return { ...state, deals: payload };
+    case reducerTypes.GET_REFILL:
+      return { ...state, refill: payload };
+    case reducerTypes.GET_MY_REFILLS:
+      return { ...state, myRefills: payload };
     default:
       return state;
   }

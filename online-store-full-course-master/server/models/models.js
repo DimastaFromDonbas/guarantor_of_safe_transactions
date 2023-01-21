@@ -10,6 +10,15 @@ const User = sequelize.define('user', {
     nickname: {type: DataTypes.STRING, unique: true},
 })
 
+const UserRefill = sequelize.define('userRefill', {
+    id: {type: DataTypes.INTEGER},
+    time: {type: DataTypes.STRING},
+    score: {type: DataTypes.INTEGER},
+    status: {type: DataTypes.INTEGER},
+    userEmail: {type: DataTypes.STRING, primaryKey: true},
+    uniqueId: {type: DataTypes.INTEGER, autoIncrement: true},
+})
+
 const Deal = sequelize.define('deal', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING},
@@ -64,6 +73,9 @@ const TypeBrand = sequelize.define('type_brand', {
 User.hasOne(Basket)
 Basket.belongsTo(User)
 
+User.hasMany(UserRefill)
+UserRefill.belongsTo(User)
+
 User.hasMany(Rating)
 Rating.belongsTo(User)
 
@@ -90,6 +102,7 @@ Brand.belongsToMany(Type, {through: TypeBrand })
 
 module.exports = {
     User,
+    UserRefill,
     Deal,
     Basket,
     BasketDevice,
@@ -98,7 +111,7 @@ module.exports = {
     Brand,
     Rating,
     TypeBrand,
-    DeviceInfo
+    DeviceInfo,
 }
 
 

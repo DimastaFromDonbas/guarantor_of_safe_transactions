@@ -17,6 +17,14 @@ axios.defaults.baseURL = `http://${host}/`;
 
 export default axios;
 
+export const getConfig = () => ({
+    headers: {
+      "Access-Control-Allow-Origin": true,
+      "Content-type": `application/json`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    }})
+
+//USER
 
 export const axiosRegistration = async (email:string, password:string, nickname: string) => {
   try {const {data} = await axios.post('api/user/registration', {email, password, role: 'ADMIN', nickname});
@@ -44,35 +52,82 @@ export const check = async () => {
 }
 
 export const axiosChangeNickname = async (nickname: 'string', id: number, password: 'string') => {
-  const {data} = await axios.post('api/user/nickname', {nickname, id, password}, {
-    headers: {
-      "Access-Control-Allow-Origin": true,
-      "Content-type": `application/json`,
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    }});
+  const {data} = await axios.post('api/user/nickname', {nickname, id, password}, getConfig());
   console.log('nickname', data);
   return data;
 }
 
 export const axiosChangePassword = async (newPassword: 'string', id: number, password: 'string') => {
-  const {data} = await axios.post('api/user/password', {newPassword, id, password}, {
-    headers: {
-      "Access-Control-Allow-Origin": true,
-      "Content-type": `application/json`,
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    }});
+  const {data} = await axios.post('api/user/password', {newPassword, id, password}, getConfig());
   console.log('password', data);
   return data;
 }
 
+// DEAL
+
 export const axiosCreateDeal = async (name:string, buyer:string, seller: string, sum: number, description: string) => {
-  const {data} = await axios.post('api/deal/create', {name, buyer, seller, sum, description});
+  const {data} = await axios.post('api/deal/create', {name, buyer, seller, sum, description}, getConfig());
   console.log('create deal', data)
   return data;
 }
 
 export const axiosGetDeal = async (email:string, password:string) => {
-  const {data} = await axios.post('api/deal/getOne', {email, password});
+  const {data} = await axios.post('api/deal/getUserDeals', {email, password}, getConfig());
   console.log('get deal', data)
   return data;
 }
+
+export const axiosGetOneDeal = async (id: number) => {
+  const {data} = await axios.post('api/deal/getOneDeal', {id}, getConfig());
+  console.log('get one deal', data)
+  return data;
+}
+
+// REFILL
+
+export const axiosCreateRefill = async (id: number,
+   time: string, 
+   score: number,
+   status: number, 
+   userEmail: string, 
+   creatorEmail: string, 
+   creatorPassword: string) => {
+  try{const {data} = await axios.post('api/refill/create', {id, time, score, status,userEmail, creatorEmail, creatorPassword}, getConfig());
+  console.log('create refill', data)
+  return data}
+  catch (e) {console.log(e)}
+}
+
+export const axiosUpdateRefill = async (id: number,
+  time: string, 
+  score: number,
+  status: number, 
+  userEmail: string, 
+  creatorEmail: string, 
+  creatorPassword: string) => {
+ try{const {data} = await axios.post('api/refill/update', {id, time, score, status,userEmail, creatorEmail, creatorPassword}, getConfig());
+ console.log('update refill', data)
+ return data}
+ catch (e) {console.log(e)}
+}
+
+export const axiosGetAllRefills = async () => {
+ try{const {data} = await axios.get('api/refill/getAll', getConfig());
+ console.log('get all refill', data)
+ return data}
+ catch (e) {console.log(e)}
+}
+
+export const axiosGetUserRefills = async (email: string) => {
+ try{const {data} = await axios.post('api/refill/getUsersRefills', {email}, getConfig());
+ console.log('users refills', data)
+ return data}
+ catch (e) {console.log(e)}
+}
+
+export const axiosGetRefill = async (id: number) => {
+  try{const {data} = await axios.post('api/refill/getOne', {id}, getConfig());
+  console.log('get refill', data)
+  return data}
+  catch (e) {console.log(e)}
+ }

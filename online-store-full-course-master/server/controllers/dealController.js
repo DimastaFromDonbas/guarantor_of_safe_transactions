@@ -22,10 +22,9 @@ class DealController {
         return res.json(deals)
     }
 
-    async getOne(req, res, next) {
+    async getUserDeal(req, res, next) {
         const {email, password} = req.body
         if(!email || !password) {
-            console.log('test', email, password)
             return next(ApiError.badRequest('Некорректный email или password'))
         }
         const user = await User.findOne({where: {email}})
@@ -44,6 +43,16 @@ class DealController {
             return next(ApiError.internal('Сделки не найдены'))
         }
         return res.json(deals)
+    }
+
+    async getOneDeal(req, res, next) {
+        const {id} = req.body
+
+        const deal = await Deal.findOne({where: {id}})
+        if (!deal) {
+            return next(ApiError.internal('Сделка не найдена'))
+        }
+        return res.json(deal)
     }
 
 }
