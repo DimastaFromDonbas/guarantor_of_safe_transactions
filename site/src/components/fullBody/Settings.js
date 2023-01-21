@@ -31,6 +31,9 @@ function Settings() {
         setPassword(e.currentTarget.value)
         if(user.password !== e.currentTarget.value) {
             setPasswordErorr('Проверьте введенные данные')
+            if(!e.currentTarget.value){
+                setPasswordErorr('Пароль не может быть пустым')
+            }
         } else {
             setPasswordErorr('')
     }
@@ -40,6 +43,9 @@ function Settings() {
         setPasswordV2(e.currentTarget.value)
         if(user.password !== e.currentTarget.value) {
             setPasswordError('Проверьте введенные данные')
+            if(!e.currentTarget.value){
+                setPasswordError('Пароль не может быть пустым')
+            }
         } else {
       setPasswordError('')
     }
