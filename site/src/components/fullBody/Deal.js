@@ -46,9 +46,9 @@ function Deal() {
                                     <th style={{width: '168px', textAlign: 'center'}}>{item.name}</th>
                                     <th style={{width: '168px', textAlign: 'center'}}>{item.buyer}</th>
                                     <th style={{width: '168px', textAlign: 'center'}}>{item.seller}</th>
-                                    <th style={{width: '168px', textAlign: 'center'}}>{item?.sum} руб</th>
-                                    <th style={{width: '168px', textAlign: 'center'}}>{item.sum* 0.05} руб</th>
-                                    <th style={{width: '168px', textAlign: 'center'}}>{item.sum+ item.sum*0.05} руб</th>
+                                    <th style={{width: '168px', textAlign: 'center'}}>{item?.sum} ₽</th>
+                                    <th style={{width: '168px', textAlign: 'center'}}>{item.sum* 0.05} ₽</th>
+                                    <th style={{width: '168px', textAlign: 'center'}}>{item.sum+ item.sum*0.05} ₽</th>
                                 </tr>)}
                             </tr>
                         </tbody>
