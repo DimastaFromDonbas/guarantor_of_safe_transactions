@@ -34,7 +34,20 @@ export const INITIAL: IUsersReducer = {
     updatedAt: "2023-01-18T13:25:37.883Z"
 }],
   refill: {},
-  myRefills: [],
+  myRefills: [
+    {
+      "id": 0,
+      "time": "время сосать хуй",
+      "score": 10000,
+      "status": 1,
+      "userEmail": "user104@gmail.com",
+      "uniqueId": 1,
+      "createdAt": "2023-01-22 13:51:19.017 +00:00",
+      "updatedAt": "2023-01-22 13:51:19.017 +00:00",
+      "userId": null
+  },
+
+  ],
   checkAlertSystemMessage: false,
   updateHeaderAlert: false,
 };

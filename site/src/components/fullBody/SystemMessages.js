@@ -9,7 +9,6 @@ import { reducerTypes } from "../../store/Users/types";
 function SystemMessages() {
 
     const dispatch = useDispatch()
-
     const {checkAlertSystemMessage,deals ,user} = useAppSelector ((store) => store.user)
     let dateParceUser = new Date(Date.parse(deals[0]?.createdAt)).toLocaleString()
 

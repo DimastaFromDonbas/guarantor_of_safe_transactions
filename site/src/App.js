@@ -11,11 +11,17 @@ import Chat from "./components/ChatTest/Chat";
 import Output from './components/fullBody/Output';
 import Payments from './components/fullBody/Payments';
 import SystemMessages from './components/fullBody/SystemMessages';
+import Deal from "./components/fullBody/Deal"
+import { useAppSelector } from '../src/store/reduxHooks'
 
 function App() {
+
+  const {deals} = useAppSelector ((store) => store.user)
+
   return  <>
       <Routes>
         <Route path="/" element = {<Main/>}/>
+        <Route path={`/deal/${deals?.id}`} element={<Deal />}/>
         <Route path="/systemmessages" element={<SystemMessages />}/>
         <Route path="/payments" element={<Payments />}/>
         <Route path="/output" element={<Output />}/>

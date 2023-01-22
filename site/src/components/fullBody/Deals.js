@@ -65,7 +65,7 @@ function Deals() {
                             <tbody>
                                 {deals?.map((item, index) => <tr>
                                     <th>{index+1}</th>
-                                    <th style={{color: '#f25322'}}>{item?.name}</th>
+                                    <th ><Link style={{color: '#f25322' ,textDecoration: "none" }} to = {`/deal/${deals?.id}`}>{item?.name}</Link></th>
                                     <th>{item?.id}</th>
                                     <th>{item?.sum}</th>
                                     <th>{status[item?.status]}</th>
