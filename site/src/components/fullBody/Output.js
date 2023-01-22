@@ -3,13 +3,18 @@ import Footer from "./Footer"
 import Header from "./Header"
 import { useAppSelector } from "../../store/reduxHooks";
 import { Form } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
+import { axiosGetUserRefills } from "../../api/axios";
+import { reducerTypes } from "../../store/Users/types";
+import { useDispatch } from "react-redux";
 
 function Output() {
 
-    const {user} = useAppSelector ((store) => store.user)
+    const dispatch = useDispatch()
+    const {user, myRefills} = useAppSelector ((store) => store.user)
     const [item, setItem] = useState(1)
+    let data = (Math.random() * 1000).toFixed(0)
 
     function visibleItem(e) {
         switch (e.currentTarget.name) {
@@ -26,7 +31,14 @@ function Output() {
         }
     }
 
-    let data = (Math.random() * 1000).toFixed(0)
+    async function getUserRefills (){
+        dispatch({type: reducerTypes.GET_MY_REFILLS,
+        payload: await axiosGetUserRefills(user?.email)})
+    }
+
+    useEffect(() => {
+        getUserRefills()
+    }, [user, user.email])
 
     return <div className="bg-img"> 
         <Header />
@@ -114,6 +126,11 @@ function Output() {
                                 <p className="output-date">Дата</p>
                                 <p className="output-sum">Сумма</p>
                             </div>
+                            {myRefills?.map((item, index) => <div className="output-description-info-block" key={index}>
+                                <p className="output-id">{item.id}</p>
+                                <p className="output-date">{item.time}</p>
+                                <p className="output-sum">{item.score}</p>
+                                </div>)}
                     </div>
                         <div style={item === 2 ? {display: 'block'}: {display: 'none'}} className="flex-box-2">
                         <div className="nav-account__content">

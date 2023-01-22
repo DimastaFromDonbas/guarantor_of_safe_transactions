@@ -8,7 +8,7 @@ class UserRefillController {
         if (!id || !time || !score || !status || !userEmail || !creatorEmail) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const creator = User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({where: {email: creatorEmail}})
         if (!creator) {
             return next(ApiError.badRequest('Админ с таким email не найден'))
         }
@@ -17,14 +17,15 @@ class UserRefillController {
             return next(ApiError.internal('Указан неверный пароль'))
         }
         if(creator.role !== 'ADMIN'){
-            console.log('role', creator.role)
             return next(ApiError.badRequest('Нет доступа'))
         }
-        const chechUser = User.findOne({where: {email: userEmail}})
-        if (!chechUser) {
+        const checkUser = await User.findOne({where: {email: userEmail}})
+        if (!checkUser) {
             return next(ApiError.badRequest('Пользователь с таким email не найден'))
         }
         const userRefill = await UserRefill.create({id, time, score, status, userEmail})
+        const userUpdate = await User.update({score: checkUser.score + score}, {where: {email: userEmail}})
+
         return res.json(userRefill)
     }
 
@@ -42,10 +43,9 @@ class UserRefillController {
             return next(ApiError.internal('Указан неверный пароль'))
         }
         if(creator.role !== 'ADMIN'){
-            console.log('role', creator.role)
             return next(ApiError.badRequest('Нет доступа'))
         }
-        const chechUser = User.findOne({where: {email: userEmail}})
+        const chechUser = await User.findOne({where: {email: userEmail}})
         if (!chechUser) {
             return next(ApiError.badRequest('Пользователь с таким email не найден'))
         }
