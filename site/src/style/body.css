@@ -957,7 +957,6 @@
     display: flex;
     justify-content: space-between;
     border: .5px solid;
-    justify-content: center;
 }
 
 .message-header h2 {
