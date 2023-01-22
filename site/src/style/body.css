@@ -956,6 +956,12 @@
     color: #f9f5e1;
     display: flex;
     justify-content: space-between;
+    border: .5px solid;
+    justify-content: center;
+}
+
+.message-header h2 {
+    margin: 0;
 }
 
 .message-body {
@@ -965,4 +971,5 @@
     padding: 15px;
     color: #f9f5e1;
     font-size: 20px;
+    border: .5px solid;
 }
