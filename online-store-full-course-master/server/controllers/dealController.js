@@ -13,7 +13,7 @@ class DealController {
         if (!checkBuyer || !checkSeller) {
             return next(ApiError.badRequest('Покупатель или продавец с таким email не существует'))
         }
-        const deal = await Deal.create({name, buyer, seller, sum, status: 0, description})
+        const deal = await Deal.create({name, buyer, seller, sum, status: 1, description})
         return res.json(deal)
     }
 
@@ -53,6 +53,21 @@ class DealController {
             return next(ApiError.internal('Сделка не найдена'))
         }
         return res.json(deal)
+    }
+
+    async changeDeal (req, res, next) {
+        const {id, name, sum, status, description} = req.body
+
+        if (!id || !name || !sum || !status || !description) {
+            return next(ApiError.badRequest('Введите все данные'))
+        }
+        const deal = await Deal.findOne({where: {id}})
+        if (!deal) {
+            return next(ApiError.internal('Сделка не найдена'))
+        }
+        const updatedDeal = await deal.update({name, sum, status, description}, {where: {id}})
+
+        return res.json(updatedDeal)
     }
 
 }
