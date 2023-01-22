@@ -15,8 +15,8 @@ const UserRefill = sequelize.define('userRefill', {
     time: {type: DataTypes.STRING},
     score: {type: DataTypes.INTEGER},
     status: {type: DataTypes.INTEGER},
-    userEmail: {type: DataTypes.STRING, primaryKey: true},
-    uniqueId: {type: DataTypes.INTEGER, autoIncrement: true},
+    userEmail: {type: DataTypes.STRING},
+    uniqueId: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
 })
 
 const Deal = sequelize.define('deal', {
