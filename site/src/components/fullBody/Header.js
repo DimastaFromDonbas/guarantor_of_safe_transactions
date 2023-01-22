@@ -58,8 +58,7 @@ function Header() {
       type: reducerTypes.GET_UPDATE_HEADER_ALERT,
       payload: true,
     });
-    setCheckReadMassage(localStorage.getItem('SystemMessages') === 'true')
-    console.log(localStorage.getItem('SystemMessages'))
+    setCheckReadMassage(localStorage.getItem(`${user?.email}`) === 'true')
   },[updateHeaderAlert,dispatch])
 
 
