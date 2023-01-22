@@ -58,7 +58,7 @@ function Header() {
       type: reducerTypes.GET_UPDATE_HEADER_ALERT,
       payload: true,
     });
-    setCheckReadMassage(localStorage.getItem(`${user?.email}`) === 'true')
+    setCheckReadMassage(localStorage.getItem(`${user?.email}`) === 'true') // eslint-disable-next-line 
   },[updateHeaderAlert,dispatch])
 
 

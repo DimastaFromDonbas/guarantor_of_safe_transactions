@@ -10,9 +10,10 @@ import { reducerTypes } from "../../store/Users/types";
 import { useDispatch } from 'react-redux';
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 
+
 function Deals() {
     const dispatch = useDispatch();
-    const {user, deals} = useAppSelector ((store) => store.user)
+    const {user, deals,checkAlertSystemMessage} = useAppSelector ((store) => store.user)
     const status = ['Открыта', 'В обработке', 'Выполнена']
 
     async function getDeal() {
@@ -36,7 +37,20 @@ function Deals() {
                     <div className="dial-flex_box">
                         <div>
                         <Form.Label htmlFor="inputPassword5">Мои сделки</Form.Label>
-                        <Link style={{textDecoration: "none", color: 'white', fontSize: '14px'}} to = '/makedeal'> <button className="spec-btn-ux">Сделать сделку <AddCircleOutlineIcon></AddCircleOutlineIcon></button></Link>
+                        <Link style={{textDecoration: "none", color: 'white', fontSize: '14px'}} to = '/makedeal'> <button className="spec-btn-ux">Сделать сделку<AddCircleOutlineIcon></AddCircleOutlineIcon></button></Link>
+                            {checkAlertSystemMessage ?
+                            <div className="message-header">
+                            <div style={{borderLeft: '1px solid red'}}>
+                                <div style={{padding: '10px'}}>
+                                        Доброго времени суток,{user.nickname}
+                                        <br />
+                                        На данный момент, переводы и выводы для вашей учетной записи приостановлены.
+                                        <br />
+                                        Описание причины ограничений вы можите найти в <Link style={{color: '#f25322' ,textDecoration: "none" }} to='/systemmessages'>Системные сообщения </Link>
+                                </div>
+                            </div>
+                            </div>
+                            : ''}
                         </div>
                         <table className="trades-table">
                                     <thead>
@@ -51,7 +65,7 @@ function Deals() {
                             <tbody>
                                 {deals?.map((item, index) => <tr>
                                     <th>{index+1}</th>
-                                    <th>{item?.name}</th>
+                                    <th style={{color: '#f25322'}}>{item?.name}</th>
                                     <th>{item?.id}</th>
                                     <th>{item?.sum}</th>
                                     <th>{status[item?.status]}</th>
