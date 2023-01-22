@@ -9,7 +9,8 @@ export interface IUsersReducer {
   deals: IDeal[];
   refill: IRefill | {};
   myRefills: IRefill[];
-  checkAlertSystemMessage: boolean
+  checkAlertSystemMessage: boolean;
+  updateHeaderAlert: boolean;
 }
 
 export const INITIAL: IUsersReducer = {
@@ -35,6 +36,7 @@ export const INITIAL: IUsersReducer = {
   refill: {},
   myRefills: [],
   checkAlertSystemMessage: false,
+  updateHeaderAlert: false,
 };
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
@@ -49,6 +51,8 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, myRefills: payload };
     case reducerTypes.GET_CHECK_SYSTEM:
       return { ...state, checkAlertSystemMessage: payload };
+    case reducerTypes.GET_UPDATE_HEADER_ALERT:
+      return { ...state, updateHeaderAlert: payload };
     default:
       return state;
   }

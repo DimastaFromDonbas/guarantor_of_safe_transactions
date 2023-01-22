@@ -2,13 +2,26 @@ import Footer from "./Footer"
 import Header from "./Header"
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 import { useAppSelector } from "../../store/reduxHooks";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { reducerTypes } from "../../store/Users/types";
 
 function SystemMessages() {
 
+    const dispatch = useDispatch()
+
     const {checkAlertSystemMessage,deals ,user} = useAppSelector ((store) => store.user)
     let dateParceUser = new Date(Date.parse(deals[0]?.createdAt)).toLocaleString()
-    console.log(typeof(dateParceUser))
 
+    useEffect(() => {
+        if(checkAlertSystemMessage) {
+            localStorage.setItem('SystemMessages', true)
+            dispatch({
+                type: reducerTypes.GET_UPDATE_HEADER_ALERT,
+                payload: false,
+              });
+        }
+    },[checkAlertSystemMessage, dispatch])
 
     return <div className="bg-img">
         <Header />

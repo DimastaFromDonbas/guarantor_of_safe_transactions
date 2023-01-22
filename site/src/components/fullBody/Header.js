@@ -12,9 +12,11 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 
 function Header() {
 
-  const {user,deals} = useAppSelector ((store) => store.user)
+  const {user,deals,updateHeaderAlert} = useAppSelector ((store) => store.user)
   const [checked, setChecked] = useState(false)
   const [bellState, setBellState] = useState(false)
+  const [checkReadMessage , setCheckReadMassage] = useState(false)
+
   const dispatch = useDispatch();
 
   let now = new Date();
@@ -33,6 +35,7 @@ function Header() {
 
   useEffect(() => {
     getDateMessege()
+    // eslint-disable-next-line 
   },[deals])
 
   function clickArrowdown() {
@@ -49,6 +52,16 @@ function Header() {
       payload: {}
     });
   }
+
+  useEffect(() => {
+    dispatch({
+      type: reducerTypes.GET_UPDATE_HEADER_ALERT,
+      payload: true,
+    });
+    setCheckReadMassage(!!localStorage.getItem('SystemMessages'))
+    console.log(localStorage.getItem('SystemMessages'))
+  },[updateHeaderAlert,dispatch])
+
 
   return  <>
         <Alert.Heading style={{backgroundColor: '#E63F3F', color: 'white',margin: 0, height: "40px", textAlign: "center",fontSize: '17px',paddingBottom:'10px',paddingTop:'10px'}}>Технический чат поддержки работает с 10:00 до 20:00 ежедневно!</Alert.Heading>
@@ -74,10 +87,10 @@ function Header() {
                 <div onClick = {clickArrowdown} style={{display: "flex",justifyContent: "space-between"}}>
                 <Link className="color-nav-link color" to="#" style={{display: 'flex', flexDirection: 'row'}}>{user.nickname}</Link>
                 <KeyboardArrowDownIcon className={!checked? "hoverArrow" : "transformArrow"}></KeyboardArrowDownIcon>
-                {bellState ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}
+                {bellState && !checkReadMessage ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}
                   <div className={checked?"user-profile-block js-profile-block_open active": "user-profile-block js-profile-block_open"}>
                         <ul className="nav-detail_list">
-                            <li className="nav-detail_item"><Link className="nav-detail_link" to="/systemmessages">Системные сообщения {bellState ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}</Link></li>
+                            <li className="nav-detail_item"><Link className="nav-detail_link" to="/systemmessages">Системные сообщения {bellState && !checkReadMessage ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}</Link></li>
                               <li className="nav-detail_item"><Link className="nav-detail_link" to="/settings">Мои настройки</Link></li>
                              <li className="nav-detail_item border-exit"><Link onClick={getUsers} className="nav-detail_link" to="/">Выход</Link></li>
                            </ul>
