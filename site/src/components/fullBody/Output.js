@@ -32,8 +32,10 @@ function Output() {
     }
 
     async function getUserRefills (){
+        let result = await axiosGetUserRefills(user?.email)
+        if(result){
         dispatch({type: reducerTypes.GET_MY_REFILLS,
-        payload: await axiosGetUserRefills(user?.email)})
+        payload: result})}
     }
 
     useEffect(() => {
