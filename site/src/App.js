@@ -17,11 +17,12 @@ import { useAppSelector } from '../src/store/reduxHooks'
 function App() {
 
   const {deals} = useAppSelector ((store) => store.user)
+  
 
   return  <>
       <Routes>
         <Route path="/" element = {<Main/>}/>
-        <Route path={`/deal/${deals?.id}`} element={<Deal />}/>
+        <Route path="/deal/:id" element={<Deal />}/>
         <Route path="/systemmessages" element={<SystemMessages />}/>
         <Route path="/payments" element={<Payments />}/>
         <Route path="/output" element={<Output />}/>

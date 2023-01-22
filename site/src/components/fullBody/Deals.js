@@ -16,6 +16,7 @@ function Deals() {
     const {user, deals,checkAlertSystemMessage} = useAppSelector ((store) => store.user)
     const status = ['Открыта', 'В обработке', 'Выполнена']
 
+
     async function getDeal() {
         if(!user.email) return alert('Войдите в аккаунт');
         dispatch({
@@ -28,6 +29,7 @@ function Deals() {
         getDeal();
         // eslint-disable-next-line
       },[user])
+    
 
     return <div className="bg-img">
         <Header />
@@ -65,7 +67,7 @@ function Deals() {
                             <tbody>
                                 {deals?.map((item, index) => <tr>
                                     <th>{index+1}</th>
-                                    <th ><Link style={{color: '#f25322' ,textDecoration: "none" }} to = {`/deal/${deals?.id}`}>{item?.name}</Link></th>
+                                    <th ><Link style={{color: '#f25322' ,textDecoration: "none" }} to = {`/deal/${item.id}}`}>{item?.name}</Link></th>
                                     <th>{item?.id}</th>
                                     <th>{item?.sum}</th>
                                     <th>{status[item?.status]}</th>

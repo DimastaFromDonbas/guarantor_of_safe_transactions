@@ -46,6 +46,28 @@ export const INITIAL: IUsersReducer = {
       "updatedAt": "2023-01-22 13:51:19.017 +00:00",
       "userId": null
   },
+  {
+    "id": 1,
+    "time": "а когда сосать?",
+    "score": 10000,
+    "status": 1,
+    "userEmail": "user104@gmail.com",
+    "uniqueId": 3,
+    "createdAt": "2023-01-22 13:57:39.123 +00:00",
+    "updatedAt": "2023-01-22 13:57:39.123 +00:00",
+    "userId": null
+},
+{
+    "id": 1,
+    "time": "нам пизда, не устанавливай",
+    "score": 10000,
+    "status": 1,
+    "userEmail": "user104@gmail.com",
+    "uniqueId": 4,
+    "createdAt": "2023-01-22 14:03:16.323 +00:00",
+    "updatedAt": "2023-01-22 14:03:16.323 +00:00",
+    "userId": null
+}
 
   ],
   checkAlertSystemMessage: false,

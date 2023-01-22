@@ -124,14 +124,14 @@ function Output() {
                             </div>
                             <div className="account-wrap__time-info">Перевод осуществляется в течении 24 ч</div>
                             <div className="output-description-info-block">
-                                <p className="output-id">ID</p>
-                                <p className="output-date">Дата</p>
-                                <p className="output-sum">Сумма</p>
+                                <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id">ID</div>
+                                <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">Дата</div>
+                                <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">Сумма</div>
                             </div>
-                            {myRefills?.map((item, index) => <div className="output-description-info-block" key={index}>
-                                <p className="output-id">{item.id}</p>
-                                <p className="output-date">{item.time}</p>
-                                <p className="output-sum">{item.score}</p>
+                            {myRefills?.map((item, index) => <div className="flex-info-block" key={index}>
+                                <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id">{item.id}</div>
+                                <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.time}</div>
+                                <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.score}</div>
                                 </div>)}
                     </div>
                         <div style={item === 2 ? {display: 'block'}: {display: 'none'}} className="flex-box-2">
