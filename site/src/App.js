@@ -12,11 +12,8 @@ import Output from './components/fullBody/Output';
 import Payments from './components/fullBody/Payments';
 import SystemMessages from './components/fullBody/SystemMessages';
 import Deal from "./components/fullBody/Deal"
-import { useAppSelector } from '../src/store/reduxHooks'
 
 function App() {
-
-  const {deals} = useAppSelector ((store) => store.user)
   
 
   return  <>

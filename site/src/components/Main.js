@@ -12,6 +12,7 @@ function Main() {
     const dispatch = useDispatch();
     const {user} = useAppSelector ((store) => store.user)
 
+
     async function getDeal() {
         if(!user.email) return;
         dispatch({
@@ -24,7 +25,7 @@ function Main() {
         getDeal();
         // eslint-disable-next-line
       },[user])
-    return <div className="bg-img">
+    return <div className="bg-img" >
         <Header />
         <Body />
         <Footer />

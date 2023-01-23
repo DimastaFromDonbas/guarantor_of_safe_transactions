@@ -1,14 +1,14 @@
 import Footer from "./Footer";
 import Header from "./Header";
 import Monero from '../../image/monero-xmr-logo.svg'
-import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
+import Chat from "./Chat";
 
 
 function Payments() {
     return <div className="bg-img">
         <Header />
             <div className="container wrap">
-            <HeadsetMicIcon className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
+            <Chat />
                 <div className="promo-description_payments">
                     <div className="alert-block alert-block_info">
                         <p className="text-alert">Уважаемые пользователи! Тчательно проверяйте все данные перед платежем, правильно

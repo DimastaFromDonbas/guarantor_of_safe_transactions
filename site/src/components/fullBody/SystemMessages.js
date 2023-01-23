@@ -1,10 +1,10 @@
 import Footer from "./Footer"
 import Header from "./Header"
-import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 import { useAppSelector } from "../../store/reduxHooks";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
+import Chat from "./Chat";
 
 function SystemMessages() {
 
@@ -26,7 +26,7 @@ function SystemMessages() {
     return <div className="bg-img">
         <Header />
             <div className="container wrap">
-            <HeadsetMicIcon className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
+            <Chat />
                 <div className="">
                     <h3 style={{borderBottom : "1px solid rgb(85, 85, 88)", paddingLeft: '15px'}} className="login-inner_title">Системные сообщения</h3>
                     {checkAlertSystemMessage ? 

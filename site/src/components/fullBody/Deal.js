@@ -1,8 +1,9 @@
 import Footer from "./Footer";
 import Header from "./Header";
 import LinearProgress from '@mui/material/LinearProgress';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAppSelector } from "../../store/reduxHooks";
+import Chat from "./Chat";
 
 function Deal() { 
     const [progress, setProgress] = useState(50)
@@ -24,6 +25,7 @@ function Deal() {
 
     return <div className="bg-img">
         <Header />
+        <Chat />
             <div className='container wrap'>
                 <div className="message-body">
                     <div style={{paddingBottom: '5px'}}>Статус сделки: { statuses[deal.status - 1] }</div>

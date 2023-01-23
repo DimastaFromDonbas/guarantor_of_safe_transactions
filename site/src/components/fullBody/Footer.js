@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import '../../style/footer.css'
 
+
 function Footer() {
     let date = new Date()
     let year = date.getFullYear()
+
+
     return <div className="footer bg-img">
         <div className="footer_panel">
         <div className="container footer_holder">

@@ -13,9 +13,9 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 function Header() {
 
   const {user,deals,updateHeaderAlert} = useAppSelector ((store) => store.user)
-  const [checked, setChecked] = useState(false)
   const [bellState, setBellState] = useState(false)
   const [checkReadMessage , setCheckReadMassage] = useState(false)
+  const [checked, setChecked] = useState(false)
 
   const dispatch = useDispatch();
 

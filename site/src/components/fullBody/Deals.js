@@ -8,7 +8,8 @@ import { useEffect } from "react";
 import { axiosGetDeal } from "../../api/axios";
 import { reducerTypes } from "../../store/Users/types";
 import { useDispatch } from 'react-redux';
-import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
+import Chat from "./Chat";
+
 
 
 function Deals() {
@@ -33,7 +34,7 @@ function Deals() {
 
     return <div className="bg-img">
         <Header />
-        <HeadsetMicIcon className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
+        <Chat />
             <div className="container wrap">
                 <div className="container">
                     <div className="dial-flex_box">

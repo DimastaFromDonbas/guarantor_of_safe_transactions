@@ -3,11 +3,11 @@ import Footer from "./Footer"
 import Header from "./Header"
 import { useAppSelector } from "../../store/reduxHooks";
 import { Form } from "react-bootstrap";
-import { useState, useEffect } from "react";
-import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
+import { useState, useEffect } from "react"
 import { axiosGetUserRefills } from "../../api/axios";
 import { reducerTypes } from "../../store/Users/types";
 import { useDispatch } from "react-redux";
+import Chat from "./Chat";
 
 function Output() {
 
@@ -40,12 +40,13 @@ function Output() {
 
     useEffect(() => {
         getUserRefills()
+        // eslint-disable-next-line
     }, [user, user.email])
 
     return <div className="bg-img"> 
         <Header />
+        <Chat />
             <div className="container">
-            <HeadsetMicIcon className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
                 <div className="page-container page-container--bg_transparent">
                     <div className="account-wrap__heading">
                         <h2>Мой счет</h2>
