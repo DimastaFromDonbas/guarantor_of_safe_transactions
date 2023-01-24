@@ -5,6 +5,8 @@ export const reducerTypes = {
     GET_MY_REFILLS: 'reducer/GET_MY_REFILLS',
     GET_CHECK_SYSTEM: 'reducer/GET_CHECK_SYSTEM',
     GET_UPDATE_HEADER_ALERT: 'reducer/GET_UPDATE_HEADER_ALERT',
+    GET_TRANSFERS: 'reducer/GET_TRANSFERS',
+    GET_TRANSFERS_TO_USER: 'reducer/GET_TRANSFERS_TO_USER',
   };
   
   export const sagaTypes = {

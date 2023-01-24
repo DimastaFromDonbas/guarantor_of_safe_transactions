@@ -7,6 +7,8 @@ const brandRouter = require('./brandRouter')
 const typeRouter = require('./typeRouter')
 const dealRouter = require('./dealRouter')
 const chatRouter = require('./chatRouter')
+const userTransferRoutes = require('./userTransferRoutes')
+const userToUserrouter = require('./userToUserrouter')
 
 router.use('/user', userRouter)
 router.use('/refill', userRefillRouter)
@@ -15,5 +17,7 @@ router.use('/brand', brandRouter)
 router.use('/device', deviceRouter)
 router.use('/deal', dealRouter)
 router.use('/chat', chatRouter)
+router.use('/transfer', userTransferRoutes)
+router.use('/touser', userToUserrouter)
 
 module.exports = router

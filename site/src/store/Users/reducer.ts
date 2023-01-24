@@ -3,6 +3,8 @@ import { reducerTypes } from "./types";
 import { IUser } from "../../interfaces/users";
 import { IDeal } from "../../interfaces/deal";
 import { IRefill } from "../../interfaces/refill";
+import { ITransfer } from "../../interfaces/transfer";
+import { ITransferToUser } from "../../interfaces/transferToUser";
 
 export interface IUsersReducer {
   user: IUser | {};
@@ -11,6 +13,8 @@ export interface IUsersReducer {
   myRefills: IRefill[];
   checkAlertSystemMessage: boolean;
   updateHeaderAlert: boolean;
+  transfers: ITransfer[] | [];
+  transfersToUser: ITransferToUser[] | [];
 }
 
 export const INITIAL: IUsersReducer = {
@@ -62,6 +66,29 @@ export const INITIAL: IUsersReducer = {
   ],
   checkAlertSystemMessage: false,
   updateHeaderAlert: false,
+  transfers: [    
+    {
+    id: 1,
+    paymantSystem: 'Сбербанк',
+    walletNumber: '0000 1488 0420 0228',
+    score: 5000,
+    time: '2023 01 24 15:41',
+    status: 1,
+    userEmail: 'user120@gmail.com',
+    createdAt: '',
+    updatedAt: '',
+  }
+  ],
+  transfersToUser: [{
+    id: 1,
+    userEmail: 'user120@gmail.com',
+    receiverEmail: 'user121@gmail.com',
+    score: 5000,
+    time: '2023 01 24 15:59',
+    status: 1,
+    createdAt: '',
+    updatedAt: '',
+  }],
 };
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
@@ -78,6 +105,10 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, checkAlertSystemMessage: payload };
     case reducerTypes.GET_UPDATE_HEADER_ALERT:
       return { ...state, updateHeaderAlert: payload };
+      case reducerTypes.GET_TRANSFERS:
+        return { ...state, transfers: payload };
+        case reducerTypes.GET_TRANSFERS_TO_USER:
+          return { ...state, transfersToUser: payload };
     default:
       return state;
   }

@@ -19,7 +19,7 @@ function Deal() {
         let temporaryDeal = deals?.filter(item => String(item.id) === id)[0]
         setDeal(temporaryDeal)
         setProgress(temporaryDeal?.status)
-    }, [deals])
+    }, [deals, id])
 
     return <div className="bg-img">
         <Header />

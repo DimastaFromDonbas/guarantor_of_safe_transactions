@@ -19,6 +19,25 @@ const UserRefill = sequelize.define('userRefill', {
     uniqueId: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
 })
 
+const UserTransfer = sequelize.define('userRefill', {
+    id: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
+    paymantSystem: {type: DataTypes.STRING},
+    walletNumber: {type: DataTypes.STRING},
+    score: {type: DataTypes.INTEGER},
+    time: {type: DataTypes.STRING},
+    status: {type: DataTypes.INTEGER, defaultValue: 1},
+    userEmail: {type: DataTypes.STRING},
+})
+
+const UserTransferToUser = sequelize.define('userRefill', {
+    id: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
+    userEmail: {type: DataTypes.STRING},
+    receiverEmail: {type: DataTypes.STRING},
+    score: {type: DataTypes.INTEGER},
+    time: {type: DataTypes.STRING},
+    status: {type: DataTypes.INTEGER, defaultValue: 1},
+})
+
 const Deal = sequelize.define('deal', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING},
@@ -78,6 +97,12 @@ Basket.belongsTo(User)
 User.hasMany(UserRefill)
 UserRefill.belongsTo(User)
 
+User.hasMany(UserTransfer)
+UserTransfer.belongsTo(User)
+
+User.hasMany(UserTransferToUser)
+UserTransferToUser.belongsTo(User)
+
 User.hasMany(Rating)
 Rating.belongsTo(User)
 
@@ -105,6 +130,8 @@ Brand.belongsToMany(Type, {through: TypeBrand })
 module.exports = {
     User,
     UserRefill,
+    UserTransfer,
+    UserTransferToUser,
     Deal,
     Basket,
     BasketDevice,

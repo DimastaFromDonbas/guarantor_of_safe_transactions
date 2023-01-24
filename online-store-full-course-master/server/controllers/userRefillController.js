@@ -1,5 +1,5 @@
 const ApiError = require('../error/ApiError');
-const {User, Deal, UserRefill} = require('../models/models')
+const {User, UserRefill} = require('../models/models')
 const bcrypt = require('bcrypt')
 
 class UserRefillController {
@@ -31,7 +31,7 @@ class UserRefillController {
 
     async changeRefill(req, res, next) {
         const {id, time, score, status, userEmail, creatorEmail, creatorPassword} = req.body
-        if (!id || !time || !score || !status || !userEmail || !creatorEmail) {
+        if (!id || !time || !score || !status || !userEmail || !creatorEmail || !creatorPassword) {
             return next(ApiError.badRequest('Введите все данные'))
         }
         const creator = User.findOne({where: {email: creatorEmail}})
