@@ -12,9 +12,10 @@ import Chat from "./Chat";
 function Output() {
 
     const dispatch = useDispatch()
-    const {user, myRefills} = useAppSelector ((store) => store.user)
+    const {user, myRefills, transfers, transfersToUser} = useAppSelector ((store) => store.user)
     const [item, setItem] = useState(1)
     let data = (Math.random() * 1000).toFixed(0)
+
 
     function visibleItem(e) {
         switch (e.currentTarget.name) {
@@ -111,8 +112,25 @@ function Output() {
                             <p>Кабинет stom-pro.ru обеспечивает лишь удобство расчетов между клиентами.</p>
                     </div>
                     <div className="account-wrap__time-info">Перевод осуществляется в течении 24 ч</div>
-                    <div className="alert-block alert-block_info">
-                        <p className="text-alert">История выводов по реквизитам пуста</p>
+                    <div className="alert-block">
+                    { transfers ? <>
+                        <div className="output-description-info-block">
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id">ID</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">Платежная система</div>
+                            <div style={{width: '235px',display: 'flex' ,justifyContent: 'center'}} className="output-date">Номер банковской карты </div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">Сумма</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">Состояние перевода </div>
+                        </div>
+                            {transfers?.map((item, index) => <div style={{justifyContent: "space-around"}} className="flex-info-block" key={index}>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id">{item.id}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.paymantSystem}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.walletNumber}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.score}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.status}</div>
+                        </div>)}
+                        </>
+                        :
+                        <p className="text-alert">История выводов по реквизитам пуста</p>}
                     </div>
                     </div>
                         <div style={item === 0 ? {display: 'block'}: {display: 'none'}} className="flex-box-0">
@@ -133,8 +151,8 @@ function Output() {
                                 <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id">{item.id}</div>
                                 <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.time}</div>
                                 <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.score}</div>
-                                </div>)}
-                    </div>
+                            </div>)}
+                        </div>
                         <div style={item === 2 ? {display: 'block'}: {display: 'none'}} className="flex-box-2">
                         <div className="nav-account__content">
                             <div className="nav-account__operation operation">
@@ -168,8 +186,23 @@ function Output() {
                             <p>Кабинет stom-pro.ru обеспечивает лишь удобство расчетов между клиентами.</p>
                     </div>
                     <div className="account-wrap__time-info">Перевод осуществляется в течении 24 ч</div>
-                    <div className="alert-block alert-block_info">
-                        <p className="text-alert">История выводов по реквизитам пуста</p>
+                    <div className="alert-block">
+                        { transfersToUser ? <>
+                        <div className="output-description-info-block">
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id">ID</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">Email пользователя</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">Сумма</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">Состояние перевода </div>
+                        </div>
+                            {transfersToUser?.map((item, index) => <div style={{justifyContent: "space-around"}} className="flex-info-block" key={index}>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id">{item.id}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.receiverEmail}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.score}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.status}</div>
+                        </div>)}
+                        </>
+                        :
+                        <p className="text-alert">История выводов по реквизитам пуста</p>}
                     </div>
                     </div>
                     </div>
