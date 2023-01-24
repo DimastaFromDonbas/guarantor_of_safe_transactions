@@ -15,6 +15,7 @@ function Output() {
     const {user, myRefills, transfers, transfersToUser} = useAppSelector ((store) => store.user)
     const [item, setItem] = useState(1)
     let data = (Math.random() * 1000).toFixed(0)
+    const statuses = [ 'Открыта' , "В процессе ", "Завершена", "Заморожена" ]
 
 
     function visibleItem(e) {
@@ -126,7 +127,7 @@ function Output() {
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.paymantSystem}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.walletNumber}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.score}</div>
-                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.status}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{statuses[item?.status === 0? item?.status: item?.status - 1]}</div>
                         </div>)}
                         </>
                         :
@@ -198,7 +199,7 @@ function Output() {
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id">{item.id}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.receiverEmail}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.score}</div>
-                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.status}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{ statuses[item?.status === 0? item?.status: item?.status - 1] }</div>
                         </div>)}
                         </>
                         :
