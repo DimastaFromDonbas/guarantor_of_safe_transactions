@@ -8,7 +8,8 @@ function Chat() {
 
     return  <>
                 {checked?
-                    <div className='chat activ-chat'>
+                    <div className='chat-bg' onClick={() => setChecked(false)}>
+                        <div className='chat activ-chat' onClick={(e) => e.stopPropagation() }>
                         <div className='chat-header'>
                             <img alt='img-helper' className='img-helper' src={Helper}></img>
                             <div className='helper-nickName'>
@@ -18,6 +19,7 @@ function Chat() {
                         </div>
                         <div></div>
                         <div></div>
+                        </div>
                     </div>:
                 ''}
                 <HeadsetMicIcon onClick={() => setChecked(!checked)} className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
