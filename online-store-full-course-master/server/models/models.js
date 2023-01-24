@@ -19,7 +19,7 @@ const UserRefill = sequelize.define('userRefill', {
     uniqueId: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
 })
 
-const UserTransfer = sequelize.define('userRefill', {
+const UserTransfer = sequelize.define('user_transfers', {
     id: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
     paymantSystem: {type: DataTypes.STRING},
     walletNumber: {type: DataTypes.STRING},
@@ -29,7 +29,7 @@ const UserTransfer = sequelize.define('userRefill', {
     userEmail: {type: DataTypes.STRING},
 })
 
-const UserTransferToUser = sequelize.define('userRefill', {
+const UserTransferToUser = sequelize.define('user_transfer_to_users', {
     id: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
     userEmail: {type: DataTypes.STRING},
     receiverEmail: {type: DataTypes.STRING},

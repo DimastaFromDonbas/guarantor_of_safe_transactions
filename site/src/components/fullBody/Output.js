@@ -4,7 +4,11 @@ import Header from "./Header"
 import { useAppSelector } from "../../store/reduxHooks";
 import { Form } from "react-bootstrap";
 import { useState, useEffect } from "react"
+import { axiosCreateUserTransfer } from "../../api/axios";
+import { axiosCreateUserToUserTransfer } from "../../api/axios";
 import { axiosGetUserRefills } from "../../api/axios";
+import { axiosGetUserTransfers } from "../../api/axios";
+import { axiosGetUserToUserTransfers } from "../../api/axios";
 import { reducerTypes } from "../../store/Users/types";
 import { useDispatch } from "react-redux";
 import Chat from "./Chat";
@@ -12,6 +16,11 @@ import Chat from "./Chat";
 function Output() {
 
     const dispatch = useDispatch()
+    const [paymantSystem, setPaymantSystem] = useState('Сбербанк')
+    const [walletNumber, setWalletNumber] = useState('')
+    const [score, setScore] = useState(0)
+    const [receiver, setReceiver] = useState('')
+    const [receiverScore, setReceiverScore] = useState(0)
     const {user, myRefills, transfers, transfersToUser} = useAppSelector ((store) => store.user)
     const [item, setItem] = useState(1)
     let data = (Math.random() * 1000).toFixed(0)
@@ -33,6 +42,20 @@ function Output() {
         }
     }
 
+    async function createTransfer() {
+        let time = '2023 01 24 15:41'
+        let result = await axiosCreateUserTransfer(paymantSystem, walletNumber, time, score, user?.email, user?.password)
+        getUserTransfers();
+        alert('Перевод создан')
+    }
+
+    async function createTransferToUser() {
+        let time = '2023 01 24 15:47'
+        let result = await axiosCreateUserToUserTransfer(receiverScore, time, user?.email, receiver, user?.password)
+        getUserTransfersToUser();
+        alert('Перевод создан')
+    }
+
     async function getUserRefills (){
         let result = await axiosGetUserRefills(user?.email)
         if(result){
@@ -40,8 +63,24 @@ function Output() {
         payload: result})}
     }
 
+    async function getUserTransfers (){
+        let result = await axiosGetUserTransfers(user?.email)
+        if(result){
+        dispatch({type: reducerTypes.GET_TRANSFERS,
+        payload: result})}
+    }
+
+    async function getUserTransfersToUser (){
+        let result = await axiosGetUserToUserTransfers(user?.email)
+        if(result){
+        dispatch({type: reducerTypes.GET_TRANSFERS_TO_USER,
+        payload: result})}
+    }
+
     useEffect(() => {
         getUserRefills()
+        getUserTransfers()
+        getUserTransfersToUser()               // Обернуть в промис чтобы вызывались одновременно все axios
         // eslint-disable-next-line
     }, [user, user.email])
 
@@ -71,7 +110,7 @@ function Output() {
                                     <div className="form-operation__input-section">
                                         <div className="form-operation__item">
                                         <Form.Label htmlFor="inputPassword5">Платежная система:</Form.Label>
-                                            <Form.Select aria-label="Default select example">
+                                            <Form.Select aria-label="Default select example" onChange={(e) => setPaymantSystem(e.target.value)}>
                                                 <option>Сбербанк</option>
                                                 <option>Альфа-банк</option>
                                                 <option>РОСБАНК</option>
@@ -89,6 +128,7 @@ function Output() {
                                         <div className="form-operation__item">
                                         <Form.Label htmlFor="inputPassword5">Номер банковской карты / счета / кошелька</Form.Label>
                                             <Form.Control
+                                            onChange={(e) => setWalletNumber(e.target.value)}
                                                 type="text"
                                                 id="inputText"
                                                 placeholder="0000 0000 0000 0000"
@@ -97,13 +137,14 @@ function Output() {
                                         <div className="form-operation__item">
                                         <Form.Label htmlFor="inputPassword5">Cумма</Form.Label>
                                             <Form.Control
+                                            onChange={(e) => setScore(Number(e.target.value))}
                                                 type="text"
                                                 id="inputText"
                                                 placeholder="0"
                                             />
                                         </div>
                                     </div>
-                                    <button className="btn-orange">Отправить</button>
+                                    <button className="btn-orange" onClick={() => createTransfer()}>Отправить</button>
                                 </div>
                             </div>
                         </div>
@@ -163,6 +204,7 @@ function Output() {
                                         <div style={{width: '510px'}} className="form-operation__item">
                                         <Form.Label htmlFor="inputPassword5">Получатель:</Form.Label>
                                             <Form.Control
+                                            onChange={(e) => setReceiver(e.currentTarget.value)}
                                                 type="text"
                                                 id="inputText"
                                                 placeholder="Логин пользователя"
@@ -171,13 +213,14 @@ function Output() {
                                         <div className="form-operation__item">
                                         <Form.Label htmlFor="inputPassword5">Cумма:</Form.Label>
                                             <Form.Control
+                                            onChange={(e) => setReceiverScore(Number(e.currentTarget.value))}
                                                 type="text"
                                                 id="inputText"
                                                 placeholder="0.00"
                                             />
                                         </div>
                                     </div>
-                                    <button className="btn-orange">Отправить</button>
+                                    <button className="btn-orange" onClick={() => createTransferToUser()}>Отправить</button>
                                 </div>
                             </div>
                         </div>
