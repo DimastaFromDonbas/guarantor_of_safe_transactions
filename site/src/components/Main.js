@@ -7,7 +7,7 @@ import { useAppSelector } from "../store/reduxHooks";
 import { axiosGetDeal } from "../api/axios";
 import { useEffect } from "react";
 import { reducerTypes } from "../store/Users/types";
-
+ 
 function Main() {
     const dispatch = useDispatch();
     const {user} = useAppSelector ((store) => store.user)
