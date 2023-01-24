@@ -22,7 +22,7 @@ function Body() {
  
     return <div className="container-body-v1 bg-img" >
         <Chat />
-        <div className='promo-description' >
+        <div className='promo-description container' >
             <div className='block-main-v1'>
                 <h1>gamesgun.ru - лучший гарант безопасных сделок!</h1>
                 <Link style={{textDecoration: "none"}} to="/makedeal"><button className='btn-class-v1'>Открыть новую сделку</button></Link>
@@ -50,7 +50,7 @@ function Body() {
                 </li>
             </ul>
         </div>
-        <div className='promo-steps'>
+        <div className='promo-steps container'>
             <h3 className="header-inner_title">Как это работает</h3>
             <ul className='list-steps'>
                 <li className='step'>
