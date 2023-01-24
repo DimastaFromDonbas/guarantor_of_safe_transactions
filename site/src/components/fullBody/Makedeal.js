@@ -76,7 +76,16 @@ function Makedeal() {
     }
 
     async function createDeal(){
-        await axiosCreateDeal(name, buyer, seller, suma, description)
+        let buyerNickname = '';
+        let sellerNickname = '';
+        console.log('role', role)
+        if(role === 'Покупатель') {
+            buyerNickname = user.nickname
+        } else {
+            sellerNickname = user.nickname
+        }
+
+        await axiosCreateDeal(name, buyer, seller, suma, description, buyerNickname, sellerNickname)
     }
 
     useEffect(() => {

@@ -4,16 +4,31 @@ const bcrypt = require('bcrypt')
 
 class DealController {
     async create(req, res, next) {
-        const {name, buyer, seller, sum, description} = req.body
+        const {name, buyer, buyerNickname, seller, sellerNickname , sum, description} = req.body
         if (!name || !buyer || !seller || !sum || !description) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const checkBuyer = User.findOne({where: {email: buyer}})
-        const checkSeller = User.findOne({where: {email: seller}})
+        const checkBuyer = await User.findOne({where: {email: buyer}})
+        const checkSeller = await User.findOne({where: {email: seller}})
         if (!checkBuyer || !checkSeller) {
             return next(ApiError.badRequest('Покупатель или продавец с таким email не существует'))
         }
-        const deal = await Deal.create({name, buyer, seller, sum, status: 1, description})
+        if (!buyerNickname && !sellerNickname) {
+            return next(ApiError.badRequest('Введите имя пользователя'))
+        }
+
+        const checkBuyerNickname = buyerNickname || checkBuyer.nickname
+        const checkSellerNickname = sellerNickname || checkSeller.nickname
+
+        const deal = await Deal.create({
+            name, 
+            buyer, 
+            seller, 
+            sum, 
+            status: 1, 
+            description, 
+            buyerNickname: checkBuyerNickname, 
+            sellerNickname: checkSellerNickname})
         return res.json(deal)
     }
 

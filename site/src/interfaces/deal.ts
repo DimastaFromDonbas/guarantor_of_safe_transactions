@@ -4,8 +4,10 @@ export interface IDeal {
     updatedAt: string,
     name: string,
     buyer: string,
+    buyerNickname: string,
     seller: string,
+    sellerNickname: string,
     sum: number,
     status: number,
-    description: string
+    description: string,
 }

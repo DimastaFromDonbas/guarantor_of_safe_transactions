@@ -23,9 +23,11 @@ const Deal = sequelize.define('deal', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING},
     buyer: {type: DataTypes.STRING},
+    buyerNickname: {type: DataTypes.STRING},
     seller: {type: DataTypes.STRING},
+    sellerNickname: {type: DataTypes.STRING},
     sum: {type: DataTypes.INTEGER},
-    status: {type: DataTypes.INTEGER, defaultValue: 0},
+    status: {type: DataTypes.INTEGER, defaultValue: 1},
     description: {type: DataTypes.STRING},
 })
 

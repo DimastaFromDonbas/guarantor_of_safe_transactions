@@ -8,10 +8,12 @@ import { useEffect } from "react";
 import { axiosRegistration } from "../../api/axios";
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from "../../store/Users/types";
+import { useNavigate } from "react-router-dom";
 
 
 function Login() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [nickname, setNickname] = useState("");
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
@@ -108,6 +110,7 @@ function Login() {
           type: reducerTypes.GET_USER,
           payload: result
         });
+        if (typeof result !== 'string') navigate('/')
       }
 
     return <div className="bg-img">

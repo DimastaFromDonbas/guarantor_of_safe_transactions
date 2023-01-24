@@ -68,8 +68,15 @@ export const axiosChangePassword = async (newPassword: 'string', id: number, pas
 
 // DEAL
 
-export const axiosCreateDeal = async (name:string, buyer:string, seller: string, sum: number, description: string) => {
-  const {data} = await axios.post('api/deal/create', {name, buyer, seller, sum, description}, getConfig());
+export const axiosCreateDeal = async (
+  name:string, 
+  buyer:string, 
+  seller: string, 
+  sum: number, 
+  description: string, 
+  buyerNickname?: string, 
+  sellerNickname?: string) => {
+  const {data} = await axios.post('api/deal/create', {name, buyer, seller, sum, description, buyerNickname, sellerNickname}, getConfig());
   console.log('create deal', data)
   return data;
 }
