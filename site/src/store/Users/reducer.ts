@@ -105,10 +105,10 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, checkAlertSystemMessage: payload };
     case reducerTypes.GET_UPDATE_HEADER_ALERT:
       return { ...state, updateHeaderAlert: payload };
-      case reducerTypes.GET_TRANSFERS:
-        return { ...state, transfers: payload };
-        case reducerTypes.GET_TRANSFERS_TO_USER:
-          return { ...state, transfersToUser: payload };
+    case reducerTypes.GET_TRANSFERS:
+      return { ...state, transfers: payload };
+    case reducerTypes.GET_TRANSFERS_TO_USER:
+      return { ...state, transfersToUser: payload };
     default:
       return state;
   }

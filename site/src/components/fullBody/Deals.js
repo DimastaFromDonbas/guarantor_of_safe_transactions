@@ -66,7 +66,7 @@ function Deals() {
                                         </tr>
                         </thead>
                             <tbody>
-                                {deals?.map((item, index) => <tr>
+                                {deals?.map((item, index) => <tr key={index}>
                                     <th>{index+1}</th>
                                     <th ><Link style={{color: '#f25322' ,textDecoration: "none" }} to = {`/deal/${item.id}`}>{item?.name}</Link></th>
                                     <th>{item?.id}</th>
