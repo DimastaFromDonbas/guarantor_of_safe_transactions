@@ -56,7 +56,7 @@ function LoginAdminPanel(){
       }
     },[emailError, passwordError])
 
-    return ( <div className='bg-img' style={{display: 'flex', justifyContent: 'center',height: '660px', alignItems: 'center'}}>
+    return ( <div className='bg-img' style={{display: 'flex', justifyContent: 'center',height: '100vh', alignItems: 'center'}}>
        
         <Card style={{ width: '18rem' }}>
 
