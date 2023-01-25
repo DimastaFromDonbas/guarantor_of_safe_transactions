@@ -8,11 +8,13 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import { SwipeableDrawer } from "@mui/material";
 
 
 function Header() {
 
   const {user,deals,updateHeaderAlert} = useAppSelector ((store) => store.user)
+  const [sideBar, setSideBar] = useState(false)
   const [bellState, setBellState] = useState(false)
   const [checkReadMessage , setCheckReadMassage] = useState(false)
   const [checked, setChecked] = useState(false)
@@ -65,6 +67,12 @@ function Header() {
   return  <>
         <Alert.Heading style={{backgroundColor: '#E63F3F', color: 'white',margin: 0, height: "40px", textAlign: "center",fontSize: '17px',paddingBottom:'10px',paddingTop:'10px'}}>Технический чат поддержки работает с 10:00 до 20:00 ежедневно!</Alert.Heading>
               <div className="navbar-header">
+              <h1 style={{color: 'white'}} onClick={() => setSideBar(true)}>Хуй</h1>
+        <SwipeableDrawer anchor={'left'} open={sideBar} onClose={() => setSideBar(false)} onOpen={() => setSideBar(true)}>
+              <div>
+                <h1>1231</h1>
+              </div>
+            </SwipeableDrawer>
               <div className="nav-main-header">
                 <Link className="color-nav-link color" to="/"><HomeIcon></HomeIcon></Link>
               { user?.id? 
