@@ -155,17 +155,19 @@ function Output() {
                     <div className="alert-block">
                     { transfers ? <>
                         <div className="output-description-info-block">
-                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id">ID</div>
+                            <div style={{width: '180px',display: 'flex' ,justifyContent: 'center'}} className="output-id">ID</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">Платежная система</div>
-                            <div style={{width: '235px',display: 'flex' ,justifyContent: 'center'}} className="output-date">Номер банковской карты </div>
-                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">Сумма</div>
+                            <div style={{width: '280px',display: 'flex' ,justifyContent: 'center'}} className="output-date">Номер банковской карты </div>
+                            <div style={{width: '170px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">Сумма</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">Время перевода</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">Состояние перевода </div>
                         </div>
                             {transfers?.map((item, index) => <div style={{justifyContent: "space-around"}} className="flex-info-block" key={index}>
-                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id">{item.id}</div>
+                            <div style={{width: '180px',display: 'flex' ,justifyContent: 'center'}} className="output-id">{item.id}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.paymantSystem}</div>
-                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.walletNumber}</div>
-                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.score}</div>
+                            <div style={{width: '280px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.walletNumber}</div>
+                            <div style={{width: '170px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.score}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.time}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{statuses[item?.status === 0? item?.status: item?.status - 1]}</div>
                         </div>)}
                         </>
@@ -234,12 +236,14 @@ function Output() {
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id">ID</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">Email пользователя</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">Сумма</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">Время перевода</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">Состояние перевода </div>
                         </div>
                             {transfersToUser?.map((item, index) => <div style={{justifyContent: "space-around"}} className="flex-info-block" key={index}>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id">{item.id}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.receiverEmail}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.score}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.time}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{ statuses[item?.status === 0? item?.status: item?.status - 1] }</div>
                         </div>)}
                         </>
