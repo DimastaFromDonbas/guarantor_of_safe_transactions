@@ -43,15 +43,13 @@ function Output() {
     }
 
     async function createTransfer() {
-        let time = '2023 01 24 15:41'
-        await axiosCreateUserTransfer(paymantSystem, walletNumber, time, score, user?.email, user?.password)
+        await axiosCreateUserTransfer(paymantSystem, walletNumber, score, user?.email, user?.password)
         getUserTransfers();
         alert('Перевод создан')
     }
 
     async function createTransferToUser() {
-        let time = '2023 01 24 15:47'
-        await axiosCreateUserToUserTransfer(receiverScore, time, user?.email, receiver, user?.password)
+        await axiosCreateUserToUserTransfer(receiverScore, user?.email, receiver, user?.password)
         getUserTransfersToUser();
         alert('Перевод создан')
     }

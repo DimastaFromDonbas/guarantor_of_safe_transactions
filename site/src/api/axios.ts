@@ -147,11 +147,12 @@ export const axiosGetRefill = async (id: number) => {
  export const axiosCreateUserTransfer = async (
   paymantSystem: string,
   walletNumber: string,
-  time: string, 
   score: number,
   userEmail: string, 
   password: string) => {
- try{const {data} = await axios.post('api/transfer/create', {paymantSystem, walletNumber, time, score, userEmail, password}, getConfig());
+ try{
+  const time = new Date().toLocaleString().replaceAll(',', '');
+  const {data} = await axios.post('api/transfer/create', {paymantSystem, walletNumber, time, score, userEmail, password}, getConfig());
  console.log('create transfer', data)
  return data}
  catch (e) {console.log(e)}
@@ -201,11 +202,12 @@ export const axiosGetAllUserTransfers = async () => {
 
  export const axiosCreateUserToUserTransfer = async (
   score: number,
-  time: string, 
   userEmail: string, 
   receiverEmail: string,
   password: string) => {
- try{const {data} = await axios.post('api/touser/create', {score, time, userEmail, receiverEmail, password}, getConfig());
+ try{
+  const time = new Date().toLocaleString().replaceAll(',', '');
+  const {data} = await axios.post('api/touser/create', {score, time, userEmail, receiverEmail, password}, getConfig());
  console.log('create transfer to user', data)
  return data}
  catch (e) {console.log(e)}
