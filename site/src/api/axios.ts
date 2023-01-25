@@ -66,6 +66,12 @@ export const axiosChangePassword = async (newPassword: 'string', id: number, pas
   return data;
 }
 
+export const axiosChangeSystemMessage = async (systemMessage: 'string', id: number, password: 'string') => {
+  const {data} = await axios.post('api/user/message', {systemMessage, id, password}, getConfig());
+  console.log('system message', data);
+  return data;
+}
+
 // DEAL
 
 export const axiosCreateDeal = async (

@@ -5,4 +5,5 @@ export interface IUser {
     role: string,
     score: number,
     nickname: string,
+    systemMessage: string | null,
 }

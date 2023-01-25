@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {User, Basket} = require('../models/models')
 
-const generateJwt = (id, email, role, nickname, score, password) => {
+const generateJwt = (id, email, role, nickname, score, password, systemMessage) => {
     return jwt.sign(
-        {id, email, role, nickname, score, password},
+        {id, email, role, nickname, score, password, systemMessage},
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     )
@@ -27,7 +27,8 @@ class UserController {
         }
         const hashPassword = await bcrypt.hash(password, 5)
         const user = await User.create({email, role, password: hashPassword, nickname})
-        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, user.password)
+        const systemMessage = 'false'
+        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, password, systemMessage)
         return res.json({token})
     }
 
@@ -42,7 +43,7 @@ class UserController {
 
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, password)
+        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, password, user.systemMessage)
         return res.json({token})
     }
 
@@ -88,7 +89,25 @@ class UserController {
             await User.update({password: hashPassword}, {where: {id: id}})
            return res.json({...user.dataValues, password: newPassword})
         } else {
-            return next(ApiError.internal('Указано неверное имя пользователя'))
+            return next(ApiError.internal('Указан неверный id пользователя'))
+        }
+    }
+
+    async changeSystemMessage(req, res, next) {
+        const {systemMessage, id, password} = req.body
+        const user = await User.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(password, user.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if (systemMessage) {
+            await User.update({systemMessage}, {where: {id: id}})
+           return res.json({...user.dataValues, systemMessage})
+        } else {
+            return next(ApiError.internal('Указан неверный id пользователя'))
         }
     }
 

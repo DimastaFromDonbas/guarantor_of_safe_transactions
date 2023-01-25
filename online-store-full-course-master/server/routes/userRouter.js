@@ -7,6 +7,7 @@ router.post('/registration', userController.registration)
 router.post('/login', userController.login)
 router.post('/nickname',authMiddleware, userController.changeNickname)
 router.post('/password',authMiddleware, userController.changePassword)
+router.post('/message',authMiddleware, userController.changeSystemMessage)
 router.get('/auth', authMiddleware, userController.check)
 router.get('/get', userController.getAllUsers)
 

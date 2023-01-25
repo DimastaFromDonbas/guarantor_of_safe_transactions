@@ -25,6 +25,7 @@ export const INITIAL: IUsersReducer = {
     role: "Админ",
     score: 0,
     nickname: "test",
+    systemMessage: null,
   },
   deals: [],
   refill: {},

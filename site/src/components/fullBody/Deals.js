@@ -41,7 +41,7 @@ function Deals() {
                         <div>
                         <Form.Label htmlFor="inputPassword5">Мои сделки</Form.Label>
                         <Link style={{textDecoration: "none", color: 'white', fontSize: '14px'}} to = '/makedeal'> <button className="spec-btn-ux">Сделать сделку<AddCircleOutlineIcon></AddCircleOutlineIcon></button></Link>
-                            {checkAlertSystemMessage ?
+                            {checkAlertSystemMessage || user?.systemMessage === 'true' ?
                             <div className="message-header">
                             <div style={{borderLeft: '1px solid red'}}>
                                 <div style={{padding: '10px'}}>
