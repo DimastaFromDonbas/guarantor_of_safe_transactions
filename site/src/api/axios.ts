@@ -72,6 +72,12 @@ export const axiosChangeSystemMessage = async (systemMessage: 'string', id: numb
   return data;
 }
 
+export const axiosGetAllUsers = async () => {
+  const {data} = await axios.get('api/user/get', getConfig());
+  console.log('get all users', data);
+  return data;
+}
+
 // DEAL
 
 export const axiosCreateDeal = async (
@@ -96,6 +102,12 @@ export const axiosGetDeal = async (email:string, password:string) => {
 export const axiosGetOneDeal = async (id: number) => {
   const {data} = await axios.post('api/deal/getOneDeal', {id}, getConfig());
   console.log('get one deal', data)
+  return data;
+}
+
+export const axiosGetAllDeal = async () => {
+  const {data} = await axios.get('api/deal/get', getConfig());
+  console.log('get all deal', data)
   return data;
 }
 
@@ -254,3 +266,30 @@ export const axiosGetAllUserToUserTransfers = async () => {
   return data}
   catch (e) {console.log(e)}
  }
+
+//  DEAL MESSAGES
+
+export const axiosCreateDealMessages = async (
+  dealId: number,
+  nickname: string,
+  email: string,
+  message: string,
+  role: string,
+  ) => {
+ try{
+  const time = new Date().toLocaleString().replaceAll(',', '');
+  const {data} = await axios.post('api/dealMessages/create', {dealId, nickname, email, message, time, role}, getConfig());
+ console.log('create deal message', data)
+ return data}
+ catch (e) {console.log(e)}
+}
+
+export const axiosGetDealMessages = async (
+  dealId: number,
+  ) => {
+ try{
+  const {data} = await axios.post('api/dealMessages/getDealMessages', {dealId}, getConfig());
+ console.log('get deal messages', data)
+ return data}
+ catch (e) {console.log(e)}
+}
