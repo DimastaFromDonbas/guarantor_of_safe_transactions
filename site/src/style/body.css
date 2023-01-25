@@ -949,6 +949,9 @@
         transform: rotate(-5deg);
     }
   }
+.logW {
+    width: 100% !important;
+}
 
 .message-header {
     background: rgba(17, 17, 18, 0.65);
@@ -989,6 +992,50 @@
     width: 100%;
     height: 100vh;
     z-index: 10;
+}
+
+.flex-cont {
+    display: flex;
+    padding-top: 100px;
+}
+
+.block_user_panel {
+    padding: 10px;
+    border: 1px solid #f9f5e1;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    background: 0;
+    color: #f9f5e1;
+}
+
+.activ-block-admin {
+    background-color: #2E2D2D;
+}
+
+.block_user_panel:hover {
+    border-color: #36D7B7;
+    color: #36D7B7;
+    transform: scale(1.04);
+}
+
+.block_user_panel h4 {
+    margin: 0;
+}
+
+.panel_user {
+    background: rgba(17, 17, 18, 0.65);
+    color: #f9f5e1;
+    padding: 20px;
+    width: 78%;
+}
+
+.tabl-flex {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #f25322;
+    color: #fff;
+    padding: 10px;
 }
 
 @media  (max-width: 670px)  {

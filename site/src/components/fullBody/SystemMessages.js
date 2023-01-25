@@ -29,7 +29,7 @@ function SystemMessages() {
             <Chat />
                 <div className="">
                     <h3 style={{borderBottom : "1px solid rgb(85, 85, 88)", paddingLeft: '15px'}} className="login-inner_title">Системные сообщения</h3>
-                    {checkAlertSystemMessage ? 
+                    {checkAlertSystemMessage || user?.systemMessage === 'true' ? 
                     <div className="message-flex">
                         <div className="message-header">
                             <h2>Сообщение от stom-pro.ru</h2> 

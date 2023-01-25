@@ -12,6 +12,8 @@ import Output from './components/fullBody/Output';
 import Payments from './components/fullBody/Payments';
 import SystemMessages from './components/fullBody/SystemMessages';
 import Deal from "./components/fullBody/Deal"
+import AdminPanel from "./components/fullBody/AdminPanel"
+import LoginAdminPanel from "./components/fullBody/LoginAdminPanel";
 
 function App() {
   
@@ -21,6 +23,8 @@ function App() {
         <Route path="/" element = {<Main/>}/>
         <Route path="/deal/:id" element={<Deal />}/>
         <Route path="/systemmessages" element={<SystemMessages />}/>
+        <Route path="/admin_panel" element={<AdminPanel />}/>
+        <Route path="/admin_panel_login" element={<LoginAdminPanel />}/>
         <Route path="/payments" element={<Payments />}/>
         <Route path="/output" element={<Output />}/>
         <Route path="/deals" element={<Deals />}/>
