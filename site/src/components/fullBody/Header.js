@@ -9,7 +9,9 @@ import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { SwipeableDrawer } from "@mui/material";
+import io from "socket.io-client";
 
+export const socket = io.connect("localhost:5000");
 
 function Header() {
 
@@ -35,11 +37,6 @@ function Header() {
     }
   }
 
-  useEffect(() => {
-    getDateMessege()
-    // eslint-disable-next-line 
-  },[deals])
-
   function clickArrowdown() {
     if (checked) {
       setChecked(false)
@@ -48,6 +45,14 @@ function Header() {
     }
   }
 
+  /*async function auth() {
+    const getUsers = await check()
+    dispatch({
+      type: reducerTypes.GET_USER,
+      payload: getUsers,
+    });
+  }*/
+
   async function getUsers(e) {
     dispatch({
       type: reducerTypes.GET_USER,
@@ -55,13 +60,19 @@ function Header() {
     });
   }
 
+
+  useEffect(() => {
+    getDateMessege()
+    // eslint-disable-next-line 
+  },[deals, user])
+
   useEffect(() => {
     dispatch({
       type: reducerTypes.GET_UPDATE_HEADER_ALERT,
       payload: true,
     });
     setCheckReadMassage(localStorage.getItem(`${user?.email}`) === 'true') // eslint-disable-next-line 
-  },[updateHeaderAlert,dispatch])
+  },[updateHeaderAlert,dispatch, user])
 
 
   return  <>

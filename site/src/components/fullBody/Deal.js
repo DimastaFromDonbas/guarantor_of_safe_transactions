@@ -1,11 +1,11 @@
 import Footer from "./Footer";
 import Header from "./Header";
 import LinearProgress from '@mui/material/LinearProgress';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppSelector } from "../../store/reduxHooks";
 import Chat from "./Chat";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { socket } from "./Header";
 
 function Deal() { 
     const [progress, setProgress] = useState(50)

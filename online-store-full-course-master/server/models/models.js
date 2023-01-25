@@ -51,6 +51,16 @@ const Deal = sequelize.define('deal', {
     description: {type: DataTypes.STRING},
 })
 
+const DealMessage = sequelize.define('deal_message', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    nickname: {type: DataTypes.STRING},
+    email: {type: DataTypes.STRING},
+    message: {type: DataTypes.STRING},
+    time: {type: DataTypes.STRING},
+    role: {type: DataTypes.STRING},
+    dealId: {type: DataTypes.INTEGER},
+})
+
 const Basket = sequelize.define('basket', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
@@ -107,6 +117,9 @@ UserTransferToUser.belongsTo(User)
 User.hasMany(Rating)
 Rating.belongsTo(User)
 
+Deal.hasOne(DealMessage)
+DealMessage.belongsTo(Deal)
+
 Basket.hasMany(BasketDevice)
 BasketDevice.belongsTo(Basket)
 
@@ -134,6 +147,7 @@ module.exports = {
     UserTransfer,
     UserTransferToUser,
     Deal,
+    DealMessage,
     Basket,
     BasketDevice,
     Device,
