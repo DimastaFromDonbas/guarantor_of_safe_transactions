@@ -1035,7 +1035,7 @@
     justify-content: space-evenly;
     background-color: #f25322;
     color: #fff;
-    padding: 6px;
+    padding: 10px;
 }
 
 @media  (max-width: 670px)  {
