@@ -76,7 +76,7 @@ function UserInput() {
   
     return <div className="bg-img">
         <Header/>
-        <div style={{paddingBottom: "117px"}} className="wraper">
+        <div style={{marginBottom:'30px', marginTop:'30px',height: '67vh'}} className="container">
             <h3 className="header-inner_title login-inner_title">Авторизация</h3>
                 <hr className="hr-viss"/>
                 <Form className="width-form">
