@@ -10,6 +10,7 @@ const router = require('./routes/index')
 const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 const path = require('path')
 const ChatController = require('./controllers/chatController')
+const dealMessageController = require('./controllers/dealMessageController')
 
 const PORT = process.env.PORT || 5000
 
@@ -35,35 +36,38 @@ io.on("connection", (socket) => {
     socket.on("join", ({ name, room }) => {
       socket.join(room);
   
-      const { user, isExist } = ChatController.addUser({ name, room });
+      //const { user, isExist } = ChatController.addUser({ name, room });
   
-      const userMessage = isExist
+     /* const userMessage = isExist
         ? `${user.name} back to town`
         : `Hi ${user.name}`;
   
       socket.emit("message", {
         data: { user: { name: "Admin" }, message: userMessage },
-      });
+      });*/
   
-      socket.broadcast.to(user.room).emit("message", {
+      /*socket.broadcast.to(user.room).emit("message", {
         data: { user: { name: "Admin" }, message: `${user.name} has joined` },
-      });
+      });*/
   
-      io.to(user.room).emit("room", {
+      /*io.to(user.room).emit("room", {
         data: { users: ChatController.getRoomUsers(user.room) },
-      });
+      });*/
     });
   
-    socket.on("sendMessage", ({ message, params }) => {
-      const user = ChatController.findUser(params);
-  
-      if (user) {
-        io.to(user.room).emit("message", { data: { user, message } });
-      }
+    socket.on("sendMessage", ({ dealId, nickname, email, message, time, role }) => {
+
+      if (dealId && message && nickname && email && time && role) {
+        io.to(String(dealId)).emit("message", { data: { dealId, nickname, email, message, time, role } });
+        console.log('message', dealId, message, nickname, email, time, role)
+
+        dealMessageController.create({body: {dealId, nickname, email, message, time, role}})
+      } else console.log('Send message fail')
     });
   
     socket.on("leftRoom", ({ params }) => {
-      const user = ChatController.removeUser(params);
+      console.log("Left room", params);
+      /*const user = ChatController.removeUser(params);
   
       if (user) {
         const { room, name } = user;
@@ -75,7 +79,7 @@ io.on("connection", (socket) => {
         io.to(room).emit("room", {
           data: { users: ChatController.getRoomUsers(room) },
         });
-      }
+      }*/
     });
   
     io.on("disconnect", () => {

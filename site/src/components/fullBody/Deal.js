@@ -1,17 +1,21 @@
 import Footer from "./Footer";
 import Header from "./Header";
-import LinearProgress from '@mui/material/LinearProgress';
+import {LinearProgress, Button} from '@mui/material';
 import { useState, useEffect } from "react";
 import { useAppSelector } from "../../store/reduxHooks";
+import { useDispatch } from "react-redux";
 import Chat from "./Chat";
 import { useParams } from "react-router-dom";
 import { socket } from "./Header";
+import { reducerTypes } from "../../store/Users/types";
+import { axiosGetDealMessages } from "../../api/axios";
 
 function Deal() { 
+    const dispatch = useDispatch()
     const [progress, setProgress] = useState(50)
-    const [deal, setDeal] = useState({})
-    const {deals, user} = useAppSelector ((store) => store.user)
+    const {deals, user, dealMessages} = useAppSelector ((store) => store.user)
     const { id } = useParams();
+    const [deal, setDeal] = useState(deals?.filter(item => String(item.id) === id)[0])
 
     const statuses = [ 'Открыта' , "В процессе ", "Завершена", "Заморожена" ]
 
@@ -20,6 +24,39 @@ function Deal() {
         setDeal(temporaryDeal)
         setProgress(temporaryDeal?.status)
     }, [deals, id])
+
+    useEffect(() => {
+        socket.emit("join", {name: user?.email, room: String(deal?.id)});
+      }, [deal, user, deals]);
+
+      useEffect(() => {
+        getDealMessages();
+        // eslint-disable-next-line
+      }, []);
+
+      useEffect(() => {
+        socket.on("message", ({ data }) => {
+            console.log('data', data)
+            dispatch({
+                type: reducerTypes.GET_DEAL_MESSAGES,
+                payload: [...dealMessages, data]
+              });
+        });
+        // eslint-disable-next-line
+      }, [dealMessages]);
+
+      function sendMessage() {
+        const time = new Date().toLocaleString().replaceAll(',', '')
+        socket.emit("sendMessage", { dealId: deal.id, nickname: user.nickname, email: user.email, message: `test ${time}`, time, role: user.role });
+      }
+
+      async function getDealMessages() {
+            const result = await axiosGetDealMessages(id)
+            dispatch({
+                type: reducerTypes.GET_DEAL_MESSAGES,
+                payload: result,
+              });
+      }
 
     return <div className="bg-img">
         <Header />
@@ -61,6 +98,22 @@ function Deal() {
                 <div className="message-body">
                     <h2 style={{textAlign: 'center'}}>Чат с партнером по сделке</h2>
                    <h4 style={{textAlign: 'center'}}>{deal?.buyer === user?.email ? deal?.sellerNickname: deal?.buyerNickname}</h4>
+                   {dealMessages?.map((item, index) => {
+                   //if (item.dealId !== id) return
+                   return <div>
+                        <p>{`${item.time} ${item.nickname}: ${item.message}`}</p>
+                   </div>})}
+                <div style={{width: '100%'}}>
+                    <Button
+                    size='large'
+                    onClick={() => sendMessage()}
+                    sx={{
+                    alignSelf: 'flex-end',
+                    color: '#FFFFFF',
+                    borderColor: '#FFF',
+                    marginLeft: 'auto',
+                    }}>Отправить</Button>
+                </div>
                 </div>
             </div>
         <Footer />

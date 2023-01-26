@@ -5,6 +5,7 @@ import { IDeal } from "../../interfaces/deal";
 import { IRefill } from "../../interfaces/refill";
 import { ITransfer } from "../../interfaces/transfer";
 import { ITransferToUser } from "../../interfaces/transferToUser";
+import {IDealMessage} from "../../interfaces/dealMessage";
 
 export interface IUsersReducer {
   user: IUser | {};
@@ -15,6 +16,7 @@ export interface IUsersReducer {
   updateHeaderAlert: boolean;
   transfers: ITransfer[] | [];
   transfersToUser: ITransferToUser[] | [];
+  dealMessages: IDealMessage[] | [];
   allUsers: IUser[] | [];
   allDeals: IDeal[] | [];
 }
@@ -92,6 +94,7 @@ export const INITIAL: IUsersReducer = {
     createdAt: '',
     updatedAt: '',
   }],
+  dealMessages: [],
   allUsers: [{
     id: 1,
     email: "use32131231r123@gmail.com",
@@ -134,6 +137,8 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, transfers: payload };
     case reducerTypes.GET_TRANSFERS_TO_USER:
       return { ...state, transfersToUser: payload };
+      case reducerTypes.GET_DEAL_MESSAGES:
+        return { ...state, dealMessages: payload };
     case reducerTypes.GET_ALL_USERS:
       return { ...state, allUsers: payload };
     case reducerTypes.GET_ALL_DEALS:
