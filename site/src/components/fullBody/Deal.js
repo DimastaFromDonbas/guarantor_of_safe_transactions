@@ -1,6 +1,6 @@
 import Footer from "./Footer";
 import Header from "./Header";
-import LinearProgress from '@mui/material/LinearProgress';
+import {LinearProgress, Button} from '@mui/material';
 import { useState, useEffect } from "react";
 import { useAppSelector } from "../../store/reduxHooks";
 import Chat from "./Chat";
@@ -9,9 +9,9 @@ import { socket } from "./Header";
 
 function Deal() { 
     const [progress, setProgress] = useState(50)
-    const [deal, setDeal] = useState({})
     const {deals, user} = useAppSelector ((store) => store.user)
     const { id } = useParams();
+    const [deal, setDeal] = useState(deals?.filter(item => String(item.id) === id)[0])
 
     const statuses = [ 'Открыта' , "В процессе ", "Завершена", "Заморожена" ]
 
@@ -20,6 +20,15 @@ function Deal() {
         setDeal(temporaryDeal)
         setProgress(temporaryDeal?.status)
     }, [deals, id])
+
+    useEffect(() => {
+        socket.emit("join", {name: user?.email, room: String(deal?.id)});
+      }, [deal, user, deals]);
+
+      function sendMessage() {
+        const time = new Date().toLocaleString().replaceAll(',', '')
+        socket.emit("sendMessage", { dealId: deal?.id, nickname: user?.nickname, email: user?.email, message: `test ${time}`, time, role: user?.role });
+      }
 
     return <div className="bg-img">
         <Header />
@@ -61,6 +70,17 @@ function Deal() {
                 <div className="message-body">
                     <h2 style={{textAlign: 'center'}}>Чат с партнером по сделке</h2>
                    <h4 style={{textAlign: 'center'}}>{deal?.buyer === user?.email ? deal?.sellerNickname: deal?.buyerNickname}</h4>
+                <div style={{width: '100%'}}>
+                    <Button
+                    size='large'
+                    onClick={() => sendMessage()}
+                    sx={{
+                    alignSelf: 'flex-end',
+                    color: '#FFFFFF',
+                    borderColor: '#FFF',
+                    marginLeft: 'auto',
+                    }}>Отправить</Button>
+                </div>
                 </div>
             </div>
         <Footer />

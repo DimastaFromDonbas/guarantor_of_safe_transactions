@@ -1,5 +1,7 @@
-const trimStr = (str) => str.trim().toLowerCase();
+const trimStr = (str) => {
+  str.trim().toLowerCase()};
 const findUser = (user) => {
+  console.log('user', user)
     const userName = trimStr(user.name);
     const userRoom = trimStr(user.room);
   
@@ -12,6 +14,7 @@ let users = [];
 
 class ChatController {
     findUser = (user) => {
+
         const userName = trimStr(user.name);
         const userRoom = trimStr(user.room);
       

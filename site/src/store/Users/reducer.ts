@@ -5,6 +5,7 @@ import { IDeal } from "../../interfaces/deal";
 import { IRefill } from "../../interfaces/refill";
 import { ITransfer } from "../../interfaces/transfer";
 import { ITransferToUser } from "../../interfaces/transferToUser";
+//import IDealMessage from "../../interfaces/dealMessage";
 
 export interface IUsersReducer {
   user: IUser | {};
