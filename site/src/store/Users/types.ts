@@ -8,6 +8,8 @@ export const reducerTypes = {
     GET_TRANSFERS: 'reducer/GET_TRANSFERS',
     GET_TRANSFERS_TO_USER: 'reducer/GET_TRANSFERS_TO_USER',
     GET_DEAL_MESSAGES: 'reducer/GET_DEAL_MESSAGES',
+    GET_ALL_USERS: 'reducer/GET_ALL_USERS',
+    GET_ALL_DEALS: 'reducer/GET_ALL_DEALS',
   };
   
   export const sagaTypes = {

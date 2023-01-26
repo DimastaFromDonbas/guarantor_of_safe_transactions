@@ -115,7 +115,7 @@ function Login() {
 
     return <div className="bg-img">
         <Header/>
-        <div className="wraper">
+        <div style={{marginTop: '30px', marginBottom: '30px'}} className="container">
             <h3 className="header-inner_title login-inner_title">Регистрация</h3>
                 <hr className="hr-viss"/>
                 <Form className="width-form">

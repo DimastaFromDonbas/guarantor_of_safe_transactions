@@ -258,8 +258,7 @@
 }
 
 .block-text-free {
-    margin-left: 86px;
-    margin-right: 86px;
+
     margin-bottom: 150px;
     font-family: "Roboto Condensed","Arial Narrow",Arial,sans-serif;
 }
@@ -829,7 +828,6 @@
 }
 
 .text-free {
-    margin: 50px 0;
     font-size: 20px;
     margin-bottom: 20px;
     line-height: 1.5rem;
@@ -960,7 +958,6 @@
     color: #f9f5e1;
     display: flex;
     justify-content: space-between;
-    border: .5px solid;
 }
 
 .message-header h2 {
@@ -975,6 +972,10 @@
     color: #f9f5e1;
     font-size: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.heiggg {
+    height: 100vh;
 }
 
 .flex-info-block {
@@ -1006,6 +1007,11 @@
     cursor: pointer;
     background: 0;
     color: #f9f5e1;
+}
+
+.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
+    background-image: url(../image/div.png);
+    background-color: #191919 !important;
 }
 
 .activ-block-admin {
@@ -1046,7 +1052,7 @@
     }
 
     .chat-icon {
-        bottom: 4.428571em;
+        bottom: 0.428571em;
     }
 
     .footer-menu {
@@ -1056,11 +1062,38 @@
 }
 
 @media  (max-width: 900px)  {
+
+    .footer-menu {
+        padding: 0;
+    }
+
+    .width-form {
+        margin-left: 50px;
+    }
+
     .promote-slider_item {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         padding: 0px;
+    }
+    .block-text-free {
+        margin-left: 86px;
+        margin-right: 86px;
+    }
+
+    .footer_copyright {
+        margin-left: 50px;
+    }
+
+    .login-inner_title {
+        margin-left: 50px;
+    }
+
+    .flex-adapt {
+        display: flex;
+        flex-direction: column;
+        margin-left: 50px;
     }
 
     .show-img-1 {
@@ -1073,11 +1106,42 @@
         flex-wrap: wrap;
         justify-content: center;
     }
+
+    .message-header {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .message-body {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .login-inner_title {
+        margin-right: 50px;
+    }
 }
 
 @media (max-width: 1100px) {
+
+    .footer-menu {
+        padding: 0;
+    }
+
     .show-img-1 {
         width: 270px;
         height: 160px;
+    }
+
+    .width-form {
+        margin-left: 50px;
+    }
+
+    .login-inner_title {
+        margin-left: 50px;
+    }
+
+    .footer_copyright {
+        margin-left: 50px;
     }
 }

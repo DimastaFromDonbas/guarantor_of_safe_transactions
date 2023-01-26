@@ -17,6 +17,8 @@ export interface IUsersReducer {
   transfers: ITransfer[] | [];
   transfersToUser: ITransferToUser[] | [];
   dealMessages: IDealMessage[] | [];
+  allUsers: IUser[] | [];
+  allDeals: IDeal[] | [];
 }
 
 export const INITIAL: IUsersReducer = {
@@ -93,6 +95,28 @@ export const INITIAL: IUsersReducer = {
     updatedAt: '',
   }],
   dealMessages: [],
+  allUsers: [{
+    id: 1,
+    email: "use32131231r123@gmail.com",
+    password: "D2023212" || null,
+    role: "ADMIN",
+    score: 1110,
+    nickname: "DimaKek",
+    systemMessage: "string" || null,
+  }],
+  allDeals: [{
+    id: 1,
+    createdAt: "string",
+    updatedAt: "string",
+    name: "string",
+    buyer: "string",
+    buyerNickname: "string",
+    seller: "string",
+    sellerNickname: "string",
+    sum: 1,
+    status: 1,
+    description: "string",
+  }],
 };
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
@@ -115,6 +139,10 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, transfersToUser: payload };
       case reducerTypes.GET_DEAL_MESSAGES:
         return { ...state, dealMessages: payload };
+    case reducerTypes.GET_ALL_USERS:
+      return { ...state, allUsers: payload };
+    case reducerTypes.GET_ALL_DEALS:
+      return { ...state, allDeals: payload };
     default:
       return state;
   }
