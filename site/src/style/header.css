@@ -144,11 +144,11 @@
 
 .alert-navBar {
     background-color: #E63F3F; 
-    color: white;
+    color: white !important;
     margin: 0 !important; 
     height: 40px; 
     text-align: center;
-    font-size: 17px;
+    font-size: 19px !important;
     padding-bottom:10px;
     padding-top:5px;
 }
