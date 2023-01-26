@@ -115,7 +115,7 @@ function Settings() {
     return <div className="bg-img">
         <Header />
             <Chat />
-            <div style={{paddingBottom: "117px",marginTop:'30px', minHeight: "calc(100vh - 339px)"}} className="container">
+            <div style={{paddingBottom: "117px",marginTop:'30px'}} className="container">
                 <h3 className="header-inner_title login-inner_title">Настройки</h3>
                     <hr className="hr-viss"/>
                     <div className="flex-adapt" style={{display: 'flex'}}>

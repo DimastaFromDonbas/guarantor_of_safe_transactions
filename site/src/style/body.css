@@ -1093,7 +1093,6 @@
     .flex-adapt {
         display: flex;
         flex-direction: column;
-        margin-left: 50px;
     }
 
     .show-img-1 {
