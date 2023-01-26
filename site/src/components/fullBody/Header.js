@@ -10,6 +10,12 @@ import { reducerTypes } from "../../store/Users/types";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { SwipeableDrawer } from "@mui/material";
 import io from "socket.io-client";
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import HelpIcon from '@mui/icons-material/Help';
+import GavelIcon from '@mui/icons-material/Gavel';
+import ReviewsIcon from '@mui/icons-material/Reviews';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 export const socket = io.connect("localhost:5000");
 
@@ -76,18 +82,31 @@ function Header() {
 
 
   return  <>
-        <Alert.Heading style={{backgroundColor: '#E63F3F', color: 'white',margin: 0, height: "40px", textAlign: "center",fontSize: '17px',paddingBottom:'10px',paddingTop:'10px'}}>Технический чат поддержки работает с 10:00 до 20:00 ежедневно!</Alert.Heading>
+        <Alert.Heading className="alert-navBar">Технический чат поддержки работает с 10:00 до 20:00 ежедневно!</Alert.Heading>
               <div className="navbar-header">
-              <h1 style={{color: 'white'}} onClick={() => setSideBar(true)}>Хуй</h1>
-        <SwipeableDrawer anchor={'left'} open={sideBar} onClose={() => setSideBar(false)} onOpen={() => setSideBar(true)}>
-              <div>
-                <h1>1231</h1>
-              </div>
+            <SwipeableDrawer anchor={'left'} open={sideBar} onClose={() => setSideBar(false)} onOpen={() => setSideBar(true)}>
+            { user?.id? 
+                <div  style={{ marginLeft: "25px",display: "flex",flexDirection: "column",padding:'10px'}} >
+                <Link className="color-nav-link color" to="/"><HomeIcon></HomeIcon> НА ГЛАВНУЮ</Link>
+                <Link className="color-nav-link color" to="/deals"><ListAltIcon></ListAltIcon> МОИ СДЕЛКИ</Link>
+                <Link className="color-nav-link color" to="/output"><AccountBalanceIcon></AccountBalanceIcon> МОЙ СЧЕТ:{user.score} РУБ.</Link>
+                <Link className="color-nav-link color" to="#"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
+                <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
+                <Link className="color-nav-link color" to="#"><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ</Link>
+                </div>
+              :
+              <div className="flex-nav-link">
+                <Link className="color-nav-link color" to="/"><HomeIcon></HomeIcon> НА ГЛАВНУЮ</Link>
+                <Link className="color-nav-link color" to="#"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
+                <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
+                <Link className="color-nav-link color" to="#"><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ</Link>
+              </div>}
             </SwipeableDrawer>
               <div className="nav-main-header">
-                <Link className="color-nav-link color" to="/"><HomeIcon></HomeIcon></Link>
+                <Link className="color-nav-link color header-home" to="/"><HomeIcon></HomeIcon></Link>
+                <FormatListBulletedIcon onClick={() => setSideBar(true)} className="color-nav-link color header-burder"></FormatListBulletedIcon>
               { user?.id? 
-                <div style={{ marginLeft: "25px",display: "flex",width: "600px",justifyContent: "space-between",alignItems: "center"}} >
+                <div className="header-navBar" style={{ marginLeft: "25px",display: "flex",width: "600px",justifyContent: "space-between",alignItems: "center"}} >
                 <Link className="color-nav-link color" to="/deals">МОИ СДЕЛКИ</Link>
                 <Link className="color-nav-link color" to="/output">МОЙ СЧЕТ:{user.score} РУБ.</Link>
                 <Link className="color-nav-link color" to="#">ПОМОЩЬ</Link>
@@ -95,7 +114,7 @@ function Header() {
                 <Link className="color-nav-link color" to="#">ОТЗЫВЫ</Link>
                 </div>
               :
-              <div className="flex-nav-link">
+              <div className="flex-nav-link header-navBar">
                 <Link className="color-nav-link color" to="#">ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="#">ОТЗЫВЫ</Link>

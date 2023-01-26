@@ -115,10 +115,10 @@ function Settings() {
     return <div className="bg-img">
         <Header />
             <Chat />
-            <div style={{paddingBottom: "117px", minHeight: "calc(100vh - 339px)"}} className="wraper">
+            <div style={{paddingBottom: "117px",marginTop:'30px', minHeight: "calc(100vh - 339px)"}} className="container">
                 <h3 className="header-inner_title login-inner_title">Настройки</h3>
                     <hr className="hr-viss"/>
-                    <div style={{display: 'flex'}}>
+                    <div className="flex-adapt" style={{display: 'flex'}}>
                         <Form className="width-form">
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className="color-input-name">Сменить ваше имя:</Form.Label>

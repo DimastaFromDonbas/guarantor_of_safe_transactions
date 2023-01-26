@@ -1008,6 +1008,11 @@
     color: #f9f5e1;
 }
 
+.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
+    background-image: url(../image/div.png);
+    background-color: #191919 !important;
+}
+
 .activ-block-admin {
     background-color: #2E2D2D;
 }
@@ -1046,7 +1051,7 @@
     }
 
     .chat-icon {
-        bottom: 4.428571em;
+        bottom: 0.428571em;
     }
 
     .footer-menu {
@@ -1061,6 +1066,16 @@
         flex-wrap: wrap;
         justify-content: space-between;
         padding: 0px;
+    }
+
+    .login-inner_title {
+        margin-left: 50px;
+    }
+
+    .flex-adapt {
+        display: flex;
+        flex-direction: column;
+        margin-left: 50px;
     }
 
     .show-img-1 {
