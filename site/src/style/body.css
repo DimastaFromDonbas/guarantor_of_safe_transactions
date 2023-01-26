@@ -258,7 +258,6 @@
 }
 
 .block-text-free {
-
     margin-bottom: 150px;
     font-family: "Roboto Condensed","Arial Narrow",Arial,sans-serif;
 }
@@ -1043,6 +1042,33 @@
     padding: 10px;
 }
 
+@media  (max-width: 400px)  {
+    .message-header{
+        display: block;
+    }
+
+    .heiggg {
+        height: 100%;
+    }
+
+    .width-form {
+        width: 300px;
+    }
+
+    .form-control {
+        width: 100% !important;
+    }
+
+    .login-inner_title {
+        font-size: 22px !important;
+    }
+
+    .message-flex {
+        font-size: 22px !important;
+    }
+
+}
+
 @media  (max-width: 670px)  {
     .promote-slider_item {
         display: flex;
@@ -1053,10 +1079,6 @@
 
     .chat-icon {
         bottom: 0.428571em;
-    }
-
-    .footer-menu {
-        margin-left: 54px;
     }
 
 }
@@ -1076,14 +1098,6 @@
         flex-wrap: wrap;
         justify-content: space-between;
         padding: 0px;
-    }
-    .block-text-free {
-        margin-left: 86px;
-        margin-right: 86px;
-    }
-
-    .footer_copyright {
-        margin-left: 50px;
     }
 
     .login-inner_title {
@@ -1140,7 +1154,4 @@
         margin-left: 50px;
     }
 
-    .footer_copyright {
-        margin-left: 50px;
-    }
 }
