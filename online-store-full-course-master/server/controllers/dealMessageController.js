@@ -17,7 +17,7 @@ class DealMessageController {
         }
 
         const dealMessage = await DealMessage.create({dealId, nickname, email , message, time, role})
-
+        if(!res) return;
         return res.json(dealMessage)
     }
 

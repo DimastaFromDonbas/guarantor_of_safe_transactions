@@ -58,9 +58,11 @@ io.on("connection", (socket) => {
     socket.on("sendMessage", ({ dealId, nickname, email, message, time, role }) => {
 
       if (dealId && message && nickname && email && time && role) {
-        io.to(dealId).emit("message", { data: { dealId, nickname, email, message, time, role } });
-      }
-      dealMessageController.create(dealId, nickname, email, message, time, role)
+        io.to(String(dealId)).emit("message", { data: { dealId, nickname, email, message, time, role } });
+        console.log('message', dealId, message, nickname, email, time, role)
+
+        dealMessageController.create({body: {dealId, nickname, email, message, time, role}})
+      } else console.log('Send message fail')
     });
   
     socket.on("leftRoom", ({ params }) => {

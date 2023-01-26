@@ -7,6 +7,7 @@ export const reducerTypes = {
     GET_UPDATE_HEADER_ALERT: 'reducer/GET_UPDATE_HEADER_ALERT',
     GET_TRANSFERS: 'reducer/GET_TRANSFERS',
     GET_TRANSFERS_TO_USER: 'reducer/GET_TRANSFERS_TO_USER',
+    GET_DEAL_MESSAGES: 'reducer/GET_DEAL_MESSAGES',
   };
   
   export const sagaTypes = {

@@ -291,5 +291,7 @@ export const axiosGetDealMessages = async (
   const {data} = await axios.post('api/dealMessages/getDealMessages', {dealId}, getConfig());
  console.log('get deal messages', data)
  return data}
- catch (e) {console.log(e)}
+ catch (e) {
+  console.log(e);
+  return []}
 }
