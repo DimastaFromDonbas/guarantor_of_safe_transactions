@@ -1043,6 +1043,12 @@
 }
 
 @media  (max-width: 400px)  {
+
+    .show-img-1{
+        width: 350px !important;
+        height: 185px !important;
+    }
+
     .message-header{
         display: block;
     }
@@ -1065,6 +1071,45 @@
 
     .message-flex {
         font-size: 22px !important;
+    }
+
+    .promo-description {
+        padding: 20px !important;
+    }
+
+    .list-steps {
+        padding: 0;
+    }
+
+    .promo-steps {
+        padding: 20px !important;
+    }
+
+    .promo-steps h3 {
+        margin-bottom: 20px;
+    }
+
+    .promote-slider_holder {
+        padding: 8px;
+    }
+
+    .promote-slider_list {
+        padding: 0;
+        margin: 0;
+        gap: 20px;
+    }
+
+    .info-card {
+        margin: 0;
+        width: 350px;
+    }
+
+    .promote-slider_item_list{
+        gap: 20px;
+    }
+
+    .block-text-free {
+        padding: 8px;
     }
 
 }
@@ -1110,8 +1155,8 @@
     }
 
     .show-img-1 {
-        width: 230px !important;
-        height: 130px !important;
+        width: 260px ;
+        height: 160px ;
     }
 
     .promote-slider_list {

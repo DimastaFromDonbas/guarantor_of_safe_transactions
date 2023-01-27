@@ -52,3 +52,9 @@
 .footer-menu_link:hover {
     color: #999;
 }
+
+@media (max-width: 400px) {
+    .footer_holder {
+        padding: 20px !important;
+    }
+}

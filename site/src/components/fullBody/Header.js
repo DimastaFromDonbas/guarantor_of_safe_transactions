@@ -86,7 +86,7 @@ function Header() {
               <div className="navbar-header">
             <SwipeableDrawer anchor={'left'} open={sideBar} onClose={() => setSideBar(false)} onOpen={() => setSideBar(true)}>
             { user?.id? 
-                <div  style={{ marginLeft: "25px",display: "flex",flexDirection: "column",padding:'10px'}} >
+                <div  style={{ marginLeft: "10px",marginRight:'10px', display: "flex",flexDirection: "column",padding:'10px',gap: "15px",marginTop: "10px",fontSize: "18px"}} >
                 <Link className="color-nav-link color" to="/"><HomeIcon></HomeIcon> НА ГЛАВНУЮ</Link>
                 <Link className="color-nav-link color" to="/deals"><ListAltIcon></ListAltIcon> МОИ СДЕЛКИ</Link>
                 <Link className="color-nav-link color" to="/output"><AccountBalanceIcon></AccountBalanceIcon> МОЙ СЧЕТ:{user.score} РУБ.</Link>
@@ -95,7 +95,7 @@ function Header() {
                 <Link className="color-nav-link color" to="#"><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ</Link>
                 </div>
               :
-              <div className="flex-nav-link">
+              <div style={{ marginLeft: "10px",marginRight:'10px',display: "flex",flexDirection: "column",padding:'10px',gap: "15px",marginTop: "10px",fontSize: "18px"}}>
                 <Link className="color-nav-link color" to="/"><HomeIcon></HomeIcon> НА ГЛАВНУЮ</Link>
                 <Link className="color-nav-link color" to="#"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
