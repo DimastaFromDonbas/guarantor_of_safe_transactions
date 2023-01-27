@@ -99,7 +99,7 @@ function Makedeal() {
     return <div className="bg-img"> 
         <Header />
             <Chat />
-            <div className="container wrap">
+            <div style={{marginTop: '20px', marginBottom:'20px'}} className="container">
                 <div className="name-add_sell">
                     <div className="form-size-flex">
                     <div style={{display: "flex", flexDirection: "row"}}>
