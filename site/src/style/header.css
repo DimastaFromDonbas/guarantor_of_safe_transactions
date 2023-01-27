@@ -181,3 +181,10 @@
         padding-top:10px;
     }
 }
+
+@media (max-width: 400px) {
+    .navbar-header {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

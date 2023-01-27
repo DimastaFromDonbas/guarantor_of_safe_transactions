@@ -1044,6 +1044,89 @@
 
 @media  (max-width: 400px)  {
 
+    .alert-block {
+        width: 366px;
+    }
+
+    .dilit-block {
+        display: none !important;
+    }
+
+    .form-operation__item {
+        width: 335px !important;
+    }
+
+    .operation__heading {
+        margin-top: 20px
+    }
+
+    .form-operation {
+        padding: 10px;
+    }
+
+    .form-select {
+        width: 100% !important;
+    }
+
+    .form-operation__item {
+        margin: 0;
+    }
+
+    .form-operation {
+        flex-direction: column;
+    }
+
+    .height-box {
+        padding: 8px;
+        margin-top: 20px;
+        height: 90vh;
+    }
+
+    .flex-box-0 {
+        min-height: 100%;
+    }
+
+    .flex-box-1 {
+        min-height: 100%;
+    }
+
+    .nav-account__content {
+        padding: 0;
+    }
+
+    .account-wrap__about-info{
+        margin: 0 !important;
+    }
+
+    .nav-account__link{
+        height: 90px;
+        padding: 0;
+    }
+
+    .nav-account__link:not(:first-child) {
+        margin-top: 0;
+    }
+
+    .nav-account__tabs {
+        display: flex;
+        flex: 0 0 120px;
+    }
+
+    .nav-account {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .account-wrap__heading {
+        padding: 8px !important;
+        flex-direction: column;
+        margin-bottom: 20px !important;
+    }
+
+    .heiggg {
+        height: 177vh;
+    }
+
     .show-img-1{
         width: 350px !important;
         height: 185px !important;
@@ -1053,12 +1136,8 @@
         display: block;
     }
 
-    .heiggg {
-        height: 100%;
-    }
-
     .width-form {
-        width: 300px;
+        width: 371px;
     }
 
     .form-control {
@@ -1067,6 +1146,7 @@
 
     .login-inner_title {
         font-size: 22px !important;
+        padding: 8px;
     }
 
     .message-flex {
@@ -1112,6 +1192,16 @@
         padding: 8px;
     }
 
+    .message-body {
+        margin: 0 !important;
+        padding: 8px;
+    }
+
+    .message-header{
+        margin: 0 !important;
+        padding: 8px;
+    }
+
 }
 
 @media  (max-width: 670px)  {
@@ -1135,7 +1225,7 @@
     }
 
     .width-form {
-        margin-left: 50px;
+        padding: 8px;
     }
 
     .promote-slider_item {
@@ -1146,7 +1236,7 @@
     }
 
     .login-inner_title {
-        margin-left: 50px;
+        padding: 8px;
     }
 
     .flex-adapt {
@@ -1175,9 +1265,6 @@
         margin-right: 50px;
     }
 
-    .login-inner_title {
-        margin-right: 50px;
-    }
 }
 
 @media (max-width: 1100px) {
@@ -1192,11 +1279,11 @@
     }
 
     .width-form {
-        margin-left: 50px;
+        padding: 8px;
     }
 
     .login-inner_title {
-        margin-left: 50px;
+        padding: 8px;
     }
 
 }

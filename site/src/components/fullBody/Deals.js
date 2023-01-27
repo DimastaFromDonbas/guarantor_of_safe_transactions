@@ -35,8 +35,8 @@ function Deals() {
     return <div className="bg-img">
         <Header />
         <Chat />
-            <div className="container wrap">
-                <div className="container">
+            <div className="container">
+                <div className="height-box">
                     <div className="dial-flex_box">
                         <div>
                         <Form.Label htmlFor="inputPassword5">Мои сделки</Form.Label>
