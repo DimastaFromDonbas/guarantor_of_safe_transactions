@@ -37,10 +37,12 @@ function Deals() {
         <Chat />
             <div className="container">
                 <div className="height-box">
-                    <div className="dial-flex_box">
+                    <div style={{height: '100vh',marginTop: "20px"}} className="dial-flex_box">
                         <div>
-                        <Form.Label htmlFor="inputPassword5">Мои сделки</Form.Label>
-                        <Link style={{textDecoration: "none", color: 'white', fontSize: '14px'}} to = '/makedeal'> <button className="spec-btn-ux">Сделать сделку<AddCircleOutlineIcon></AddCircleOutlineIcon></button></Link>
+                        <div style={{display: "flex",justifyContent: "space-between"}} className="adapt-header">
+                            <Form.Label htmlFor="inputPassword5">Мои сделки</Form.Label>
+                            <Link style={{textDecoration: "none", color: 'white', fontSize: '14px'}} to = '/makedeal'> <button className="spec-btn-ux">Сделать сделку<AddCircleOutlineIcon></AddCircleOutlineIcon></button></Link>
+                        </div>
                             {checkAlertSystemMessage || user?.systemMessage === 'true' ?
                             <div className="message-header">
                             <div style={{borderLeft: '1px solid red'}}>

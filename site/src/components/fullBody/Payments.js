@@ -7,7 +7,7 @@ import Chat from "./Chat";
 function Payments() {
     return <div className="bg-img">
         <Header />
-            <div className="container wrap">
+            <div className="container">
             <Chat />
                 <div className="promo-description_payments">
                     <div className="alert-block alert-block_info">

@@ -102,7 +102,7 @@ function Makedeal() {
             <div style={{marginTop: '20px', marginBottom:'20px'}} className="container">
                 <div className="name-add_sell">
                     <div className="form-size-flex">
-                    <div style={{display: "flex", flexDirection: "row"}}>
+                    <div className="flex-adapt-makedal" style={{display: "flex", flexDirection: "row"}}>
                     <Form.Label htmlFor="inputPassword5">Название сделки</Form.Label>
                     <Form.Control
                         type="text"
@@ -114,7 +114,7 @@ function Makedeal() {
                     {errorName && <div style={{textAlign: "center", color: 'red', marginLeft: '-15px'}}>{errorName}</div> }
                     </div>
                     <div className="form-size-flex">
-                    <div style={{display: "flex", flexDirection: "row"}}>
+                    <div className="flex-adapt-makedal" style={{display: "flex", flexDirection: "row"}}>
                     <Form.Label htmlFor="inputPassword5">Ваша роль</Form.Label>
                     <Form.Select onChange={(e) => {
                         changeRole(e.currentTarget.value)
@@ -125,7 +125,7 @@ function Makedeal() {
                     </div>
                     </div>
                     <div className="form-size-flex">
-                    <div style={{display: "flex", flexDirection: "row"}}>
+                    <div className="flex-adapt-makedal" style={{display: "flex", flexDirection: "row"}}>
                     <Form.Label htmlFor="inputPassword5">{role === 'Покупатель'? 'Продавец' : 'Покупатель'}</Form.Label>
                     <Form.Control
                         type="text"
@@ -141,13 +141,13 @@ function Makedeal() {
                 </div>
                 <div className="name-add_sell">
                     <div className="form-size-flex">
-                    <div style={{display: "flex", flexDirection: "row"}}>
+                    <div className="flex-adapt-makedal" style={{display: "flex", flexDirection: "row"}}>
                     <Form.Label>Описание сделки</Form.Label>
                     <Form.Control as="textarea" rows={6} value={description} onChange={(e) => setDescription(e.currentTarget.value)}/>
                     </div>
                     </div>
                     <div className="form-size-flex">
-                    <div style={{display: "flex", flexDirection: "row"}}>
+                    <div className="flex-adapt-makedal" style={{display: "flex", flexDirection: "row"}}>
                     <Form.Label htmlFor="inputPassword5">Сумма сделки :</Form.Label>
                     <Form.Control
                         onChange={(e) => {

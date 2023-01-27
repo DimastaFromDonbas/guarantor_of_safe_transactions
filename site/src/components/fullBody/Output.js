@@ -241,7 +241,7 @@ function Output() {
                         </div>
                             {transfersToUser?.map((item, index) => <div style={{justifyContent: "space-around"}} className="flex-info-block" key={index}>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-id dilit-block">{item.id}</div>
-                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.receiverEmail}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center',overflowWrap: "anywhere"}} className="output-date">{item.receiverEmail}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.score}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.time}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{ statuses[item?.status === 0? item?.status: item?.status - 1] }</div>
