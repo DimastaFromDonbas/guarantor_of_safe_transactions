@@ -2,10 +2,22 @@
 @import url("https://fonts.googleapis.com/css?family=Allerta+Stencil");
 @import url("https://fonts.googleapis.com/css?family=Anton");
 
+ *::-webkit-scrollbar {
+    width: 0;
+  }
+
 * {
     background-image: url(../image/div.png);
     font-family: "Roboto Condensed","Arial Narrow",Arial,sans-serif;
 }
+
+.scrollDiv::-webkit-scrollbar {
+    width: 20px !important;
+    background: rgb(218, 218, 218);
+  }
+  .scrollDiv::-webkit-scrollbar-thumb {
+    background: rgb(0, 0, 0);
+  }
 
 .promo-description {
     width: 1110px;
@@ -1048,7 +1060,7 @@
     padding: 10px;
 }
 
-@media  (max-width: 400px)  {
+@media  (max-width: 768px)  {
 
     .user-profile-block {
         margin-left: -98px;

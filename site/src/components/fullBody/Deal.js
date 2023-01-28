@@ -13,6 +13,7 @@ import { axiosGetDealMessages } from "../../api/axios";
 function Deal() { 
     const dispatch = useDispatch()
     const [progress, setProgress] = useState(50)
+    const [messages, setMessages] = useState('')
     const {deals, user, dealMessages} = useAppSelector ((store) => store.user)
     const { id } = useParams();
     const [deal, setDeal] = useState(deals?.filter(item => String(item.id) === id)[0])
@@ -47,7 +48,8 @@ function Deal() {
 
       function sendMessage() {
         const time = new Date().toLocaleString().replaceAll(',', '')
-        socket.emit("sendMessage", { dealId: deal.id, nickname: user.nickname, email: user.email, message: `test ${time}`, time, role: user.role });
+        socket.emit("sendMessage", { dealId: deal.id, nickname: user.nickname, email: user.email, message: messages, time, role: user.role });
+        setMessages('')
       }
 
       async function getDealMessages() {
@@ -98,12 +100,33 @@ function Deal() {
                 <div className="message-body">
                     <h2 style={{textAlign: 'center'}}>Чат с партнером по сделке</h2>
                    <h4 style={{textAlign: 'center'}}>{deal?.buyer === user?.email ? deal?.sellerNickname: deal?.buyerNickname}</h4>
+                   <div className="scrollDiv" style={{overflow: 'overlay', maxHeight: '70vh'}}>
                    {dealMessages?.map((item, index) => {
-                   //if (item.dealId !== id) return
-                   return <div>
-                        <p>{`${item.time} ${item.nickname}: ${item.message}`}</p>
-                   </div>})}
-                <div style={{width: '100%'}}>
+                   if (item.dealId !== Number(id)) return null;
+
+                   return item.nickname === user.nickname? 
+                   <div style={{textAlign: 'end', paddingRight: '30px'}}>
+                        <p 
+                        style={{display: 'flex', flexDirection: 'column'}}
+                        >{item.message} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span></p>
+                   </div> 
+                   : <div style={{textAlign: 'start'}}>
+                   <p style={{display: 'flex', flexDirection: 'column'}}
+                   >{`${item.nickname}: ${item.message}`} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span> </p>
+              </div> })}
+              </div>
+                <div style={{width: '100%', display: 'flex',marginTop: '40px'}}>
+                <input
+                    style={{padding: '.375rem .75rem', border: '1px solid #ced4da', borderRadius: '.375rem', width: '100%', marginRight: '15px'}}
+                    type={'text'}
+                    onChange={(e) => setMessages(e.target.value)}
+                    onKeyDown={(e) =>
+                        e.key === 'Enter' && sendMessage()
+                      }
+                    value={messages}
+                    placeholder='Введите сообщение'
+                    >
+                    </input>
                     <Button
                     size='large'
                     onClick={() => sendMessage()}
