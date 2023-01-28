@@ -2,6 +2,11 @@
 @import url("https://fonts.googleapis.com/css?family=Allerta+Stencil");
 @import url("https://fonts.googleapis.com/css?family=Anton");
 
+* {
+    background-image: url(../image/div.png);
+    font-family: "Roboto Condensed","Arial Narrow",Arial,sans-serif;
+}
+
 .promo-description {
     width: 1110px;
     background: rgba(17, 17, 18, 0.65);
@@ -18,7 +23,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: #202020;
+    background: rgba(17, 17, 18, 0.65);
     flex-direction: column;
     align-items: center;
     font-family: "Roboto Condensed","Arial Narrow",Arial,sans-serif;
@@ -332,6 +337,7 @@
 
 .bg-img{
     background-image: url(../image/div.png);
+    /* background-image: url(../image/girl.jpeg); */
     background-color: #191919;
     font-family: "Roboto Condensed","Arial Narrow",Arial,sans-serif;
 }
@@ -1044,6 +1050,10 @@
 
 @media  (max-width: 400px)  {
 
+    .user-profile-block {
+        margin-left: -98px;
+    }
+
     .flex-adapt-makedal {
         display: flex;
         flex-direction: column !important;
@@ -1367,7 +1377,7 @@
 
 }
 
-@media (max-width: 414px) {
+@media (max-width: 414px) and (min-width: 400px) {
 
     .promote-slider_list {
         display: flex;

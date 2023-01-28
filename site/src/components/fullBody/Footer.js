@@ -7,7 +7,7 @@ function Footer() {
     let year = date.getFullYear()
 
 
-    return <div className="footer bg-img">
+    return <div className="footer">
         <div className="footer_panel">
         <div className="container footer_holder">
             <p className="footer_copyright">© 2017– {year} Гарант сервис gamesgun.ru</p>
