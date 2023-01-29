@@ -31,7 +31,17 @@ export const INITIAL: IUsersReducer = {
     nickname: "test",
     systemMessage: null,
   },
-  deals: [],
+  deals: [{buyer: "user104@gmail.com",
+  buyerNickname: "null",
+  createdAt: "2023-01-21T11:41:29.231Z",
+  description: "куплю дилдак",
+  id: 10,
+  name: "pisun",
+  seller: "user4@gmail.com",
+  sellerNickname: "null",
+  status: 0,
+  sum: 9999,
+  updatedAt: "2023-01-21T11:41:29.231Z",}],
   refill: {},
   myRefills: [
     {

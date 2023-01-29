@@ -63,15 +63,15 @@ function Deal() {
     return <div className="bg-img">
         <Header />
         <Chat />
-            <div className='container wrap'>
+            <div style={{marginBottom: '20px'}} className='container'>
                 <div className="message-body">
                     <div style={{paddingBottom: '5px'}}>Статус сделки: { statuses[deal?.status === 0? deal?.status: deal?.status - 1] }</div>
                     <LinearProgress variant="determinate" value={progress} />
                 </div>
                 <div className="message-body">
                     <div className="table-deal">
-                        <tbody>
-                            <tr style={{width: '1010px',display: 'flex', justifyContent: "space-between",borderBottom: "1px solid"}}>
+                        <tbody style={{maxWidth: '1010px'}}>
+                            <tr style={{maxWidth: '1010px',display: 'flex', justifyContent: "space-between",borderBottom: "1px solid"}}>
                                 <th style={{width: '168px', textAlign: 'center'}}>Название сделки</th>
                                 <th style={{width: '168px', textAlign: 'center'}}>Покупатель</th>
                                 <th style={{width: '168px', textAlign: 'center'}}>Продавец</th>
@@ -80,7 +80,7 @@ function Deal() {
                                 <th style={{width: '168px', textAlign: 'center'}}>Итоговая сумма</th>
                             </tr>
 
-                            <tr style={{width: '1010px',display: 'flex', justifyContent: "space-between",paddingTop: '10px'}}>
+
                             <tr style={{width: '1010px',display: 'flex', justifyContent: "space-between",paddingTop: '10px'}}>
                                     <th style={{width: '168px', textAlign: 'center'}}>{deal?.name}</th>
                                     <th style={{width: '168px', textAlign: 'center'}}>{deal?.buyerNickname || deal?.buyer}</th>
@@ -89,7 +89,7 @@ function Deal() {
                                     <th style={{width: '168px', textAlign: 'center'}}>{(deal?.sum* 0.05).toFixed(0)} ₽</th>
                                     <th style={{width: '168px', textAlign: 'center'}}>{(deal?.sum+ deal?.sum*0.05).toFixed()} ₽</th>
                                 </tr>
-                            </tr>
+
                         </tbody>
                         <div>
                         <h5 style={{padding: "20px"}}>ОПИСАНИЕ СДЕЛКИ:</h5>

@@ -3,7 +3,7 @@ import { useAppSelector } from "../../store/reduxHooks";
 function AllUsers() {
 
     const {allUsers} = useAppSelector ((store) => store.user)
-    const statuses = [ 'Открыта' , "В процессе ", "Завершена", "Заморожена" ]
+
 
     return <>
         <h3 style={{textAlign: 'center'}}> ПОЛЬЗОВАТЕЛИ </h3>
