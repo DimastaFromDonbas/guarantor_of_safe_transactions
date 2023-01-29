@@ -84,7 +84,7 @@ function Header() {
   return  <>
         <Alert.Heading className="alert-navBar">Технический чат поддержки работает с 10:00 до 20:00 ежедневно!</Alert.Heading>
               <div className="navbar-header">
-            <SwipeableDrawer  anchor={'left'} open={sideBar} onClose={() => setSideBar(false)} onOpen={() => setSideBar(true)}>
+            <SwipeableDrawer style={{backgroundColor: "#191919"}}  anchor={'left'} open={sideBar} onClose={() => setSideBar(false)} onOpen={() => setSideBar(true)}>
             { user?.id? 
                 <div  style={{ marginLeft: "10px",marginRight:'10px', display: "flex",flexDirection: "column",padding:'10px',gap: "15px",marginTop: "10px",fontSize: "18px"}} >
                 <Link className="color-nav-link color" to="/"><HomeIcon></HomeIcon> НА ГЛАВНУЮ</Link>
