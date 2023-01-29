@@ -1062,6 +1062,11 @@
 
 @media  (max-width: 768px)  {
 
+    .footer_holder {
+        display: flex;
+        flex-direction: column;
+    }
+
     .user-profile-block {
         margin-left: -98px;
     }
@@ -1182,6 +1187,8 @@
 
     .message-flex {
         font-size: 22px !important;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 
     .promo-description {
@@ -1367,7 +1374,7 @@
 
     .footer_holder {
         display: flex;
-        gap: 20px;
+        gap: 10px;
     }
 
     .footer-menu {
