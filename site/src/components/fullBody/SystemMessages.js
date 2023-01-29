@@ -59,7 +59,7 @@ function SystemMessages() {
                     </div>:
                     ""}
             </div>
-        <Footer />
+        <Footer /> 
     </div>
 }
 

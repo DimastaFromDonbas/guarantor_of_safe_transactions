@@ -992,7 +992,7 @@
 }
 
 .heiggg {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .flex-info-block {
@@ -1160,7 +1160,7 @@
     }
 
     .heiggg {
-        height: 177vh;
+        min-height: 80vh;
     }
 
     .show-img-1{
