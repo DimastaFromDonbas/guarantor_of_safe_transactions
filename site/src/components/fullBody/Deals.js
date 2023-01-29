@@ -58,18 +58,18 @@ function Deals() {
                             : ''}
                         </div>
                         <table className="trades-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Номер</th>
-                                            <th>Название</th>
-                                            <th>Номер сделки</th>
-                                            <th>Сумма</th>
-                                            <th>Статус</th>
-                                        </tr>
+                        <thead>
+                            <tr>
+                                <th className="dilit-block">Номер</th>
+                                <th>Название</th>
+                                <th>Номер сделки</th>
+                                <th>Сумма</th>
+                                <th>Статус</th>
+                            </tr>
                         </thead>
                             <tbody>
                                 {deals?.map((item, index) => <tr key={index}>
-                                    <th>{index+1}</th>
+                                    <th className="dilit-block">{index+1}</th>
                                     <th ><Link style={{color: '#f25322' ,textDecoration: "none" }} to = {`/deal/${item.id}`}>{item?.name}</Link></th>
                                     <th>{item?.id}</th>
                                     <th>{item?.sum}</th>

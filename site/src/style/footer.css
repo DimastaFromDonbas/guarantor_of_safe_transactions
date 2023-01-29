@@ -15,9 +15,8 @@
 }
 
 .footer_holder {
-    padding-top: 20px;
     padding-left: 15px;
-    margin: auto;
+    margin-top: 20px;
     position: relative;
     margin-left: 145px;
 }
@@ -51,10 +50,4 @@
 
 .footer-menu_link:hover {
     color: #999;
-}
-
-@media (max-width: 400px) {
-    .footer_holder {
-        padding: 20px !important;
-    }
 }

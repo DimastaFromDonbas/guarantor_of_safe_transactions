@@ -631,6 +631,20 @@
     margin-top: 40px;
 }
 
+.trades-table-deals {
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.2;
+    color: #fff;
+    margin-top: 40px;
+}
+.trades-table-deals tr th {
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 15px 10px;
+}
+
 .trades-table tr th {
     font-weight: 700;
     text-transform: uppercase;
@@ -1080,8 +1094,8 @@
         width: 100% !important;
     }
 
-    .alert-block {
-        width: 366px;
+    .list-promo-item {
+        display: block;
     }
 
     .dilit-block {
@@ -1243,7 +1257,8 @@
     }
 
     .alert-block {
-        width: 335px !important;
+        max-width: 366px;
+        margin-right: 20px;
     }
 
 }
@@ -1414,5 +1429,32 @@
 
     .promote-slider_list {
         padding: 0;
+    }
+    .alert-block {
+        max-width: 390px;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .alert-block {
+        max-width: 340px;
+    }
+
+    .form-operation {
+        align-items: center;
+    }
+
+    .ist-promo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .list-promo-item {
+        min-width: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }

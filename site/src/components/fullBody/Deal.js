@@ -63,34 +63,34 @@ function Deal() {
     return <div className="bg-img">
         <Header />
         <Chat />
-            <div style={{marginBottom: '20px'}} className='container'>
+            <div style={{marginBottom: '20px',marginTop:"30px"}} className='container heiggg'>
                 <div className="message-body">
                     <div style={{paddingBottom: '5px'}}>Статус сделки: { statuses[deal?.status === 0? deal?.status: deal?.status - 1] }</div>
                     <LinearProgress variant="determinate" value={progress} />
                 </div>
                 <div className="message-body">
-                    <div className="table-deal">
-                        <tbody style={{maxWidth: '1010px'}}>
-                            <tr style={{maxWidth: '1010px',display: 'flex', justifyContent: "space-between",borderBottom: "1px solid"}}>
-                                <th style={{width: '168px', textAlign: 'center'}}>Название сделки</th>
-                                <th style={{width: '168px', textAlign: 'center'}}>Покупатель</th>
-                                <th style={{width: '168px', textAlign: 'center'}}>Продавец</th>
-                                <th style={{width: '168px', textAlign: 'center'}}>Сумма сделки</th>
-                                <th style={{width: '168px', textAlign: 'center'}}>Комиссия сделки</th>
-                                <th style={{width: '168px', textAlign: 'center'}}>Итоговая сумма</th>
+                    <div>
+                        <table className="trades-table-deals ">
+                            <tr style={{borderBottom: "1px solid"}}> 
+                                <th>Название сделки</th>
+                                <th className="dilit-block">Покупатель</th>
+                                <th className="dilit-block">Продавец</th>
+                                <th>Сумма сделки</th>
+                                <th>Комиссия сделки</th>
+                                <th>Итоговая сумма</th>
                             </tr>
 
 
-                            <tr style={{width: '1010px',display: 'flex', justifyContent: "space-between",paddingTop: '10px'}}>
-                                    <th style={{width: '168px', textAlign: 'center'}}>{deal?.name}</th>
-                                    <th style={{width: '168px', textAlign: 'center'}}>{deal?.buyerNickname || deal?.buyer}</th>
-                                    <th style={{width: '168px', textAlign: 'center'}}>{deal?.sellerNickname || deal?.seller}</th>
-                                    <th style={{width: '168px', textAlign: 'center'}}>{deal?.sum} ₽</th>
-                                    <th style={{width: '168px', textAlign: 'center'}}>{(deal?.sum* 0.05).toFixed(0)} ₽</th>
-                                    <th style={{width: '168px', textAlign: 'center'}}>{(deal?.sum+ deal?.sum*0.05).toFixed()} ₽</th>
-                                </tr>
+                            <tr>
+                                <th>{deal?.name}</th>
+                                <th className="dilit-block">{deal?.buyerNickname || deal?.buyer}</th>
+                                <th className="dilit-block">{deal?.sellerNickname || deal?.seller}</th>
+                                <th>{deal?.sum} ₽</th>
+                                <th>{(deal?.sum* 0.05).toFixed(0)} ₽</th>
+                                <th>{(deal?.sum+ deal?.sum*0.05).toFixed()} ₽</th>
+                            </tr>
 
-                        </tbody>
+                        </table>
                         <div>
                         <h5 style={{padding: "20px"}}>ОПИСАНИЕ СДЕЛКИ:</h5>
                        <div style={{paddingLeft: "20px"}}>{deal?.description}</div>
