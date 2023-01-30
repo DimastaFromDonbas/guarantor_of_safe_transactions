@@ -95,7 +95,7 @@ function Header() {
                 <Link className="color-nav-link color" to="#"><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ</Link>
                 </div>
               :
-              <div style={{ marginLeft: "10px",marginRight:'10px',display: "flex",flexDirection: "column",padding:'10px',gap: "15px",marginTop: "10px",fontSize: "18px", background: "#191919", height: '100%'}}>
+              <div style={{display: "flex",flexDirection: "column",padding:'20px',gap: "15px", fontSize: "18px", background: "#191919", height: '100%'}}>
                 <Link className="color-nav-link color" to="/"><HomeIcon></HomeIcon> НА ГЛАВНУЮ</Link>
                 <Link className="color-nav-link color" to="#"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
