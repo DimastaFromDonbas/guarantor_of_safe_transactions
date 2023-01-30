@@ -15,17 +15,21 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import Chat from './Chat'
-
+import { useAppSelector } from "../../store/reduxHooks";
 
 
 function Body() {
+
+    const {user} = useAppSelector ((store) => store.user)
  
     return <div className="container-body-v1" >
         <Chat />
         <div className='promo-description container' >
             <div className='block-main-v1'>
                 <h1>gamesgun.ru - лучший гарант безопасных сделок!</h1>
-                <Link style={{textDecoration: "none"}} to="/makedeal"><button className='btn-class-v1'>Открыть новую сделку</button></Link>
+                {user?.id?
+                <Link style={{textDecoration: "none"}} to="/makedeal"><button className='btn-class-v1'>Открыть новую сделку</button></Link>:
+                <Link style={{textDecoration: "none"}} to="/login"><button className='btn-class-v1'>Открыть новую сделку</button></Link>}
             </div>
             <ul className='ist-promo'>
                 <li className='list-promo-item'>
