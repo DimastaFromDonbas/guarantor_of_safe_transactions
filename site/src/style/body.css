@@ -657,7 +657,7 @@
 .body-chat-sms {
     display: flex;
     position: absolute;
-    top: 407px;
+    bottom: 0px;
     justify-content: space-around;
     width: 100%;
 }
