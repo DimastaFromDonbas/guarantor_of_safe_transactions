@@ -35,31 +35,12 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
     socket.on("join", ({ name, room }) => {
       socket.join(room);
-  
-      //const { user, isExist } = ChatController.addUser({ name, room });
-  
-     /* const userMessage = isExist
-        ? `${user.name} back to town`
-        : `Hi ${user.name}`;
-  
-      socket.emit("message", {
-        data: { user: { name: "Admin" }, message: userMessage },
-      });*/
-  
-      /*socket.broadcast.to(user.room).emit("message", {
-        data: { user: { name: "Admin" }, message: `${user.name} has joined` },
-      });*/
-  
-      /*io.to(user.room).emit("room", {
-        data: { users: ChatController.getRoomUsers(user.room) },
-      });*/
     });
   
     socket.on("sendMessage", ({ dealId, nickname, email, message, time, role }) => {
 
       if (dealId && message && nickname && email && time && role) {
         io.to(String(dealId)).emit("message", { data: { dealId, nickname, email, message, time, role } });
-        console.log('message', dealId, message, nickname, email, time, role)
 
         dealMessageController.create({body: {dealId, nickname, email, message, time, role}})
       } else console.log('Send message fail')
