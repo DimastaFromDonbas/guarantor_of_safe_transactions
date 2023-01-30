@@ -107,11 +107,11 @@ function Deal() {
                    return item.nickname === user.nickname? 
                    <div style={{textAlign: 'end', paddingRight: '30px'}}>
                         <p 
-                        style={{display: 'flex', flexDirection: 'column'}}
+                        style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere'}}
                         >{item.message} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span></p>
                    </div> 
                    : <div style={{textAlign: 'start'}}>
-                   <p style={{display: 'flex', flexDirection: 'column'}}
+                   <p style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere'}}
                    >{`${item.nickname}: ${item.message}`} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span> </p>
               </div> })}
               </div>
