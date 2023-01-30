@@ -85,7 +85,7 @@ function Output() {
     return <div className="bg-img"> 
         <Header />
         <Chat />
-            <div className="container">
+            <div style={{minHeight: '80vh'}} className="container">
                 <div className="page-container page-container--bg_transparent">
                     <div className="account-wrap__heading">
                         <h2>Мой счет</h2>
