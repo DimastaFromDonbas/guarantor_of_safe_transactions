@@ -30,7 +30,7 @@ function Chat() {
                             size='large'
                             sx={{
                             border: "0.5px solid black",
-                            borderRadius: '0px',
+                            borderRadius: '0 0 9px 0',
                             width: "60%",
                             background: "black",
                             alignSelf: 'flex-end',
