@@ -12,12 +12,14 @@ import { axiosGetUserToUserTransfers } from "../../api/axios";
 import { reducerTypes } from "../../store/Users/types";
 import { useDispatch } from "react-redux";
 import Chat from "./Chat";
+import { paymant } from "../mock/OutputMock";
 
 function Output() {
 
     const dispatch = useDispatch()
-    const [paymantSystem, setPaymantSystem] = useState('Сбербанк')
+    const [currentPaymant, setCurrentPaymant] = useState(paymant[0])
     const [walletNumber, setWalletNumber] = useState('')
+    const [visibleWalletError, setVisibleWalletError] = useState(true)
     const [score, setScore] = useState(0)
     const [receiver, setReceiver] = useState('')
     const [receiverScore, setReceiverScore] = useState(0)
@@ -42,16 +44,35 @@ function Output() {
         }
     }
 
+    function setPaymentSystemAndPlaceholder(paymantSys) {
+        const temporaryPaymant = paymant.filter(item => item.paymentSystem === paymantSys)[0]
+        setCurrentPaymant(temporaryPaymant)
+    }
+    
+    function validateWallet(e) {
+        let wallet = e.target.value
+        setWalletNumber(wallet)
+        setVisibleWalletError(currentPaymant?.validate(wallet))
+    }
+
     async function createTransfer() {
-        await axiosCreateUserTransfer(paymantSystem, walletNumber, score, user?.email, user?.password)
+        if(user?.score < score) return alert('Недостаточно средств')
+        const result = await axiosCreateUserTransfer(currentPaymant.paymentSystem, walletNumber, score, user?.email, user?.password)
+        if(typeof result === 'string') {
+            alert(result)
+        } else {
         getUserTransfers();
-        alert('Перевод создан')
+        alert('Перевод создан')}
     }
 
     async function createTransferToUser() {
-        await axiosCreateUserToUserTransfer(receiverScore, user?.email, receiver, user?.password)
+        if(user?.score < receiverScore) return alert('Недостаточно средств')
+        const result = await axiosCreateUserToUserTransfer(receiverScore, user?.email, receiver, user?.password)
+        if(typeof result === 'string') {
+            alert(result)
+        } else {
         getUserTransfersToUser();
-        alert('Перевод создан')
+        alert('Перевод создан')}
     }
 
     async function getUserRefills (){
@@ -108,7 +129,7 @@ function Output() {
                                     <div className="form-operation__input-section">
                                         <div className="form-operation__item">
                                         <Form.Label htmlFor="inputPassword5">Платежная система:</Form.Label>
-                                            <Form.Select aria-label="Default select example" onChange={(e) => setPaymantSystem(e.target.value)}>
+                                            <Form.Select aria-label="Default select example" onChange={(e) => setPaymentSystemAndPlaceholder(e.target.value)}>
                                                 <option>Сбербанк</option>
                                                 <option>Альфа-банк</option>
                                                 <option>РОСБАНК</option>
@@ -125,12 +146,14 @@ function Output() {
                                         </div>
                                         <div className="form-operation__item">
                                         <Form.Label htmlFor="inputPassword5">Номер банковской карты / счета / кошелька</Form.Label>
-                                            <Form.Control
-                                            onChange={(e) => setWalletNumber(e.target.value)}
+                                            <div style={{display: 'flex', flexDirection: 'column'}}><Form.Control
+                                            onChange={(e) => validateWallet(e)}
                                                 type="text"
                                                 id="inputText"
-                                                placeholder="0000 0000 0000 0000"
+                                                placeholder={currentPaymant.placeholder}
+                                                value={walletNumber}
                                             />
+                                            {!visibleWalletError? <div style={{color: 'red'}}>{currentPaymant.error}</div> : ''}</div>
                                         </div>
                                         <div className="form-operation__item">
                                         <Form.Label htmlFor="inputPassword5">Cумма</Form.Label>

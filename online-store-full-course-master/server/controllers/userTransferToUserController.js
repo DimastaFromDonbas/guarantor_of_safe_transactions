@@ -8,6 +8,12 @@ class UserTransferToUserController {
         if (!score || !time || !userEmail || !receiverEmail || !password) {
             return next(ApiError.badRequest('Введите все данные'))
         }
+        const receiver = await User.findOne({where: {email: receiverEmail}}) ||
+         await User.findOne({where: {nickname: receiverEmail}})
+        if(!receiver) {
+            return next(ApiError.badRequest('Получатель не найден'))
+        }
+
         const user = await User.findOne({where: {email: userEmail}})
         if (!user) {
             return next(ApiError.badRequest('Пользователь с таким email не найден'))

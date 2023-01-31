@@ -41,8 +41,9 @@ function Login() {
       }
 
       function changeNickname(e) {
+        const pattern = /^[a-zA-Z0-9]+$/;
         setNickname(e.currentTarget.value)
-        setErrorLogin('')
+        if (pattern.test(e.currentTarget.value) || e.currentTarget.value === '') {setErrorLogin('')} else setErrorLogin('Некорректные символы')
       }
   
       function loginUser(e) {
@@ -88,12 +89,12 @@ function Login() {
       },[password,passwordV2])
   
       useEffect(() => {
-        if(emailError || passwordError || passwordNoChect || checked) {
+        if(emailError || passwordError || passwordNoChect || checked || errorLogin) {
           setFormValid(false)
         } else {
           setFormValid(true)
         }
-      },[emailError, passwordError,passwordNoChect,checked])
+      },[emailError, errorLogin ,passwordError,passwordNoChect,checked])
       
       function offReserch(e) {
         e.preventDefault();

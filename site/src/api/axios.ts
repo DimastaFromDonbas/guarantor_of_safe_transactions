@@ -88,7 +88,7 @@ export const axiosCreateDeal = async (
   description: string, 
   buyerNickname?: string, 
   sellerNickname?: string) => {
-  const {data} = await axios.post('api/deal/create', {name, buyer, seller, sum, description: description || ' ', buyerNickname, sellerNickname}, getConfig());
+  const {data} = await axios.post('api/deal/create', {name, buyer, seller, sum, description: description, buyerNickname, sellerNickname}, getConfig());
   console.log('create deal', data)
   return data;
 }
@@ -173,7 +173,9 @@ export const axiosGetRefill = async (id: number) => {
   const {data} = await axios.post('api/transfer/create', {paymantSystem, walletNumber, time, score, userEmail, password}, getConfig());
  console.log('create transfer', data)
  return data}
- catch (e) {console.log(e)}
+ catch (e: any) {console.log(e)
+  return e?.response?.data?.message
+ }
 }
 
 export const axiosChangeUserTransfer = async (
@@ -228,7 +230,9 @@ export const axiosGetAllUserTransfers = async () => {
   const {data} = await axios.post('api/touser/create', {score, time, userEmail, receiverEmail, password}, getConfig());
  console.log('create transfer to user', data)
  return data}
- catch (e) {console.log(e)}
+ catch (e: any) {console.log(e)
+ return e?.response?.data?.message
+}
 }
 
 export const axiosChangeUserToUserTransfer = async (
