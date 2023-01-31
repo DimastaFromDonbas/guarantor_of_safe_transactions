@@ -776,6 +776,23 @@
     display: flex;
     align-items: center;
     margin: 0 0 20px;
+    gap: 10px;
+}
+
+.inputLable {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
 }
 
 .account-wrap__about-info {
@@ -952,6 +969,13 @@
     align-items: center;
 }
 
+.outputBlock {
+    width: 82%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .img-helper {
     width: 35px;
     height: 35px;
@@ -1088,6 +1112,10 @@
 
 @media  (max-width: 768px)  {
 
+    .outputBlock {
+        width: 50%;
+    }
+
     .footer_holder {
         display: flex;
         flex-direction: column;
@@ -1103,7 +1131,7 @@
     }
 
     .form-label {
-        width: 100% !important;
+        width: 50% !important;
     }
 
     .list-promo-item {
@@ -1127,8 +1155,9 @@
     }
 
     .form-select {
-        width: 100% !important;
+        width: 50% !important;
     }
+
 
     .form-operation__item {
         margin: 0;
@@ -1203,7 +1232,7 @@
     }
 
     .form-control {
-        width: 100% !important;
+        width: 50% !important;
     }
 
     .login-inner_title {

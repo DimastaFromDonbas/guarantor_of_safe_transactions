@@ -154,8 +154,10 @@ function Output() {
                                         </div>
                                         <div className="form-operation__item">
                                         <Form.Label htmlFor="inputPassword5">Номер банковской карты / счета / кошелька</Form.Label>
-                                            <div style={{display: 'flex', flexDirection: 'column'}}><Form.Control
-                                            onChange={(e) => validateWallet(e)}
+                                            <div className="outputBlock">
+                                                <input
+                                                className="inputLable"
+                                                onChange={(e) => validateWallet(e)}
                                                 type="text"
                                                 id="inputText"
                                                 placeholder={currentPaymant.placeholder}
