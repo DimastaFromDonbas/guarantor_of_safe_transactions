@@ -600,18 +600,13 @@
     word-wrap: break-word;
 }
 
-.form-control {
-    width: 50% !important;
-    margin-bottom: 0.5rem;
-}
-
 .form-select {
-    width: 50% !important;
+    width: 80%!important;
     margin-bottom: 0.5rem;
 }
 
 .inpu-summary {
-    width: 25% !important;
+    width: 50% !important;
 }
 
 .spec-btn-ux {
@@ -715,6 +710,7 @@
 .nav-account {
     display: flex;
     margin-bottom: 30px;
+    gap: 10px;
 }
 
 .nav-account__tabs {
@@ -935,6 +931,14 @@
     border: 1.5px solid #f25322;
     max-height: 0 ;
     overflow: hidden;
+}
+
+.form-control {
+    width: 80% !important;
+}
+
+#inputTextSumma {
+    width: 60% !important;
 }
 
 .chat-header {
