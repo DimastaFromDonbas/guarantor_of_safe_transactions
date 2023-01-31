@@ -101,6 +101,10 @@ function Output() {
     },[])
 
     useEffect(() => {
+        setVisibleWalletError(currentPaymant?.validate(walletNumber))
+    },[currentPaymant])
+
+    useEffect(() => {
         getUserRefills()
         getUserTransfers()
         getUserTransfersToUser()               // Обернуть в промис чтобы вызывались одновременно все axios
