@@ -2,6 +2,7 @@ import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import Helper from '../../image/helper.png'
+import CloseIcon from '@mui/icons-material/Close';
 
 function Chat() {
 
@@ -17,6 +18,7 @@ function Chat() {
                                 <div style={{fontWeight: "bold"}}>Служба поддержки</div>
                                 <div style={{fontSize: '12px'}}>Онлайн</div>
                             </div>
+                            <CloseIcon onClick={() => setChecked(false)} style={{color: 'white', position: 'absolute', right: '15px',width:'30px',height:'30px'}}></CloseIcon>
                         </div>
                         <div></div>
                         <div className='body-chat-sms'>
@@ -42,7 +44,7 @@ function Chat() {
                         </div>
                     </div>:
                 ''}
-                <HeadsetMicIcon onClick={() => setChecked(!checked)} className='chat-icon icon-chat-sizes'></HeadsetMicIcon>
+                {!checked?<HeadsetMicIcon onClick={() => setChecked(!checked)} className='chat-icon icon-chat-sizes'></HeadsetMicIcon> : ''}
             </>
 }
 

@@ -1112,6 +1112,32 @@
 
 @media  (max-width: 768px)  {
 
+    .chat {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: #312e2e;
+        border-radius: 10px;
+        position: fixed;
+        z-index: 100;
+        bottom: 0;
+        right: 1.4285714286em;
+        box-shadow: 0 5px 38px rgb(0 0 0 / 15%);
+        cursor: pointer;
+        transition: visibility 0s linear .2s,opacity linear .2s;
+        transition: ease 1.5s !important;
+        border: 1.5px solid #f25322;
+        max-height: 0;
+        overflow: hidden;
+        right: 0;
+    }
+
+    .activ-chat {
+        max-height: 100%;
+        overflow: visible;
+        transition: all 1.2s !important;
+    }
+
     .outputBlock {
         width: 50%;
     }
@@ -1319,6 +1345,32 @@
 }
 
 @media  (max-width: 900px)  {
+
+    .chat {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: #312e2e;
+        border-radius: 10px;
+        position: fixed;
+        z-index: 100;
+        bottom: 0;
+        right: 1.4285714286em;
+        box-shadow: 0 5px 38px rgb(0 0 0 / 15%);
+        cursor: pointer;
+        transition: visibility 0s linear .2s,opacity linear .2s;
+        transition: ease 1.5s !important;
+        border: 1.5px solid #f25322;
+        max-height: 0;
+        overflow: hidden;
+        right: 0;
+    }
+
+    .activ-chat {
+        max-height: 100%;
+        overflow: visible;
+        transition: all 1.2s !important;
+    }
 
     .nav-account__tabs {
         display: flex;

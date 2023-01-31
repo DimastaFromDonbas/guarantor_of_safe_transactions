@@ -63,13 +63,13 @@
     background: rgba(39, 39, 43, 0.93);
     position: absolute;
     margin-top: 45px;
-    margin-left: -72px;
     overflow: hidden;
     max-height: 0;
     transition: ease .5s;
     border-radius: 0 0 16px 16px;
     transition: all .5s !important;
     z-index: 10;
+    right: 0px;
 }
 
 .nav-detail_item {
