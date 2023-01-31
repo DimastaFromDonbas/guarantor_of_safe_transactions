@@ -20,6 +20,7 @@ function Output() {
     const [currentPaymant, setCurrentPaymant] = useState(paymant[0])
     const [walletNumber, setWalletNumber] = useState('')
     const [visibleWalletError, setVisibleWalletError] = useState(true)
+    const [checkFirstOpen, setCheckFirstOpen] = useState(false)
     const [score, setScore] = useState(0)
     const [receiver, setReceiver] = useState('')
     const [receiverScore, setReceiverScore] = useState(0)
@@ -50,6 +51,7 @@ function Output() {
     }
     
     function validateWallet(e) {
+        setCheckFirstOpen(true)
         let wallet = e.target.value
         setWalletNumber(wallet)
         setVisibleWalletError(currentPaymant?.validate(wallet))
@@ -101,7 +103,9 @@ function Output() {
     },[])
 
     useEffect(() => {
-        setVisibleWalletError(currentPaymant?.validate(walletNumber))
+        if(checkFirstOpen){
+        setVisibleWalletError(currentPaymant?.validate(walletNumber))}
+        // eslint-disable-next-line
     },[currentPaymant])
 
     useEffect(() => {
