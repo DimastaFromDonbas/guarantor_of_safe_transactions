@@ -61,6 +61,19 @@ const DealMessage = sequelize.define('deal_message', {
     dealId: {type: DataTypes.INTEGER},
 })
 
+const MessageToAdmin = sequelize.define('message_to_admin', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    addreserNickname: {type: DataTypes.STRING},
+    addreserEmail: {type: DataTypes.STRING},
+    role: {type: DataTypes.STRING},
+    adminEmail: {type: DataTypes.STRING},
+    adminNickname: {type: DataTypes.STRING},
+    receiverEmail: {type: DataTypes.STRING},
+    receiverNickname: {type: DataTypes.STRING},
+    message: {type: DataTypes.STRING},
+    time: {type: DataTypes.STRING},
+})
+
 const Basket = sequelize.define('basket', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
@@ -148,6 +161,7 @@ module.exports = {
     UserTransferToUser,
     Deal,
     DealMessage,
+    MessageToAdmin,
     Basket,
     BasketDevice,
     Device,

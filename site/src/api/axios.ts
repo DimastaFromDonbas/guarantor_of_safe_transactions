@@ -88,7 +88,7 @@ export const axiosCreateDeal = async (
   description: string, 
   buyerNickname?: string, 
   sellerNickname?: string) => {
-  const {data} = await axios.post('api/deal/create', {name, buyer, seller, sum, description, buyerNickname, sellerNickname}, getConfig());
+  const {data} = await axios.post('api/deal/create', {name, buyer, seller, sum, description: description || ' ', buyerNickname, sellerNickname}, getConfig());
   console.log('create deal', data)
   return data;
 }
