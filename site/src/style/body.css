@@ -710,6 +710,7 @@
 .nav-account {
     display: flex;
     margin-bottom: 30px;
+    gap: 10px;
 }
 
 .nav-account__tabs {
