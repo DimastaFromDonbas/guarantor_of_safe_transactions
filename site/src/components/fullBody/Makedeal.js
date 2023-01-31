@@ -179,6 +179,7 @@ function Makedeal() {
                         sumFull(e)}}
                         className="inpu-summary"
                         type="number"
+                        inputmode="numeric"
                         id="inputTextSumma"
                     />
                     {errorSumm && <div style={{textAlign: "center", color: 'red'}}>{errorSumm}</div> }

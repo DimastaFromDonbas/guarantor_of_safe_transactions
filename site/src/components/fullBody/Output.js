@@ -23,7 +23,7 @@ function Output() {
     const [receiverScore, setReceiverScore] = useState(0)
     const {user, myRefills, transfers, transfersToUser} = useAppSelector ((store) => store.user)
     const [item, setItem] = useState(1)
-    let data = (Math.random() * 1000).toFixed(0)
+    const [dataId, setDataId] = useState()
     const statuses = [ 'Открыта' , "В процессе ", "Завершена", "Заморожена" ]
 
 
@@ -76,6 +76,10 @@ function Output() {
     }
 
     useEffect(() => {
+        setDataId((Math.random() * 1000).toFixed(0))
+    },[])
+
+    useEffect(() => {
         getUserRefills()
         getUserTransfers()
         getUserTransfersToUser()               // Обернуть в промис чтобы вызывались одновременно все axios
@@ -103,7 +107,7 @@ function Output() {
                         <div style={item === 1 ? {display: 'block'}: {display: 'none'}} className="flex-box-1">
                         <div className="nav-account__content">
                             <div className="nav-account__operation operation">
-                                <div className="operation__heading">Операция №{data}</div>
+                                <div className="operation__heading">Операция №{dataId}</div>
                                 <div className="form-operation">
                                     <div className="form-operation__input-section">
                                         <div className="form-operation__item">
@@ -198,7 +202,7 @@ function Output() {
                         <div style={item === 2 ? {display: 'block'}: {display: 'none'}} className="flex-box-2">
                         <div className="nav-account__content">
                             <div className="nav-account__operation operation">
-                                <div className="operation__heading">Операция №{data}</div>
+                                <div className="operation__heading">Операция №{dataId}</div>
                                 <div className="form-operation">
                                     <div className="form-operation__input-section">
                                         <div style={{width: '510px'}} className="form-operation__item">
