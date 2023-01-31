@@ -21,7 +21,19 @@ function Makedeal() {
     const [errorName, setErrorName] = useState('Введите навазние сделки')
     const [errorRoleEmail, setErrorroleEmail] = useState("Введите логин продавца")
     const [errorSumm, setErrorSumm] = useState('Введите сумму')
+    const [errorDescription, setErrorDescription] = useState('Минимальное количествое 30 символов')
     const [checked,setChecked] = useState(false)
+
+    function setDescriptionAll(e) {
+        setDescription(e.currentTarget.value)
+        if (e.currentTarget.value?.length < 30 ) {
+            setErrorDescription('Минимальное количествое 30 символов')
+        } else if(!e.currentTarget.value) {
+            setErrorDescription('Поле не может быть пустым')
+        } else {
+            setErrorDescription('')
+        }
+    }
 
     function calcSum(e) {
         setSum(Number(e.currentTarget.value))
@@ -32,8 +44,10 @@ function Makedeal() {
     function sumFull(e) {
         setSum(e.currentTarget.value)
           if(!e.target.value){
-            setErrorSumm('Введите сумму')
-        } else {
+            setErrorSumm('Введите сумму') 
+        }else if(e.target.value < 2000) {
+            setErrorSumm('Минимальная сумма 2000р') 
+        }else {
             setErrorSumm('')
         }
     }
@@ -89,12 +103,12 @@ function Makedeal() {
     }
 
     useEffect(() => {
-        if(errorName || errorRoleEmail || errorSumm) {
+        if(errorName || errorRoleEmail || errorSumm || errorDescription) {
             setChecked(false)
         } else {
             setChecked(true)
         }
-      },[errorName,errorRoleEmail,errorSumm])
+      },[errorName,errorRoleEmail,errorSumm,errorDescription])
 
     return <div className="bg-img"> 
         <Header />
@@ -104,18 +118,21 @@ function Makedeal() {
                     <div className="form-size-flex">
                     <div className="flex-adapt-makedal" style={{display: "flex", flexDirection: "row"}}>
                     <Form.Label htmlFor="inputPassword5">Название сделки</Form.Label>
+                    <div style={{width: "100%",display: "flex",flexDirection: "column",alignItems: "flex-start"}}>
                     <Form.Control
                         type="text"
                         id="inputText"
                         value={name}
                         onChange={(e) => nameFull(e)}
                     />
+                    {errorName && <div style={{textAlign: "center", color: 'red'}}>{errorName}</div> }
                     </div>
-                    {errorName && <div style={{textAlign: "center", color: 'red', marginLeft: '-15px'}}>{errorName}</div> }
+                    </div>
                     </div>
                     <div className="form-size-flex">
                     <div className="flex-adapt-makedal" style={{display: "flex", flexDirection: "row"}}>
                     <Form.Label htmlFor="inputPassword5">Ваша роль</Form.Label>
+                    <div style={{width: "100%",display: "flex",flexDirection: "column",alignItems: "flex-start"}}>
                     <Form.Select onChange={(e) => {
                         changeRole(e.currentTarget.value)
                         setRole(e.currentTarget.value)}} aria-label="Default select example">
@@ -124,9 +141,11 @@ function Makedeal() {
                     </Form.Select>
                     </div>
                     </div>
+                    </div>
                     <div className="form-size-flex">
                     <div className="flex-adapt-makedal" style={{display: "flex", flexDirection: "row"}}>
                     <Form.Label htmlFor="inputPassword5">{role === 'Покупатель'? 'Продавец' : 'Покупатель'}</Form.Label>
+                    <div style={{width: "100%",display: "flex",flexDirection: "column",alignItems: "flex-start"}}>
                     <Form.Control
                         type="text"
                         id="inputText"
@@ -135,30 +154,36 @@ function Makedeal() {
                         emailFull(e)
                         setBuyerOrSeller(e.currentTarget.value)}}
                     />
+                    {errorRoleEmail && <div style={{textAlign: "center", color: 'red'}}>{errorRoleEmail}</div>}
                     </div>
-                    {errorRoleEmail && <div style={{textAlign: "center", color: 'red',marginLeft: '-20px'}}>{errorRoleEmail}</div>}
+                    </div>
                     </div>
                 </div>
                 <div className="name-add_sell">
                     <div className="form-size-flex">
                     <div className="flex-adapt-makedal" style={{display: "flex", flexDirection: "row"}}>
                     <Form.Label>Описание сделки</Form.Label>
-                    <Form.Control as="textarea" rows={6} value={description} onChange={(e) => setDescription(e.currentTarget.value)}/>
+                    <div style={{width: "100%",display: "flex",flexDirection: "column",alignItems: "flex-start"}}>
+                    <Form.Control style={{width: "84% !important"}} as="textarea" rows={6} value={description} onChange={(e) => setDescriptionAll(e)}/>
+                    {errorDescription && <div style={{textAlign: "center", color: 'red'}}>{errorDescription}</div>}
+                    </div>
                     </div>
                     </div>
                     <div className="form-size-flex">
                     <div className="flex-adapt-makedal" style={{display: "flex", flexDirection: "row"}}>
                     <Form.Label htmlFor="inputPassword5">Сумма сделки :</Form.Label>
+                    <div style={{width: "100%",display: "flex",flexDirection: "column",alignItems: "flex-start"}}>
                     <Form.Control
                         onChange={(e) => {
                         calcSum(e) 
                         sumFull(e)}}
                         className="inpu-summary"
                         type="number"
-                        id="inputText"
+                        id="inputTextSumma"
                     />
+                    {errorSumm && <div style={{textAlign: "center", color: 'red'}}>{errorSumm}</div> }
                     </div>
-                    {errorSumm && <div style={{textAlign: "center", color: 'red', marginLeft: '-85px'}}>{errorSumm}</div> }
+                    </div>
                     </div>
                 </div>
                 <div className="name-add_sell">
