@@ -1158,6 +1158,7 @@
 
     .form-label {
         width: 50% !important;
+        min-width: 50% !important;
     }
 
     .list-promo-item {
@@ -1181,7 +1182,7 @@
     }
 
     .form-select {
-        width: 50% !important;
+        width: 100% !important;
     }
 
 
@@ -1258,7 +1259,7 @@
     }
 
     .form-control {
-        width: 50% !important;
+        width: 100% !important;
     }
 
     .login-inner_title {

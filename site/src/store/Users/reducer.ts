@@ -19,6 +19,7 @@ export interface IUsersReducer {
   dealMessages: IDealMessage[] | [];
   allUsers: IUser[] | [];
   allDeals: IDeal[] | [];
+  fixSumSystemMessage: [];
 }
 
 export const INITIAL: IUsersReducer = {
@@ -127,6 +128,7 @@ export const INITIAL: IUsersReducer = {
     status: 1,
     description: "string",
   }],
+  fixSumSystemMessage: [],
 };
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
@@ -153,6 +155,8 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, allUsers: payload };
     case reducerTypes.GET_ALL_DEALS:
       return { ...state, allDeals: payload };
+    case reducerTypes.GET_FIX_SUM_SYSTEM_MESSAGE:
+      return { ...state, fixSumSystemMessage: payload };
     default:
       return state;
   }

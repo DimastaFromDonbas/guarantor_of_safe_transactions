@@ -10,6 +10,7 @@ export const reducerTypes = {
     GET_DEAL_MESSAGES: 'reducer/GET_DEAL_MESSAGES',
     GET_ALL_USERS: 'reducer/GET_ALL_USERS',
     GET_ALL_DEALS: 'reducer/GET_ALL_DEALS',
+    GET_FIX_SUM_SYSTEM_MESSAGE:'reducer/GET_FIX_SUM_SYSTEM_MESSAGE',
   };
   
   export const sagaTypes = {

@@ -30,8 +30,18 @@ function Header() {
   const dispatch = useDispatch();
 
   let now = new Date();
-  let dateParceUser = Date.parse(deals[0]?.createdAt)
   let dateParceNow = Date.parse(now)
+  let dateParceUser = Date.parse(deals[0]?.createdAt)
+
+  const triggerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 9, 0, 0);
+
+  console.log(1,new Date(triggerTime).toLocaleTimeString(),new Date(triggerTime).toLocaleDateString())
+  console.log(2,Date.parse(triggerTime))
+ 
+
+  const timeUntilTrigger = triggerTime - now;
+
+  console.log(3,timeUntilTrigger)
 
   function getDateMessege() {
     if(dateParceNow - dateParceUser > 3600000*12) {
