@@ -201,14 +201,16 @@ export const axiosGetAllUserTransfers = async () => {
   try{const {data} = await axios.get('api/transfer/getAll', getConfig());
   console.log('get all transfers', data)
   return data}
-  catch (e) {console.log(e)}
+  catch (e) {console.log(e)
+  return []}
  }
 
  export const axiosGetUserTransfers = async (email: string) => {
   try{const {data} = await axios.post('api/transfer/getUsersTransfers', {email}, getConfig());
   console.log('user transfers', data)
   return data}
-  catch (e) {console.log(e)}
+  catch (e) {console.log(e)
+  return []}
  }
 
  export const axiosGetOneTransfer = async (id: number) => {
@@ -261,7 +263,8 @@ export const axiosGetAllUserToUserTransfers = async () => {
   try{const {data} = await axios.post('api/touser/getUsersTransfers', {email}, getConfig());
   console.log('user transfers to user', data)
   return data}
-  catch (e) {console.log(e)}
+  catch (e) {console.log(e)
+    return []}
  }
 
  export const axiosGetOneTransferToUser = async (id: number) => {

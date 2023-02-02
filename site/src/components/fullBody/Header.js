@@ -21,7 +21,7 @@ export const socket = io.connect("localhost:5000");
 
 function Header() {
 
-  const {user,deals,updateHeaderAlert} = useAppSelector ((store) => store.user)
+  const {user, transfers, transfersToUser, updateHeaderAlert} = useAppSelector ((store) => store.user)
   const [sideBar, setSideBar] = useState(false)
   const [bellState, setBellState] = useState(false)
   const [checkReadMessage , setCheckReadMassage] = useState(false)
@@ -29,22 +29,17 @@ function Header() {
 
   const dispatch = useDispatch();
 
-  let now = new Date();
-  let dateParceNow = Date.parse(now)
-  let dateParceUser = Date.parse(deals[0]?.createdAt)
-
-  const triggerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 9, 0, 0);
-
-  console.log(1,new Date(triggerTime).toLocaleTimeString(),new Date(triggerTime).toLocaleDateString())
-  console.log(2,Date.parse(triggerTime))
- 
-
-  const timeUntilTrigger = triggerTime - now;
-
-  console.log(3,timeUntilTrigger)
-
   function getDateMessege() {
-    if(dateParceNow - dateParceUser > 3600000*12) {
+    let now = new Date();
+    let dateParceNow = Date.parse(now)
+    if(!transfers[0]?.time && !transfersToUser[0]?.time) return;
+    let dateParceUser = new Date(transfers[0]?.time)
+    let dateParceUser2 = new Date(transfersToUser[0]?.time)
+    const triggerTime = Date.parse(new Date(dateParceUser.getFullYear(), dateParceUser.getMonth(), dateParceUser.getDate()+1, 9, 0, 0));
+    const triggerTime2 = Date.parse(new Date(dateParceUser2.getFullYear(), dateParceUser2.getMonth(), dateParceUser2.getDate()+1, 9, 0, 0));
+    let time = triggerTime || triggerTime2;
+    if(triggerTime > triggerTime2) time = triggerTime2;
+    if(dateParceNow - time > 0) {
       setBellState(true)
       dispatch({
         type: reducerTypes.GET_CHECK_SYSTEM,
@@ -80,7 +75,7 @@ function Header() {
   useEffect(() => {
     getDateMessege()
     // eslint-disable-next-line 
-  },[deals, user])
+  },[transfers, transfersToUser, user])
 
   useEffect(() => {
     dispatch({
