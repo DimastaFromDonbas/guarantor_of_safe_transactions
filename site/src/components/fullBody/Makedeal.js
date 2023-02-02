@@ -7,8 +7,10 @@ import { useAppSelector } from "../../store/reduxHooks"
 import { axiosCreateDeal } from "../../api/axios"
 import validator from 'validator';
 import Chat from "./Chat"
+import { useNavigate } from "react-router-dom"
 
 function Makedeal() {
+    const navigate = useNavigate()
     const {user} = useAppSelector ((store) => store.user)
     const [role, setRole] = useState('Покупатель')
     const [suma ,setSum] = useState("0")
@@ -109,6 +111,12 @@ function Makedeal() {
             setChecked(true)
         }
       },[errorName,errorRoleEmail,errorSumm,errorDescription])
+
+      useEffect(() => {
+        if(!user?.login) {
+          navigate("/")
+        }
+      },[user.login,navigate])
 
     return <div className="bg-img"> 
         <Header />
