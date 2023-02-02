@@ -7,4 +7,6 @@ export interface IUser {
     nickname: string,
     systemMessage: string | null,
     checkRu: string | null,
+    minimumTransferAmount: number | null,
+    sumTransferAmoumt: number | null,
 }

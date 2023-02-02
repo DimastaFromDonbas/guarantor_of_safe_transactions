@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {User, Basket} = require('../models/models')
 
-const generateJwt = (id, email, role, nickname, score, password, systemMessage, checkRu) => {
+const generateJwt = (id, email, role, nickname, score, password, systemMessage, checkRu, minimumTransferAmount, sumTransferAmoumt) => {
     return jwt.sign(
-        {id, email, role, nickname, score, password, systemMessage, checkRu},
+        {id, email, role, nickname, score, password, systemMessage, checkRu, minimumTransferAmount, sumTransferAmoumt},
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     )
@@ -28,7 +28,15 @@ class UserController {
         const hashPassword = await bcrypt.hash(password, 5)
         const user = await User.create({email, role, password: hashPassword, nickname, checkRu})
         const systemMessage = 'false'
-        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, password, systemMessage, user.checkRu)
+        const token = generateJwt(user.id, 
+            user.email, 
+            user.role, 
+            user.nickname, 
+            user.score, password, 
+            systemMessage, 
+            user.checkRu, 
+            user.minimumTransferAmount, 
+            user.sumTransferAmoumt)
         return res.json({token})
     }
 
@@ -43,12 +51,29 @@ class UserController {
 
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, password, user.systemMessage, user.checkRu)
+        const token = generateJwt(user.id, 
+            user.email, 
+            user.role, 
+            user.nickname, 
+            user.score, 
+            password, 
+            user.systemMessage, 
+            user.checkRu, 
+            user.minimumTransferAmount, 
+            user.sumTransferAmoumt)
         return res.json({token})
     }
 
     async check(req, res, next) {
-        const token = generateJwt(req.user.id, req.user.email, req.user.role, req.user.nickname, req.user.score, req.user.password, req.user.checkRu)
+        const token = generateJwt(req.user.id, 
+            req.user.email, 
+            req.user.role, 
+            req.user.nickname, 
+            req.user.score, 
+            req.user.password, 
+            req.user.checkRu, 
+            req.user.minimumTransferAmount, 
+            req.user.sumTransferAmoumt)
         return res.json({token})
     }
 
@@ -133,6 +158,27 @@ class UserController {
         }
             await User.update({systemMessage}, {where: {id}})
            return res.json({...user.dataValues, systemMessage})
+    }
+
+    async changeTransferAmount(req, res, next) {
+        const {minimumTransferAmount, sumTransferAmoumt, id, creatorEmail, creatorPassword} = req.body
+        const user = await User.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        const creator = await User.findOne({where: {email: creatorEmail}})
+        if (!creator) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(creatorPassword, creator.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if(creator.role !== 'ADMIN'){
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+            await User.update({minimumTransferAmount, sumTransferAmoumt}, {where: {id}})
+           return res.json({...user.dataValues, minimumTransferAmount, sumTransferAmoumt})
     }
 
     async getAllUsers(req, res, next) {

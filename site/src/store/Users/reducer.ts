@@ -32,6 +32,8 @@ export const INITIAL: IUsersReducer = {
     nickname: "test",
     systemMessage: null,
     checkRu: 'true',
+    minimumTransferAmount: null,
+    sumTransferAmoumt: null,
   },
   deals: [{buyer: "user104@gmail.com",
   buyerNickname: "null",
@@ -116,6 +118,8 @@ export const INITIAL: IUsersReducer = {
     nickname: "DimaKek",
     systemMessage: "string" || null,
     checkRu: 'true',
+    minimumTransferAmount: null,
+    sumTransferAmoumt: null,
   }],
   allDeals: [{
     id: 1,
