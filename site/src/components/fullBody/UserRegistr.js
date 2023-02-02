@@ -80,22 +80,6 @@ function Login() {
         }
       }
 
-      useEffect(() => {
-        if(password === passwordV2) {
-          setpasswordNoChect()
-        }else {
-          setpasswordNoChect('Пароли не совпадают')
-        }
-      },[password,passwordV2])
-  
-      useEffect(() => {
-        if(emailError || passwordError || passwordNoChect || checked || errorLogin) {
-          setFormValid(false)
-        } else {
-          setFormValid(true)
-        }
-      },[emailError, errorLogin ,passwordError,passwordNoChect,checked])
-      
       function offReserch(e) {
         e.preventDefault();
       }
@@ -113,6 +97,34 @@ function Login() {
         });
         if (typeof result !== 'string') navigate('/')
       }
+
+      async function getIp() {
+        let res = await fetch('https://api.db-ip.com/v2/free/self');
+        let data = await res.json();
+        console.log('data', data)
+        return data;
+      }
+
+      useEffect(() => {
+       let ip = getIp();
+       console.log('ip', ip)
+      },[])
+
+      useEffect(() => {
+        if(password === passwordV2) {
+          setpasswordNoChect()
+        }else {
+          setpasswordNoChect('Пароли не совпадают')
+        }
+      },[password,passwordV2])
+  
+      useEffect(() => {
+        if(emailError || passwordError || passwordNoChect || checked || errorLogin) {
+          setFormValid(false)
+        } else {
+          setFormValid(true)
+        }
+      },[emailError, errorLogin ,passwordError,passwordNoChect,checked])
 
     return <div className="bg-img">
         <Header/>

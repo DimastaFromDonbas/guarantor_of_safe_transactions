@@ -103,10 +103,10 @@ function Output() {
     },[])
 
     useEffect(() => {
-        if(checkFirstOpen){
-        setVisibleWalletError(currentPaymant?.validate(walletNumber))}
-        // eslint-disable-next-line
-    },[currentPaymant])
+          if(checkFirstOpen){
+          setVisibleWalletError(currentPaymant?.validate(walletNumber))}
+          // eslint-disable-next-line
+      },[currentPaymant])
 
     useEffect(() => {
         getUserRefills()
