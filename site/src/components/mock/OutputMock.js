@@ -80,7 +80,7 @@ export const paymant = [
       placeholder: 'Введите номер кошелька',
       error: 'Некорректный номер кошелька',
       validate: function (value) {
-        return null
+        return true
       }},
       { paymentSystem: 'Bitcoin (BTC)',
       placeholder: 'Введите номер кошелька',
