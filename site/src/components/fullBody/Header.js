@@ -32,15 +32,19 @@ function Header() {
   function getDateMessege() {
     let now = new Date();
     let dateParceNow = Date.parse(now)
+    console.log(1)
     if(!transfers[0]?.time && !transfersToUser[0]?.time) return;
+    console.log(2)
     let dateParceUser = new Date(transfers[0]?.time)
     let dateParceUser2 = new Date(transfersToUser[0]?.time)
     const triggerTime = Date.parse(new Date(dateParceUser.getFullYear(), dateParceUser.getMonth(), dateParceUser.getDate()+1, 9, 0, 0));
     const triggerTime2 = Date.parse(new Date(dateParceUser2.getFullYear(), dateParceUser2.getMonth(), dateParceUser2.getDate()+1, 9, 0, 0));
     let time = triggerTime || triggerTime2;
+    console.log(1)
     if(triggerTime > triggerTime2) time = triggerTime2;
     if(dateParceNow - time > 0) {
       setBellState(true)
+      console.log(1)
       dispatch({
         type: reducerTypes.GET_CHECK_SYSTEM,
         payload: true,
@@ -74,6 +78,7 @@ function Header() {
 
   useEffect(() => {
     getDateMessege()
+    console.log(3)
     // eslint-disable-next-line 
   },[transfers, transfersToUser, user])
 
