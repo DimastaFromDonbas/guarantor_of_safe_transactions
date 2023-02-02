@@ -5,12 +5,13 @@ import { useState, useEffect } from "react";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useDispatch } from "react-redux";
 import Chat from "./Chat";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { socket } from "./Header";
 import { reducerTypes } from "../../store/Users/types";
 import { axiosGetDealMessages } from "../../api/axios";
 
 function Deal() { 
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const [progress, setProgress] = useState(50)
     const [messages, setMessages] = useState('')
@@ -59,6 +60,12 @@ function Deal() {
                 payload: result,
               });
       }
+
+      useEffect(() => {
+        if(user?.checkRu !== 'true') {
+          navigate("/blockMaseges")
+        }
+      },[user.checkRu,navigate])
 
     return <div className="bg-img">
         <Header />

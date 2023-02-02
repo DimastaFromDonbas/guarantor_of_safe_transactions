@@ -2,9 +2,22 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Monero from '../../image/monero-xmr-logo.svg'
 import Chat from "./Chat";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useAppSelector } from "../../store/reduxHooks"
 
 
 function Payments() {
+
+    const navigate = useNavigate()
+    const {user} = useAppSelector ((store) => store.user)
+
+    useEffect(() => {
+        if(user?.checkRu !== 'true') {
+          navigate("/blockMaseges")
+        }
+    },[user.checkRu,navigate])
+
     return <div className="bg-img">
         <Header />
             <div className="container">
