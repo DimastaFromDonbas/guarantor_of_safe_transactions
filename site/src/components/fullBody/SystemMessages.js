@@ -14,8 +14,8 @@ function SystemMessages() {
 
     let dateParceUser1 = new Date(transfers[0]?.time)
     let dateParceUser2 = new Date(transfersToUser[0]?.time)
-    const triggerTime = new Date(dateParceUser1.getFullYear(), dateParceUser1.getMonth(), dateParceUser1.getDate()+1, 9, 0, 0);
-    const triggerTime2 = new Date(dateParceUser2.getFullYear(), dateParceUser2.getMonth(), dateParceUser2.getDate()+1, 9, 0, 0);
+    const triggerTime = new Date(dateParceUser1.getFullYear(), dateParceUser1.getMonth(), dateParceUser1.getDate()+1, 9, 0, 0).toLocaleString();
+    const triggerTime2 = new Date(dateParceUser2.getFullYear(), dateParceUser2.getMonth(), dateParceUser2.getDate()+1, 9, 0, 0).toLocaleString();
 
     useEffect(() => {
         if(checkAlertSystemMessage) {
