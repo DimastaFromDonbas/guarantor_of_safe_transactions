@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {User, Basket} = require('../models/models')
 
-const generateJwt = (id, email, role, nickname, score, password, systemMessage) => {
+const generateJwt = (id, email, role, nickname, score, password, systemMessage, checkRu) => {
     return jwt.sign(
-        {id, email, role, nickname, score, password, systemMessage},
+        {id, email, role, nickname, score, password, systemMessage, checkRu},
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     )
@@ -13,9 +13,9 @@ const generateJwt = (id, email, role, nickname, score, password, systemMessage) 
 
 class UserController {
     async registration(req, res, next) {
-        const {email, password, role, nickname} = req.body
-        if (!email || !password) {
-            return next(ApiError.badRequest('Некорректный email или password'))
+        const {email, password, role, nickname, checkRu} = req.body
+        if (!email || !password || !nickname) {
+            return next(ApiError.badRequest('Введите все данные'))
         }
         const candidate = await User.findOne({where: {email}})
         if (candidate) {
@@ -26,9 +26,9 @@ class UserController {
             return next(ApiError.badRequest('Пользователь с таким именем уже существует'))
         }
         const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({email, role, password: hashPassword, nickname})
+        const user = await User.create({email, role, password: hashPassword, nickname, checkRu})
         const systemMessage = 'false'
-        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, password, systemMessage)
+        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, password, systemMessage, user.checkRu)
         return res.json({token})
     }
 
@@ -43,12 +43,12 @@ class UserController {
 
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, password, user.systemMessage)
+        const token = generateJwt(user.id, user.email, user.role, user.nickname, user.score, password, user.systemMessage, user.checkRu)
         return res.json({token})
     }
 
     async check(req, res, next) {
-        const token = generateJwt(req.user.id, req.user.email, req.user.role, req.user.nickname, req.user.score, req.user.password)
+        const token = generateJwt(req.user.id, req.user.email, req.user.role, req.user.nickname, req.user.score, req.user.password, req.user.checkRu)
         return res.json({token})
     }
 
@@ -93,18 +93,50 @@ class UserController {
         }
     }
 
-    async changeSystemMessage(req, res, next) {
-        const {systemMessage, id, password} = req.body
+    async changeCheckRu(req, res, next) {
+        const {checkRu, id, creatorEmail, creatorPassword} = req.body
         const user = await User.findOne({where: {id}})
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
-        let comparePassword = bcrypt.compareSync(password, user.password)
+        const creator = await User.findOne({where: {email: creatorEmail}})
+        if (!creator) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(creatorPassword, creator.password)
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
+        if(creator.role !== 'ADMIN'){
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+        if (checkRu) {
+            await User.update({checkRu}, {where: {id}})
+           return res.json({...user.dataValues, checkRu})
+        } else {
+            return next(ApiError.internal('Указан неверный id пользователя'))
+        }
+    }
+
+    async changeSystemMessage(req, res, next) {
+        const {systemMessage, id, creatorEmail, creatorPassword} = req.body
+        const user = await User.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        const creator = await User.findOne({where: {email: creatorEmail}})
+        if (!creator) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(creatorPassword, creator.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if(creator.role !== 'ADMIN'){
+            return next(ApiError.badRequest('Нет доступа'))
+        }
         if (systemMessage) {
-            await User.update({systemMessage}, {where: {id: id}})
+            await User.update({systemMessage}, {where: {id}})
            return res.json({...user.dataValues, systemMessage})
         } else {
             return next(ApiError.internal('Указан неверный id пользователя'))

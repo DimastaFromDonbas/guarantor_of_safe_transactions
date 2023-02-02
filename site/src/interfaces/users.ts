@@ -6,4 +6,5 @@ export interface IUser {
     score: number,
     nickname: string,
     systemMessage: string | null,
+    checkRu: string | null,
 }

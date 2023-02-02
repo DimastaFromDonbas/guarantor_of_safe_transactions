@@ -9,6 +9,7 @@ const User = sequelize.define('user', {
     score: {type: DataTypes.INTEGER, defaultValue: 0},
     nickname: {type: DataTypes.STRING, unique: true},
     systemMessage: {type: DataTypes.STRING, defaultValue: "false"},
+    checkRu: {type: DataTypes.STRING},
 })
 
 const UserRefill = sequelize.define('userRefill', {
