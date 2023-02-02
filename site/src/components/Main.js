@@ -15,14 +15,18 @@ function Main() {
 
     async function getTransfers() {
         if(!user?.email) return;
+        let transfers = await axiosGetUserTransfers(user?.email)
+        if(transfers) {
         dispatch({
           type: reducerTypes.GET_TRANSFERS,
-          payload: await axiosGetUserTransfers(user?.email)
-        });
+          payload: transfers
+        });}
+        let transfersToUser = await axiosGetUserToUserTransfers(user?.email)
+        if(transfersToUser) {
         dispatch({
           type: reducerTypes.GET_TRANSFERS_TO_USER,
-          payload: await axiosGetUserToUserTransfers(user?.email)
-        });
+          payload: transfersToUser
+        });}
         
       }
 
