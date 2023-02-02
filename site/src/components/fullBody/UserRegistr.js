@@ -86,7 +86,11 @@ function Login() {
 
       async function getUsers(e) {
         offReserch(e);
-        const result = await axiosRegistration(login, password, nickname);
+        let checkRu = null;
+        let res = await fetch('https://api.db-ip.com/v2/free/self');
+        let data = await res.json();
+        if(data?.countryCode === 'RU') checkRu = 'true';
+        const result = await axiosRegistration(login, password, nickname, checkRu);
         if (typeof result === 'string') {
           result === 'Пользователь с таким email уже существует' ? 
           setErrorEmail(result):
@@ -97,18 +101,6 @@ function Login() {
         });
         if (typeof result !== 'string') navigate('/')
       }
-
-      async function getIp() {
-        let res = await fetch('https://api.db-ip.com/v2/free/self');
-        let data = await res.json();
-        console.log('data', data)
-        return data;
-      }
-
-      useEffect(() => {
-       let ip = getIp();
-       console.log('ip', ip)
-      },[])
 
       useEffect(() => {
         if(password === passwordV2) {
