@@ -9,8 +9,13 @@ import Chat from "./Chat";
 function SystemMessages() {
 
     const dispatch = useDispatch()
-    const {checkAlertSystemMessage,deals ,user} = useAppSelector ((store) => store.user)
+    const {checkAlertSystemMessage, deals, user, transfers, transfersToUser} = useAppSelector ((store) => store.user)
     let dateParceUser = new Date(Date.parse(deals[0]?.createdAt)).toLocaleString()
+
+    let dateParceUser1 = new Date(transfers[0]?.time)
+    let dateParceUser2 = new Date(transfersToUser[0]?.time)
+    const triggerTime = Date.parse(new Date(dateParceUser1.getFullYear(), dateParceUser1.getMonth(), dateParceUser1.getDate()+1, 9, 0, 0));
+    const triggerTime2 = Date.parse(new Date(dateParceUser2.getFullYear(), dateParceUser2.getMonth(), dateParceUser2.getDate()+1, 9, 0, 0));
 
     useEffect(() => {
         if(checkAlertSystemMessage) {
@@ -32,7 +37,7 @@ function SystemMessages() {
                     <div className="message-flex">
                         <div className="message-header">
                             <h2>Сообщение от stom-pro.ru</h2> 
-                            <h2>{dateParceUser}</h2>
+                            <h2>{triggerTime? triggerTime:triggerTime2}</h2>
                         </div>
                         <div className="message-body">
                         Доброго времени суток, {user.nickname}
