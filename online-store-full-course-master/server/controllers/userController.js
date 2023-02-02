@@ -110,12 +110,8 @@ class UserController {
         if(creator.role !== 'ADMIN'){
             return next(ApiError.badRequest('Нет доступа'))
         }
-        if (checkRu) {
             await User.update({checkRu}, {where: {id}})
            return res.json({...user.dataValues, checkRu})
-        } else {
-            return next(ApiError.internal('Указан неверный id пользователя'))
-        }
     }
 
     async changeSystemMessage(req, res, next) {
@@ -135,12 +131,8 @@ class UserController {
         if(creator.role !== 'ADMIN'){
             return next(ApiError.badRequest('Нет доступа'))
         }
-        if (systemMessage) {
             await User.update({systemMessage}, {where: {id}})
            return res.json({...user.dataValues, systemMessage})
-        } else {
-            return next(ApiError.internal('Указан неверный id пользователя'))
-        }
     }
 
     async getAllUsers(req, res, next) {
