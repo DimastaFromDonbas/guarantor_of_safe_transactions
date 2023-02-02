@@ -10,7 +10,7 @@ function SystemMessages() {
 
     const dispatch = useDispatch()
     const {checkAlertSystemMessage, user, transfers, transfersToUser} = useAppSelector ((store) => store.user)
-    // let dateParceUser = new Date(Date.parse(deals[0]?.createdAt)).toLocaleString()
+
 
     let dateParceUser1 = new Date(transfers[0]?.time)
     let dateParceUser2 = new Date(transfersToUser[0]?.time)
