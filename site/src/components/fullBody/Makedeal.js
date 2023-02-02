@@ -113,10 +113,10 @@ function Makedeal() {
       },[errorName,errorRoleEmail,errorSumm,errorDescription])
 
       useEffect(() => {
-        if(!user?.login) {
-          navigate("/")
+        if(user?.checkRu !== 'true') {
+          navigate("/blockMaseges")
         }
-      },[user.login,navigate])
+      },[user.checkRu,navigate])
 
     return <div className="bg-img"> 
         <Header />

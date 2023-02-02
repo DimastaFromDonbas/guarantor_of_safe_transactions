@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Footer from "./Footer"
 import Header from "./Header"
 import { useAppSelector } from "../../store/reduxHooks";
@@ -16,6 +16,7 @@ import { paymant } from "../mock/OutputMock";
 
 function Output() {
 
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const [currentPaymant, setCurrentPaymant] = useState(paymant[0])
     const [walletNumber, setWalletNumber] = useState('')
@@ -114,6 +115,12 @@ function Output() {
         getUserTransfersToUser()               // Обернуть в промис чтобы вызывались одновременно все axios
         // eslint-disable-next-line
     }, [user, user.email])
+
+    useEffect(() => {
+        if(user?.checkRu !== 'true') {
+          navigate("/blockMaseges")
+        }
+    },[user.checkRu,navigate])
 
     return <div className="bg-img"> 
         <Header />

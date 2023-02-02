@@ -2,7 +2,7 @@ import { Form } from "react-bootstrap"
 import Footer from "./Footer"
 import Header from "./Header"
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useEffect } from "react";
 import { axiosGetDeal } from "../../api/axios";
@@ -13,6 +13,7 @@ import Chat from "./Chat";
 
 
 function Deals() {
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const {user, deals,checkAlertSystemMessage} = useAppSelector ((store) => store.user)
     const status = ['Открыта', 'В обработке', 'Выполнена']
@@ -30,6 +31,12 @@ function Deals() {
         getDeal();
         // eslint-disable-next-line
       },[user])
+
+    useEffect(() => {
+      if(!user?.checkRu) {
+        navigate("/blockMaseges")
+      }
+    },[user.checkRu,navigate])
     
 
     return <div className="bg-img">
