@@ -17,6 +17,15 @@ function AdminPanel() {
             case "2":
                 setItem(2);
             break;
+            case "3":
+                setItem(3);
+            break;
+            case "4":
+                setItem(4);
+            break;
+            case "5":
+                setItem(5);
+            break;
             default:
         }
     }
@@ -31,7 +40,16 @@ function AdminPanel() {
                     <h4>ВСЕ СДЕЛКИ</h4> 
                 </button>
                 <button onClick={(e) => visibleItem(e)} name = '2' className={item === 2 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
-                    <h4>ВСЕ ЧАТЕРЫ</h4> 
+                    <h4>ПОПОЛНЕНИЯ</h4> 
+                </button>
+                <button onClick={(e) => visibleItem(e)} name = '3' className={item === 3 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
+                    <h4>ПЕРЕВОДЫ</h4>
+                </button>
+                <button onClick={(e) => visibleItem(e)} name = '4' className={item === 4 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
+                    <h4>ЧАТЫ ПРОСТО ЧАТЫ</h4> 
+                </button>
+                <button onClick={(e) => visibleItem(e)} name = '5' className={item === 5 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
+                    <h4>СМЕНА ИМЕНИ САЙТА</h4> 
                 </button>
             </div>
             <div style={{paddingLeft: '10px'}} className="panel_user">
