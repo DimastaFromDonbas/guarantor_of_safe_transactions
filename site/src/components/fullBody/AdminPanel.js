@@ -22,7 +22,7 @@ function AdminPanel() {
     }
 
     return <div style={{height: '100vh'}}>
-        <div style={{display: 'flex',height: '100vh',background: "black"}}>
+        <div style={{display: 'flex',height: '100vh',background: "white"}}>
             <div style={{display: "flex",flexDirection: "column",width: '22%'}} className="panel_user">
                 <button onClick={(e) => visibleItem(e)} name = '0' className={item === 0 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
                     <h4>ВСЕ ПОЛЬЗОВАТЕЛИ</h4>

@@ -17,7 +17,7 @@ export interface IUsersReducer {
   transfers: ITransfer[] | [];
   transfersToUser: ITransferToUser[] | [];
   dealMessages: IDealMessage[] | [];
-  allUsers: IUser[] | [];
+  allUsers: any | [];
   allDeals: IDeal[] | [];
   fixSumSystemMessage: [];
 }
@@ -28,12 +28,13 @@ export const INITIAL: IUsersReducer = {
     email: "string",
     password: "Dima1020111" || null,
     role: "Админ",
-    score: 10000,
+    score: 0,
     nickname: "test",
     systemMessage: null,
     checkRu: 'true',
     minimumTransferAmount: null,
     sumTransferAmoumt: null,
+    completed: 0,
   },
   deals: [{buyer: "user104@gmail.com",
   buyerNickname: "null",
@@ -120,6 +121,7 @@ export const INITIAL: IUsersReducer = {
     checkRu: 'true',
     minimumTransferAmount: null,
     sumTransferAmoumt: null,
+    completed: 0,
   }],
   allDeals: [{
     id: 1,

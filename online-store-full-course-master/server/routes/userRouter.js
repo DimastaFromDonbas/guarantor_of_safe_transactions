@@ -11,6 +11,6 @@ router.post('/message', authMiddleware, userController.changeSystemMessage)
 router.post('/checkRu', authMiddleware, userController.changeCheckRu)
 router.post('/transferAmount', authMiddleware, userController.changeTransferAmount)
 router.get('/auth', authMiddleware, userController.check)
-router.get('/get', authMiddleware, userController.getAllUsers)
+router.get('/get', userController.getAllUsers)
 
 module.exports = router

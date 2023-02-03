@@ -12,6 +12,7 @@ const User = sequelize.define('user', {
     checkRu: {type: DataTypes.STRING},
     minimumTransferAmount: {type: DataTypes.INTEGER},
     sumTransferAmoumt: {type: DataTypes.INTEGER},
+    completed: {type: DataTypes.INTEGER},
 })
 
 const UserRefill = sequelize.define('userRefill', {

@@ -9,4 +9,5 @@ export interface IUser {
     checkRu: string | null,
     minimumTransferAmount: number | null,
     sumTransferAmoumt: number | null,
+    completed: number | null,
 }

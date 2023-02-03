@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {User, Basket} = require('../models/models')
 
-const generateJwt = (id, email, role, nickname, score, password, systemMessage, checkRu, minimumTransferAmount, sumTransferAmoumt) => {
+const generateJwt = (id, email, role, nickname, score, password, systemMessage, checkRu, minimumTransferAmount, sumTransferAmoumt, completed) => {
     return jwt.sign(
-        {id, email, role, nickname, score, password, systemMessage, checkRu, minimumTransferAmount, sumTransferAmoumt},
+        {id, email, role, nickname, score, password, systemMessage, checkRu, minimumTransferAmount, sumTransferAmoumt, completed},
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     )
@@ -36,7 +36,8 @@ class UserController {
             systemMessage, 
             user.checkRu, 
             user.minimumTransferAmount, 
-            user.sumTransferAmoumt)
+            user.sumTransferAmoumt,
+            user.completed)
         return res.json({token})
     }
 
@@ -60,7 +61,8 @@ class UserController {
             user.systemMessage, 
             user.checkRu, 
             user.minimumTransferAmount, 
-            user.sumTransferAmoumt)
+            user.sumTransferAmoumt,
+            user.completed)
         return res.json({token})
     }
 
@@ -73,7 +75,8 @@ class UserController {
             req.user.password, 
             req.user.checkRu, 
             req.user.minimumTransferAmount, 
-            req.user.sumTransferAmoumt)
+            req.user.sumTransferAmoumt,
+            req.user.completed)
         return res.json({token})
     }
 
