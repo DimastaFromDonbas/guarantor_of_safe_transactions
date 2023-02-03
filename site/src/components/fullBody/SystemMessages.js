@@ -12,8 +12,8 @@ function SystemMessages() {
     const {checkAlertSystemMessage, user, transfers, transfersToUser} = useAppSelector ((store) => store.user)
 
 
-    let dateParceUser1 = new Date(transfers[0]?.time)
-    let dateParceUser2 = new Date(transfersToUser[0]?.time)
+    let dateParceUser1 = new Date(transfers[0]?.time?.replaceAll('.', '/'))
+    let dateParceUser2 = new Date(transfersToUser[0]?.time?.replaceAll('.', '/'))
     const triggerTime = new Date(dateParceUser1.getFullYear(), dateParceUser1.getMonth(), dateParceUser1.getDate()+1, 9, 0, 0).toLocaleDateString();
     const triggerTime2 = new Date(dateParceUser2.getFullYear(), dateParceUser2.getMonth(), dateParceUser2.getDate()+1, 9, 0, 0).toLocaleDateString();
 
@@ -32,12 +32,12 @@ function SystemMessages() {
         <Header />
             <div style={{ marginTop: '30px'}} className="container heiggg">
             <Chat />
-                    <h3 style={{borderBottom : "1px solid rgb(85, 85, 88)"}} className="login-inner_title">Системные сообщения</h3>
+                    <h3 style={{borderBottom : "1px solid rgb(85, 85, 88)"}} className="login-inner_title" onClick={() => console.log(checkAlertSystemMessage, user?.systemMessage)}>Системные сообщения</h3>
                     {checkAlertSystemMessage || user?.systemMessage === 'true' ? 
                     <div className="message-flex">
                         <div className="message-header">
                             <h2>Сообщение от stom-pro.ru</h2> 
-                            <h2>{triggerTime? triggerTime: triggerTime2}</h2>
+                            <h2>{triggerTime || triggerTime2}</h2>
                         </div>
                         <div className="message-body">
                         Доброго времени суток, {user.nickname}
