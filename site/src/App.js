@@ -14,11 +14,18 @@ import SystemMessages from './components/fullBody/SystemMessages';
 import Deal from "./components/fullBody/Deal"
 import AdminPanel from "./components/fullBody/AdminPanel"
 import BlockMaseges from "./components/fullBody/BlockMaseges";
+import {Helmet} from "react-helmet";
 
 function App() {
   
 
   return  <>
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <link rel="shortcut icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico" />
+      </Helmet>
+
       <Routes>
         <Route path="/" element = {<Main/>}/>
         <Route path="/deal/:id" element={<Deal />}/>
