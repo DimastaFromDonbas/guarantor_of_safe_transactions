@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Allerta+Stencil");
 @import url("https://fonts.googleapis.com/css?family=Anton");
 
+
  *::-webkit-scrollbar {
     width: 0;
   }
@@ -20,7 +21,9 @@
   }
 
 .styleAdminPanel {
-    background: linear-gradient(122deg, #3c3b3b, #4d4d4b, #716f6f,#979793);
+    /* background: linear-gradient(122deg, #3c3b3b, #4d4d4b, #716f6f,#979793); */
+    background-image: url(../image/girlAnime.jpg);
+    background-size: 100%;
 }
 
 .tabl-flex-admin {
