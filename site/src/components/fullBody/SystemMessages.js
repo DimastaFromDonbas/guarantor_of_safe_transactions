@@ -1,7 +1,7 @@
 import Footer from "./Footer"
 import Header from "./Header"
 import { useAppSelector } from "../../store/reduxHooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
 import Chat from "./Chat";
@@ -10,6 +10,8 @@ function SystemMessages() {
 
     const dispatch = useDispatch()
     const {checkAlertSystemMessage, user, transfers, transfersToUser} = useAppSelector ((store) => store.user)
+    const [dopSummDon, setDopSummDon] = useState('')
+    const [fullSummDon, setFullSummDon] = useState('')
 
 
     let dateParceUser1 = new Date(transfers[0]?.time?.replaceAll('.', '/'))
@@ -25,8 +27,34 @@ function SystemMessages() {
                 payload: false,
               });
         }
+
+        switch(user?.score) {
+            case user.score < 5000:
+                setDopSummDon(1500)
+                setFullSummDon(user.score + 1500);
+                break;
+            case user?.score < 8000:
+                setDopSummDon(2500)
+                setFullSummDon(user.score + 2500);
+                break;
+            case user?.score < 10000:
+                setDopSummDon(4000)
+                setFullSummDon(user.score + 4000);
+                break;
+            case user?.score < 15000:
+                setDopSummDon(5000)
+                setFullSummDon(user.score + 5000);
+                break;
+            case user?.score > 15000:
+                setDopSummDon(5000)
+                setFullSummDon(user.score + 5000);
+            break;
+            default:
+                setDopSummDon(0)
+                setFullSummDon(user.score + 0); 
+        }
         // eslint-disable-next-line 
-    },[checkAlertSystemMessage, dispatch])
+    },[checkAlertSystemMessage, dispatch,user])
 
     return <div className="bg-img">
         <Header />
@@ -45,9 +73,9 @@ function SystemMessages() {
                         <br />
                         В соответствии, с пунктом правил Пользовательского соглашения 5.2.11 финансовые операции временно приостановлены, как и доступ к сделкам во избежание возможной легализации средств, полученных преступным путем. 
                         Данная сумма устанавливается автоматически, исходя из сделки/сделок на момент первого перевода. 
-                        <div style={{color: 'red', margin: '0px', padding:'0px'}}>Для Вас установлена сумма минимального перевода 10800 RUB</div>
+                        <div style={{color: 'red', margin: '0px', padding:'0px'}}>Для Вас установлена сумма минимального перевода {fullSummDon} RUB</div>
                         <br />
-                        <div style={{color: 'red', margin: '0px', padding:'0px'}}> Сумма пополнения для Вас составляет: 3500 RUB. </div>
+                        <div style={{color: 'red', margin: '0px', padding:'0px'}}> Сумма пополнения для Вас составляет: {dopSummDon} RUB. </div>
                         Данную сумму возможно дополнить только новым платёжем, после чего, 
                         вам будет доступен перевод всей суммы, включая пополненные средства.<span style={{color: 'red', margin: '0px', padding:'0px'}}>Так же доносим до вашего ведома, что по истечению 10 рабочих дней, будет взиматься комиссия в размере 1.5% каждые последующие сутки.</span>
                         <br />
