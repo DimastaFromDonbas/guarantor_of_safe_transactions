@@ -22,7 +22,7 @@ function Body() {
 
     const {user} = useAppSelector ((store) => store.user)
  
-    return <div className="container-body-v1" >
+    return <div className="container-body-v1 bg-img" >
         <Chat />
         <div className='promo-description container' >
             <div className='block-main-v1'>
@@ -182,7 +182,7 @@ function Body() {
                 </div>
             </div>
         </div>
-        <div className='container'>
+        <div className='container bg-img'>
             <div className='block-text-free'>
                 <p className='text-free'>
                     <b>Самый надежный гарант игровых сделок.</b>
@@ -247,7 +247,7 @@ function Body() {
                 </div>
             </div>
         </div>
-        <div className='container'>
+        <div className='container bg-img'>
             <div className='block-text-free'>
                 <p className="text-free"><b>gamesgun.ru</b> - предлагает безопасные сделки в интернете с сайтами, доменами, социальными сетями, аккаунтами онлайн-игр,
                     информационными услугами и многим другим. Вконтакте - крупнейшая социальная сеть на просторах СНГ,

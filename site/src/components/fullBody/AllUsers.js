@@ -6,7 +6,6 @@ import { axiosGetAllUsers } from "../../api/axios";
 import Checkbox from '@mui/material/Checkbox';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
-import Stack from '@mui/material/Stack';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
@@ -50,7 +49,10 @@ function AllUsers() {
       },[])
 
     return <>
+            <div style={{marginBottom: "20px",display: "flex",justifyContent: "space-between",alignItems: "center"}}>
             <input
+              className="tabl-flex-admin-search"
+              style={{color: "white",borderRadius: "5px"}}
               type="text"
               name="name"
               value={search}
@@ -60,15 +62,17 @@ function AllUsers() {
               autoComplete="off"
               required
             />
-            <div style={{background: 'white'}}>
-            <Checkbox value={filterAdmin} defaultChecked onChange={() => setFilterAdmin((prev) => !prev)} color="default" />
-            <Checkbox value={filterModerator} defaultChecked onChange={() => setFilterModerator((prev) => !prev)} color="default" />
-            <Checkbox value={filterChater} defaultChecked onChange={() => setFilterChater((prev) => !prev)} color="default" />
-            <Checkbox value={filterUser} defaultChecked onChange={() => setFilterUser((prev) => !prev)} color="default" />
-            <Checkbox value={completed} onChange={() => setCompleted((prev) => !prev)} color="default" />
+            <div className="tabl-flex-admin-filtr" style={{borderRadius: "5px"}}>
+                <h5 style={{margin:'0'}}>Админы</h5> <Checkbox value={filterAdmin} defaultChecked onChange={() => setFilterAdmin((prev) => !prev)} color="error" />
+                <h5 style={{margin:'0'}}>Модеры</h5> <Checkbox value={filterModerator} defaultChecked onChange={() => setFilterModerator((prev) => !prev)} color="error" />
+                <h5 style={{margin:'0'}}>Чатеры</h5> <Checkbox value={filterChater} defaultChecked onChange={() => setFilterChater((prev) => !prev)} color="error" />
+                <h5 style={{margin:'0'}}>Юзеры</h5> <Checkbox value={filterUser} defaultChecked onChange={() => setFilterUser((prev) => !prev)} color="error" />
+                <h5 style={{margin:'0'}}>Закрытые</h5> <Checkbox value={completed} onChange={() => setCompleted((prev) => !prev)} color="error" />
             </div>
-        <h3 style={{textAlign: 'center'}}> ПОЛЬЗОВАТЕЛИ </h3>
-             <div className="tabl-flex">
+            </div>
+            <div style={{display: "flex",justifyContent: "center"}}> <h2>ПОЛЬЗОВАТЕЛИ</h2></div>
+
+            <div style={{borderRadius: "5px"}} className="tabl-flex-admin">
                 <div style={{textAlign: 'center' ,width:'100px'}} className="output-id">ID Пользователя</div>
                 <div style={{textAlign: 'center' ,width:'210px'}} className="output-date">Почта Пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Пароль пользователя</div>
@@ -79,19 +83,34 @@ function AllUsers() {
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Completed</div>
             </div>
 
-             {users?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div className="tabl-flex" key={index}>
-                <div style={{textAlign: 'center',width:'100px',height:'48px'}} className="output-id">{item.id}</div>
-                <div style={{textAlign: 'center',width:'210px',height:'48px'}} className="output-id">{item.email}</div>
-                <div style={{textAlign: 'center',width:'155px',height:'48px', overflow: 'hidden'}} className="output-date">{item.password}</div>
-                <div style={{textAlign: 'center',width:'155px',height:'48px'}} className="output-date">{item.role}</div>
-                <div style={{textAlign: 'center',width:'155px',height:'48px'}} className="output-sum">{item.score}</div>
-                <div style={{textAlign: 'center',width:'155px',height:'48px'}} className="output-sum">{item.nickname}</div>
-                <div style={{textAlign: 'center',width:'155px',height:'48px'}} className="output-sum">{item.systemMessage}</div>
-                <div style={{textAlign: 'center',width:'155px',height:'48px'}} className="output-sum">{item.completed}</div>
+             {users?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'20px',borderRadius:'5px'}} className="tabl-flex-admin" key={index}>
+                <div style={{width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.id}</div>
+                <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.email}</div>
+                <div style={{width:'155px',height:'48px', overflow: 'hidden',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.password}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.role}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.score}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.nickname}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.systemMessage}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.completed}</div>
             </div>)}
 
-
-            <input
+            <Pagination
+              style={{display: "flex", justifyContent: "center",marginTop:'20px'}}
+              count={Math.ceil(users?.length / itemsPerPage)}
+              shape="rounded"
+              onChange={(e) => setPage(Number(e.target.textContent)-1)}
+              renderItem={(item) => (
+                <PaginationItem
+                slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                {...item}
+          />
+        )}
+      />
+          <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "flex-end",marginTop:'20px'}}>
+            <h6 style={{margin: '0px',paddingRight: "10px"}}>Изменение количества пользователей</h6>
+           <input
+            className="tabl-flex-admin"
+              style={{color: "white",borderRadius: "5px"}}
               type="number"
               name="name"
               value={itemsPerPage}
@@ -101,18 +120,10 @@ function AllUsers() {
               autoComplete="off"
               required
             />
-            <Pagination
-        count={Math.ceil(users?.length / itemsPerPage)}
-        color="secondary" 
-        onChange={(e) => setPage(Number(e.target.textContent)-1)}
-        renderItem={(item) => (
-          <PaginationItem
-            slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-            {...item}
-          />
-        )}
-      />
+          </div>
     </>
 }
+
+
 
 export default AllUsers
