@@ -28,7 +28,7 @@ function SystemMessages() {
               });
         }
 
-        switch(user?.score) {
+        switch(true) {
             case user.score < 5000:
                 setDopSummDon(1500)
                 setFullSummDon(user.score + 1500);
