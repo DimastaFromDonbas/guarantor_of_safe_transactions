@@ -53,7 +53,7 @@ function AllUsers() {
             <input
               className="tabl-flex-admin-search"
               style={{color: "white",borderRadius: "5px"}}
-              type="text"
+              type="search"
               name="name"
               value={search}
               placeholder="text"
@@ -83,7 +83,7 @@ function AllUsers() {
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Completed</div>
             </div>
 
-             {users?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'20px',borderRadius:'5px'}} className="tabl-flex-admin" key={index}>
+             {users?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={index}>
                 <div style={{width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.id}</div>
                 <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.email}</div>
                 <div style={{width:'155px',height:'48px', overflow: 'hidden',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.password}</div>
@@ -106,8 +106,8 @@ function AllUsers() {
           />
         )}
       />
-          <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "flex-end",marginTop:'20px'}}>
-            <h6 style={{margin: '0px',paddingRight: "10px"}}>Изменение количества пользователей</h6>
+          <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'20px'}}>
+            <h6 style={{margin: '0px',paddingRight: "10px"}}>Кол-во</h6>
            <input
             className="tabl-flex-admin"
               style={{color: "white",borderRadius: "5px"}}
