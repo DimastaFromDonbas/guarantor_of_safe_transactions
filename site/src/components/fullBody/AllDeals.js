@@ -13,6 +13,8 @@ function AllDeals() {
 
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
+    const [filterOpen, setFilterOpen] = useState(true);
+    const [filterComplete, setFilterComplete] = useState(true);
     const {allDeals, user} = useAppSelector ((store) => store.user)
     const [deals, setDeals] = useState([]);
     const [page, setPage] = useState(0);
@@ -41,8 +43,9 @@ function AllDeals() {
                 el?.buyerNickname?.toLowerCase()?.includes(search) ||
                 el?.seller?.toLowerCase()?.includes(search) ||
                 el?.sellerNickname?.toLowerCase()?.includes(search)): true)
-            )
-       },[allDeals, search])
+                ?.filter((checkbox) => (checkbox?.status === 0 && filterOpen) ||
+                (checkbox?.status === 1 && filterComplete)))
+       },[allDeals, search, filterOpen, filterComplete])
 
       useEffect(() => {
         getAllDeals();
@@ -50,6 +53,7 @@ function AllDeals() {
        },[])
 
     return <>
+                <div style={{marginBottom: "20px",display: "flex",justifyContent: "space-between",alignItems: "center"}}>
         <StyledInput className="tabl-flex-admin-search"
               style={{color: "white",borderRadius: "5px", paddingLeft: '10px'}}
               type="search"
@@ -59,8 +63,15 @@ function AllDeals() {
               onChange={(e) => setSearch(e.target.value?.toLowerCase())}
               autoComplete="off"
               required />
+
+            <div className="tabl-flex-admin-filtr" style={{borderRadius: "5px"}}>
+                <h5 style={{margin:'0'}}>Открыта</h5> <Checkbox value={filterOpen} defaultChecked onChange={() => setFilterOpen((prev) => !prev)} color="error" />
+                <h5 style={{margin:'0'}}>завершена</h5> <Checkbox value={filterComplete} defaultChecked onChange={() => setFilterComplete((prev) => !prev)} color="error" />
+            </div>
+            </div>
     
         <h3 style={{textAlign: 'center'}}>СДЕЛКИ ВСЕХ ПОЛЬЗОВАТЕЛЕЙ НА САЙТЕ</h3> 
+
         <div className="tabl-flex-admin" style={{borderRadius: "5px"}}>
             <div style={{textAlign: 'center' ,width:'100px'}} className="output-id">ID </div>
             <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Время создания сделки</div>
