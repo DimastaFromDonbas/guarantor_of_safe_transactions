@@ -101,7 +101,7 @@ function AllUsers() {
               onChange={(e, value) => setPage(Number(value)-1)}
               renderItem={(item) => (
                 <PaginationItem
-                slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                
                 {...item}
           />
         )}

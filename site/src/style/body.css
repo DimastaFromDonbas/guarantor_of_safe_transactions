@@ -84,6 +84,14 @@ input[type=number] {
     transform: scale(1.06)
 }
 
+.MuiPaginationItem-text:enabled {
+    background-color: rgba(90, 89, 89, 0.75) !important;
+}
+
+.MuiPaginationItem-previousNext {
+    display: none !important;
+}
+
 .tabl-flex-admin-search {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
