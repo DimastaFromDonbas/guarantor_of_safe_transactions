@@ -7,10 +7,12 @@ import Checkbox from '@mui/material/Checkbox';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import { StyledInput } from "../../style/styles";
+import { axiosDeleteUser } from "../../api/axios";
 
 function AllUsers() {
 
     const dispatch = useDispatch();
+    const {user} = useAppSelector ((store) => store.user)
     const [search, setSearch] = useState('');
     const [filterAdmin, setFilterAdmin] = useState(true);
     const [filterModerator, setFilterModerator] = useState(true);
@@ -19,6 +21,7 @@ function AllUsers() {
     const [completed, setCompleted] = useState(false);
     const [users, setUsers] = useState([]);
     const [page, setPage] = useState(0);
+    const [deleteUsers, setDeleteUsers] = useState([]);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const {allUsers} = useAppSelector ((store) => store.user);
 
@@ -30,6 +33,13 @@ function AllUsers() {
       });
     }
 
+    function changeDeleteUsers(checked, id) {
+      if(checked) {
+        setDeleteUsers(prev => [...prev, id])
+      } else {
+        setDeleteUsers(prev => prev.filter(item => item !== id))
+      }
+    }
 
     useEffect(() => {
         setUsers(allUsers
@@ -81,16 +91,26 @@ function AllUsers() {
                 <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Удалить</div>
             </div>
 
-             {users?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={index}>
+             {users?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={item?.email}>
                 <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.id}</div>
                 <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.email}</div>
                 <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.role}</div>
                 <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.score}</div>
                 <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.nickname}</div>
                 <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.systemMessage}</div>
-                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.completed}</div>
-                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum"><Checkbox color="error" /></div>
+                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{['Не наёбан', 'Наёбан'][item.completed]}</div>
+                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum" onChange={(e) => changeDeleteUsers(e.target.checked, item.id)}><Checkbox color="error" /></div>
             </div>)}
+
+
+            <div onClick={async() => {
+              await Promise.all(deleteUsers?.map(async id => await axiosDeleteUser(Number(id), user?.email, user?.password)))
+              setDeleteUsers([])
+              await getAllUsers();
+              alert('Success')
+      }}>
+      Удалить
+      </div>
 
             <Pagination
               style={{display: "flex", justifyContent: "center",marginTop:'20px'}}

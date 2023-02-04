@@ -25,8 +25,8 @@ export interface IUsersReducer {
 export const INITIAL: IUsersReducer = {
   user: {
     id: 1,
-    email: "string",
-    password: "Dima1020111" || null,
+    email: "user104@gmail.com",
+    password: "1234567a" || null,
     role: "Админ",
     score: 0,
     nickname: "test",
@@ -112,7 +112,7 @@ export const INITIAL: IUsersReducer = {
   dealMessages: [],
   allUsers: [{
     id: 1,
-    email: "use32131231r123@gmail.com",
+    email: "use32131231r123asdsasaas@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -124,7 +124,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 1,
-    email: "use32131231r123@gmail.com",
+    email: "use32131231r123asd@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
