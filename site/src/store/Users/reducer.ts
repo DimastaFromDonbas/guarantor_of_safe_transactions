@@ -122,6 +122,18 @@ export const INITIAL: IUsersReducer = {
     minimumTransferAmount: null,
     sumTransferAmoumt: null,
     completed: 0,
+  },{
+    id: 1,
+    email: "use32131231r123@gmail.com",
+    password: "D2023212" || null,
+    role: "ADMIN",
+    score: 1110,
+    nickname: "DimaKek",
+    systemMessage: "string" || null,
+    checkRu: 'true',
+    minimumTransferAmount: null,
+    sumTransferAmoumt: null,
+    completed: 0,
   }],
   allDeals: [{
     id: 1,
