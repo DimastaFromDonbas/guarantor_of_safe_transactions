@@ -8,6 +8,7 @@ import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { StyledInput } from "../../style/styles";
 
 function AllUsers() {
 
@@ -20,7 +21,7 @@ function AllUsers() {
     const [completed, setCompleted] = useState(false);
     const [users, setUsers] = useState([]);
     const [page, setPage] = useState(0);
-    const [itemsPerPage, setItemsPerPage] = useState(12);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
     const {allUsers} = useAppSelector ((store) => store.user);
 
     async function getAllUsers(){
@@ -50,18 +51,17 @@ function AllUsers() {
 
     return <>
             <div style={{marginBottom: "20px",display: "flex",justifyContent: "space-between",alignItems: "center"}}>
-            <input
-              className="tabl-flex-admin-search"
-              style={{color: "white",borderRadius: "5px"}}
-              type="text"
-              name="name"
+
+            <StyledInput className="tabl-flex-admin-search"
+              style={{color: "white",borderRadius: "5px", paddingLeft: '10px'}}
+              type="search"
+              id='Search'
               value={search}
-              placeholder="text"
-             // className={styles.input}
+              placeholder="Поиск"
               onChange={(e) => setSearch(e.target.value?.toLowerCase())}
               autoComplete="off"
-              required
-            />
+              required/>
+              
             <div className="tabl-flex-admin-filtr" style={{borderRadius: "5px"}}>
                 <h5 style={{margin:'0'}}>Админы</h5> <Checkbox value={filterAdmin} defaultChecked onChange={() => setFilterAdmin((prev) => !prev)} color="error" />
                 <h5 style={{margin:'0'}}>Модеры</h5> <Checkbox value={filterModerator} defaultChecked onChange={() => setFilterModerator((prev) => !prev)} color="error" />
@@ -107,7 +107,7 @@ function AllUsers() {
         )}
       />
           <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "flex-end",marginTop:'20px'}}>
-            <h6 style={{margin: '0px',paddingRight: "10px"}}>Изменение количества пользователей</h6>
+            <h6 style={{margin: '0px',paddingRight: "10px"}}>Кол-во</h6>
            <input
             className="tabl-flex-admin"
               style={{color: "white",borderRadius: "5px"}}
