@@ -85,6 +85,29 @@ class DealController {
         return res.json(updatedDeal)
     }
 
+    async deleteDeals(req, res, next) {
+        const {id, creatorEmail, creatorPassword} = req.body
+        const user = await Deal.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        const creator = await User.findOne({where: {email: creatorEmail}})
+        if (!creator) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(creatorPassword, creator.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if(creator.role !== 'ADMIN'){
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+            await Deal.destroy({
+                where: {id}
+            })
+           return res.json({...user.dataValues})
+    }
+
 }
 
 module.exports = new DealController()
