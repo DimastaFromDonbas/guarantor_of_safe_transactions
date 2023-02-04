@@ -98,7 +98,7 @@ function AllUsers() {
               style={{display: "flex", justifyContent: "center",marginTop:'20px'}}
               count={Math.ceil(users?.length / itemsPerPage)}
               shape="rounded"
-              onChange={(e) => setPage(Number(e.target.textContent)-1)}
+              onChange={(e, value) => setPage(Number(value)-1)}
               renderItem={(item) => (
                 <PaginationItem
                 slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
