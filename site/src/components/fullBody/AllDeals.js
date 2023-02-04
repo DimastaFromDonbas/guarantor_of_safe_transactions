@@ -78,7 +78,7 @@ function AllDeals() {
 
         <div className="tabl-flex-admin" style={{borderRadius: "5px"}}>
             <div style={{textAlign: 'center' ,width:'80px'}} className="output-id">ID </div>
-            <div style={{textAlign: 'center' ,width:'155px'}} className="output-date" onClick={() => setSortId(prev => !prev)}>Время создания сделки</div>
+            <div style={{textAlign: 'center' ,width:'155px',cursor:'pointer'}} className="output-date" onClick={() => setSortId(prev => !prev)}>Время создания сделки</div>
             <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Имя продавца</div>
             <div style={{textAlign: 'center' ,width:'210px'}} className="output-sum">Почта продавца</div>
             <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Имя покупателя</div>
