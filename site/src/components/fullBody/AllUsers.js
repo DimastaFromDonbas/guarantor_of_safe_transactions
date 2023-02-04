@@ -102,15 +102,17 @@ function AllUsers() {
                 <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum" onChange={(e) => changeDeleteUsers(e.target.checked, item.id)}><Checkbox color="error" /></div>
             </div>)}
 
-
-            <div onClick={async() => {
+          <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'5px'}}>
+            <div className="tabl-flex-admin-button"
+               onClick={async() => {
               await Promise.all(deleteUsers?.map(async id => await axiosDeleteUser(Number(id), user?.email, user?.password)))
               setDeleteUsers([])
               await getAllUsers();
               alert('Success')
-      }}>
-      Удалить
-      </div>
+            }}>
+            Удалить
+            </div>
+          </div>
 
             <Pagination
               style={{display: "flex", justifyContent: "center",marginTop:'20px'}}

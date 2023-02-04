@@ -96,7 +96,8 @@ function AllDeals() {
             <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum" onChange={(e) => changeDeleteDeals(e.target.checked, item.id)}><Checkbox color="error" /></div>
         </div>)}
        <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'5px'}}>
-        <div className="tabl-flex-admin-button" onClick={async() => {
+        <div className="tabl-flex-admin-button" 
+              onClick={async() => {
               await Promise.all(deleteDeals?.map(async id => await axiosDeleteDeal(Number(id), user?.email, user?.password)))
               setDeleteDeals([])
               await getAllDeals();
