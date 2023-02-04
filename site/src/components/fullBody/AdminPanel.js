@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AllDeposit from "./AllDeposit";
 import AllDeals from "./AllDeals";
 import AllUsers from "./AllUsers";
 
@@ -60,15 +61,7 @@ function AdminPanel() {
                     <AllDeals />
                 </div>
                 <div style={item === 2 ? {display: 'block'}: {display: 'none'}}>
-                    <h3 style={{textAlign: 'center'}}>ЧАТЕРЫ </h3>
-                    <div className="tabl-flex">
-                        <div style={{textAlign: 'center'}} className="output-id">ID чатера</div>
-                        <div style={{textAlign: 'center'}} className="output-date">Почта чатера</div>
-                        <div style={{textAlign: 'center'}} className="output-date">Пароль чатера</div>
-                        <div style={{textAlign: 'center'}} className="output-sum">Роль чатера</div>
-                        <div style={{textAlign: 'center'}} className="output-date">Деньги чатера</div>
-                        <div style={{textAlign: 'center'}} className="output-sum">Имя чатера</div>
-                    </div>
+                    <AllDeposit />
                 </div>
             </div>
         </div>

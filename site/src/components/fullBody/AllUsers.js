@@ -6,8 +6,6 @@ import { axiosGetAllUsers } from "../../api/axios";
 import Checkbox from '@mui/material/Checkbox';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { StyledInput } from "../../style/styles";
 
 function AllUsers() {
@@ -73,25 +71,25 @@ function AllUsers() {
             <div style={{display: "flex",justifyContent: "center"}}> <h2>ПОЛЬЗОВАТЕЛИ</h2></div>
 
             <div style={{borderRadius: "5px"}} className="tabl-flex-admin">
-                <div style={{textAlign: 'center' ,width:'100px'}} className="output-id">ID</div>
+                <div style={{textAlign: 'center' ,width:'50px'}} className="output-id">ID</div>
                 <div style={{textAlign: 'center' ,width:'210px'}} className="output-date">Почта Пользователя</div>
-                <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Пароль пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Роль пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Деньги пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Имя пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Статус системного сообщения</div>
-                <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Completed</div>
+                <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Completed</div>
+                <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Удалить</div>
             </div>
 
              {users?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={index}>
-                <div style={{width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.id}</div>
+                <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.id}</div>
                 <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.email}</div>
-                <div style={{width:'155px',height:'48px', overflow: 'hidden',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.password}</div>
                 <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.role}</div>
                 <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.score}</div>
                 <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.nickname}</div>
                 <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.systemMessage}</div>
-                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.completed}</div>
+                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.completed}</div>
+                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum"><Checkbox color="error" /></div>
             </div>)}
 
             <Pagination
