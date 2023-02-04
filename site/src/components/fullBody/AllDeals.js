@@ -1,8 +1,20 @@
 import { useAppSelector } from "../../store/reduxHooks";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { reducerTypes } from "../../store/Users/types";
+import Checkbox from '@mui/material/Checkbox';
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
 
 function AllDeals() {
 
-    const {allDeals} = useAppSelector ((store) => store.user)
+    const dispatch = useDispatch();
+    const [search, setSearch] = useState('');
+    const {allDeals, user} = useAppSelector ((store) => store.user)
+    const [deals, setDeals] = useState([]);
+    const [page, setPage] = useState(0);
+    const [deleteDeals, setDeleteDeals] = useState([]);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
 
     return <>
         <h3 style={{textAlign: 'center'}}>СДЕЛКИ ВСЕХ ПОЛЬЗОВАТЕЛЕЙ НА САЙТЕ</h3> 
