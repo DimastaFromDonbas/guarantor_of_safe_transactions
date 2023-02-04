@@ -50,12 +50,33 @@ input[type=number] {
   -moz-appearance:textfield;
 }
 
+input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    position: relative;
+    right: 10px;
+    background-image: url(../image/clear-reflect-horizontal-svgrepo-com.svg);
+    color: #191919;
+}
+
 .tabl-flex-admin-filtr {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     background: rgba(90, 89, 89, 0.75);
     border: 1px solid rgba(255,255,255,0.01);
     padding: 5px 10px 5px 10px;
+    box-shadow:  0 4px 30px rgba(35,35,35,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+}
+
+.tabl-flex-admin-user {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: rgba(90, 89, 89, 0.75);
+    border: 1px solid rgba(255,255,255,0.01);
+    padding: 0px 10px;
     box-shadow:  0 4px 30px rgba(35,35,35,0.1);
     display: flex;
     justify-content: space-between;

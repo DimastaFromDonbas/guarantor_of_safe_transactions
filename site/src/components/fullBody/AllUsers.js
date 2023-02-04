@@ -60,7 +60,7 @@ function AllUsers() {
               placeholder="Поиск"
               onChange={(e) => setSearch(e.target.value?.toLowerCase())}
               autoComplete="off"
-              required/>
+              required />
               
             <div className="tabl-flex-admin-filtr" style={{borderRadius: "5px"}}>
                 <h5 style={{margin:'0'}}>Админы</h5> <Checkbox value={filterAdmin} defaultChecked onChange={() => setFilterAdmin((prev) => !prev)} color="error" />
@@ -83,7 +83,7 @@ function AllUsers() {
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Completed</div>
             </div>
 
-             {users?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'20px',borderRadius:'5px'}} className="tabl-flex-admin" key={index}>
+             {users?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={index}>
                 <div style={{width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.id}</div>
                 <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.email}</div>
                 <div style={{width:'155px',height:'48px', overflow: 'hidden',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.password}</div>
@@ -106,7 +106,8 @@ function AllUsers() {
           />
         )}
       />
-          <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "flex-end",marginTop:'20px'}}>
+
+          <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'20px'}}>
             <h6 style={{margin: '0px',paddingRight: "10px"}}>Кол-во</h6>
            <input
             className="tabl-flex-admin"
