@@ -36,7 +36,7 @@
 .styleAdminPanel {
     /* background: linear-gradient(122deg, #3c3b3b, #4d4d4b, #716f6f,#979793); */
     background-image: url(../image/girlAnime.jpg);
-    background-size: 100%;
+    background-size: cover;
 }
 
 .tabl-flex-admin {
@@ -101,6 +101,29 @@ input[type=number] {
     align-items: center;
     font-family: inherit;
     max-width: 70px;
+}
+
+.tabl-flex-admin-button {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: rgba(90, 89, 89, 0.75);
+    border: 1px solid rgba(255,255,255,0.01);
+    padding: 5px 10px;
+    text-align: center;
+    box-shadow:  0 4px 30px rgba(35,35,35,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+    max-width: 100px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.tabl-flex-admin-button:hover {
+    color: red;
+    transition: .3s;
+    transform: scale(1.05);
 }
 
 .tabl-flex-admin-search {
