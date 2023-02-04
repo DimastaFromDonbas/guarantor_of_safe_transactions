@@ -73,7 +73,7 @@ function AllUsers() {
             <div style={{display: "flex",justifyContent: "center"}}> <h2>ПОЛЬЗОВАТЕЛИ</h2></div>
 
             <div style={{borderRadius: "5px"}} className="tabl-flex-admin">
-                <div style={{textAlign: 'center' ,width:'100px'}} className="output-id">ID Пользователя</div>
+                <div style={{textAlign: 'center' ,width:'100px'}} className="output-id">ID</div>
                 <div style={{textAlign: 'center' ,width:'210px'}} className="output-date">Почта Пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Пароль пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Роль пользователя</div>
