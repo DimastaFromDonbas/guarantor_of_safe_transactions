@@ -6,6 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import { axiosGetAllDeal } from "../../api/axios";
+import { axiosDeleteDeal } from "../../api/axios";
 import { StyledInput } from "../../style/styles";
 
 function AllDeals() {
@@ -85,8 +86,7 @@ function AllDeals() {
         </div>)}
 
         <div onClick={async() => {
-              //await Promise.all(deleteDeals?.map(async id => await axiosDeleteUser(Number(id), user?.email, user?.password)))
-              console.log('delete Deals', deleteDeals)
+              await Promise.all(deleteDeals?.map(async id => await axiosDeleteDeal(Number(id), user?.email, user?.password)))
               setDeleteDeals([])
               await getAllDeals();
               alert('Success')

@@ -117,6 +117,11 @@ export const axiosGetAllDeal = async () => {
   return data;
 }
 
+export const axiosDeleteDeal = async (id: number, creatorEmail: string, creatorPassword: string) => {
+  const {data} = await axios.post('api/deal/delete', {id, creatorEmail, creatorPassword}, getConfig());
+  console.log('delete deal', data);
+  return data;
+}
 // REFILL
 
 export const axiosCreateRefill = async (id: number,
