@@ -66,14 +66,14 @@ function AllDeals() {
 
             <div className="tabl-flex-admin-filtr" style={{borderRadius: "5px"}}>
                 <h5 style={{margin:'0'}}>Открыта</h5> <Checkbox value={filterOpen} defaultChecked onChange={() => setFilterOpen((prev) => !prev)} color="error" />
-                <h5 style={{margin:'0'}}>завершена</h5> <Checkbox value={filterComplete} defaultChecked onChange={() => setFilterComplete((prev) => !prev)} color="error" />
+                <h5 style={{margin:'0'}}>Завершена</h5> <Checkbox value={filterComplete} defaultChecked onChange={() => setFilterComplete((prev) => !prev)} color="error" />
             </div>
             </div>
     
         <h3 style={{textAlign: 'center'}}>СДЕЛКИ ВСЕХ ПОЛЬЗОВАТЕЛЕЙ НА САЙТЕ</h3> 
 
         <div className="tabl-flex-admin" style={{borderRadius: "5px"}}>
-            <div style={{textAlign: 'center' ,width:'100px'}} className="output-id">ID </div>
+            <div style={{textAlign: 'center' ,width:'80px'}} className="output-id">ID </div>
             <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Время создания сделки</div>
             <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Имя продавца</div>
             <div style={{textAlign: 'center' ,width:'210px'}} className="output-sum">Почта продавца</div>
@@ -81,28 +81,29 @@ function AllDeals() {
             <div style={{textAlign: 'center' ,width:'210px'}} className="output-sum">Почта покупателя</div>
             <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Сумма сделки</div>
             <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Статус сделки </div>
-            <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Удалить </div>
+            <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Удалить </div>
         </div>
 
         {deals?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={item.id}>
-            <div style={{textAlign: 'center',width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.id}</div>
+            <div style={{textAlign: 'center',width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.id}</div>
             <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.createdAt}</div>
             <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.sellerNickname}</div>
             <div style={{textAlign: 'center',width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.seller}</div>
             <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.buyerNickname}</div>
             <div style={{textAlign: 'center',width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.buyer}</div>
             <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.sum}</div>
-            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.status}</div>
+            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{['Открыта', 'В обработке', 'Выполнена'][item.status]}</div>
             <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum" onChange={(e) => changeDeleteDeals(e.target.checked, item.id)}><Checkbox color="error" /></div>
         </div>)}
-
-        <div onClick={async() => {
+       <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'5px'}}>
+        <div className="tabl-flex-admin-button" onClick={async() => {
               await Promise.all(deleteDeals?.map(async id => await axiosDeleteDeal(Number(id), user?.email, user?.password)))
               setDeleteDeals([])
               await getAllDeals();
               alert('Success')
       }}>
       Удалить
+      </div>
       </div>
 
       <Pagination
