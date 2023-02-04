@@ -112,7 +112,7 @@ export const INITIAL: IUsersReducer = {
   dealMessages: [],
   allUsers: [{
     id: 5,
-    email: "use32131231r123asdsasaas@gmail.com",
+    email: "use321231r123asdsasaas@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -124,7 +124,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 1,
-    email: "use32131231r123asd@gmail.com",
+    email: "use321311r123asd@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -136,7 +136,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 7,
-    email: "use32131231r123asdsasaas@gmail.com",
+    email: "us2131231r123asdsasaas@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -148,7 +148,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 9,
-    email: "use32131231r123asdsasaas@gmail.com",
+    email: "use3131231123asdsasaas@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -160,7 +160,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 6,
-    email: "use32131231r123asdsasaas@gmail.com",
+    email: "use32131231r1asdsasaas@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
