@@ -88,6 +88,21 @@ input[type=number] {
     background-color: rgba(236, 232, 232, 0.597) !important;
 }
 
+.tabl-flex-admin-pages {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: rgba(90, 89, 89, 0.75);
+    border: 1px solid rgba(255,255,255,0.01);
+    padding: 5px 0px;
+    text-align: center;
+    box-shadow:  0 4px 30px rgba(35,35,35,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+    max-width: 70px;
+}
+
 .tabl-flex-admin-search {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);

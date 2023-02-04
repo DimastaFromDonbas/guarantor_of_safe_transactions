@@ -108,7 +108,7 @@ function AllUsers() {
           <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'20px'}}>
             <h6 style={{margin: '0px',paddingRight: "10px"}}>Кол-во</h6>
            <input
-            className="tabl-flex-admin"
+            className="tabl-flex-admin-pages"
               style={{color: "white",borderRadius: "5px"}}
               type="number"
               name="name"
