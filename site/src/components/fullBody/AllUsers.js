@@ -6,8 +6,6 @@ import { axiosGetAllUsers } from "../../api/axios";
 import Checkbox from '@mui/material/Checkbox';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { StyledInput } from "../../style/styles";
 
 function AllUsers() {
@@ -101,7 +99,6 @@ function AllUsers() {
               onChange={(e, value) => setPage(Number(value)-1)}
               renderItem={(item) => (
                 <PaginationItem
-                
                 {...item}
           />
         )}

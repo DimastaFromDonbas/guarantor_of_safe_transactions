@@ -78,6 +78,12 @@ export const axiosGetAllUsers = async () => {
   return data.users;
 }
 
+export const axiosDeleteUser = async (id: number, creatorEmail: string, creatorPassword: string) => {
+  const {data} = await axios.post('api/user/delete', {id, creatorEmail, creatorPassword}, getConfig());
+  console.log('delete user', data);
+  return data;
+}
+
 // DEAL
 
 export const axiosCreateDeal = async (
