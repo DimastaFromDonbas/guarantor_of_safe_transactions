@@ -15,6 +15,7 @@ function AllDeals() {
     const [search, setSearch] = useState('');
     const [filterOpen, setFilterOpen] = useState(true);
     const [filterComplete, setFilterComplete] = useState(true);
+    const [sortId, setSortId] = useState(true);
     const {allDeals, user} = useAppSelector ((store) => store.user)
     const [deals, setDeals] = useState([]);
     const [page, setPage] = useState(0);
@@ -44,8 +45,9 @@ function AllDeals() {
                 el?.seller?.toLowerCase()?.includes(search) ||
                 el?.sellerNickname?.toLowerCase()?.includes(search)): true)
                 ?.filter((checkbox) => (checkbox?.status === 0 && filterOpen) ||
-                (checkbox?.status === 1 && filterComplete)))
-       },[allDeals, search, filterOpen, filterComplete])
+                (checkbox?.status === 1 && filterComplete))
+                ?.sort((a, b) => sortId ? a.id - b.id : b.id - a.id))
+       },[allDeals, search, filterOpen, filterComplete, sortId])
 
       useEffect(() => {
         getAllDeals();
@@ -74,7 +76,7 @@ function AllDeals() {
 
         <div className="tabl-flex-admin" style={{borderRadius: "5px"}}>
             <div style={{textAlign: 'center' ,width:'80px'}} className="output-id">ID </div>
-            <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Время создания сделки</div>
+            <div style={{textAlign: 'center' ,width:'155px'}} className="output-date" onClick={() => setSortId(prev => !prev)}>Время создания сделки</div>
             <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Имя продавца</div>
             <div style={{textAlign: 'center' ,width:'210px'}} className="output-sum">Почта продавца</div>
             <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Имя покупателя</div>
