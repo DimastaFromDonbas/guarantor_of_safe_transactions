@@ -4,7 +4,7 @@ import '../../style/header.css'
 import HomeIcon from '@mui/icons-material/Home';
 import { useAppSelector } from "../../store/reduxHooks";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useEffect, useState } from "react";
+import { useEffect, useState,useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
@@ -91,15 +91,19 @@ function Header() {
   const messages = ['Технический чат поддержки работает с 10:00 до 20:00 ежедневно!', 'Мы работаем только на территории РФ'];
 
   const [text, setText] = useState(messages[0]);
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
-      setText(messages[index]);
       setIndex((index + 1) % messages.length);
-    }, 5000);
-  }, [index, messages]);
+    }, 10000);
+  }, [index,messages.length]);
+// eslint-disable-next-line
+  const nextText = useMemo(() => messages[index], [index]);
 
+  useEffect(() => {
+    setText(nextText);
+  }, [nextText]);
 
   return  <>
         <Alert.Heading className="alert-navBar fade-in-out">{text}</Alert.Heading>

@@ -1496,7 +1496,7 @@ input::-webkit-inner-spin-button {
 }
 
 .fade-in-out {
-    animation: fadeInOut 5s ease-in-out infinite;
+    animation: fadeInOut 10s ease-in-out infinite;
   }
   
   @keyframes fadeInOut {
@@ -1504,31 +1504,31 @@ input::-webkit-inner-spin-button {
         opacity: 0;
     }
     5% {
-        opacity: 0;
-    }
-    15% {
         opacity: 0.4;
     }
-    25% {
+    15% {
         opacity: 0.6;
     }
-    35% {
+    25% {
         opacity: 0.8;
+    }
+    35% {
+        opacity: 1;
     }
     45% {
         opacity: 1;
     }
     55% {
-        opacity: 0.8;
+        opacity: 1;
     }
     65% {
-        opacity: 0.6;
+        opacity: 1;
     }
     75% {
-        opacity: 0.4;
+        opacity: 1;
     }
     90% {
-        opacity: 0;
+        opacity: 0.5;
     }
     100% {
         opacity: 0;
