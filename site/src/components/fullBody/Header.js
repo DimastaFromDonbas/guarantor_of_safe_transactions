@@ -106,7 +106,7 @@ function Header() {
   }, [nextText]);
 
   return  <>
-        <Alert.Heading className="alert-navBar fade-in-out">{text}</Alert.Heading>
+        <Alert.Heading className="alert-navBar "><span className="fade-in-out">{text}</span></Alert.Heading>
               <div className="navbar-header">
             <SwipeableDrawer anchor={'left'} open={sideBar} onClose={() => setSideBar(false)} onOpen={() => setSideBar(true)}>
             { user?.id? 
