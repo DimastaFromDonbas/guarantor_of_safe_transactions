@@ -133,11 +133,11 @@ function Header() {
               </div>}
               </div>
               { user?.id?
-                <div onClick = {clickArrowdown} style={{display: "flex",justifyContent: "space-between"}}>
-                <Link className="color-nav-link color" to="#" style={{display: 'flex', flexDirection: 'row'}}>{user.nickname}</Link>
-                <KeyboardArrowDownIcon className={!checked? "hoverArrow" : "transformArrow"}></KeyboardArrowDownIcon>
+                <div style={{display: "flex",justifyContent: "space-between"}}>
+                <Link onClick = {clickArrowdown} className="color-nav-link color" to="#" style={{display: 'flex', flexDirection: 'row'}}>{user.nickname}</Link>
+                <KeyboardArrowDownIcon onClick = {clickArrowdown} className={!checked? "hoverArrow" : "transformArrow"}></KeyboardArrowDownIcon>
                 {(bellState && !checkReadMessage) || user?.systemMessage === 'true' ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}
-                  <div className={checked?"user-profile-block js-profile-block_open active": "user-profile-block js-profile-block_open"}>
+                  <div onClick={(e) => e.stopPropagation()} className={checked?"user-profile-block js-profile-block_open active": "user-profile-block js-profile-block_open"}>
                         <ul className="nav-detail_list">
                               {user?.role === 'USER' || null || ''?
                               '':

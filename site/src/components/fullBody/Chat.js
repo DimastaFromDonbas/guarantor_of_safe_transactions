@@ -11,7 +11,7 @@ function Chat() {
     return  <>
                 {checked?
                     <div className='chat-bg' onClick={() => setChecked(false)}>
-                        <div className='chat activ-chat' onClick={(e) => e.stopPropagation() }>
+                        <div className={checked?"chat activ-chat":"chat"} onClick={(e) => e.stopPropagation()}>
                         <div className='chat-header'>
                             <img alt='img-helper' className='img-helper' src={Helper}></img>
                             <div className='helper-nickName'>
