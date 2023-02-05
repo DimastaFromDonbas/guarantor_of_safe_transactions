@@ -1317,9 +1317,8 @@ input[type=number] {
     }
 
     .active {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        justify-content: center;
+        transform: all 1s;
     }
 
     .chat {
@@ -1556,6 +1555,10 @@ input[type=number] {
 }
 
 @media  (max-width: 916px)  {
+
+    .carousel-item {
+        flex-direction: column;
+    }
 
     .carousel-control-prev {
         display: none !important;
