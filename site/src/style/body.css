@@ -1310,10 +1310,15 @@ input[type=number] {
     padding: 10px;
 }
 
-@media  (max-width: 768px)  {
+.carousel-inner {
+    padding: 0 !important;
+}
+
+
+@media  (max-width: 767px)  {
 
     .containerCard {
-        max-width: 350px !important;
+        max-width: 362px !important;
     }
 
     .active {
@@ -1538,6 +1543,10 @@ input[type=number] {
         margin-right: 20px;
     }
 
+    .carousel-item {
+        flex-direction: column;
+    }
+
 }
 
 @media  (max-width: 670px)  {
@@ -1555,10 +1564,6 @@ input[type=number] {
 }
 
 @media  (max-width: 916px)  {
-
-    .carousel-item {
-        flex-direction: column;
-    }
 
     .carousel-control-prev {
         display: none !important;
@@ -1735,6 +1740,10 @@ input[type=number] {
 }
 
 @media (max-width: 414px) and (min-width: 400px) {
+
+    .containerCard {
+        max-width: 400px !important;
+    }
 
     .promote-slider_list {
         display: flex;

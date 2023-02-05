@@ -289,8 +289,8 @@ function Body() {
                 <div className='tytleStaleComents'>
                     <h2>Отзывы</h2>
                 </div>
-                    <Carousel fade={true} slide={true}>
-                        <Carousel.Item interval={null}>
+                    <Carousel fade={true} slide={true} touch={true}>
+                        <Carousel.Item interval={null} touch={true}>
                         <div className='containerCard'>
                             <div class="card-header-coments">
                                 <SentimentSatisfiedAltIcon style={{color:'white',marginRight:'5px'}}></SentimentSatisfiedAltIcon>
@@ -341,7 +341,7 @@ function Body() {
                         </div>
  
                         </Carousel.Item>
-                        <Carousel.Item interval={null}>
+                        <Carousel.Item interval={null} touch={true}>
                         <div className='containerCard'>
                             <div class="card-header-coments">
                                 <SentimentSatisfiedAltIcon style={{color:'white',marginRight:'5px'}}></SentimentSatisfiedAltIcon>
@@ -392,7 +392,7 @@ function Body() {
                         </div>
 
                         </Carousel.Item>
-                        <Carousel.Item interval={null}>
+                        <Carousel.Item interval={null} touch={true}>
                         <div className='containerCard'>
                             <div class="card-header-coments">
                                 <SentimentSatisfiedAltIcon style={{color:'white',marginRight:'5px'}}></SentimentSatisfiedAltIcon>
