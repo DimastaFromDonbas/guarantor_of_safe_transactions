@@ -54,13 +54,10 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    display: none;
+    margin: 0;
 }
 
-input[type=number] {
-  -moz-appearance:textfield;
-}
 
 .tabl-flex-admin-filtr {
     backdrop-filter: blur(5.5px);
