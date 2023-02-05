@@ -672,17 +672,14 @@ input[type=number] {
 }
 
 .carousel-item {
-
-    opacity: 0 !important;
     gap: 20px;
-    transition: all .1s !important;
+    display: flex !important; 
+    justify-content: center !important;
 }
 
 .active {
-    display: flex !important;
-    opacity: 1 !important;
-    justify-content: center !important;
-    transition: all .1s !important;
+    justify-content: center;
+    transform: all 1s;
 }
 
 .container-allCard {

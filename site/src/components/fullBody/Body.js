@@ -284,7 +284,7 @@ function Body() {
                 </p>
             </div>
         </div>
-        <div style={{background: "rgba(17, 17, 18, 0.65)",width:'100%',paddingBottom: "30px"}} >
+        <div style={{background: "rgba(17, 17, 18, 0.65)",width:'100%',paddingBottom: "30px",minHeight:'460px'}} >
             <div className='container'>
                 <div className='tytleStaleComents'>
                     <h2>Отзывы</h2>
