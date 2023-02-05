@@ -12,8 +12,10 @@ import Output from './components/fullBody/Output';
 import Payments from './components/fullBody/Payments';
 import SystemMessages from './components/fullBody/SystemMessages';
 import Deal from "./components/fullBody/Deal"
+import Howitwork from "./components/fullBody/Howitwork"
 import AdminPanel from "./components/fullBody/AdminPanel"
 import BlockMaseges from "./components/fullBody/BlockMaseges";
+import Sertificates from './components/fullBody/Sertificates'
 import {Helmet} from "react-helmet";
 
 function App() {
@@ -34,7 +36,9 @@ function App() {
         <Route path="/adminPanel" element={<AdminPanel />}/>
         <Route path="/payments" element={<Payments />}/>
         <Route path="/output" element={<Output />}/>
+        <Route path="/howitwork" element={<Howitwork />}/>
         <Route path="/deals" element={<Deals />}/>
+        <Route path="/sertificates" element={<Sertificates />}/>
         <Route path="/makedeal" element={<Makedeal/>}/>
         <Route path="/settings" element={<Settings/>}/>
         <Route path="/login" element ={<UserInput />} />

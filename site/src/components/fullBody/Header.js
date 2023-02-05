@@ -16,6 +16,7 @@ import HelpIcon from '@mui/icons-material/Help';
 import GavelIcon from '@mui/icons-material/Gavel';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 
 export const socket = io.connect("localhost:5000");
 
@@ -38,11 +39,11 @@ function Header() {
     const triggerTime = Date.parse(new Date(dateParceUser.getFullYear(), dateParceUser.getMonth(), dateParceUser.getDate()+1, 9, 0, 0));
     const triggerTime2 = Date.parse(new Date(dateParceUser2.getFullYear(), dateParceUser2.getMonth(), dateParceUser2.getDate()+1, 9, 0, 0));
     let time = triggerTime || triggerTime2;
-console.log('dateparse', dateParceUser, dateParceUser2, time)
+
     if(triggerTime > triggerTime2) time = triggerTime2;
     if(dateParceNow - time > 0) {
       setBellState(true)
-      console.log(1)
+
       dispatch({
         type: reducerTypes.GET_CHECK_SYSTEM,
         payload: true,
@@ -97,15 +98,17 @@ console.log('dateparse', dateParceUser, dateParceUser2, time)
                 <Link className="color-nav-link color" to="/"><HomeIcon></HomeIcon> НА ГЛАВНУЮ</Link>
                 <Link className="color-nav-link color" to="/deals"><ListAltIcon></ListAltIcon> МОИ СДЕЛКИ</Link>
                 <Link className="color-nav-link color" to="/output"><AccountBalanceIcon></AccountBalanceIcon> МОЙ СЧЕТ:{user.score} РУБ.</Link>
-                <Link className="color-nav-link color" to="#"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
+                <Link className="color-nav-link color" to="/howitwork"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
+                <Link className="color-nav-link color" to="/sertificates"><DocumentScannerIcon></DocumentScannerIcon> СЕРТИФИКАТЫ</Link>
                 <Link className="color-nav-link color" to="#"><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ</Link>
                 </div>
               :
               <div style={{display: "flex",flexDirection: "column",padding:'20px',gap: "15px", fontSize: "18px", background: "#191919", height: '100%'}}>
                 <Link className="color-nav-link color" to="/"><HomeIcon></HomeIcon> НА ГЛАВНУЮ</Link>
-                <Link className="color-nav-link color" to="#"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
+                <Link className="color-nav-link color" to="/howitwork"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
+                <Link className="color-nav-link color" to="/sertificates"><DocumentScannerIcon></DocumentScannerIcon> СЕРТИФИКАТЫ</Link>
                 <Link className="color-nav-link color" to="#"><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ</Link>
               </div>}
             </SwipeableDrawer>
@@ -113,17 +116,19 @@ console.log('dateparse', dateParceUser, dateParceUser2, time)
                 <Link className="color-nav-link color header-home" to="/"><HomeIcon></HomeIcon></Link>
                 <FormatListBulletedIcon onClick={() => setSideBar(true)} className="color-nav-link color header-burder"></FormatListBulletedIcon>
               { user?.id? 
-                <div className="header-navBar" style={{ marginLeft: "25px",display: "flex",width: "600px",justifyContent: "space-between",alignItems: "center"}} >
+                <div className="header-navBar" style={{ marginLeft: "25px",display: "flex",width: "640px",justifyContent: "space-between",alignItems: "center"}} >
                 <Link className="color-nav-link color" to="/deals">МОИ СДЕЛКИ</Link>
                 <Link className="color-nav-link color" to="/output">МОЙ СЧЕТ:{user.score} РУБ.</Link>
-                <Link className="color-nav-link color" to="#">ПОМОЩЬ</Link>
+                <Link className="color-nav-link color" to="/howitwork">ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
+                <Link className="color-nav-link color" to="/sertificates">СЕРТИФИКАТЫ</Link>
                 <Link className="color-nav-link color" to="#">ОТЗЫВЫ</Link>
                 </div>
               :
               <div className="flex-nav-link header-navBar">
-                <Link className="color-nav-link color" to="#">ПОМОЩЬ</Link>
+                <Link className="color-nav-link color" to="/howitwork">ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
+                <Link className="color-nav-link color" to="/sertificates">СЕРТИФИКАТЫ</Link>
                 <Link className="color-nav-link color" to="#">ОТЗЫВЫ</Link>
               </div>}
               </div>
