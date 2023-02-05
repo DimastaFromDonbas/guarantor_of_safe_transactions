@@ -88,9 +88,21 @@ function Header() {
     setCheckReadMassage(localStorage.getItem(`${user?.email}`) === 'true') // eslint-disable-next-line 
   },[updateHeaderAlert,dispatch, user])
 
+  const messages = ['Технический чат поддержки работает с 10:00 до 20:00 ежедневно!', 'Мы работаем только на территории РФ'];
+
+  const [text, setText] = useState(messages[0]);
+  const [index, setIndex] = useState(1);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setText(messages[index]);
+      setIndex((index + 1) % messages.length);
+    }, 5000);
+  }, [index, messages]);
+
 
   return  <>
-        <Alert.Heading className="alert-navBar">Технический чат поддержки работает с 10:00 до 20:00 ежедневно!</Alert.Heading>
+        <Alert.Heading className="alert-navBar fade-in-out">{text}</Alert.Heading>
               <div className="navbar-header">
             <SwipeableDrawer anchor={'left'} open={sideBar} onClose={() => setSideBar(false)} onOpen={() => setSideBar(true)}>
             { user?.id? 
