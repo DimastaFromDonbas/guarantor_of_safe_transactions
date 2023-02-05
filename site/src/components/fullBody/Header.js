@@ -134,9 +134,12 @@ console.log('dateparse', dateParceUser, dateParceUser2, time)
                 {(bellState && !checkReadMessage) || user?.systemMessage === 'true' ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}
                   <div className={checked?"user-profile-block js-profile-block_open active": "user-profile-block js-profile-block_open"}>
                         <ul className="nav-detail_list">
-                            <li className="nav-detail_item"><Link className="nav-detail_link" to="/systemmessages">Системные сообщения {(bellState && !checkReadMessage) || user?.systemMessage === 'true' ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}</Link></li>
+                              {user?.role === 'USER' || null || ''?
+                              '':
+                              <li className="nav-detail_item"><Link className="nav-detail_link" to="/AdminPanel">Админ панель</Link></li>}
+                              <li className="nav-detail_item"><Link className="nav-detail_link" to="/systemmessages">Системные сообщения {(bellState && !checkReadMessage) || user?.systemMessage === 'true' ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}</Link></li>
                               <li className="nav-detail_item"><Link className="nav-detail_link" to="/settings">Мои настройки</Link></li>
-                             <li className="nav-detail_item border-exit"><Link onClick={getUsers} className="nav-detail_link" to="/">Выход</Link></li>
+                              <li className="nav-detail_item border-exit"><Link onClick={getUsers} className="nav-detail_link" to="/">Выход</Link></li>
                            </ul>
                     </div>
                 </div>

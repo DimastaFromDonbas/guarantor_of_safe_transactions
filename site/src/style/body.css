@@ -633,6 +633,89 @@ input[type=number] {
     margin-top: 40px;
 }
 
+.tytleStaleComents {
+    display: flex;
+    justify-content: center;
+    color: #f9f5e1;
+    padding: 20px 0;
+}
+
+.card-header-coments {
+    background-color: #3e5e80;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    font-family: "Roboto Condensed","Arial Narrow",Arial,sans-serif;
+    display: flex;
+    align-items: center;
+    height: 75px;
+}
+
+.containerCard {
+    max-width: 257px;
+}
+
+.carousel-indicators {
+    display: none !important;
+}
+
+.container-card-swap {
+    width: 1230px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.carousel-item {
+
+    opacity: 0 !important;
+    gap: 20px;
+    transition: all .1s !important;
+}
+
+.active {
+    display: flex !important;
+    opacity: 1 !important;
+    justify-content: center !important;
+    transition: all .1s !important;
+}
+
+.container-allCard {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    box-sizing: content-box;
+    overflow: hidden;
+    gap: 30px;
+    transition: all 1s !important;
+}
+
+.css-iljtu2-MuiRating-root.Mui-disabled {
+    opacity: 1 !important;
+}
+
+.card-header-text-coments {
+    position: relative;
+    line-height: 50px;
+    font-size: 20px;
+    color: #FFF;
+    padding: 15px 0;
+    font-weight: 500;
+}
+
+.card-body-coments {
+    background-color: #191e23;
+    padding: 15px;
+    font-size: 15px;
+    color: #a9aeb3;
+    font-size: 16px;
+}
+
 .docs-popup-wrapper-title {
     color: #383838;
     font-size: 30px;
@@ -1232,6 +1315,16 @@ input[type=number] {
 
 @media  (max-width: 768px)  {
 
+    .containerCard {
+        max-width: 350px !important;
+    }
+
+    .active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .chat {
         width: 100%;
         height: 100%;
@@ -1465,7 +1558,23 @@ input[type=number] {
 
 }
 
-@media  (max-width: 900px)  {
+@media  (max-width: 916px)  {
+
+    .carousel-control-prev {
+        display: none !important;
+    }
+
+    .carousel-control-next {
+        display: none !important;
+    }
+
+    .carousel-indicators {
+        display: none !important;
+    }
+
+    .containerCard {
+        max-width: 350px;
+    }
 
     .chat {
         width: 100%;

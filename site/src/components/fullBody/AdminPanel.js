@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AllDeposit from "./AllDeposit";
 import AllDeals from "./AllDeals";
 import AllUsers from "./AllUsers";
+import { useAppSelector } from "../../store/reduxHooks";
+import { useNavigate } from "react-router-dom";
 
 function AdminPanel() {
 
     const [item, setItem] = useState()
+    const { user } = useAppSelector ((store) => store.user)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(user?.role === 'USER' || null || '' || user === {}) {
+          navigate("/")
+        }
+      },[user?.role,navigate,user])
 
     function visibleItem(e) {
         switch (e.currentTarget.name) {
