@@ -98,8 +98,10 @@ function Header() {
       setIndex((index + 1) % messages.length);
     }, 10000);
   }, [index,messages.length]);
-// eslint-disable-next-line
-  const nextText = useMemo(() => messages[index], [index]);
+  
+  const nextText = useMemo(() => {
+    return ['Технический чат поддержки работает с 10:00 до 20:00 ежедневно!', 'Мы работаем только на территории РФ'][index]},
+   [index]);
 
   useEffect(() => {
     setText(nextText);

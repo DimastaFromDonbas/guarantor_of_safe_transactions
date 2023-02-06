@@ -16,17 +16,16 @@ import Howitwork from "./components/fullBody/Howitwork"
 import AdminPanel from "./components/fullBody/AdminPanel"
 import BlockMaseges from "./components/fullBody/BlockMaseges";
 import Sertificates from './components/fullBody/Sertificates'
-import {Helmet} from "react-helmet";
+//import {Helmet} from "react-helmet";
 
 function App() {
   
-
   return  <>
 
-      <Helmet>
+      {/* <Helmet>
         <meta charSet="utf-8" />
         <link rel="shortcut icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico" />
-      </Helmet>
+      </Helmet> */}
 
       <Routes>
         <Route path="/" element = {<Main/>}/>
