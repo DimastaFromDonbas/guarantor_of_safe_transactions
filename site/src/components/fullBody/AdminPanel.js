@@ -12,7 +12,8 @@ function AdminPanel() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(user?.role === 'USER' || null || '' || user === {}) {
+        console.log('user',user, user?.role)
+        if(user?.role === 'USER' || user?.role === null || user?.role === '' || user?.role === undefined ) {
           navigate("/")
         }
       },[user?.role,navigate,user])
