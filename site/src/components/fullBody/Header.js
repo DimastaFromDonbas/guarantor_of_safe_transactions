@@ -23,7 +23,7 @@ export const socket = io.connect("localhost:5000");
 function Header() {
 
   const navigate= useNavigate();
-  const { state } = useLocation();
+  const {state} = useLocation();
   const {user, transfers, transfersToUser, updateHeaderAlert} = useAppSelector ((store) => store.user)
   const [sideBar, setSideBar] = useState(false)
   const [bellState, setBellState] = useState(false)
@@ -113,9 +113,11 @@ function Header() {
   }, [nextText]);
 
   useEffect(() => {
-    console.log('state', state)
-    if(state) handleClick();
-  }, [state]);
+    if(state) {
+      handleClick()
+      navigate('/')
+    };
+  }, [state, navigate]);
 
   return  <>
         <Alert.Heading className="alert-navBar "><span className="fade-in-out">{text}</span></Alert.Heading>
