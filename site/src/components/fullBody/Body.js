@@ -65,7 +65,7 @@ function Body() {
                 <li className='step'>
                 <PersonAddAltIcon style={{width: '60px',height: '60px',marginRight: '10px',marginLeft: '-3px'}}></PersonAddAltIcon>
                 <div>
-                    <h4 className="header-inner_title">Регистрация</h4>
+                    <h4 className="header-inner_title"><Link className='link-hover-effects' to="/registr">Регистрация</Link></h4>
                     <p>Если Вы заинтересованы в безопасных сделках, то регистрация на нашем гарант сайте - это первый шаг, который позволит Вам начать пользоваться нашими услугами.
                     </p>
                 </div>
