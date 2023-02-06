@@ -13,6 +13,7 @@ function AllUsersID() {
     const [ roleUser, setRoleUser] = useState('')
     const [ systemMessagesUser, setSystemMessagesUser] = useState('')
     const [ completedUser, setCompletedUser] = useState('')
+    const [ scoreUser, setscoreUser] = useState('')
     const [deleteUsers, setDeleteUsers] = useState([]);
     const dispatch = useDispatch();
 
@@ -44,6 +45,10 @@ function AllUsersID() {
         setCompletedUser(e.currentTarget.value)
     }
 
+    function changesScoreUser(e) {
+        setscoreUser(e.currentTarget.value)
+    }
+
     useEffect(() => {
         getAllUsers();
          // eslint-disable-next-line 
@@ -68,7 +73,7 @@ function AllUsersID() {
                             <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-id">{item.id}</div>
                             <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.nickname}</div>
                             <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{ roleUser?roleUser: item.role}</div>
-                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.score}p</div>
+                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{scoreUser?scoreUser:item.score}p</div>
                             <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.email}</div>
                             <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{systemMessagesUser? systemMessagesUser: item.systemMessage}</div>
                             <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{completedUser?completedUser:['Не наёбан', 'Наёбан'][item.completed]}</div>
@@ -105,6 +110,7 @@ function AllUsersID() {
                         </div>
                         <div className='pages-user-block'>
                         <input
+                        onChange={changesScoreUser}
                             className="tabl-flex-admin-user-scores "
                             style={{color: "white",borderRadius: "5px"}}
                             type="number"
