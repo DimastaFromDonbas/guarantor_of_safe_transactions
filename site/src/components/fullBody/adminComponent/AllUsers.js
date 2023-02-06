@@ -28,10 +28,12 @@ function AllUsers() {
 
     async function getAllUsers(){
       const data = await axiosGetAllUsers();
+      if(data) {
       dispatch({
         type: reducerTypes.GET_ALL_USERS,
-        payload: data || [],
+        payload: data,
       });
+    }
     }
 
     function changeDeleteUsers(checked, id) {

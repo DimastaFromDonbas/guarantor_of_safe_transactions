@@ -17,14 +17,15 @@ function Transfers(search) {
 
     async function getAllTransfers(){
         const data = await axiosGetAllUserTransfers();
+        if(data) {
         dispatch({
           type: reducerTypes.GET_ALL_TRANSFERS,
-          payload: data || [],
+          payload: data,
         });
+    }
       }
 
       useEffect(() => {
-        console.log('search', search)
         setTransfers(allTransfers
             ?.filter((el) => search?.search? (el?.userEmail?.toLowerCase()?.includes(search?.search) || 
                 el?.userNickname?.toLowerCase()?.includes(search?.search)): true)

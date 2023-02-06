@@ -17,10 +17,12 @@ function TransfersToUser(search) {
 
     async function getAllTransfersTouser(){
         const data = await axiosGetAllUserToUserTransfers();
+        if(data) {
         dispatch({
           type: reducerTypes.GET_ALL_TRANSFERS_TO_USER,
-          payload: data || [],
+          payload: data,
         });
+    }
       }
 
       useEffect(() => {

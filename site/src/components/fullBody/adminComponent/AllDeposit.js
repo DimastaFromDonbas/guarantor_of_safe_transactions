@@ -22,10 +22,11 @@ function AllDeposit() {
 
     async function getAllRefills(){
         const data = await axiosGetAllRefills();
+        if(data) {
         dispatch({
           type: reducerTypes.GET_ALL_REFILLS,
-          payload: data || [],
-        });
+          payload: data,
+        });}
       }
 
       function changeDeleteRefills(checked, id) {

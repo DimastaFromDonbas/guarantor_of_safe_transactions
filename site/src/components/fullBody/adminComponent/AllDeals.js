@@ -24,10 +24,11 @@ function AllDeals() {
 
     async function getAllDeals(){
         const data = await axiosGetAllDeal();
+        if(data) {
         dispatch({
           type: reducerTypes.GET_ALL_DEALS,
-          payload: data || [],
-        });
+          payload: data,
+        });}
       }
 
       function changeDeleteDeals(checked, id) {
