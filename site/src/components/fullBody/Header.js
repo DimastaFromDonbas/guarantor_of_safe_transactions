@@ -1,5 +1,5 @@
 import { Alert} from "react-bootstrap";
-import {Link} from "react-router-dom"
+import {Link, useNavigate, useLocation} from "react-router-dom"
 import '../../style/header.css'
 import HomeIcon from '@mui/icons-material/Home';
 import { useAppSelector } from "../../store/reduxHooks";
@@ -22,6 +22,8 @@ export const socket = io.connect("localhost:5000");
 
 function Header() {
 
+  const navigate= useNavigate();
+  const { state } = useLocation();
   const {user, transfers, transfersToUser, updateHeaderAlert} = useAppSelector ((store) => store.user)
   const [sideBar, setSideBar] = useState(false)
   const [bellState, setBellState] = useState(false)
@@ -110,6 +112,11 @@ function Header() {
     setText(nextText);
   }, [nextText]);
 
+  useEffect(() => {
+    console.log('state', state)
+    if(state) handleClick();
+  }, [state]);
+
   return  <>
         <Alert.Heading className="alert-navBar "><span className="fade-in-out">{text}</span></Alert.Heading>
               <div className="navbar-header">
@@ -122,7 +129,9 @@ function Header() {
                 <Link className="color-nav-link color" to="/howitwork"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates"><DocumentScannerIcon></DocumentScannerIcon> СЕРТИФИКАТЫ</Link>
-                <Link onClick={handleClick} className="color-nav-link color" to="#"><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ</Link>
+                <div onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
+                    })} className="color-nav-link color" ><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ
+                  </div>
 
                 </div>
               :
@@ -131,7 +140,9 @@ function Header() {
                 <Link className="color-nav-link color" to="/howitwork"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates"><DocumentScannerIcon></DocumentScannerIcon> СЕРТИФИКАТЫ</Link>
-                <Link onClick={handleClick} className="color-nav-link color" to="#"><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ</Link>
+                <div onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
+                    })} className="color-nav-link color" ><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ
+                  </div>
 
               </div>}
             </SwipeableDrawer>
@@ -145,15 +156,18 @@ function Header() {
                 <Link className="color-nav-link color" to="/howitwork">ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates">СЕРТИФИКАТЫ</Link>
-                <Link onClick={handleClick} className="color-nav-link color" to="#">ОТЗЫВЫ</Link>
-
+                  <div onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
+                    })} className="color-nav-link color" ><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ
+                  </div>
                 </div>
               :
               <div className="flex-nav-link header-navBar">
                 <Link className="color-nav-link color" to="/howitwork">ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates">СЕРТИФИКАТЫ</Link>
-                <Link onClick={handleClick} className="color-nav-link color" to="#">ОТЗЫВЫ</Link>
+                <div onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
+                    })} className="color-nav-link color" ><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ
+                  </div>
 
               </div>}
               </div>
