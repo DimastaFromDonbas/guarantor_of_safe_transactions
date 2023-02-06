@@ -22,6 +22,7 @@ const UserRefill = sequelize.define('userRefill', {
     status: {type: DataTypes.INTEGER},
     userEmail: {type: DataTypes.STRING},
     uniqueId: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
+    userNickname: {type: DataTypes.STRING},
 })
 
 const UserTransfer = sequelize.define('user_transfers', {

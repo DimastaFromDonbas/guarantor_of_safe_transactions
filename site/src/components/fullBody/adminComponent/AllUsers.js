@@ -1,13 +1,13 @@
-import { useAppSelector } from "../../store/reduxHooks";
+import { useAppSelector } from "../../../store/reduxHooks";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { reducerTypes } from "../../store/Users/types";
-import { axiosGetAllUsers } from "../../api/axios";
+import { reducerTypes } from "../../../store/Users/types";
+import { axiosGetAllUsers } from "../../../api/axios";
 import Checkbox from '@mui/material/Checkbox';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
-import { StyledInput } from "../../style/styles";
-import { axiosDeleteUser } from "../../api/axios";
+import { StyledInput } from "../../../style/styles";
+import { axiosDeleteUser } from "../../../api/axios";
 
 function AllUsers() {
 

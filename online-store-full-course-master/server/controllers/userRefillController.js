@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt')
 
 class UserRefillController {
     async create(req, res, next) {
-        const {id, time, score, status, userEmail, creatorEmail, creatorPassword} = req.body
-        if (!id || !time || !score || !status || !userEmail || !creatorEmail) {
+        const {id, time, score, status, userEmail, userNickname, creatorEmail, creatorPassword} = req.body
+        if (!id || !time || !score || !status || !userEmail || !userNickname || !creatorEmail) {
             return next(ApiError.badRequest('Введите все данные'))
         }
         const creator = await User.findOne({where: {email: creatorEmail}})
@@ -23,14 +23,14 @@ class UserRefillController {
         if (!checkUser) {
             return next(ApiError.badRequest('Пользователь с таким email не найден'))
         }
-        const userRefill = await UserRefill.create({id, time, score, status, userEmail})
+        const userRefill = await UserRefill.create({id, time, score, status, userEmail, userNickname})
         const userUpdate = await User.update({score: checkUser.score + score}, {where: {email: userEmail}})
 
         return res.json(userRefill)
     }
 
     async changeRefill(req, res, next) {
-        const {id, time, score, status, userEmail, creatorEmail, creatorPassword} = req.body
+        const {id, time, score, status, userEmail, userNickname, creatorEmail, creatorPassword} = req.body
         if (!id || !time || !score || !status || !userEmail || !creatorEmail || !creatorPassword) {
             return next(ApiError.badRequest('Введите все данные'))
         }
@@ -83,6 +83,29 @@ class UserRefillController {
             return next(ApiError.internal('Пополнение не найдено'))
         }
         return res.json(refill)
+    }
+
+    async deleteRefill(req, res, next) {
+        const {uniqueId, creatorEmail, creatorPassword} = req.body
+        const refill = await UserRefill.findOne({where: {uniqueId}})
+        if (!refill) {
+            return next(ApiError.internal('Пополнение не найдено'))
+        }
+        const creator = await User.findOne({where: {email: creatorEmail}})
+        if (!creator) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(creatorPassword, creator.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if(creator.role !== 'ADMIN'){
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+            await UserRefill.destroy({
+                where: {uniqueId}
+            })
+           return res.json({...refill.dataValues})
     }
 
 }

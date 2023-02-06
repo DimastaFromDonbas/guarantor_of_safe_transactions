@@ -6,6 +6,7 @@ export interface IRefill {
     updatedAt: string,
     createdAt: string,
     userEmail: string,
+    userNickname: string,
     uniqueId: number,
     userId: null,
 }

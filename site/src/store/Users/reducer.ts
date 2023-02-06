@@ -19,6 +19,7 @@ export interface IUsersReducer {
   dealMessages: IDealMessage[] | [];
   allUsers: any | [];
   allDeals: IDeal[] | [];
+  allRefills: IRefill[] | [];
   fixSumSystemMessage: [];
 }
 
@@ -27,7 +28,7 @@ export const INITIAL: IUsersReducer = {
     id: 1,
     email: "user104@gmail.com",
     password: "1234567a" || null,
-    role: "USER",
+    role: "ADMIN",
     score: 0,
     nickname: "test",
     systemMessage: null,
@@ -58,7 +59,8 @@ export const INITIAL: IUsersReducer = {
       "uniqueId": 1,
       "createdAt": "2023-01-22 13:51:19.017 +00:00",
       "updatedAt": "2023-01-22 13:51:19.017 +00:00",
-      "userId": null
+      "userId": null,
+      'userNickname': 'Sasha',
   },
   {
     "id": 1,
@@ -69,7 +71,8 @@ export const INITIAL: IUsersReducer = {
     "uniqueId": 3,
     "createdAt": "2023-01-22 13:57:39.123 +00:00",
     "updatedAt": "2023-01-22 13:57:39.123 +00:00",
-    "userId": null
+    "userId": null,
+    'userNickname': 'Sasha',
 },
 {
     "id": 1,
@@ -80,7 +83,8 @@ export const INITIAL: IUsersReducer = {
     "uniqueId": 4,
     "createdAt": "2023-01-22 14:03:16.323 +00:00",
     "updatedAt": "2023-01-22 14:03:16.323 +00:00",
-    "userId": null
+    "userId": null,
+    'userNickname': 'Sasha',
 }
 
   ],
@@ -208,6 +212,7 @@ export const INITIAL: IUsersReducer = {
     status: 1,
     description: "string",
   }],
+  allRefills: [],
   fixSumSystemMessage: [],
 };
 
@@ -235,6 +240,8 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, allUsers: payload };
     case reducerTypes.GET_ALL_DEALS:
       return { ...state, allDeals: payload };
+      case reducerTypes.GET_ALL_REFILLS:
+        return { ...state, allRefills: payload };
     case reducerTypes.GET_FIX_SUM_SYSTEM_MESSAGE:
       return { ...state, fixSumSystemMessage: payload };
     default:

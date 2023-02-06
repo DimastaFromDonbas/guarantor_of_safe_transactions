@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import AllDeposit from "./AllDeposit";
-import AllDeals from "./AllDeals";
-import AllUsers from "./AllUsers";
+import AllDeposit from "./adminComponent/AllDeposit";
+import AllDeals from "./adminComponent/AllDeals";
+import AllUsers from "./adminComponent/AllUsers";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useNavigate } from "react-router-dom";
 
@@ -65,15 +65,15 @@ function AdminPanel() {
                 </button>
             </div>
             <div style={{paddingLeft: '10px'}} className="panel_user">
-                <div style={item === 0 ? {display: 'block',width: '100%'}: {display: 'none'}}>
+                {item === 0 ? <div style={{display: 'block',width: '100%'}}>
                     <AllUsers />
-                </div>
-                <div style={item === 1 ? {display: 'block', width: '100%'}: {display: 'none'}}>
+                </div> : ''}
+                {item === 1 ? <div style={{display: 'block', width: '100%'}}>
                     <AllDeals />
-                </div>
-                <div style={item === 2 ? {display: 'block'}: {display: 'none'}}>
+                </div>: ''}
+                {item === 2 ?<div style={{display: 'block'}}>
                     <AllDeposit />
-                </div>
+                </div> : ''}
             </div>
         </div>
     </div>

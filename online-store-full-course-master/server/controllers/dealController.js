@@ -87,9 +87,9 @@ class DealController {
 
     async deleteDeals(req, res, next) {
         const {id, creatorEmail, creatorPassword} = req.body
-        const user = await Deal.findOne({where: {id}})
-        if (!user) {
-            return next(ApiError.internal('Пользователь не найден'))
+        const deal = await Deal.findOne({where: {id}})
+        if (!deal) {
+            return next(ApiError.internal('Сделка не найдена'))
         }
         const creator = await User.findOne({where: {email: creatorEmail}})
         if (!creator) {
@@ -105,7 +105,7 @@ class DealController {
             await Deal.destroy({
                 where: {id}
             })
-           return res.json({...user.dataValues})
+           return res.json({...deal.dataValues})
     }
 
 }

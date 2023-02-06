@@ -171,6 +171,12 @@ export const axiosGetRefill = async (id: number) => {
   catch (e) {console.log(e)}
  }
 
+ export const axiosDeleteRefill = async (uniqueId: number, creatorEmail: string, creatorPassword: string) => {
+  const {data} = await axios.post('api/refill/delete', {uniqueId, creatorEmail, creatorPassword}, getConfig());
+  console.log('delete refill', data);
+  return data;
+}
+
  // USER TRANSFER
 
  export const axiosCreateUserTransfer = async (
