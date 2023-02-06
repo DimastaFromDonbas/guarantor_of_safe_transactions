@@ -21,6 +21,8 @@ export interface IUsersReducer {
   allUsers: any | [];
   allDeals: IDeal[] | [];
   allRefills: IRefill[] | [];
+  allTransfers: ITransfer[] | [];
+  allTransfersToUser: ITransfer[] | [];
   fixSumSystemMessage: [];
   nameTheSite: INameSite
 }
@@ -101,6 +103,7 @@ export const INITIAL: IUsersReducer = {
     time: '2023.01.24 15:41',
     status: 1,
     userEmail: 'user120@gmail.com',
+    userNickname: '',
     createdAt: '',
     updatedAt: '',
   }
@@ -215,6 +218,8 @@ export const INITIAL: IUsersReducer = {
     description: "string",
   }],
   allRefills: [],
+  allTransfers: [],
+  allTransfersToUser: [],
   fixSumSystemMessage: [],
   nameTheSite: {
     name: 'САНЯ БОГ'
@@ -239,14 +244,18 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, transfers: payload };
     case reducerTypes.GET_TRANSFERS_TO_USER:
       return { ...state, transfersToUser: payload };
-      case reducerTypes.GET_DEAL_MESSAGES:
-        return { ...state, dealMessages: payload };
+    case reducerTypes.GET_DEAL_MESSAGES:
+      return { ...state, dealMessages: payload };
     case reducerTypes.GET_ALL_USERS:
       return { ...state, allUsers: payload };
     case reducerTypes.GET_ALL_DEALS:
       return { ...state, allDeals: payload };
-      case reducerTypes.GET_ALL_REFILLS:
-        return { ...state, allRefills: payload };
+    case reducerTypes.GET_ALL_REFILLS:
+      return { ...state, allRefills: payload };
+    case reducerTypes.GET_ALL_TRANSFERS:
+      return { ...state, allTransfers: payload };
+      case reducerTypes.GET_ALL_TRANSFERS_TO_USER:
+        return { ...state, allTransfersToUser: payload };
     case reducerTypes.GET_FIX_SUM_SYSTEM_MESSAGE:
       return { ...state, fixSumSystemMessage: payload };
     case reducerTypes.GET_NAME_THE_SITE:

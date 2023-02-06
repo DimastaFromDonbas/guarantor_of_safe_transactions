@@ -61,7 +61,7 @@ function Output() {
 
     async function createTransfer() {
         if(user?.score < score) return alert('Недостаточно средств')
-        const result = await axiosCreateUserTransfer(currentPaymant.paymentSystem, walletNumber, score, user?.email, user?.password)
+        const result = await axiosCreateUserTransfer(currentPaymant.paymentSystem, walletNumber, score, user?.email, user?.nickname,user?.password)
         if(typeof result === 'string') {
             alert(result)
         } else {
@@ -71,7 +71,7 @@ function Output() {
 
     async function createTransferToUser() {
         if(user?.score < receiverScore) return alert('Недостаточно средств')
-        const result = await axiosCreateUserToUserTransfer(receiverScore, user?.email, receiver, user?.password)
+        const result = await axiosCreateUserToUserTransfer(receiverScore, user?.email, user?.nickname, receiver, user?.password)
         if(typeof result === 'string') {
             alert(result)
         } else {

@@ -31,6 +31,7 @@ const io = new Server(server, {
         methods: ['GET', 'POST'],
     }
 })
+io.setMaxListeners(1000)
 
 io.on("connection", (socket) => {
     socket.on("join", ({ name, room }) => {

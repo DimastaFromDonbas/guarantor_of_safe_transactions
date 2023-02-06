@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AllDeposit from "./adminComponent/AllDeposit";
 import AllDeals from "./adminComponent/AllDeals";
 import AllUsers from "./adminComponent/AllUsers";
+import AllTransfers from "./adminComponent/AllTransfers";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useNavigate } from "react-router-dom";
 import SetNameTheSite from "./SetNameTheSite";
@@ -76,7 +77,7 @@ function AdminPanel() {
                     <AllDeposit />
                 </div> : ''}
                 {item === 3 ?<div style={{display: 'block',width: '100%'}}>
-                    <AllUsers />
+                    <AllTransfers />
                 </div>:''}
                 {item === 4 ? <div style={{display: 'block', width: '100%'}}>
                     <AllDeals />

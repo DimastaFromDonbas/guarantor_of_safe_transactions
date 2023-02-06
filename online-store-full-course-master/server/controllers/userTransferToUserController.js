@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt')
 
 class UserTransferToUserController {
     async create(req, res, next) {
-        const {score, time, userEmail, receiverEmail, password} = req.body
-        if (!score || !time || !userEmail || !receiverEmail || !password) {
+        const {score, time, userEmail, userNickname, receiverEmail, password} = req.body
+        if (!score || !time || !userEmail || !userNickname || !receiverEmail || !password) {
             return next(ApiError.badRequest('Введите все данные'))
         }
         const receiver = await User.findOne({where: {email: receiverEmail}}) ||
@@ -22,7 +22,7 @@ class UserTransferToUserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const userTransfertoUser = await UserTransferToUser.create({userEmail, receiverEmail, score , time, status: 1})
+        const userTransfertoUser = await UserTransferToUser.create({userEmail, userNickname, receiverEmail, receiverNickname: receiver.nickname ,score , time, status: 1})
 
         return res.json({userTransfertoUser: userTransfertoUser})
     }
@@ -40,7 +40,7 @@ class UserTransferToUserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role !== 'ADMIN'){
+        if(creator.role === 'USER'){
             return next(ApiError.badRequest('Нет доступа'))
         }
         const checkTransfer = await UserTransferToUser.findOne({where: {id}})

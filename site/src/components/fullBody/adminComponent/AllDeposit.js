@@ -12,14 +12,13 @@ import { axiosDeleteRefill } from "../../../api/axios";
 function AllDeposit() {
 
     const dispatch = useDispatch();
-    const {user} = useAppSelector ((store) => store.user)
+    const {user, allRefills} = useAppSelector ((store) => store.user)
     const [search, setSearch] = useState('');
     const [sortId, setSortId] = useState(true);
     const [refills, setRefills] = useState([]);
     const [page, setPage] = useState(0);
     const [deleteRefills, setDeleteRefills] = useState([]);
     const [itemsPerPage, setItemsPerPage] = useState(10);
-    const {allRefills} = useAppSelector ((store) => store.user);
 
     async function getAllRefills(){
         const data = await axiosGetAllRefills();

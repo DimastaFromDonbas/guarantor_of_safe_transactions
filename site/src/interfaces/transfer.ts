@@ -6,6 +6,7 @@ export interface ITransfer {
     time: string,
     status: number,
     userEmail: string,
+    userNickname: string,
     createdAt: string,
     updatedAt: string,
 }

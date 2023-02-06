@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt')
 
 class UserTransferController {
     async create(req, res, next) {
-        const {paymantSystem, walletNumber, score, time, userEmail, password} = req.body
-        if (!paymantSystem || !walletNumber || !score || !time || !userEmail || !password) {
+        const {paymantSystem, walletNumber, score, time, userEmail, userNickname, password} = req.body
+        if (!paymantSystem || !walletNumber || !score || !time || !userEmail || !password || !userNickname) {
             return next(ApiError.badRequest('Введите все данные'))
         }
         const user = await User.findOne({where: {email: userEmail}})
@@ -16,7 +16,7 @@ class UserTransferController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const userTransfer = await UserTransfer.create({paymantSystem, walletNumber, score , time, status: 1, userEmail})
+        const userTransfer = await UserTransfer.create({paymantSystem, walletNumber, score , time, status: 1, userEmail, userNickname})
 
         return res.json({userTransfer: userTransfer})
     }

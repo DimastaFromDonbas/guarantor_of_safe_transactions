@@ -33,12 +33,15 @@ const UserTransfer = sequelize.define('user_transfers', {
     time: {type: DataTypes.STRING},
     status: {type: DataTypes.INTEGER, defaultValue: 1},
     userEmail: {type: DataTypes.STRING},
+    userNickname: {type: DataTypes.STRING},
 })
 
 const UserTransferToUser = sequelize.define('user_transfer_to_users', {
     id: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
     userEmail: {type: DataTypes.STRING},
+    userNickname: {type: DataTypes.STRING},
     receiverEmail: {type: DataTypes.STRING},
+    receiverNickname: {type: DataTypes.STRING},
     score: {type: DataTypes.INTEGER},
     time: {type: DataTypes.STRING},
     status: {type: DataTypes.INTEGER, defaultValue: 1},
