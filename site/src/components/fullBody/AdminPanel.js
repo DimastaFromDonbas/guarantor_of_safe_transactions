@@ -4,6 +4,7 @@ import AllDeals from "./AllDeals";
 import AllUsers from "./AllUsers";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useNavigate } from "react-router-dom";
+import SetNameTheSite from "./SetNameTheSite";
 
 function AdminPanel() {
 
@@ -72,6 +73,15 @@ function AdminPanel() {
                 </div>
                 <div style={item === 2 ? {display: 'block'}: {display: 'none'}}>
                     <AllDeposit />
+                </div>
+                <div style={item === 3 ? {display: 'block',width: '100%'}: {display: 'none'}}>
+                    <AllUsers />
+                </div>
+                <div style={item === 4 ? {display: 'block', width: '100%'}: {display: 'none'}}>
+                    <AllDeals />
+                </div>
+                <div style={item === 5 ? {display: 'block'}: {display: 'none'}}>
+                    <SetNameTheSite />
                 </div>
             </div>
         </div>

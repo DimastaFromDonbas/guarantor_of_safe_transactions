@@ -5,8 +5,12 @@ import sert1 from "../../image/secure-con-logo.jpg"
 import sert2 from '../../image/geotrust.png'
 import sert3 from '../../image/pci-dss-compliant.png'
 import sert4 from '../../image/bitmap.png'
+import { useAppSelector } from "../../store/reduxHooks";
 
 function Sertificates() {
+
+    const {nameTheSite} = useAppSelector ((store) => store.user)
+
     return <div className="bg-img">
             <Header />
             <Chat />
@@ -53,11 +57,11 @@ function Sertificates() {
                     </div>
                     <div className="desc-block-text">
                         <h1 className="hidden-sm-text">Свидетельство о регистрации ЭВМ</h1>
-                        <p>cawono.ru использует лицензированное и собственное программное обеспечение, подтвержденное свидетельством правообладателя.</p>
+                        <p>{nameTheSite.name} использует лицензированное и собственное программное обеспечение, подтвержденное свидетельством правообладателя.</p>
                     </div>
                 </div>
                 <div className="info-block-after">
-                    <p>Помните! Никогда не проверяйте человека на честность самостоятельно, так как риск потерять ваш товар очень и очень велик! Используйте гарант сервис cawono.ru. И помните, мошенник никогда, не при каких условиях не согласится на безопасную сделку, на гаранта.</p>
+                    <p>Помните! Никогда не проверяйте человека на честность самостоятельно, так как риск потерять ваш товар очень и очень велик! Используйте гарант сервис {nameTheSite.name}. И помните, мошенник никогда, не при каких условиях не согласится на безопасную сделку, на гаранта.</p>
                 </div>
             </div>
         </div>

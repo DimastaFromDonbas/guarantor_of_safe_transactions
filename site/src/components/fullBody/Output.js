@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import Chat from "./Chat";
 import { paymant } from "../mock/OutputMock";
 
+
 function Output() {
 
     const navigate = useNavigate()
@@ -25,7 +26,7 @@ function Output() {
     const [score, setScore] = useState(0)
     const [receiver, setReceiver] = useState('')
     const [receiverScore, setReceiverScore] = useState(0)
-    const {user, myRefills, transfers, transfersToUser} = useAppSelector ((store) => store.user)
+    const {user, myRefills, transfers, transfersToUser,nameTheSite} = useAppSelector ((store) => store.user)
     const [item, setItem] = useState(1)
     const [dataId, setDataId] = useState()
     const statuses = [ 'Открыта' , "В процессе ", "Завершена", "Заморожена" ]
@@ -191,9 +192,9 @@ function Output() {
                             </div>
                         </div>
                         <div className="account-wrap__about-info">
-                            <p>stom-pro.ru не является банком, платежной системой или другой финансовой организацией и не ведет
+                            <p>{nameTheSite.name} не является банком, платежной системой или другой финансовой организацией и не ведет
                             расчетные счета пользователей.</p>
-                            <p>Кабинет stom-pro.ru обеспечивает лишь удобство расчетов между клиентами.</p>
+                            <p>Кабинет {nameTheSite.name} обеспечивает лишь удобство расчетов между клиентами.</p>
                     </div>
                     <div className="account-wrap__time-info">Перевод осуществляется в течении 24 ч</div>
                     <div className="alert-block">
@@ -222,9 +223,9 @@ function Output() {
                         <div style={item === 0 ? {display: 'block'}: {display: 'none'}} className="flex-box-0">
                             <div className="nav-account__content">
                                 <div className="account-wrap__about-info" style={{marginTop: "40px"}}>
-                                    <p>stom-pro.ru не является банком, платежной системой или другой финансовой организацией и не ведет
+                                    <p>{nameTheSite.name} не является банком, платежной системой или другой финансовой организацией и не ведет
                                         расчетные счета пользователей.</p>
-                                    <p>Кабинет stom-pro.ru обеспечивает лишь удобство расчетов между клиентами.</p>
+                                    <p>Кабинет {nameTheSite.name} обеспечивает лишь удобство расчетов между клиентами.</p>
                                 </div>
                             </div>
                             <div className="account-wrap__time-info">Перевод осуществляется в течении 24 ч</div>
@@ -269,9 +270,9 @@ function Output() {
                             </div>
                         </div>
                         <div className="account-wrap__about-info">
-                            <p>stom-pro.ru не является банком, платежной системой или другой финансовой организацией и не ведет
+                            <p>{nameTheSite.name} не является банком, платежной системой или другой финансовой организацией и не ведет
                             расчетные счета пользователей.</p>
-                            <p>Кабинет stom-pro.ru обеспечивает лишь удобство расчетов между клиентами.</p>
+                            <p>Кабинет {nameTheSite.name} обеспечивает лишь удобство расчетов между клиентами.</p>
                     </div>
                     <div className="account-wrap__time-info">Перевод осуществляется в течении 24 ч</div>
                     <div className="alert-block">

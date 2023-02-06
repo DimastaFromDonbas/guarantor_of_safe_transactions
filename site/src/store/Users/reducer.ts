@@ -4,6 +4,7 @@ import { IUser } from "../../interfaces/users";
 import { IDeal } from "../../interfaces/deal";
 import { IRefill } from "../../interfaces/refill";
 import { ITransfer } from "../../interfaces/transfer";
+import { INameSite } from "../../interfaces/nameSite";
 import { ITransferToUser } from "../../interfaces/transferToUser";
 import {IDealMessage} from "../../interfaces/dealMessage";
 
@@ -20,6 +21,7 @@ export interface IUsersReducer {
   allUsers: any | [];
   allDeals: IDeal[] | [];
   fixSumSystemMessage: [];
+  nameTheSite: INameSite
 }
 
 export const INITIAL: IUsersReducer = {
@@ -209,6 +211,9 @@ export const INITIAL: IUsersReducer = {
     description: "string",
   }],
   fixSumSystemMessage: [],
+  nameTheSite: {
+    name: 'САНЯ БОГ'
+  }
 };
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
@@ -237,6 +242,8 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, allDeals: payload };
     case reducerTypes.GET_FIX_SUM_SYSTEM_MESSAGE:
       return { ...state, fixSumSystemMessage: payload };
+    case reducerTypes.GET_NAME_THE_SITE:
+      return { ...state, NameTheSite: payload };
     default:
       return state;
   }

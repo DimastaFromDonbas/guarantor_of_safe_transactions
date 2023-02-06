@@ -11,6 +11,7 @@ export const reducerTypes = {
     GET_ALL_USERS: 'reducer/GET_ALL_USERS',
     GET_ALL_DEALS: 'reducer/GET_ALL_DEALS',
     GET_FIX_SUM_SYSTEM_MESSAGE:'reducer/GET_FIX_SUM_SYSTEM_MESSAGE',
+    GET_NAME_THE_SITE: 'reducer/GET_NAME_THE_SITE',
   };
   
   export const sagaTypes = {
