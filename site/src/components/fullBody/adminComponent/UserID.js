@@ -14,6 +14,8 @@ function AllUsersID() {
     const [ systemMessagesUser, setSystemMessagesUser] = useState('')
     const [ completedUser, setCompletedUser] = useState('')
     const [ scoreUser, setscoreUser] = useState('')
+    const [ minScore , setMinScore] = useState('0')
+    const [ blockUser, setBlockUser] = useState('')
     const [deleteUsers, setDeleteUsers] = useState([]);
     const dispatch = useDispatch();
 
@@ -49,6 +51,14 @@ function AllUsersID() {
         setscoreUser(e.currentTarget.value)
     }
 
+    function changesMinScoreUser(e) {
+        setMinScore(e.currentTarget.value)
+    }
+
+    function changesBlock(e) {
+        setBlockUser(e.currentTarget.value)
+    }
+
     useEffect(() => {
         getAllUsers();
          // eslint-disable-next-line 
@@ -66,6 +76,8 @@ function AllUsersID() {
                             <div style={{textAlign: 'center' ,width:'210px'}} className="output-date">Почта Пользователя</div>
                             <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Статус системного сообщения</div>
                             <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Completed</div>
+                            <div style={{textAlign: 'center' ,width:'100px'}} className="output-sum">Блокировка</div>
+                            <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Минимальная сумма</div>
                             <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Удалить</div>
                         </div>
 
@@ -77,6 +89,8 @@ function AllUsersID() {
                             <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.email}</div>
                             <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{systemMessagesUser? systemMessagesUser: item.systemMessage}</div>
                             <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{completedUser?completedUser:['Не наёбан', 'Наёбан'][item.completed]}</div>
+                            <div style={{width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{blockUser?blockUser:''}</div>
+                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{minScore?minScore:''}p</div>
                             <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum" onChange={(e) => changeDeleteUsers(e.target.checked, item.id)}><Checkbox color="error" /></div>
                         </div>)}
                         <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'5px'}}>
@@ -147,6 +161,35 @@ function AllUsersID() {
                                 <option value="Наёбан">Наёбан</option>
                                 <option value="Не наёбан">Не наёбан</option>
                             </select>
+                            <div className="tabl-flex-admin-button">
+                            Изменить
+                            </div>
+                        </div>
+                        <div className='pages-user-block'>
+                            <select
+                             onChange={changesBlock}
+                             style={{color: "white",borderRadius: "5px"}}
+                             className="tabl-flex-admin-user-scores " 
+                             name="select"> 
+                                <option value="" selected>Разблок или блок</option>
+                                <option value="true">Разблокировать</option>
+                                <option value="false">Заблокировать</option>
+                            </select>
+                            <div className="tabl-flex-admin-button">
+                            Изменить
+                            </div>
+                        </div>
+                        <div className='pages-user-block'>
+                        <input
+                        onChange={changesMinScoreUser}
+                            className="tabl-flex-admin-user-scores "
+                            style={{color: "white",borderRadius: "5px"}}
+                            type="number"
+                            name="name"
+                            placeholder="Изменение мин суммы вывода"
+                            autoComplete="off"
+                            required
+                            />
                             <div className="tabl-flex-admin-button">
                             Изменить
                             </div>
