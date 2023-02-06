@@ -93,7 +93,7 @@ function Header() {
     setCheckReadMassage(localStorage.getItem(`${user?.email}`) === 'true') // eslint-disable-next-line 
   },[updateHeaderAlert,dispatch, user])
 
-  const messages = ['Технический чат поддержки работает с 10:00 до 20:00 ежедневно!', 'Мы работаем только на территории РФ'];
+  const messages = ['Технический чат поддержки работает с 10:00 до 20:00 ежедневно!', 'В настоящее время мы не можем обслуживать клиентов, проживающих не в Российской Федерации.'];
 
   const [text, setText] = useState(messages[0]);
   const [index, setIndex] = useState(0);
@@ -105,7 +105,7 @@ function Header() {
   }, [index,messages.length]);
   
   const nextText = useMemo(() => {
-    return ['Технический чат поддержки работает с 10:00 до 20:00 ежедневно!', 'Мы работаем только на территории РФ'][index]},
+    return ['Технический чат поддержки работает с 10:00 до 20:00 ежедневно!', 'В настоящее время мы не можем обслуживать клиентов, проживающих не в Российской Федерации.'][index]},
    [index]);
 
   useEffect(() => {
