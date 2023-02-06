@@ -8,10 +8,23 @@ import { axiosGetUserTransfers, axiosGetUserToUserTransfers } from "../api/axios
 import { useEffect } from "react";
 import { reducerTypes } from "../store/Users/types";
  
+// const ScrollDemo = () => {
+//   const myRef = useRef(null)
+
+//   const executeScroll = () => myRef.current.scrollIntoView()    
+//   // run this function from an event handler or an effect to execute scroll 
+
+//   return (
+//      <> 
+//         <div ref={myRef}>Element to scroll to</div> 
+//         <button onClick={executeScroll}> Click to scroll </button> 
+//      </>
+//   )
+// }
+
 function Main() {
     const dispatch = useDispatch();
     const {user} = useAppSelector ((store) => store.user)
-
 
     async function getTransfers() {
         if(!user?.email) return;

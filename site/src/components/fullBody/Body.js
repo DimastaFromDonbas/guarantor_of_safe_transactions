@@ -286,15 +286,15 @@ function Body() {
         </div>
         <div style={{background: "rgba(17, 17, 18, 0.65)",width:'100%',paddingBottom: "30px",minHeight:'460px'}} >
             <div className='container'>
-                <div className='tytleStaleComents'>
+                <div className='tytleStaleComents' id='reviews'>
                     <h2>Отзывы</h2>
                 </div>
                     <Carousel fade={true} slide={true} touch={true}>
                         <Carousel.Item interval={null} touch={true}>
                         <div className='containerCard'>
-                            <div class="card-header-coments">
+                            <div className="card-header-coments">
                                 <SentimentSatisfiedAltIcon style={{color:'white',marginRight:'5px'}}></SentimentSatisfiedAltIcon>
-                                <span class="card-header-text-coments">GOR4666</span>
+                                <span className="card-header-text-coments">GOR4666</span>
                             </div>
                         <div className='card-body-coments'>
                             <div>
@@ -308,9 +308,9 @@ function Body() {
                         </div>
                         </div>
                         <div className='containerCard'>
-                            <div class="card-header-coments">
+                            <div className="card-header-coments">
                                 <SentimentSatisfiedAltIcon style={{color:'white',marginRight:'5px'}}></SentimentSatisfiedAltIcon>
-                                <span class="card-header-text-coments">lwhite</span>
+                                <span className="card-header-text-coments">lwhite</span>
                             </div>
                         <div className='card-body-coments'>
                             <div>
@@ -324,9 +324,9 @@ function Body() {
                         </div>
                         </div>
                         <div className='containerCard'>
-                            <div class="card-header-coments">
+                            <div className="card-header-coments">
                                 <SentimentSatisfiedAltIcon style={{color:'white',marginRight:'5px'}}></SentimentSatisfiedAltIcon>
-                                <span class="card-header-text-coments">SmartiOxigenium</span>
+                                <span className="card-header-text-coments">SmartiOxigenium</span>
                             </div>
                         <div className='card-body-coments'>
                             <div>
@@ -343,9 +343,9 @@ function Body() {
                         </Carousel.Item>
                         <Carousel.Item interval={null} touch={true}>
                         <div className='containerCard'>
-                            <div class="card-header-coments">
+                            <div className="card-header-coments">
                                 <SentimentSatisfiedAltIcon style={{color:'white',marginRight:'5px'}}></SentimentSatisfiedAltIcon>
-                                <span class="card-header-text-coments">GOR4666</span>
+                                <span className="card-header-text-coments">GOR4666</span>
                             </div>
                         <div className='card-body-coments'>
                             <div>
@@ -359,9 +359,9 @@ function Body() {
                         </div>
                         </div>
                         <div className='containerCard'>
-                            <div class="card-header-coments">
+                            <div className="card-header-coments">
                                 <SentimentSatisfiedAltIcon style={{color:'white',marginRight:'5px'}}></SentimentSatisfiedAltIcon>
-                                <span class="card-header-text-coments">Artuazzz</span>
+                                <span className="card-header-text-coments">Artuazzz</span>
                             </div>
                         <div className='card-body-coments'>
                             <div>
@@ -375,9 +375,9 @@ function Body() {
                         </div>
                         </div>
                         <div className='containerCard'>
-                            <div class="card-header-coments">
+                            <div className="card-header-coments">
                                 <SentimentSatisfiedAltIcon style={{color:'white',marginRight:'5px'}}></SentimentSatisfiedAltIcon>
-                                <span class="card-header-text-coments">GOR4666</span>
+                                <span className="card-header-text-coments">GOR4666</span>
                             </div>
                         <div className='card-body-coments'>
                             <div>
@@ -394,9 +394,9 @@ function Body() {
                         </Carousel.Item>
                         <Carousel.Item interval={null} touch={true}>
                         <div className='containerCard'>
-                            <div class="card-header-coments">
+                            <div className="card-header-coments">
                                 <SentimentSatisfiedAltIcon style={{color:'white',marginRight:'5px'}}></SentimentSatisfiedAltIcon>
-                                <span class="card-header-text-coments">SkingerLoy</span>
+                                <span className="card-header-text-coments">SkingerLoy</span>
                             </div>
                         <div className='card-body-coments'>
                             <div>
@@ -410,9 +410,9 @@ function Body() {
                         </div>
                         </div>
                         <div className='containerCard'>
-                            <div class="card-header-coments">
+                            <div className="card-header-coments">
                                 <SentimentSatisfiedAltIcon style={{color:'white',marginRight:'5px'}}></SentimentSatisfiedAltIcon>
-                                <span class="card-header-text-coments">Samvvediokda</span>
+                                <span className="card-header-text-coments">Samvvediokda</span>
                             </div>
                         <div className='card-body-coments'>
                             <div>
@@ -426,9 +426,9 @@ function Body() {
                         </div>
                         </div>
                         <div className='containerCard'>
-                            <div class="card-header-coments">
+                            <div className="card-header-coments">
                                 <SentimentSatisfiedAltIcon style={{color:'white',marginRight:'5px'}}></SentimentSatisfiedAltIcon>
-                                <span class="card-header-text-coments">Jeka05Andy</span>
+                                <span className="card-header-text-coments">Jeka05Andy</span>
                             </div>
                         <div className='card-body-coments'>
                             <div>
