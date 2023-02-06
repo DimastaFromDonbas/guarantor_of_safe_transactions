@@ -100,6 +100,38 @@ input::-webkit-inner-spin-button {
     max-width: 70px;
 }
 
+.tabl-flex-admin-user-scores {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: rgba(90, 89, 89, 0.75);
+    border: 1px solid rgba(255,255,255,0.01);
+    padding: 5px 0px;
+    text-align: center;
+    box-shadow:  0 4px 30px rgba(35,35,35,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+    min-width: 230px;
+}
+
+.pages-user-block {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    color: white;
+    backdrop-filter: blur(5.5px);
+    padding: 5px;
+    border: .5px solid;
+}
+
+.pages-user-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 1070px;
+}
+
 .tabl-flex-admin-button {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);

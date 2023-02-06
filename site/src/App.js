@@ -16,6 +16,7 @@ import Howitwork from "./components/fullBody/Howitwork"
 import AdminPanel from "./components/fullBody/AdminPanel"
 import BlockMaseges from "./components/fullBody/BlockMaseges";
 import Sertificates from './components/fullBody/Sertificates'
+import UserID from "./components/fullBody/adminComponent/UserID";
 //import {Helmet} from "react-helmet";
 
 function App() {
@@ -28,7 +29,9 @@ function App() {
       </Helmet> */}
 
       <Routes>
+      
         <Route path="/" element = {<Main/>}/>
+        <Route path="/adminPanel/allusers/:id" element={<UserID />}/>
         <Route path="/deal/:id" element={<Deal />}/>
         <Route path="/systemmessages" element={<SystemMessages />}/>
         <Route path="/blockMaseges" element={<BlockMaseges />}/>

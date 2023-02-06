@@ -50,7 +50,18 @@ export const INITIAL: IUsersReducer = {
   status: 0,
   sum: 9999,
   updatedAt: "2023-01-21T11:41:29.231Z",}],
-  refill: {},
+  refill: {
+    id: 1,
+    time: "string",
+    score: 10000,
+    status: 1,
+    updatedAt: "string",
+    createdAt: "string",
+    userEmail: "string",
+    userNickname: "string",
+    uniqueId: 12,
+    userId: null,
+  },
   myRefills: [
     {
       "id": 0,
@@ -214,7 +225,18 @@ export const INITIAL: IUsersReducer = {
     status: 1,
     description: "string",
   }],
-  allRefills: [],
+  allRefills: [{
+    id: 1,
+    time: "string",
+    score: 10000,
+    status: 1,
+    updatedAt: "string",
+    createdAt: "string",
+    userEmail: "string",
+    userNickname: "string",
+    uniqueId: 1,
+    userId: null,
+  }],
   fixSumSystemMessage: [],
   nameTheSite: {
     name: 'САНЯ БОГ'

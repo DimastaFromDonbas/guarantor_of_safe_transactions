@@ -131,7 +131,7 @@ function Header() {
                 <Link className="color-nav-link color" to="/howitwork"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates"><DocumentScannerIcon></DocumentScannerIcon> СЕРТИФИКАТЫ</Link>
-                <div onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
+                <div style={{cursor:'pointer'}} onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
                     })} className="color-nav-link color" ><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ
                   </div>
 
@@ -142,7 +142,7 @@ function Header() {
                 <Link className="color-nav-link color" to="/howitwork"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates"><DocumentScannerIcon></DocumentScannerIcon> СЕРТИФИКАТЫ</Link>
-                <div onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
+                <div style={{cursor:'pointer'}} onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
                     })} className="color-nav-link color" ><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ
                   </div>
 
@@ -158,7 +158,7 @@ function Header() {
                 <Link className="color-nav-link color" to="/howitwork">ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates">СЕРТИФИКАТЫ</Link>
-                  <div onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
+                  <div style={{cursor:'pointer'}} onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
                     })} className="color-nav-link color" > ОТЗЫВЫ
                   </div>
                 </div>
@@ -167,7 +167,7 @@ function Header() {
                 <Link className="color-nav-link color" to="/howitwork">ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates">СЕРТИФИКАТЫ</Link>
-                <div onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
+                <div style={{cursor:'pointer'}} onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
                     })} className="color-nav-link color" > ОТЗЫВЫ
                   </div>
 

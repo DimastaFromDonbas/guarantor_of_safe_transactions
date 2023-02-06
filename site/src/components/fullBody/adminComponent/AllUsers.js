@@ -8,11 +8,12 @@ import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import { StyledInput } from "../../../style/styles";
 import { axiosDeleteUser } from "../../../api/axios";
+import { useNavigate } from "react-router-dom";
 
 function AllUsers() {
 
     const dispatch = useDispatch();
-    const {user} = useAppSelector ((store) => store.user)
+    const {user,allUsers} = useAppSelector ((store) => store.user)
     const [search, setSearch] = useState('');
     const [filterAdmin, setFilterAdmin] = useState(true);
     const [filterModerator, setFilterModerator] = useState(true);
@@ -23,7 +24,7 @@ function AllUsers() {
     const [page, setPage] = useState(0);
     const [deleteUsers, setDeleteUsers] = useState([]);
     const [itemsPerPage, setItemsPerPage] = useState(10);
-    const {allUsers} = useAppSelector ((store) => store.user);
+    const navigate = useNavigate()
 
     async function getAllUsers(){
       const data = await axiosGetAllUsers();
@@ -82,24 +83,24 @@ function AllUsers() {
 
             <div style={{borderRadius: "5px"}} className="tabl-flex-admin">
                 <div style={{textAlign: 'center' ,width:'50px'}} className="output-id">ID</div>
-                <div style={{textAlign: 'center' ,width:'210px'}} className="output-date">Почта Пользователя</div>
+                <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Имя пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Роль пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Деньги пользователя</div>
-                <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Имя пользователя</div>
+                <div style={{textAlign: 'center' ,width:'210px'}} className="output-date">Почта Пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Статус системного сообщения</div>
                 <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Completed</div>
                 <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Удалить</div>
             </div>
 
              {users?.sort((a, b) => a.id - b.id).slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={item?.email}>
-                <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.id}</div>
-                <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.email}</div>
-                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.role}</div>
-                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.score}</div>
-                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.nickname}</div>
-                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.systemMessage}</div>
-                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{['Не наёбан', 'Наёбан'][item.completed]}</div>
-                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum" onChange={(e) => changeDeleteUsers(e.target.checked, item.id)}><Checkbox color="error" /></div>
+                <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-id">{item.id}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-sum">{item.nickname}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-date">{item.role}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-sum">{item.score}</div>
+                <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-id">{item.email}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-sum">{item.systemMessage}</div>
+                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-sum">{['Не наёбан', 'Наёбан'][item.completed]}</div>
+                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-sum" onChange={(e) => changeDeleteUsers(e.target.checked, item.id)}><Checkbox color="error" /></div>
             </div>)}
 
           <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'5px'}}>
