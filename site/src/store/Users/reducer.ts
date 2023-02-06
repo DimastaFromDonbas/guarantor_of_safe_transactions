@@ -29,7 +29,7 @@ export const INITIAL: IUsersReducer = {
     id: 1,
     email: "user104@gmail.com",
     password: "1234567a" || null,
-    role: "Админ",
+    role: "USER",
     score: 0,
     nickname: "test",
     systemMessage: null,
