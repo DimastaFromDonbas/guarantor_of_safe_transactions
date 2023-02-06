@@ -122,8 +122,8 @@ function Header() {
                 <Link className="color-nav-link color" to="/howitwork"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates"><DocumentScannerIcon></DocumentScannerIcon> СЕРТИФИКАТЫ</Link>
-                <Link className="color-nav-link color" to="#"><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ</Link>
-                <button onClick={handleClick}>123</button>
+                <Link onClick={handleClick} className="color-nav-link color" to="#"><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ</Link>
+
                 </div>
               :
               <div style={{display: "flex",flexDirection: "column",padding:'20px',gap: "15px", fontSize: "18px", background: "#191919", height: '100%'}}>
@@ -131,8 +131,8 @@ function Header() {
                 <Link className="color-nav-link color" to="/howitwork"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates"><DocumentScannerIcon></DocumentScannerIcon> СЕРТИФИКАТЫ</Link>
-                <Link className="color-nav-link color" to="#"><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ</Link>
-                <button onClick={handleClick}>123</button>
+                <Link onClick={handleClick} className="color-nav-link color" to="#"><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ</Link>
+
               </div>}
             </SwipeableDrawer>
               <div className="nav-main-header">
@@ -145,16 +145,16 @@ function Header() {
                 <Link className="color-nav-link color" to="/howitwork">ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates">СЕРТИФИКАТЫ</Link>
-                <Link className="color-nav-link color" to="#">ОТЗЫВЫ</Link>
-                <button onClick={handleClick}>123</button>
+                <Link onClick={handleClick} className="color-nav-link color" to="#">ОТЗЫВЫ</Link>
+
                 </div>
               :
               <div className="flex-nav-link header-navBar">
                 <Link className="color-nav-link color" to="/howitwork">ПОМОЩЬ</Link>
                 <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates">СЕРТИФИКАТЫ</Link>
-                <Link className="color-nav-link color" to="#">ОТЗЫВЫ</Link>
-                <button onClick={handleClick}>123</button>
+                <Link onClick={handleClick} className="color-nav-link color" to="#">ОТЗЫВЫ</Link>
+
               </div>}
               </div>
               { user?.id?
