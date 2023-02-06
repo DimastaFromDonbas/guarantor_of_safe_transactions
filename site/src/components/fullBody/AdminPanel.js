@@ -75,7 +75,15 @@ function AdminPanel() {
                 {item === 2 ?<div style={{display: 'block'}}>
                     <AllDeposit />
                 </div> : ''}
-
+                {item === 3 ?<div style={{display: 'block',width: '100%'}}>
+                    <AllUsers />
+                </div>:''}
+                {item === 4 ? <div style={{display: 'block', width: '100%'}}>
+                    <AllDeals />
+                </div> : ''}
+                {item === 5 ? <div style={{display: 'block'}}>
+                    <SetNameTheSite />
+                    </div> : ''}
             </div>
         </div>
     </div>
