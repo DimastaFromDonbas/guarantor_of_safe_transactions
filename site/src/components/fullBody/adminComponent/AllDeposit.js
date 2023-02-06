@@ -67,7 +67,7 @@ function AllDeposit() {
 
             <div style={{borderRadius: "5px"}} className="tabl-flex-admin">
                 <div style={{textAlign: 'center' ,width:'80px'}} className="output-id">UNIQUE ID</div>
-                <div style={{textAlign: 'center' ,width:'155px'}} className="output-id">ID для пользователя</div>
+                <div style={{textAlign: 'center' ,width:'80px'}} className="output-id">ID для пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px', cursor:'pointer'}} className="output-date" onClick={() => setSortId(prev => !prev)}>Время создания</div>
                 <div style={{textAlign: 'center' ,width:'100px'}} className="output-sum">Сумма</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Почта пользователя</div>
