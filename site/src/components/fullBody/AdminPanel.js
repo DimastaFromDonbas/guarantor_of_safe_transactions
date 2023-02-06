@@ -4,6 +4,7 @@ import AllDeals from "./adminComponent/AllDeals";
 import AllUsers from "./adminComponent/AllUsers";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useNavigate } from "react-router-dom";
+import SetNameTheSite from "./SetNameTheSite";
 
 function AdminPanel() {
 
@@ -74,6 +75,7 @@ function AdminPanel() {
                 {item === 2 ?<div style={{display: 'block'}}>
                     <AllDeposit />
                 </div> : ''}
+
             </div>
         </div>
     </div>

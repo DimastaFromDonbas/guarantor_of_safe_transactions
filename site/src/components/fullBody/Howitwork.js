@@ -12,8 +12,12 @@ import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Chat from "./Chat";
+import { useAppSelector } from "../../store/reduxHooks";
 
 function Howitwork() {
+
+    const {nameTheSite} = useAppSelector ((store) => store.user)
+
     return <div className="bg-img">
         <Header />
         <Chat />
@@ -24,8 +28,8 @@ function Howitwork() {
                     <img className="img-cover" src={Baner} alt="img"/>
                     </div>
                     <div className="main-section__heading">
-                        <h2>Что такое grandfight.ru</h2>
-                        <p>grandfight.ru - сервис, защищающий торговые сделки в интернете и гарантирующий выполнение обязательств,
+                        <h2>Что такое {nameTheSite.name}</h2>
+                        <p>{nameTheSite.name} - сервис, защищающий торговые сделки в интернете и гарантирующий выполнение обязательств,
                             что снижает риски мошеничества и подлоги.</p>
                     </div>
                 </div>
@@ -140,7 +144,7 @@ function Howitwork() {
                                 </div>
                                 <div className="card-info__content">В случае, когда стороны не приходят к соглашению из-за несоответствия
                                     товара заявленным характеристикам, они могут воспользоваться помощью опытных арбитражных
-                                    консультантов grandfight.ru, которые разберутся в деталях и предложат вероятные пути разрешения спора.
+                                    консультантов {nameTheSite.name}, которые разберутся в деталях и предложат вероятные пути разрешения спора.
                                 </div>
                             </div>
                         </div>
@@ -153,7 +157,7 @@ function Howitwork() {
                                     <p>Статус “Завершенная сделка”</p>
                                 </div>
                                 <div className="card-info__content">Успешное завершение сделки. При полном выполнении обязательств
-                                    продавца перед покупателем grandfight.ru переводит денежные средства на баланс продавца. При выявлении
+                                    продавца перед покупателем {nameTheSite.name} переводит денежные средства на баланс продавца. При выявлении
                                     ненадлежащего условия выполнения условий сделки - деньги возвращаются покупателю. Сделка
                                     закрывается.
                                 </div>
@@ -175,7 +179,7 @@ function Howitwork() {
                     <div className="banner-info__img-wrap">
                         <img className="banner-info__img-wrap" src={OrderIcon} alt="imgOrder"/>
                     </div>
-                    <div className="banner-info__description">Используйте наш сервис grandfight.ru, не рискуя самостоятельно проверять
+                    <div className="banner-info__description">Используйте наш сервис {nameTheSite.name}, не рискуя самостоятельно проверять
                         человека на честность. Мошенник никогда и ни при каких условиях не согласиться проводить безопасную
                         сделку.</div>
                 </div>

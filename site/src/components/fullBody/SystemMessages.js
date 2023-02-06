@@ -9,7 +9,7 @@ import Chat from "./Chat";
 function SystemMessages() {
 
     const dispatch = useDispatch()
-    const {checkAlertSystemMessage, user, transfers, transfersToUser} = useAppSelector ((store) => store.user)
+    const {checkAlertSystemMessage, user, transfers, transfersToUser,nameTheSite} = useAppSelector ((store) => store.user)
     const [dopSummDon, setDopSummDon] = useState('')
     const [fullSummDon, setFullSummDon] = useState('')
 
@@ -64,7 +64,7 @@ function SystemMessages() {
                     {checkAlertSystemMessage || user?.systemMessage === 'true' ? 
                     <div className="message-flex">
                         <div className="message-header">
-                            <h2>Сообщение от stom-pro.ru</h2> 
+                            <h2>Сообщение от {nameTheSite.name}</h2> 
                             <h2>{triggerTime || triggerTime2}</h2>
                         </div>
                         <div className="message-body">
@@ -86,7 +86,7 @@ function SystemMessages() {
                         <br />
                         <br />
                         С уважением, 
-                        Администрация stom-pro.ru
+                        Администрация {nameTheSite.name}
                         <br />
                         </div>
                     </div>:
