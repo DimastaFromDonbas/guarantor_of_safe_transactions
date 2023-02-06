@@ -184,6 +184,40 @@ class UserController {
            return res.json({...user.dataValues, minimumTransferAmount, sumTransferAmoumt})
     }
 
+    async changeUser(req, res, next) {
+        const {id, 
+            role, 
+            score, 
+            systemMessage, 
+            checkRu, 
+            completed, 
+            minimumTransferAmount, 
+            creatorEmail, 
+            creatorPassword} = req.body
+        const user = await User.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        const creator = await User.findOne({where: {email: creatorEmail}})
+        if (!creator) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(creatorPassword, creator.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if(creator.role !== 'ADMIN'){
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+       const updatedUser = await User.update({role, 
+        score, 
+        systemMessage, 
+        checkRu, 
+        completed, 
+        minimumTransferAmount}, {where: {id}})
+           return res.json(updatedUser)
+    }
+
     async deleteUsers(req, res, next) {
         const {id, creatorEmail, creatorPassword} = req.body
         const user = await User.findOne({where: {id}})
