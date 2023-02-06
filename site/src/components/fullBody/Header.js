@@ -159,7 +159,7 @@ function Header() {
                 <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates">СЕРТИФИКАТЫ</Link>
                   <div onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
-                    })} className="color-nav-link color" ><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ
+                    })} className="color-nav-link color" > ОТЗЫВЫ
                   </div>
                 </div>
               :
@@ -168,7 +168,7 @@ function Header() {
                 <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates">СЕРТИФИКАТЫ</Link>
                 <div onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
-                    })} className="color-nav-link color" ><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ
+                    })} className="color-nav-link color" > ОТЗЫВЫ
                   </div>
 
               </div>}
