@@ -1,4 +1,4 @@
-import { StyledInput } from "../../style/styles";
+import { StyledInput } from "../../../style/styles";
 // import { useAppSelector } from "../../store/reduxHooks";
 import { useState } from "react";
 
@@ -14,7 +14,7 @@ function SetNameTheSite() {
     return <>
          <h3 style={{textAlign: 'center'}}>СМЕНА НАЗВАНИЯ САЙТА </h3> 
 
-         <div style={{display: 'flex',justifyContent: "center",marginTop: "20px"}}>
+         <div style={{display: 'flex',justifyContent: "center",marginTop: "20px",gap: "10px"}}>
             <StyledInput className="tabl-flex-admin-search"
                 style={{color: "white",borderRadius: "5px", paddingLeft: '10px'}}
                 type="search"

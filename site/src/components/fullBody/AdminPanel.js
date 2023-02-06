@@ -5,7 +5,7 @@ import AllUsers from "./adminComponent/AllUsers";
 import AllTransfers from "./adminComponent/AllTransfers";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useNavigate } from "react-router-dom";
-import SetNameTheSite from "./SetNameTheSite";
+import SetNameTheSite from "./adminComponent/SetNameTheSite";
 
 function AdminPanel() {
 
@@ -14,7 +14,6 @@ function AdminPanel() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log('user',user, user?.role)
         if(user?.role === 'USER' || user?.role === null || user?.role === '' || user?.role === undefined ) {
           navigate("/")
         }
