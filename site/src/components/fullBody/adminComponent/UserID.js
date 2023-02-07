@@ -172,7 +172,7 @@ function AllUsersID() {
                     <div className='pages-user-box'>
   
                         <div className='pages-user-block'>
-                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
+                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение роли пользователя</h6>
                             <div style={{display: "flex",gap:" 5px"}}>
                             <select
                              onChange={(e) => setRoleUser(e.currentTarget.value)}
@@ -191,7 +191,7 @@ function AllUsersID() {
                             </div>
                         </div>
                         <div className='pages-user-block'>
-                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
+                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение денег пользователя</h6>
                         <div style={{display: "flex",gap:" 5px"}}>
                         <input
                         onChange={(e) => setscoreUser(e.currentTarget.value || 0)}
@@ -210,7 +210,7 @@ function AllUsersID() {
                             </div>
                         </div>
                         <div className='pages-user-block'>
-                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
+                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса системного сообщения</h6>
                         <div style={{display: "flex",gap:" 5px"}}>
                             <select
                              onChange={(e) => setSystemMessagesUser(e.currentTarget.value)}
@@ -228,7 +228,7 @@ function AllUsersID() {
                             </div>
                         </div>
                         <div className='pages-user-block'>
-                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
+                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса пользователя</h6>
                         <div style={{display: "flex",gap:" 5px"}}>
                             <select
                              onChange={(e) => setCompletedUser(e.currentTarget.value)}
@@ -246,7 +246,7 @@ function AllUsersID() {
                             </div>
                         </div>
                         <div className='pages-user-block'>
-                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
+                        <h6 style={{margin: "0",textAlign: "center"}}>Закрыть доступ</h6>
                         <div style={{display: "flex",gap:" 5px"}}>
                             <select
                              onChange={(e) => setBlockUser(e.currentTarget.value)}
@@ -264,7 +264,7 @@ function AllUsersID() {
                             </div>
                         </div>
                         <div className='pages-user-block'>
-                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
+                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение мин суммы вывода</h6>
                         <div style={{display: "flex",gap:" 5px"}}>
                         <input
                         onChange={(e) => {
