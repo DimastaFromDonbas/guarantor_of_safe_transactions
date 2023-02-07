@@ -84,7 +84,13 @@ function AdminPanel() {
                 {item === 5 ? <div style={{display: 'block'}}>
                     <SetNameTheSite />
                     </div> : ''}
+                    <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",marginTop:'10px',color:'white'}}>
+                        <div onClick={() => navigate("/")} className="tabl-flex-admin-button-global2">
+                            Вернуться назад 
+                        </div>
+                    </div>
             </div>
+            
         </div>
     </div>
 }
