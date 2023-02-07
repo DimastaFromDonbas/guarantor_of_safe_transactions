@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom"
 import { axiosGetAllUserToUserTransfers } from "../../../api/axios";
 import { useAppSelector } from "../../../store/reduxHooks";
 import { reducerTypes } from "../../../store/Users/types";
+import { transferStatusMock } from "../../mock/OutputMock";
+import { axiosChangeUserToUserTransfer } from "../../../api/axios";
 
 function TransfersToUserID() {
 
@@ -16,7 +18,7 @@ function TransfersToUserID() {
     const [ scoreTransfers, setScoreTransfersToUser ] = useState()
     const [ timeTransfersToUser, setTimeTransfersToUser ] = useState('')
     const [ statusTransfersToUser, setStatusTransfersToUser ] = useState()
-    const {allTransfersToUser} = useAppSelector ((store) => store.user);
+    const {allTransfersToUser, user} = useAppSelector ((store) => store.user);
 
     async function getAllTransfersTouser(){
         const data = await axiosGetAllUserToUserTransfers();
@@ -27,6 +29,17 @@ function TransfersToUserID() {
         });
     }
       }
+
+      async function changeTransfer() {
+        if(!transfersIDToUser || !scoreTransfers || !statusTransfersToUser) return alert('Введите все данные');
+        const result = await axiosChangeUserToUserTransfer(Number(transfersIDToUser), Number(scoreTransfers), Number(statusTransfersToUser), user?.email, user?.password);
+        if(result) {
+            getAllTransfersTouser();
+         return alert('Успешно')
+        };
+        alert('Что-то пошло не так')
+     }
+
       useEffect(() => {
         const temporaryTransfersToUser = allTransfersToUser?.filter(item => item.id === Number(id))[0]
         if(temporaryTransfersToUser) {
@@ -64,13 +77,13 @@ function TransfersToUserID() {
                             <div style={{width:'210px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-sum">{emailReceiverToUser}</div>
                             <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{scoreTransfers}</div>
                             <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{timeTransfersToUser}</div>
-                            <div style={{width:'120px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{statusTransfersToUser}</div>
+                            <div style={{width:'120px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{transferStatusMock[statusTransfersToUser - 1] || ''}</div>
                         </div>}
                         <div className='pages-user-box-2'>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
                                 <h6 style={{margin: "0",textAlign: "center"}}>Изменение суммы перевода</h6>
                                 <input
-                                    onChange={(e) => setScoreTransfersToUser(e.target.value)}
+                                    onChange={(e) => setScoreTransfersToUser(e.target.value || 0)}
                                     className="tabl-flex-admin-user-scores "
                                     style={{color: "white",borderRadius: "5px"}}
                                     type="number"
@@ -78,6 +91,7 @@ function TransfersToUserID() {
                                     placeholder="Изменение денег пользователя"
                                     autoComplete="off"
                                     required
+                                    value={scoreTransfers || 0}
                                 />
                             </div>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
@@ -86,15 +100,15 @@ function TransfersToUserID() {
                                     onChange={(e) => setStatusTransfersToUser(e.target.value)}
                                     style={{color: "white",borderRadius: "5px"}}
                                     className="tabl-flex-admin-user-scores " 
-                                    name="select"> 
-                                    <option value="" selected></option>
-                                    <option value="В обработке">В обработке</option>
-                                    <option value="Успешный">Успешный</option>
+                                    name="select"
+                                    value={String(statusTransfersToUser) || '1'}> 
+                                    <option value="1">В обработке</option>
+                                    <option value="2">Успешный</option>
                                     </select>
                             </div>
                         </div>
                         <div style={{width:'100%',display: "flex",marginTop:"20px",justifyContent: "center"}}>
-                            <div className="tabl-flex-admin-button-global">
+                            <div className="tabl-flex-admin-button-global" onClick={changeTransfer}>
                                 Внести изменения
                             </div>
                         </div>

@@ -1,6 +1,11 @@
 const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
 
+const SiteName = sequelize.define('site_name', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    siteName: {type: DataTypes.STRING, unique: true,},
+})
+
 const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true,},
@@ -163,6 +168,7 @@ Type.belongsToMany(Brand, {through: TypeBrand })
 Brand.belongsToMany(Type, {through: TypeBrand })
 
 module.exports = {
+    SiteName,
     User,
     UserRefill,
     UserTransfer,

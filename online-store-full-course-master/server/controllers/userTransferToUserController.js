@@ -28,11 +28,11 @@ class UserTransferToUserController {
     }
 
     async changeTransfer(req, res, next) {
-        const {id, status, creatorEmail, creatorPassword} = req.body
-        if (!id || !status || !creatorEmail || !creatorPassword) {
+        const {id, score, status, creatorEmail, creatorPassword} = req.body
+        if (!id || !score || !status || !creatorEmail || !creatorPassword) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const creator = User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({where: {email: creatorEmail}})
         if (!creator) {
             return next(ApiError.badRequest('Админ с таким email не найден'))
         }
@@ -48,8 +48,8 @@ class UserTransferToUserController {
             return next(ApiError.badRequest('Перевод не найден'))
         }
 
-          const transfer = await UserTransferToUser.update({status}, {where: {id}})
-           return res.json({...transfer.dataValues, status})
+          const transfer = await UserTransferToUser.update({score, status}, {where: {id}})
+           return res.json(transfer)
     }
 
     async getAll(req, res) {

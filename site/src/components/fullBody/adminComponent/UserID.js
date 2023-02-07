@@ -37,7 +37,6 @@ function AllUsersID() {
       }
 
     async function getAllUsers(){
-        if(allUsers[0]) return;
         const data = await axiosGetAllUsers();
         dispatch({
           type: reducerTypes.GET_ALL_USERS,
@@ -165,119 +164,118 @@ function AllUsersID() {
                     </div>
                     </div>
                     <div className='pages-user-box'>
-                        <div style={{flexDirection: "column"}} className='pages-user-block'>
-                            <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
+                        <div className='pages-user-block'>
+                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
                             <div style={{display: "flex",gap:" 5px"}}>
-                                <select
-                                onChange={(e) => setRoleUser(e.currentTarget.value)}
-                                style={{color: "white",borderRadius: "5px"}}
-                                className="tabl-flex-admin-user-scores " 
-                                name="select"
-                                value={roleUser || "ROLE"}> 
-                                    <option value="ROLE">Выберите роль пользователя</option>
-                                    <option value="ADMIN">ADMIN</option>
-                                    <option value="MODERATOR">MODERATOR</option>
-                                    <option value="CHATER">CHATER</option>
-                                    <option value="USER">USER</option>
-                                </select>
-                                <div className="tabl-flex-admin-button" onClick={changeRole}>
-                                Изменить
-                                </div>
+                            <select
+                             onChange={(e) => setRoleUser(e.currentTarget.value)}
+                             style={{color: "white",borderRadius: "5px"}}
+                             className="tabl-flex-admin-user-scores " 
+                             name="select"
+                             value={roleUser || "USER"}> 
+                                <option value="ADMIN">ADMIN</option>
+                                <option value="MODERATOR">MODERATOR</option>
+                                <option value="CHATER">CHATER</option>
+                                <option value="USER">USER</option>
+                            </select>
+                            <div className="tabl-flex-admin-button" onClick={changeRole}>
+                            Изменить
+                            </div>
                             </div>
                         </div>
-                        <div style={{flexDirection: "column"}} className='pages-user-block'>
-                            <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
-                            <div style={{display: "flex",gap:" 5px"}}>
-                                <input
-                                    onChange={(e) => setscoreUser(e.currentTarget.value)}
-                                    className="tabl-flex-admin-user-scores "
-                                    style={{color: "white",borderRadius: "5px"}}
-                                    type="number"
-                                    name="name"
-                                    placeholder="Изменение денег пользователя"
-                                    autoComplete="off"
-                                    required
-                                    value={scoreUser}
-                                    />
-                                    <div className="tabl-flex-admin-button" onClick={changeScore}>
-                                    Изменить
-                                    </div>
-                                </div>
+                        <div className='pages-user-block'>
+                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
+                        <div style={{display: "flex",gap:" 5px"}}>
+                        <input
+                        onChange={(e) => setscoreUser(e.currentTarget.value || 0)}
+                            className="tabl-flex-admin-user-scores "
+                            style={{color: "white",borderRadius: "5px"}}
+                            type="number"
+                            name="name"
+                            placeholder="Изменение денег пользователя"
+                            autoComplete="off"
+                            required
+                            value={scoreUser || 0}
+                            />
+                            <div className="tabl-flex-admin-button" onClick={changeScore}>
+                            Изменить
                             </div>
-                        <div style={{flexDirection: "column"}} className='pages-user-block'>
-                            <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
-                            <div style={{display: "flex",gap:" 5px"}}>
-                                <select
-                                onChange={(e) => setSystemMessagesUser(e.currentTarget.value)}
-                                style={{color: "white",borderRadius: "5px"}}
-                                className="tabl-flex-admin-user-scores " 
-                                name="select"
-                                value={systemMessagesUser || ''}> 
-                                    <option value="">Системное сообщение</option>
-                                    <option value="true">Отправлено</option>
-                                    <option value="false">Не отпавлено</option>
-                                </select>
-                                <div className="tabl-flex-admin-button" onClick={changeSystemMessage}>
-                                Изменить
-                                </div>
                             </div>
                         </div>
-                        <div style={{flexDirection: "column"}} className='pages-user-block'>
-                            <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
-                            <div style={{display: "flex",gap:" 5px"}}>
-                                <select
-                                onChange={(e) => setCompletedUser(e.currentTarget.value)}
-                                style={{color: "white",borderRadius: "5px"}}
-                                className="tabl-flex-admin-user-scores " 
-                                name="select"
-                                value={String(completedUser) || ''}> 
-                                    <option value="">Состояние пользователя</option>
-                                    <option value="1">Наёбан</option>
-                                    <option value="0">Не наёбан</option>
-                                </select>
-                                <div className="tabl-flex-admin-button" onClick={changeCompleted}>
-                                Изменить
-                                </div>
+                        <div className='pages-user-block'>
+                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
+                        <div style={{display: "flex",gap:" 5px"}}>
+                            <select
+                             onChange={(e) => setSystemMessagesUser(e.currentTarget.value)}
+                             style={{color: "white",borderRadius: "5px"}}
+                             className="tabl-flex-admin-user-scores " 
+                             name="select"
+                             value={systemMessagesUser || ''}> 
+                                <option value="">Не выбрано</option>
+                                <option value="true">Отправлено</option>
+                                <option value="false">Не отпавлено</option>
+                            </select>
+                            <div className="tabl-flex-admin-button" onClick={changeSystemMessage}>
+                            Изменить
+                            </div>
                             </div>
                         </div>
-                        <div style={{flexDirection: "column"}} className='pages-user-block'>
-                            <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
-                            <div style={{display: "flex",gap:" 5px"}}>
-                                <select
-                                onChange={(e) => setBlockUser(e.currentTarget.value)}
-                                style={{color: "white",borderRadius: "5px"}}
-                                className="tabl-flex-admin-user-scores " 
-                                name="select"
-                                value={blockUser || ''}> 
-                                    <option value="">Разблок или блок</option>
-                                    <option value="true">Разблокировать</option>
-                                    <option value="false">Заблокировать</option>
-                                </select>
-                                <div className="tabl-flex-admin-button" onClick={changeCheckRu}>
-                                Изменить
-                                </div>
+                        <div className='pages-user-block'>
+                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
+                        <div style={{display: "flex",gap:" 5px"}}>
+                            <select
+                             onChange={(e) => setCompletedUser(e.currentTarget.value)}
+                             style={{color: "white",borderRadius: "5px"}}
+                             className="tabl-flex-admin-user-scores " 
+                             name="select"
+                             value={String(completedUser) || ''}> 
+                                <option value="">Не выбрано</option>
+                                <option value="1">Наёбан</option>
+                                <option value="0">Не наёбан</option>
+                            </select>
+                            <div className="tabl-flex-admin-button" onClick={changeCompleted}>
+                            Изменить
+                            </div>
                             </div>
                         </div>
-                        <div style={{flexDirection: "column"}} className='pages-user-block'>
-                            <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
-                            <div style={{display: "flex",gap:" 5px"}}>
-                            <input
-                                onChange={(e) => {
-                                setMinScore(e.currentTarget.value)
-                                setMinRefil((e.currentTarget.value - scoreUser < 0) ? 0 : e.currentTarget.value - scoreUser )
-                                }}
-                                className="tabl-flex-admin-user-scores "
-                                style={{color: "white",borderRadius: "5px"}}
-                                type="number"
-                                name="name"
-                                placeholder="Изменение мин суммы вывода"
-                                autoComplete="off"
-                                required
-                                value={minScore || 0}
-                                />
-                                <div className="tabl-flex-admin-button" onClick={changeTransferAmount}>
-                                    Изменить
-                                </div>
+                        <div className='pages-user-block'>
+                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
+                        <div style={{display: "flex",gap:" 5px"}}>
+                            <select
+                             onChange={(e) => setBlockUser(e.currentTarget.value)}
+                             style={{color: "white",borderRadius: "5px"}}
+                             className="tabl-flex-admin-user-scores " 
+                             name="select"
+                             value={blockUser || ''}> 
+                                <option value="">Не выбрано</option>
+                                <option value="true">Разблокировать</option>
+                                <option value="false">Заблокировать</option>
+                            </select>
+                            <div className="tabl-flex-admin-button" onClick={changeCheckRu}>
+                            Изменить
+                            </div>
+                            </div>
+                        </div>
+                        <div className='pages-user-block'>
+                        <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
+                        <div style={{display: "flex",gap:" 5px"}}>
+                        <input
+                        onChange={(e) => {
+                            setMinScore(e.currentTarget.value || 0)
+                            setMinRefil((e.currentTarget.value - scoreUser < 0) ? 0 : e.currentTarget.value - scoreUser )
+                        }}
+                            className="tabl-flex-admin-user-scores "
+                            style={{color: "white",borderRadius: "5px"}}
+                            type="number"
+                            name="name"
+                            placeholder="Изменение мин суммы вывода"
+                            autoComplete="off"
+                            required
+                            value={minScore}
+                            />
+                            <div className="tabl-flex-admin-button" onClick={changeTransferAmount}>
+                            Изменить
+                            </div>
                             </div>
                         </div>
                     </div>

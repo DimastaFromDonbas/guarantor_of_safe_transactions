@@ -22,11 +22,11 @@ class UserTransferController {
     }
 
     async changeTransfer(req, res, next) {
-        const {id, paymantSystem, walletNumber, status, creatorEmail, creatorPassword} = req.body
-        if (!id || !paymantSystem || !walletNumber || !status || !creatorEmail || !creatorPassword) {
+        const {id, score, status, creatorEmail, creatorPassword} = req.body
+        if (!id || !score || !status || !creatorEmail || !creatorPassword) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const creator = User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({where: {email: creatorEmail}})
         if (!creator) {
             return next(ApiError.badRequest('Админ с таким email не найден'))
         }
@@ -34,7 +34,7 @@ class UserTransferController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role !== 'ADMIN'){
+        if(creator.role === 'USER'){
             return next(ApiError.badRequest('Нет доступа'))
         }
         const checkTransfer = await UserTransfer.findOne({where: {id}})
@@ -42,8 +42,8 @@ class UserTransferController {
             return next(ApiError.badRequest('Перевод не найден'))
         }
 
-          const transfer = await UserTransfer.update({paymantSystem, walletNumber, status}, {where: {id}})
-           return res.json({...transfer.dataValues, paymantSystem, walletNumber, status})
+          const transfer = await UserTransfer.update({score, status}, {where: {id}})
+           return res.json(transfer)
     }
 
     async getAll(req, res) {

@@ -21,7 +21,6 @@ function DealID() {
     const [errorSumDeal,setErrorSumDeal] = useState('')
 
     async function getAllDeals(){
-        if(allDeals[0]) return;
         const data = await axiosGetAllDeal();
         if(data) {
         dispatch({
@@ -42,7 +41,7 @@ function DealID() {
     }
 
     function sumFull(e) {
-        setSumDeal(e.currentTarget.value)
+        setSumDeal(e.currentTarget.value || 0)
           if(!e.target.value){
             setErrorSumDeal('Введите сумму') 
         }else if(e.target.value < 2000) {

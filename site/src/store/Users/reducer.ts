@@ -305,7 +305,7 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
     case reducerTypes.GET_FIX_SUM_SYSTEM_MESSAGE:
       return { ...state, fixSumSystemMessage: payload };
     case reducerTypes.GET_NAME_THE_SITE:
-      return { ...state, NameTheSite: payload };
+      return { ...state, nameTheSite: payload };
     default:
       return state;
   }

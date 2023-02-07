@@ -11,6 +11,7 @@ const messageToAdminRouter = require('./messageToAdminRouter')
 const chatRouter = require('./chatRouter')
 const userTransferRoutes = require('./userTransferRoutes')
 const userToUserrouter = require('./userToUserrouter')
+const siteNameRouter = require('./siteNameRouter')
 
 router.use('/user', userRouter)
 router.use('/refill', userRefillRouter)
@@ -23,5 +24,7 @@ router.use('/messagesToAdmin', messageToAdminRouter)
 router.use('/chat', chatRouter)
 router.use('/transfer', userTransferRoutes)
 router.use('/touser', userToUserrouter)
+router.use('/name', siteNameRouter)
+
 
 module.exports = router
