@@ -8,7 +8,7 @@ const User = sequelize.define('user', {
     role: {type: DataTypes.STRING, defaultValue: "USER"},
     score: {type: DataTypes.INTEGER, defaultValue: 0},
     nickname: {type: DataTypes.STRING, unique: true},
-    systemMessage: {type: DataTypes.STRING, defaultValue: null},
+    systemMessage: {type: DataTypes.STRING, defaultValue: "false"},
     checkRu: {type: DataTypes.STRING},
     minimumTransferAmount: {type: DataTypes.INTEGER},
     sumTransferAmoumt: {type: DataTypes.INTEGER},

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { axiosDeleteUser, axiosGetAllUsers } from '../../../api/axios';
 import { useAppSelector } from "../../../store/reduxHooks";
 import { reducerTypes } from '../../../store/Users/types';
+import { axiosChangeUser } from '../../../api/axios';
 
 function AllUsersID() {
 
@@ -59,6 +60,11 @@ function AllUsersID() {
         setBlockUser(e.currentTarget.value)
     }
 
+    async function changeUser() {
+        const result = await axiosChangeUser();
+        if(result) alert('success')
+    }
+
     useEffect(() => {
         getAllUsers();
          // eslint-disable-next-line 
@@ -84,10 +90,10 @@ function AllUsersID() {
                         {allUsers?.filter( user => user.id === Number(id) )?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={item?.email}>
                             <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-id">{item.id}</div>
                             <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.nickname}</div>
-                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{ roleUser?roleUser: item.role}</div>
-                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{scoreUser?scoreUser:item.score}p</div>
+                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{ roleUser || item.role}</div>
+                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{scoreUser || item.score}p</div>
                             <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.email}</div>
-                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{systemMessagesUser? systemMessagesUser: item.systemMessage}</div>
+                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{systemMessagesUser || item.systemMessage}</div>
                             <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{completedUser?completedUser:['Не наёбан', 'Наёбан'][item.completed]}</div>
                             <div style={{width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{blockUser?blockUser:''}</div>
                             <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{minScore?minScore:''}p</div>
@@ -197,6 +203,7 @@ function AllUsersID() {
                     </div>
                 </div>
          </div>
+         <button onClick={() => changeUser()}>Отправить</button>
     </>
 }
 
