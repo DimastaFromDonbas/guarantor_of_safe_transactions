@@ -4,20 +4,22 @@ import { useParams } from "react-router-dom"
 import { axiosGetAllDeal } from "../../../api/axios"
 import { useAppSelector } from "../../../store/reduxHooks"
 import { reducerTypes } from "../../../store/Users/types"
+import { axiosChangeDeal } from "../../../api/axios"
+import { dealStatusMock } from "../../mock/OutputMock"
 
 function DealID() {
 
     const { id } = useParams()
     const dispatch = useDispatch();
-    const { allDeals } = useAppSelector ((store) => store.user)
+    const { allDeals, user } = useAppSelector ((store) => store.user)
     const [ currentDeal, setCurrentDeal ] = useState(null)
     const [ nameDeal,setNameDeal ] = useState('')
     const [ sumDeal, setSumDeal ] = useState()
     const [ statusDeal, setStatusDeal ] = useState()
     const [ descriptionDeal,setDescriptionDeal ] = useState('')
-    const status = ['Открыта', 'В обработке', 'Выполнена']
 
     async function getAllDeals(){
+        if(allDeals[0]) return;
         const data = await axiosGetAllDeal();
         if(data) {
         dispatch({
@@ -26,13 +28,25 @@ function DealID() {
         });}
       }
 
+      async function changeDeal() {
+        if(descriptionDeal?.length < 30) return alert('Описание должно состоять минимум из 30 символов');
+        if(!nameDeal || !sumDeal || !statusDeal) return alert('Введите все данные');
+        if(sumDeal < 2000) return alert('Минимальная сумма 2000 рублей');
+        const result = await axiosChangeDeal(currentDeal?.id, nameDeal, sumDeal, Number(statusDeal), descriptionDeal, user?.email, user?.password);
+        if(result) {
+            getAllDeals();
+         return alert('Успешно')
+        };
+        alert('Что-то пошло не так')
+     }
+
     useEffect(() => {
         const temporaryDeal = allDeals?.filter(item => item.id === Number(id))[0]
         if(temporaryDeal) {
         setCurrentDeal(temporaryDeal)
         setNameDeal(temporaryDeal?.name)
         setSumDeal(temporaryDeal?.sum)
-        setStatusDeal(status[temporaryDeal?.status === 0? temporaryDeal?.status : temporaryDeal?.status -1 ])
+        setStatusDeal(temporaryDeal?.status)
         setDescriptionDeal(temporaryDeal?.description)
         }
          // eslint-disable-next-line 
@@ -66,7 +80,7 @@ function DealID() {
                         <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-sum">{currentDeal?.buyer}p</div>
                         <div style={{width:'210px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-id">{currentDeal?.seller}</div>
                         <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{sumDeal}</div>
-                        <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{statusDeal}</div>
+                        <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{dealStatusMock[statusDeal - 1]}</div>
                         <div style={{width:'210px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-id">{descriptionDeal}</div>
                     </div>}
                     <div className='pages-user-box-2'>
@@ -76,11 +90,12 @@ function DealID() {
                                 onChange={(e) => setNameDeal(e.target.value)}
                                 className="tabl-flex-admin-user-scores "
                                 style={{color: "white",borderRadius: "5px"}}
-                                type="number"
+                                type="text"
                                 name="name"
                                 placeholder="Изменение денег пользователя"
                                 autoComplete="off"
                                 required
+                                value={nameDeal || ''}
                             />
                         </div>
                         <div style={{flexDirection: "column"}} className='pages-user-block'>
@@ -94,6 +109,7 @@ function DealID() {
                                 placeholder="Изменение денег пользователя"
                                 autoComplete="off"
                                 required
+                                value={sumDeal || 0}
                             />
                         </div>
                         <div style={{flexDirection: "column"}} className='pages-user-block'>
@@ -102,11 +118,11 @@ function DealID() {
                                 onChange={(e) => setStatusDeal(e.target.value)}
                                 style={{color: "white",borderRadius: "5px"}}
                                 className="tabl-flex-admin-user-scores " 
-                                name="select"> 
-                                    <option value="" selected></option>
-                                    <option value="Открыта">Открыта</option>
-                                    <option value="В обработке">В обработке</option>
-                                    <option value="Закрыта">Закрыта</option>
+                                name="select"
+                                value={String(statusDeal || 1)}> 
+                                    <option value='1'>Открыта</option>
+                                    <option value='2'>В обработке</option>
+                                    <option value='3'>Закрыта</option>
                             </select>
                         </div>
                         <div style={{flexDirection: "column"}} className='pages-user-block'>
@@ -120,11 +136,12 @@ function DealID() {
                                 placeholder="Изменение денег пользователя"
                                 autoComplete="off"
                                 required
+                                value={descriptionDeal || ''}
                             />
                         </div>
                     </div>
                     <div style={{width:'100%',display: "flex",marginTop:"20px",justifyContent: "center"}}>
-                        <div className="tabl-flex-admin-button-global">
+                        <div className="tabl-flex-admin-button-global" onClick={changeDeal}>
                             Внести изменения
                         </div>
                     </div>

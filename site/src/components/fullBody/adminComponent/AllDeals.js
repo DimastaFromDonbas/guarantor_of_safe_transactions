@@ -9,6 +9,7 @@ import { axiosGetAllDeal } from "../../../api/axios";
 import { axiosDeleteDeal } from "../../../api/axios";
 import { StyledInput } from "../../../style/styles";
 import { useNavigate } from "react-router-dom";
+import { dealStatusMock } from "../../mock/OutputMock";
 
 function AllDeals() {
 
@@ -47,8 +48,8 @@ function AllDeals() {
                 el?.buyerNickname?.toLowerCase()?.includes(search) ||
                 el?.seller?.toLowerCase()?.includes(search) ||
                 el?.sellerNickname?.toLowerCase()?.includes(search)): true)
-                ?.filter((checkbox) => (checkbox?.status === 0 && filterOpen) ||
-                (checkbox?.status === 1 && filterComplete))
+                ?.filter((checkbox) => (checkbox?.status === 1 && filterOpen) ||
+                (checkbox?.status === 3 && filterComplete))
                 ?.sort((a, b) => sortId ? a.id - b.id : b.id - a.id))
        },[allDeals, search, filterOpen, filterComplete, sortId])
 
@@ -97,7 +98,7 @@ function AllDeals() {
             <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-sum">{item.buyerNickname}</div>
             <div style={{textAlign: 'center',width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-sum">{item.buyer}</div>
             <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-sum">{item.sum}</div>
-            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-sum">{['Открыта', 'В обработке', 'Выполнена'][item.status]}</div>
+            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-sum">{dealStatusMock[item.status - 1]}</div>
             <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum" onChange={(e) => changeDeleteDeals(e.target.checked, item.id)}><Checkbox color="error" /></div>
         </div>)}
        <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'5px'}}>

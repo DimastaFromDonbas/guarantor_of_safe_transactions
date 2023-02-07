@@ -13,7 +13,7 @@ const generateJwt = (id, email, role, nickname, score, password, systemMessage, 
 
 class UserController {
     async registration(req, res, next) {
-        const {email, password, role, nickname, checkRu} = req.body
+        const {email, password, nickname, checkRu} = req.body
         if (!email || !password || !nickname) {
             return next(ApiError.badRequest('Введите все данные'))
         }
@@ -26,7 +26,7 @@ class UserController {
             return next(ApiError.badRequest('Пользователь с таким именем уже существует'))
         }
         const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({email, role, password: hashPassword, nickname, checkRu})
+        const user = await User.create({email, role: 'USER', password: hashPassword, nickname, checkRu})
         const systemMessage = 'false'
         const token = generateJwt(user.id, 
             user.email, 
