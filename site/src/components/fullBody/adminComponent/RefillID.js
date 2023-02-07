@@ -118,10 +118,10 @@ function RefillID() {
                             </div>
                         </div>
                         <div style={{width:'100%',display: "flex",marginTop:"20px",justifyContent: "center"}}>
-                        <div className="tabl-flex-admin-button-global">
-                            Внести изменения
+                            <div className="tabl-flex-admin-button-global">
+                                Внести изменения
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
