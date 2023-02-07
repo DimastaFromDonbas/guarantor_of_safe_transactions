@@ -114,7 +114,7 @@ export const INITIAL: IUsersReducer = {
     time: '2023.01.24 15:41',
     status: 1,
     userEmail: 'user120@gmail.com',
-    userNickname: '',
+    userNickname: 'ua god',
     createdAt: '',
     updatedAt: '',
   }

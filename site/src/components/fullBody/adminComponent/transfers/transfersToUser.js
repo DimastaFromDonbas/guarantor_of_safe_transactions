@@ -5,6 +5,7 @@ import { reducerTypes } from "../../../../store/Users/types";
 import { axiosGetAllUserToUserTransfers} from "../../../../api/axios";
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
+import { useNavigate } from "react-router-dom";
 
 function TransfersToUser(search) {
 
@@ -14,6 +15,7 @@ function TransfersToUser(search) {
     const [sortId, setSortId] = useState(true);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const {allTransfersToUser} = useAppSelector ((store) => store.user);
+    const navigate = useNavigate()
 
     async function getAllTransfersTouser(){
         const data = await axiosGetAllUserToUserTransfers();
@@ -55,14 +57,14 @@ function TransfersToUser(search) {
             </div>
 
             {transfersToUser?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={item.id}>
-            <div style={{textAlign: 'center',width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.id}</div>
-            <div style={{textAlign: 'center',width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.time}</div>
-            <div style={{textAlign: 'center',width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.score}</div>
-            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.userEmail}</div>
-            <div style={{textAlign: 'center',width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.userNickname}</div>
-            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.receiverEmail}</div>
-            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.receiverNickname}</div>
-            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{['Открыта', 'В обработке', 'Выполнена'][item.status]}</div>
+            <div style={{textAlign: 'center',width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-id">{item.id}</div>
+            <div style={{textAlign: 'center',width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer',overflowWrap: "anywhere"}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-id">{item.time}</div>
+            <div style={{textAlign: 'center',width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-id">{item.score}</div>
+            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer',overflowWrap: "anywhere"}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-date">{item.userEmail}</div>
+            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-date">{item.userNickname}</div>
+            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer',overflowWrap: "anywhere"}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-sum">{item.receiverEmail}</div>
+            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-sum">{item.receiverNickname}</div>
+            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-sum">{['Открыта', 'В обработке', 'Выполнена'][item.status]}</div>
         </div>)}
 
         <Pagination

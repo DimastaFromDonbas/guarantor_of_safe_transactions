@@ -19,6 +19,8 @@ import Sertificates from './components/fullBody/Sertificates'
 import UserID from "./components/fullBody/adminComponent/UserID";
 import DealID from "./components/fullBody/adminComponent/DealID";
 import RefillID from "./components/fullBody/adminComponent/RefillID";
+import TransfersID from "./components/fullBody/adminComponent/TransfersID";
+import TransfersToUserID from "./components/fullBody/adminComponent/TransfersToUserID";
 //import {Helmet} from "react-helmet";
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
         <Route path="/adminPanel/user/:id" element={<UserID />}/>
         <Route path="/adminPanel/deal/:id" element={<DealID />}/>
         <Route path="/adminPanel/refill/:id" element={<RefillID />}/>
+        <Route path="/adminPanel/transfers/:id" element={<TransfersID />}/>
+        <Route path="/adminPanel/transferstouser/:id" element={<TransfersToUserID/>}/>
         <Route path="/deal/:id" element={<Deal />}/>
         <Route path="/systemmessages" element={<SystemMessages />}/>
         <Route path="/blockMaseges" element={<BlockMaseges />}/>
