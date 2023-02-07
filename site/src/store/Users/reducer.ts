@@ -22,7 +22,7 @@ export interface IUsersReducer {
   allDeals: IDeal[] | [];
   allRefills: IRefill[] | [];
   allTransfers: ITransfer[] | [];
-  allTransfersToUser: ITransfer[] | [];
+  allTransfersToUser: ITransferToUser[] | [];
   fixSumSystemMessage: [];
   nameTheSite: INameSite
 }
@@ -122,7 +122,9 @@ export const INITIAL: IUsersReducer = {
   transfersToUser: [{
     id: 1,
     userEmail: 'user120@gmail.com',
+    userNickname: 'asda',
     receiverEmail: 'user121@gmail.com',
+    receiverNickname: 'asdasd',
     score: 5000,
     time: '2023.01.24 15:59',
     status: 1,
@@ -254,15 +256,15 @@ export const INITIAL: IUsersReducer = {
   }],
   allTransfersToUser: [{
     id: 1,
-    paymantSystem: "string",
-    walletNumber: "string",
-    score: 111,
-    time: "string",
+    userEmail: 'user120@gmail.com',
+    userNickname: 'asda',
+    receiverEmail: 'user121@gmail.com',
+    receiverNickname: 'asdasd',
+    score: 5000,
+    time: '2023.01.24 15:59',
     status: 1,
-    userEmail: "string",
-    userNickname: "string",
-    createdAt: "string",
-    updatedAt: "string",
+    createdAt: '',
+    updatedAt: '',
   }],
   fixSumSystemMessage: [],
   nameTheSite: {
