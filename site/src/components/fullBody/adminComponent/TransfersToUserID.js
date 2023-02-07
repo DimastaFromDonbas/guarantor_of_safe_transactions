@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { axiosGetAllUserToUserTransfers } from "../../../api/axios";
 import { useAppSelector } from "../../../store/reduxHooks";
 import { reducerTypes } from "../../../store/Users/types";
@@ -19,6 +19,7 @@ function TransfersToUserID() {
     const [ timeTransfersToUser, setTimeTransfersToUser ] = useState('')
     const [ statusTransfersToUser, setStatusTransfersToUser ] = useState()
     const {allTransfersToUser, user} = useAppSelector ((store) => store.user);
+    const navigate = useNavigate()
 
     async function getAllTransfersTouser(){
         const data = await axiosGetAllUserToUserTransfers();
@@ -62,6 +63,11 @@ function TransfersToUserID() {
     return <>
             <div style={{display: 'flex',minHeight: '100vh',justifyContent: "center",}} className='styleAdminPanel'>
                 <div style={{width: "100%",display: "flex",flexDirection: "column",alignItems: "center",background: "rgba(17, 17, 18, 0.65)"}}>
+                    <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",marginTop:'10px',color:'white'}}>
+                        <div onClick={() => navigate("/adminPanel")} className="tabl-flex-admin-button-global2">
+                            Вернуться назад 
+                        </div>
+                    </div>
                     <div style={{marginTop:'20px',color: "white"}}>
                         <div style={{borderRadius: "5px"}} className="tabl-flex-admin">
                             <div style={{textAlign: 'center' ,width:'50px'}} className="output-id">ID</div>
