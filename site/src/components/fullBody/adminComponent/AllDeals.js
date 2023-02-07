@@ -42,8 +42,6 @@ function AllDeals() {
         }
       }
 
-  
-
       useEffect(() => {
         setDeals(allDeals
             ?.filter((el) => search? (el?.buyer?.toLowerCase()?.includes(search) || 

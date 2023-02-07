@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
+import { axiosGetAllDeal } from "../../../api/axios"
 import { useAppSelector } from "../../../store/reduxHooks"
+import { reducerTypes } from "../../../store/Users/types"
 
 function DealID() {
 
     const { id } = useParams()
+    const dispatch = useDispatch();
     const { allDeals } = useAppSelector ((store) => store.user)
     const [ currentDeal, setCurrentDeal ] = useState(null)
     const [ nameDeal,setNameDeal ] = useState('')
@@ -12,6 +16,15 @@ function DealID() {
     const [ statusDeal, setStatusDeal ] = useState()
     const [ descriptionDeal,setDescriptionDeal ] = useState('')
     const status = ['Открыта', 'В обработке', 'Выполнена']
+
+    async function getAllDeals(){
+        const data = await axiosGetAllDeal();
+        if(data) {
+        dispatch({
+          type: reducerTypes.GET_ALL_DEALS,
+          payload: data,
+        });}
+      }
 
     useEffect(() => {
         const temporaryDeal = allDeals?.filter(item => item.id === Number(id))[0]
@@ -24,6 +37,11 @@ function DealID() {
         }
          // eslint-disable-next-line 
        },[allDeals])
+
+       useEffect(() => {
+        getAllDeals();
+         // eslint-disable-next-line 
+       },[])
 
     return <>
         <div style={{display: 'flex',minHeight: '100vh',justifyContent: "center",}} className='styleAdminPanel'>
@@ -41,15 +59,15 @@ function DealID() {
                         <div style={{textAlign: 'center' ,width:'210px'}} className="output-date">Описание</div>
                     </div>
                     { <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={currentDeal?.email}>
-                        <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-id">{currentDeal?.id}</div>
-                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{nameDeal}</div>
-                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{currentDeal?.buyerNickname}</div>
-                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{currentDeal?.sellerNickname}</div>
-                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-sum">{currentDeal?.buyer}p</div>
-                        <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-id">{currentDeal?.seller}</div>
-                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{sumDeal}</div>
-                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{statusDeal}</div>
-                        <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-id">{descriptionDeal}</div>
+                        <div style={{width:'50px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-id">{currentDeal?.id}</div>
+                        <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{nameDeal}</div>
+                        <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{currentDeal?.buyerNickname}</div>
+                        <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{currentDeal?.sellerNickname}</div>
+                        <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-sum">{currentDeal?.buyer}p</div>
+                        <div style={{width:'210px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-id">{currentDeal?.seller}</div>
+                        <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{sumDeal}</div>
+                        <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{statusDeal}</div>
+                        <div style={{width:'210px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-id">{descriptionDeal}</div>
                     </div>}
 
                     <div className='pages-user-box-2'>
