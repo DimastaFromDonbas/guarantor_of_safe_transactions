@@ -144,9 +144,9 @@ function AllUsersID() {
                             <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{ roleUser}</div>
                             <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{scoreUser ?? 0}p</div>
                             <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{currentUser?.email}</div>
-                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{systemMessagesUser}</div>
+                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{systemMessagesUser === 'true' ? 'Отправлено' : 'Не отправлено'}</div>
                             <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{['Не наёбан', 'Наёбан'][completedUser]}</div>
-                            <div style={{width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{blockUser}</div>
+                            <div style={{width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{blockUser === 'true'? 'Разблокирован' : 'Заблокирован'}</div>
                             <div style={{width:'130px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{minScore ?? 0}p</div>
                             <div style={{width:'130px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{minRefil ?? 0}p</div>
                             <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum" onChange={(e) => changeDeleteUsers(e.target.checked, currentUser?.id)}><Checkbox color="error" /></div>
