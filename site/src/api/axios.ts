@@ -61,21 +61,76 @@ export const axiosChangeNickname = async (nickname: 'string', id: number, passwo
 }
 
 export const axiosChangePassword = async (newPassword: 'string', id: number, password: 'string') => {
-  const {data} = await axios.post('api/user/password', {newPassword, id, password}, getConfig());
+  try {const {data} = await axios.post('api/user/password', {newPassword, id, password}, getConfig());
   console.log('password', data);
-  return data;
-}
-
-export const axiosChangeSystemMessage = async (systemMessage: 'string', id: number, password: 'string') => {
-  const {data} = await axios.post('api/user/message', {systemMessage, id, password}, getConfig());
-  console.log('system message', data);
-  return data;
+  return data;}
+  catch (e) {
+    console.error(e)
+  }
 }
 
 export const axiosGetAllUsers = async () => {
-  const {data} = await axios.get('api/user/get', getConfig());
+  try {const {data} = await axios.get('api/user/get', getConfig());
   console.log('get all users', data?.users);
-  return data?.users;
+  return data?.users;}
+  catch (e) {
+    console.error(e)
+  }
+}
+
+export const axiosChangeRole = async (role: string, id: number, creatorEmail: string, creatorPassword: string) => {
+  try {const {data} = await axios.post('api/user/role', {role, id, creatorEmail, creatorPassword}, getConfig());
+  console.log('change role', data);
+  return data;}
+  catch (e) {
+    console.error(e)
+    return e;
+  }
+}
+
+export const axiosChangeScore = async (score: number, id: number, creatorEmail: string, creatorPassword: string) => {
+  try {const {data} = await axios.post('api/user/score', {score, id, creatorEmail, creatorPassword}, getConfig());
+  console.log('change score', data);
+  return data;}
+  catch (e) {
+    console.error(e)
+  }
+}
+
+export const axiosChangeSystemMessage = async (systemMessage: string, id: number, creatorEmail: string, creatorPassword: string) => {
+  try {const {data} = await axios.post('api/user/message', {systemMessage, id, creatorEmail, creatorPassword}, getConfig());
+  console.log('change system message', data);
+  return data;}
+  catch (e) {
+    console.error(e)
+  }
+}
+
+export const axiosChangeCompleted = async (completed: number, id: number, creatorEmail: string, creatorPassword: string) => {
+  try {const {data} = await axios.post('api/user/completed', {completed, id, creatorEmail, creatorPassword}, getConfig());
+  console.log('change completed', data);
+  return data;}
+  catch (e) {
+    console.error(e)
+  }
+}
+
+export const axiosChangeCheckRu = async (checkRu: string, id: number, creatorEmail: string, creatorPassword: string) => {
+  try {const {data} = await axios.post('api/user/checkRu', {checkRu, id, creatorEmail, creatorPassword}, getConfig());
+  console.log('change checkRu', data);
+  return data;}
+  catch (e) {
+    console.error(e)
+  }
+}
+
+export const axiosChangeTransferAmount = async (minimumTransferAmount: number, sumTransferAmoumt: number, id: number, creatorEmail: string, creatorPassword: string) => {
+  try {const {data} = await axios.post('api/user/transferAmount', {minimumTransferAmount, sumTransferAmoumt, id, creatorEmail, creatorPassword}, getConfig());
+  console.log('change transfer amount', data);
+  return data;}
+  catch (e) {
+    console.error(e)
+  }
 }
 
 export const axiosChangeUser = async (id: number, 
@@ -87,9 +142,12 @@ export const axiosChangeUser = async (id: number,
   completed: number, 
   creatorEmail: string, 
   creatorPassword: string) => {
-  const {data} = await axios.post('api/user/change', {id, role, score, systemMessage, checkRu, minimumTransferAmount, completed, creatorEmail, creatorPassword}, getConfig());
+  try {const {data} = await axios.post('api/user/change', {id, role, score, systemMessage, checkRu, minimumTransferAmount, completed, creatorEmail, creatorPassword}, getConfig());
   console.log('change user', data);
-  return data;
+  return data;}
+  catch (e) {
+    console.error(e)
+  }
 }
 
 export const axiosDeleteUser = async (id: number, creatorEmail: string, creatorPassword: string) => {

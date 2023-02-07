@@ -2,7 +2,14 @@ import { Checkbox } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { axiosDeleteUser, axiosGetAllUsers } from '../../../api/axios';
+import { axiosDeleteUser, 
+    axiosGetAllUsers, 
+    axiosChangeRole, 
+    axiosChangeScore, 
+    axiosChangeSystemMessage, 
+    axiosChangeCompleted, 
+    axiosChangeCheckRu, 
+    axiosChangeTransferAmount } from '../../../api/axios';
 import { useAppSelector } from "../../../store/reduxHooks";
 import { reducerTypes } from '../../../store/Users/types';
 
@@ -37,6 +44,60 @@ function AllUsersID() {
         });
       }
 
+    async function changeRole() {
+       const result = await axiosChangeRole(roleUser, currentUser?.id, user?.email, user?.password);
+       console.log(result?.response?.data?.message)
+       if(result?.response?.data?.message === 'Нет доступа') { 
+        setRoleUser(currentUser?.role)
+        return alert('Нет доступа')
+    }
+       if(result?.response?.data?.message) {
+        setRoleUser(currentUser?.role)
+        return alert('Что-то пошло не так')
+    }
+        alert('Успешно')
+    }
+    
+    async function changeScore() {
+        const result = await axiosChangeScore(scoreUser, currentUser?.id, user?.email, user?.password);
+        if(result) {
+         getAllUsers();
+         return alert('Успешно')}
+        alert('Что-то пошло не так')
+     }
+
+     async function changeSystemMessage() {
+        const result = await axiosChangeSystemMessage(systemMessagesUser, currentUser?.id, user?.email, user?.password);
+        if(result) {
+         getAllUsers();
+         return alert('Успешно')}
+        alert('Что-то пошло не так')
+     }
+
+     async function changeCompleted() {
+        const result = await axiosChangeCompleted(completedUser, currentUser?.id, user?.email, user?.password);
+        if(result) {
+         getAllUsers();
+         return alert('Успешно')}
+        alert('Что-то пошло не так')
+     }
+
+     async function changeCheckRu() {
+        const result = await axiosChangeCheckRu(blockUser, currentUser?.id, user?.email, user?.password);
+        if(result) {
+         getAllUsers();
+         return alert('Успешно')}
+        alert('Что-то пошло не так')
+     }
+
+     async function changeTransferAmount() {
+        const result = await axiosChangeTransferAmount(minScore, minRefil, currentUser?.id, user?.email, user?.password);
+        if(result) {
+         getAllUsers();
+         return alert('Успешно')}
+        alert('Что-то пошло не так')
+     }
+
     useEffect(() => {
         getAllUsers();
          // eslint-disable-next-line 
@@ -51,7 +112,9 @@ function AllUsersID() {
         setCompletedUser(temporaryUser?.completed)
         setscoreUser(temporaryUser?.score)
         setMinScore(temporaryUser?.minimumTransferAmount)
-        setMinRefil(temporaryUser?.minimumTransferAmount - temporaryUser?.score)
+        setMinRefil((temporaryUser?.minimumTransferAmount - temporaryUser?.score < 0) ? 
+        0 :
+        temporaryUser?.minimumTransferAmount - temporaryUser?.score)
         setBlockUser(temporaryUser?.checkRu)
         }
          // eslint-disable-next-line 
@@ -114,7 +177,7 @@ function AllUsersID() {
                                 <option value="CHATER">CHATER</option>
                                 <option value="USER">USER</option>
                             </select>
-                            <div className="tabl-flex-admin-button">
+                            <div className="tabl-flex-admin-button" onClick={changeRole}>
                             Изменить
                             </div>
                         </div>
@@ -130,7 +193,7 @@ function AllUsersID() {
                             required
                             value={scoreUser}
                             />
-                            <div className="tabl-flex-admin-button">
+                            <div className="tabl-flex-admin-button" onClick={changeScore}>
                             Изменить
                             </div>
                         </div>
@@ -145,7 +208,7 @@ function AllUsersID() {
                                 <option value="true">Отправлено</option>
                                 <option value="false">Не отпавлено</option>
                             </select>
-                            <div className="tabl-flex-admin-button">
+                            <div className="tabl-flex-admin-button" onClick={changeSystemMessage}>
                             Изменить
                             </div>
                         </div>
@@ -155,12 +218,12 @@ function AllUsersID() {
                              style={{color: "white",borderRadius: "5px"}}
                              className="tabl-flex-admin-user-scores " 
                              name="select"
-                             value={completedUser || ''}> 
+                             value={String(completedUser) || ''}> 
                                 <option value="">Состояние пользователя</option>
                                 <option value="1">Наёбан</option>
                                 <option value="0">Не наёбан</option>
                             </select>
-                            <div className="tabl-flex-admin-button">
+                            <div className="tabl-flex-admin-button" onClick={changeCompleted}>
                             Изменить
                             </div>
                         </div>
@@ -175,7 +238,7 @@ function AllUsersID() {
                                 <option value="true">Разблокировать</option>
                                 <option value="false">Заблокировать</option>
                             </select>
-                            <div className="tabl-flex-admin-button">
+                            <div className="tabl-flex-admin-button" onClick={changeCheckRu}>
                             Изменить
                             </div>
                         </div>
@@ -183,7 +246,7 @@ function AllUsersID() {
                         <input
                         onChange={(e) => {
                             setMinScore(e.currentTarget.value)
-                            setMinRefil(e.currentTarget.value - scoreUser)
+                            setMinRefil((e.currentTarget.value - scoreUser < 0) ? 0 : e.currentTarget.value - scoreUser )
                         }}
                             className="tabl-flex-admin-user-scores "
                             style={{color: "white",borderRadius: "5px"}}
@@ -192,8 +255,9 @@ function AllUsersID() {
                             placeholder="Изменение мин суммы вывода"
                             autoComplete="off"
                             required
+                            value={minScore || 0}
                             />
-                            <div className="tabl-flex-admin-button">
+                            <div className="tabl-flex-admin-button" onClick={changeTransferAmount}>
                             Изменить
                             </div>
                         </div>

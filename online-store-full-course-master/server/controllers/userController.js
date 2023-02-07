@@ -121,8 +121,8 @@ class UserController {
         }
     }
 
-    async changeCheckRu(req, res, next) {
-        const {checkRu, id, creatorEmail, creatorPassword} = req.body
+    async changeRole(req, res, next) {
+        const {role, id, creatorEmail, creatorPassword} = req.body
         const user = await User.findOne({where: {id}})
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
@@ -135,11 +135,36 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role !== 'ADMIN'){
+        if(creator.role === 'USER' || 
+        creator.role === 'CHATER' || 
+        (role === 'MODERATOR' && creator.role !== 'ADMIN') || 
+        role === 'ADMIN' || 
+        user.role === 'ADMIN'){
             return next(ApiError.badRequest('Нет доступа'))
         }
-            await User.update({checkRu}, {where: {id}})
-           return res.json({...user.dataValues, checkRu})
+          const updatedUser = await User.update({role}, {where: {id}})
+           return res.json(updatedUser)
+    }
+
+    async changeScore(req, res, next) {
+        const {score, id, creatorEmail, creatorPassword} = req.body
+        const user = await User.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        const creator = await User.findOne({where: {email: creatorEmail}})
+        if (!creator) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(creatorPassword, creator.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if(creator.role === 'USER'){
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+           const updatedUser = await User.update({score}, {where: {id}})
+           return res.json(updatedUser)
     }
 
     async changeSystemMessage(req, res, next) {
@@ -156,11 +181,53 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role !== 'ADMIN'){
+        if(creator.role === 'USER'){
             return next(ApiError.badRequest('Нет доступа'))
         }
             await User.update({systemMessage}, {where: {id}})
            return res.json({...user.dataValues, systemMessage})
+    }
+
+    async changeCompleted(req, res, next) {
+        const {completed, id, creatorEmail, creatorPassword} = req.body
+        const user = await User.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        const creator = await User.findOne({where: {email: creatorEmail}})
+        if (!creator) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(creatorPassword, creator.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if(creator.role === 'USER'){
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+           const updatedUser = await User.update({completed: Number(completed)}, {where: {id}})
+           return res.json(updatedUser)
+    }
+
+    async changeCheckRu(req, res, next) {
+        const {checkRu, id, creatorEmail, creatorPassword} = req.body
+        const user = await User.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        const creator = await User.findOne({where: {email: creatorEmail}})
+        if (!creator) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(creatorPassword, creator.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if(creator.role === 'USER'){
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+            await User.update({checkRu}, {where: {id}})
+           return res.json({...user.dataValues, checkRu})
     }
 
     async changeTransferAmount(req, res, next) {
@@ -177,7 +244,7 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role !== 'ADMIN'){
+        if(creator.role === 'USER'){
             return next(ApiError.badRequest('Нет доступа'))
         }
             await User.update({minimumTransferAmount, sumTransferAmoumt}, {where: {id}})
