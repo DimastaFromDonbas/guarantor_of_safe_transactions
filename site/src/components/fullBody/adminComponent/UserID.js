@@ -5,18 +5,18 @@ import { useParams } from 'react-router-dom';
 import { axiosDeleteUser, axiosGetAllUsers } from '../../../api/axios';
 import { useAppSelector } from "../../../store/reduxHooks";
 import { reducerTypes } from '../../../store/Users/types';
-import { axiosChangeUser } from '../../../api/axios';
 
 function AllUsersID() {
 
-    const {allUsers,user} = useAppSelector ((store) => store.user)
+    const {allUsers, user} = useAppSelector ((store) => store.user)
     const { id } = useParams()
+    const [currentUser, setCurrentUser] = useState(null)
     const [ roleUser, setRoleUser ] = useState('')
     const [ systemMessagesUser, setSystemMessagesUser ] = useState('')
     const [ completedUser, setCompletedUser ] = useState('')
     const [ scoreUser, setscoreUser ] = useState('')
-    const [ minScore , setMinScore ] = useState('0')
-    const [ minRefil , setMinRefil ] = useState('0')
+    const [ minScore , setMinScore ] = useState(0)
+    const [ minRefil , setMinRefil ] = useState(0)
     const [ blockUser, setBlockUser ] = useState('')
     const [ deleteUsers, setDeleteUsers ] = useState([]);
     const dispatch = useDispatch();
@@ -37,43 +37,25 @@ function AllUsersID() {
         });
       }
 
-    function changesRoleUser(e) {
-        setRoleUser(e.currentTarget.value)
-    }
-
-    function changesSystemMeseggesUser(e) {
-        setSystemMessagesUser(e.currentTarget.value)
-    }
-
-    function changesCompletedUser(e) {
-        setCompletedUser(e.currentTarget.value)
-    }
-
-    function changesScoreUser(e) {
-        setscoreUser(e.currentTarget.value)
-    }
-
-    function changesMinScoreUser(e) {
-        setMinScore(e.currentTarget.value)
-    }
-
-    function changesBlock(e) {
-        setBlockUser(e.currentTarget.value)
-    }
-
-    async function changeUser() {
-        const result = await axiosChangeUser();
-        if(result) alert('success')
-    }
-
-    function changesRefil(e) {
-        setMinRefil(e.currentTarget.value)
-    }
-
     useEffect(() => {
         getAllUsers();
          // eslint-disable-next-line 
        },[])
+
+       useEffect(() => {
+        const temporaryUser = allUsers?.filter(item => item.id === Number(id))[0]
+        if(temporaryUser) {
+        setCurrentUser(temporaryUser)
+        setRoleUser(temporaryUser?.role)
+        setSystemMessagesUser(temporaryUser?.systemMessage)
+        setCompletedUser(temporaryUser?.completed)
+        setscoreUser(temporaryUser?.score)
+        setMinScore(temporaryUser?.minimumTransferAmount)
+        setMinRefil(temporaryUser?.minimumTransferAmount - temporaryUser?.score)
+        setBlockUser(temporaryUser?.checkRu)
+        }
+         // eslint-disable-next-line 
+       },[allUsers])
 
     return <>
          <div style={{display: 'flex',minHeight: '100vh',justifyContent: "center",}} className='styleAdminPanel'>
@@ -93,19 +75,19 @@ function AllUsersID() {
                             <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Удалить</div>
                         </div>
 
-                        {allUsers?.filter( user => user.id === Number(id) )?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={item?.email}>
-                            <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-id">{item.id}</div>
-                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.nickname}</div>
-                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{ roleUser || item.role}</div>
-                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{scoreUser || item.score}p</div>
-                            <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.email}</div>
-                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{systemMessagesUser || item.systemMessage}</div>
-                            <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{completedUser?completedUser:['Не наёбан', 'Наёбан'][item.completed]}</div>
-                            <div style={{width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{blockUser?blockUser:''}</div>
-                            <div style={{width:'130px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{minScore?minScore:''}p</div>
-                            <div style={{width:'130px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{minRefil?minRefil:''}p</div>
-                            <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum" onChange={(e) => changeDeleteUsers(e.target.checked, item.id)}><Checkbox color="error" /></div>
-                        </div>)}
+                        { <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={currentUser?.email}>
+                            <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-id">{currentUser?.id}</div>
+                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{currentUser?.nickname}</div>
+                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{ roleUser}</div>
+                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{scoreUser ?? 0}p</div>
+                            <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{currentUser?.email}</div>
+                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{systemMessagesUser}</div>
+                            <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{['Не наёбан', 'Наёбан'][completedUser]}</div>
+                            <div style={{width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{blockUser}</div>
+                            <div style={{width:'130px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{minScore ?? 0}p</div>
+                            <div style={{width:'130px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{minRefil ?? 0}p</div>
+                            <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum" onChange={(e) => changeDeleteUsers(e.target.checked, currentUser?.id)}><Checkbox color="error" /></div>
+                        </div>}
                         <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'5px'}}>
                         <div className="tabl-flex-admin-button"
                         onClick={async() => {
@@ -121,11 +103,12 @@ function AllUsersID() {
                     <div className='pages-user-box'>
                         <div className='pages-user-block'>
                             <select
-                             onChange={changesRoleUser}
+                             onChange={(e) => setRoleUser(e.currentTarget.value)}
                              style={{color: "white",borderRadius: "5px"}}
                              className="tabl-flex-admin-user-scores " 
-                             name="select"> 
-                                <option value="" selected>Изменить роль пользователя</option>
+                             name="select"
+                             value={roleUser || "ROLE"}> 
+                                <option value="ROLE">Выберите роль пользователя</option>
                                 <option value="ADMIN">ADMIN</option>
                                 <option value="MODERATOR">MODERATOR</option>
                                 <option value="CHATER">CHATER</option>
@@ -137,7 +120,7 @@ function AllUsersID() {
                         </div>
                         <div className='pages-user-block'>
                         <input
-                        onChange={changesScoreUser}
+                        onChange={(e) => setscoreUser(e.currentTarget.value)}
                             className="tabl-flex-admin-user-scores "
                             style={{color: "white",borderRadius: "5px"}}
                             type="number"
@@ -145,6 +128,7 @@ function AllUsersID() {
                             placeholder="Изменение денег пользователя"
                             autoComplete="off"
                             required
+                            value={scoreUser}
                             />
                             <div className="tabl-flex-admin-button">
                             Изменить
@@ -152,13 +136,14 @@ function AllUsersID() {
                         </div>
                         <div className='pages-user-block'>
                             <select
-                             onChange={changesSystemMeseggesUser}
+                             onChange={(e) => setSystemMessagesUser(e.currentTarget.value)}
                              style={{color: "white",borderRadius: "5px"}}
                              className="tabl-flex-admin-user-scores " 
-                             name="select"> 
-                                <option value="" selected>Системное сообщение</option>
-                                <option value="Отправлено">Отправлено</option>
-                                <option value="Не отпавлено">Не отпавлено</option>
+                             name="select"
+                             value={systemMessagesUser || ''}> 
+                                <option value="">Системное сообщение</option>
+                                <option value="true">Отправлено</option>
+                                <option value="false">Не отпавлено</option>
                             </select>
                             <div className="tabl-flex-admin-button">
                             Изменить
@@ -166,13 +151,14 @@ function AllUsersID() {
                         </div>
                         <div className='pages-user-block'>
                             <select
-                             onChange={changesCompletedUser}
+                             onChange={(e) => setCompletedUser(e.currentTarget.value)}
                              style={{color: "white",borderRadius: "5px"}}
                              className="tabl-flex-admin-user-scores " 
-                             name="select"> 
-                                <option value="" selected>Состояние пользователя</option>
-                                <option value="Наёбан">Наёбан</option>
-                                <option value="Не наёбан">Не наёбан</option>
+                             name="select"
+                             value={completedUser || ''}> 
+                                <option value="">Состояние пользователя</option>
+                                <option value="1">Наёбан</option>
+                                <option value="0">Не наёбан</option>
                             </select>
                             <div className="tabl-flex-admin-button">
                             Изменить
@@ -180,11 +166,12 @@ function AllUsersID() {
                         </div>
                         <div className='pages-user-block'>
                             <select
-                             onChange={changesBlock}
+                             onChange={(e) => setBlockUser(e.currentTarget.value)}
                              style={{color: "white",borderRadius: "5px"}}
                              className="tabl-flex-admin-user-scores " 
-                             name="select"> 
-                                <option value="" selected>Разблок или блок</option>
+                             name="select"
+                             value={blockUser || ''}> 
+                                <option value="">Разблок или блок</option>
                                 <option value="true">Разблокировать</option>
                                 <option value="false">Заблокировать</option>
                             </select>
@@ -194,7 +181,10 @@ function AllUsersID() {
                         </div>
                         <div className='pages-user-block'>
                         <input
-                        onChange={changesMinScoreUser}
+                        onChange={(e) => {
+                            setMinScore(e.currentTarget.value)
+                            setMinRefil(e.currentTarget.value - scoreUser)
+                        }}
                             className="tabl-flex-admin-user-scores "
                             style={{color: "white",borderRadius: "5px"}}
                             type="number"
@@ -207,25 +197,10 @@ function AllUsersID() {
                             Изменить
                             </div>
                         </div>
-                        <div className='pages-user-block'>
-                        <input
-                        onChange={changesRefil}
-                            className="tabl-flex-admin-user-scores "
-                            style={{color: "white",borderRadius: "5px"}}
-                            type="number"
-                            name="name"
-                            placeholder="Изменение суммы пополнения"
-                            autoComplete="off"
-                            required
-                            />
-                            <div className="tabl-flex-admin-button">
-                            Изменить
-                            </div>
-                        </div>
+                        <p style={{color: 'white'}}>Сумма пополнения: {minRefil}</p>
                     </div>
                 </div>
          </div>
-         <button onClick={() => changeUser()}>Отправить</button>
     </>
 }
 

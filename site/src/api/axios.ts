@@ -74,8 +74,8 @@ export const axiosChangeSystemMessage = async (systemMessage: 'string', id: numb
 
 export const axiosGetAllUsers = async () => {
   const {data} = await axios.get('api/user/get', getConfig());
-  console.log('get all users', data);
-  return data.users;
+  console.log('get all users', data?.users);
+  return data?.users;
 }
 
 export const axiosChangeUser = async (id: number, 
