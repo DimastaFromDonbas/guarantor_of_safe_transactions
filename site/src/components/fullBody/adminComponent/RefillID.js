@@ -15,6 +15,7 @@ function RefillID() {
     const [ scoreRefiil, setScoreRefill ] = useState()
     const [ statusRefill, setStatusRefill ] = useState('')
     const [ userID, setUserID ] = useState()
+    const status = ['В обработке', 'Успешный']
     const {user, allRefills} = useAppSelector ((store) => store.user)
 
     async function getAllRefills(){
@@ -33,7 +34,7 @@ function RefillID() {
         setIdRefil(temporaryRefill?.id)
         setTimeRefill(temporaryRefill?.time)
         setScoreRefill(temporaryRefill.score)
-        setStatusRefill(temporaryRefill?.status)
+        setStatusRefill(status[temporaryRefill?.status === 0? temporaryRefill?.status : temporaryRefill?.status -1 ])
         setUserID(temporaryRefill?.status)
         }
          // eslint-disable-next-line 
@@ -65,9 +66,22 @@ function RefillID() {
                         </div>}
                         <div className='pages-user-box-2'>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
-                                <h6 style={{margin: "0",textAlign: "center"}}>Изменение суммы сделки</h6>
+                                <h6 style={{margin: "0",textAlign: "center"}}>Изменение ID сделки</h6>
                                 <input
-
+                                    onChange={(e) => setIdRefil(e.target.value)}
+                                    className="tabl-flex-admin-user-scores "
+                                    style={{color: "white",borderRadius: "5px"}}
+                                    type="number"
+                                    name="name"
+                                    placeholder="Изменение денег пользователя"
+                                    autoComplete="off"
+                                    required
+                                />
+                            </div>
+                            <div style={{flexDirection: "column"}} className='pages-user-block'>
+                                <h6 style={{margin: "0",textAlign: "center"}}>Изменение времени сделки</h6>
+                                <input
+                                    onChange={(e) => setTimeRefill(e.target.value)}
                                     className="tabl-flex-admin-user-scores "
                                     style={{color: "white",borderRadius: "5px"}}
                                     type="number"
@@ -80,20 +94,7 @@ function RefillID() {
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
                                 <h6 style={{margin: "0",textAlign: "center"}}>Изменение суммы сделки</h6>
                                 <input
-
-                                    className="tabl-flex-admin-user-scores "
-                                    style={{color: "white",borderRadius: "5px"}}
-                                    type="number"
-                                    name="name"
-                                    placeholder="Изменение денег пользователя"
-                                    autoComplete="off"
-                                    required
-                                />
-                            </div>
-                            <div style={{flexDirection: "column"}} className='pages-user-block'>
-                                <h6 style={{margin: "0",textAlign: "center"}}>Изменение суммы сделки</h6>
-                                <input
-
+                                    onChange={(e) => setScoreRefill(e.target.value)}
                                     className="tabl-flex-admin-user-scores "
                                     style={{color: "white",borderRadius: "5px"}}
                                     type="number"
@@ -106,14 +107,13 @@ function RefillID() {
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
                                 <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
                                 <select
-
+                                    onChange={(e) => setStatusRefill(e.target.value)}
                                     style={{color: "white",borderRadius: "5px"}}
                                     className="tabl-flex-admin-user-scores " 
                                     name="select"> 
                                         <option value="" selected></option>
-                                        <option value="Открыта">Открыта</option>
                                         <option value="В обработке">В обработке</option>
-                                        <option value="Закрыта">Закрыта</option>
+                                        <option value="Успешный">Успешный</option>
                                 </select>
                             </div>
                         </div>
