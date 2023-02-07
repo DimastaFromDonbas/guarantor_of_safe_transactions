@@ -94,4 +94,6 @@ export const paymant = [
       validate: function (value) {
         return validator.isEthereumAddress(value)
       }},
-]
+];
+
+export const dealStatusMock = ['Открыта', 'В обработке', 'Выполнена'];

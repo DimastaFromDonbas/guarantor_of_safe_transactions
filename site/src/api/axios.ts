@@ -188,6 +188,16 @@ export const axiosGetAllDeal = async () => {
   return data;
 }
 
+export const axiosChangeDeal = async (id: number, name: string, sum: number, status: number, description: string, creatorEmail: string, creatorPassword: string) => {
+  try {const {data} = await axios.post('api/deal/update', {id, name, sum, status, description, creatorEmail, creatorPassword}, getConfig());
+  console.log('change deal', data);
+  return data;
+}
+  catch (e) {
+    console.error(e)
+  }
+}
+
 export const axiosDeleteDeal = async (id: number, creatorEmail: string, creatorPassword: string) => {
   const {data} = await axios.post('api/deal/delete', {id, creatorEmail, creatorPassword}, getConfig());
   console.log('delete deal', data);

@@ -71,16 +71,27 @@ class DealController {
     }
 
     async changeDeal (req, res, next) {
-        const {id, name, sum, status, description} = req.body
+        const {id, name, sum, status, description, creatorEmail, creatorPassword} = req.body
 
-        if (!id || !name || !sum || !status || !description) {
+        if (!id || !name || !sum || !status || !description || !creatorEmail || !creatorPassword) {
             return next(ApiError.badRequest('Введите все данные'))
+        }
+        const creator = await User.findOne({where: {email: creatorEmail}})
+        if (!creator) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(creatorPassword, creator.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if(creator.role === 'USER'){
+            return next(ApiError.badRequest('Нет доступа'))
         }
         const deal = await Deal.findOne({where: {id}})
         if (!deal) {
             return next(ApiError.internal('Сделка не найдена'))
         }
-        const updatedDeal = await deal.update({name, sum, status, description}, {where: {id}})
+        const updatedDeal = await Deal.update({name, sum, status, description}, {where: {id}})
 
         return res.json(updatedDeal)
     }
