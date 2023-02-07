@@ -9,7 +9,6 @@ import PaginationItem from '@mui/material/PaginationItem';
 import { StyledInput } from "../../../style/styles";
 import { axiosDeleteRefill } from "../../../api/axios";
 import { useNavigate } from "react-router-dom";
-import CloseIcon from '@mui/icons-material/Close';
 
 function AllDeposit() {
 
@@ -138,7 +137,6 @@ function AllDeposit() {
             </div>
           </div>
           {isOpen ? <div onClick={() => setIsOpen(false)} className="modalStyles">
-                            <CloseIcon style={{cursor:'pointer',width:'30px',height:'30px'}} onClick={() => setIsOpen(false)}></CloseIcon>
                         <div onClick={(e) => e.stopPropagation()} className="modalContentStyles">
                             <div style={{display: "flex",gap:'20px'}}>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
