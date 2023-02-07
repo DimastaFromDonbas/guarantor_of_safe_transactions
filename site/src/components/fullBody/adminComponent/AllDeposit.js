@@ -9,6 +9,7 @@ import { StyledInput } from "../../../style/styles";
 import { axiosGetAllRefills, axiosDeleteRefill, axiosCreateRefill } from "../../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { refillStatusMock } from "../../mock/OutputMock";
+import CloseIcon from '@mui/icons-material/Close';
 
 function AllDeposit() {
 
@@ -153,6 +154,9 @@ function AllDeposit() {
             </div>
           </div>
           {isOpen ? <div onClick={() => setIsOpen(false)} className="modalStyles">
+                          <div style={{display:'flex',width: "59%",flexDirection: "row-reverse",cursor:'pointer'}}>
+                            <CloseIcon onClick={() => setIsOpen(false)} ></CloseIcon>  
+                          </div>
                         <div onClick={(e) => e.stopPropagation()} className="modalContentStyles">
                             <div style={{display: "flex",gap:'20px'}}>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
