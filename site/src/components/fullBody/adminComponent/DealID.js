@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
+import { axiosGetAllDeal } from "../../../api/axios"
 import { useAppSelector } from "../../../store/reduxHooks"
+import { reducerTypes } from "../../../store/Users/types"
 
 function DealID() {
 
     const { id } = useParams()
+    const dispatch = useDispatch();
     const { allDeals } = useAppSelector ((store) => store.user)
     const [ currentDeal, setCurrentDeal ] = useState(null)
     const [ nameDeal,setNameDeal ] = useState('')
@@ -12,6 +16,15 @@ function DealID() {
     const [ statusDeal, setStatusDeal ] = useState()
     const [ descriptionDeal,setDescriptionDeal ] = useState('')
     const status = ['Открыта', 'В обработке', 'Выполнена']
+
+    async function getAllDeals(){
+        const data = await axiosGetAllDeal();
+        if(data) {
+        dispatch({
+          type: reducerTypes.GET_ALL_DEALS,
+          payload: data,
+        });}
+      }
 
     useEffect(() => {
         const temporaryDeal = allDeals?.filter(item => item.id === Number(id))[0]
@@ -24,6 +37,11 @@ function DealID() {
         }
          // eslint-disable-next-line 
        },[allDeals])
+
+       useEffect(() => {
+        getAllDeals();
+         // eslint-disable-next-line 
+       },[])
 
     return <>
         <div style={{display: 'flex',minHeight: '100vh',justifyContent: "center",}} className='styleAdminPanel'>
