@@ -301,8 +301,7 @@ export const axiosGetAllUserTransfers = async () => {
   try{const {data} = await axios.get('api/transfer/getAll', getConfig());
   console.log('get all transfers', data)
   return data}
-  catch (e) {console.log(e)
-  return []}
+  catch (e) {console.log(e)}
  }
 
  export const axiosGetUserTransfers = async (email: string) => {
