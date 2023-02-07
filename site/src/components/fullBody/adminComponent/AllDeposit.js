@@ -9,6 +9,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 import { StyledInput } from "../../../style/styles";
 import { axiosDeleteRefill } from "../../../api/axios";
 import { useNavigate } from "react-router-dom";
+import { refillStatusMock } from "../../mock/OutputMock";
 
 function AllDeposit() {
 
@@ -85,7 +86,7 @@ function AllDeposit() {
                 <div style={{textAlign: 'center',width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.id}`)} className="output-date">{item.score}</div>
                 <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.id}`)} className="output-date">{item.userEmail}</div>
                 <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.id}`)} className="output-sum">{item.userNickname}</div>
-                <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.id}`)} className="output-sum">{['Открыта', 'В обработке', 'Выполнена'][item.status]}</div>
+                <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.id}`)} className="output-sum">{refillStatusMock[item.status - 1]}</div>
                 <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum" onChange={(e) => changeDeleteRefills(e.target.checked, item.uniqueId)}><Checkbox color="error" /></div>
         </div>)}
         <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'5px'}}>

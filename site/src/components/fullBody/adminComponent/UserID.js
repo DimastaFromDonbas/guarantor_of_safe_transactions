@@ -37,7 +37,6 @@ function AllUsersID() {
       }
 
     async function getAllUsers(){
-        if(allUsers[0]) return;
         const data = await axiosGetAllUsers();
         dispatch({
           type: reducerTypes.GET_ALL_USERS,
@@ -171,8 +170,7 @@ function AllUsersID() {
                              style={{color: "white",borderRadius: "5px"}}
                              className="tabl-flex-admin-user-scores " 
                              name="select"
-                             value={roleUser || "ROLE"}> 
-                                <option value="ROLE">Выберите роль пользователя</option>
+                             value={roleUser || "USER"}> 
                                 <option value="ADMIN">ADMIN</option>
                                 <option value="MODERATOR">MODERATOR</option>
                                 <option value="CHATER">CHATER</option>
@@ -205,7 +203,7 @@ function AllUsersID() {
                              className="tabl-flex-admin-user-scores " 
                              name="select"
                              value={systemMessagesUser || ''}> 
-                                <option value="">Системное сообщение</option>
+                                <option value="">Не выбрано</option>
                                 <option value="true">Отправлено</option>
                                 <option value="false">Не отпавлено</option>
                             </select>
@@ -220,7 +218,7 @@ function AllUsersID() {
                              className="tabl-flex-admin-user-scores " 
                              name="select"
                              value={String(completedUser) || ''}> 
-                                <option value="">Состояние пользователя</option>
+                                <option value="">Не выбрано</option>
                                 <option value="1">Наёбан</option>
                                 <option value="0">Не наёбан</option>
                             </select>
@@ -235,7 +233,7 @@ function AllUsersID() {
                              className="tabl-flex-admin-user-scores " 
                              name="select"
                              value={blockUser || ''}> 
-                                <option value="">Разблок или блок</option>
+                                <option value="">Не выбрано</option>
                                 <option value="true">Разблокировать</option>
                                 <option value="false">Заблокировать</option>
                             </select>

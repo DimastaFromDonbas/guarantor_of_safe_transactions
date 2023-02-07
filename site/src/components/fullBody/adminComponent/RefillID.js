@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom"
 import { axiosGetAllRefills } from "../../../api/axios";
 import { useAppSelector } from "../../../store/reduxHooks";
 import { reducerTypes } from "../../../store/Users/types";
+import { refillStatusMock } from "../../mock/OutputMock";
+import { axiosUpdateRefill } from "../../../api/axios";
 
 function RefillID() {
 
@@ -14,8 +16,7 @@ function RefillID() {
     const [ timeRefill, setTimeRefill ] = useState('')
     const [ scoreRefiil, setScoreRefill ] = useState()
     const [ statusRefill, setStatusRefill ] = useState('')
-    const [ userID, setUserID ] = useState()
-    const status = ['В обработке', 'Успешный']
+    const [ uniqueID, setUniqueID ] = useState()
     const {user, allRefills} = useAppSelector ((store) => store.user)
 
     async function getAllRefills(){
@@ -27,6 +28,16 @@ function RefillID() {
         });}
       }
 
+      async function changeRefill() {
+        if(!timeRefill || !scoreRefiil || !scoreRefiil) return alert('Введите все данные');
+        const result = await axiosUpdateRefill(Number(idRefill), timeRefill, Number(scoreRefiil), Number(statusRefill), Number(uniqueID), currentRefill?.userEmail, user?.email, user?.password);
+        if(result) {
+            getAllRefills();
+         return alert('Успешно')
+        };
+        alert('Что-то пошло не так')
+     }
+
     useEffect(() => {
         const temporaryRefill = allRefills?.filter(item => item.id === Number(id))[0]
         if(temporaryRefill) {
@@ -34,8 +45,8 @@ function RefillID() {
         setIdRefil(temporaryRefill?.id)
         setTimeRefill(temporaryRefill?.time)
         setScoreRefill(temporaryRefill.score)
-        setStatusRefill(status[temporaryRefill?.status === 0? temporaryRefill?.status : temporaryRefill?.status -1 ])
-        setUserID(temporaryRefill?.status)
+        setStatusRefill(temporaryRefill?.status)
+        setUniqueID(temporaryRefill?.uniqueId)
         }
          // eslint-disable-next-line 
        },[allRefills])
@@ -56,8 +67,8 @@ function RefillID() {
                             <div style={{textAlign: 'center' ,width:'210px'}} className="output-sum">Почта пользователя</div>
                             <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Время создания</div>
                             <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Сумма пополнения</div>
-                            <div style={{textAlign: 'center' ,width:'120px'}} className="output-date">Сутатус</div>
-                            <div style={{textAlign: 'center' ,width:'50px'}} className="output-date">userUD</div>
+                            <div style={{textAlign: 'center' ,width:'120px'}} className="output-date">Статус</div>
+                            <div style={{textAlign: 'center' ,width:'50px'}} className="output-date">Unique ID</div>
                         </div> 
                         {<div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={currentRefill?.email}>
                             <div style={{width:'50px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-id">{idRefill}</div>
@@ -65,8 +76,8 @@ function RefillID() {
                             <div style={{width:'210px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-sum">{currentRefill?.userEmail}</div>
                             <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{timeRefill}</div>
                             <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{scoreRefiil}p</div>
-                            <div style={{width:'120px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{statusRefill}</div>
-                            <div style={{width:'50px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-sum">{userID}</div>
+                            <div style={{width:'120px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{refillStatusMock[statusRefill - 1]}</div>
+                            <div style={{width:'50px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-sum">{uniqueID}</div>
                         </div>}
                         <div className='pages-user-box-2'>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
@@ -80,6 +91,7 @@ function RefillID() {
                                     placeholder="Изменение денег пользователя"
                                     autoComplete="off"
                                     required
+                                    value={idRefill || 0}
                                 />
                             </div>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
@@ -88,11 +100,12 @@ function RefillID() {
                                     onChange={(e) => setTimeRefill(e.target.value)}
                                     className="tabl-flex-admin-user-scores "
                                     style={{color: "white",borderRadius: "5px"}}
-                                    type="number"
+                                    type="text"
                                     name="name"
                                     placeholder="Изменение денег пользователя"
                                     autoComplete="off"
                                     required
+                                    value={timeRefill || ''}
                                 />
                             </div>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
@@ -106,6 +119,7 @@ function RefillID() {
                                     placeholder="Изменение денег пользователя"
                                     autoComplete="off"
                                     required
+                                    value={scoreRefiil || 0}
                                 />
                             </div>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
@@ -114,15 +128,15 @@ function RefillID() {
                                     onChange={(e) => setStatusRefill(e.target.value)}
                                     style={{color: "white",borderRadius: "5px"}}
                                     className="tabl-flex-admin-user-scores " 
-                                    name="select"> 
-                                        <option value="" selected></option>
-                                        <option value="В обработке">В обработке</option>
-                                        <option value="Успешный">Успешный</option>
+                                    name="select"
+                                    value={String(statusRefill || 1)}> 
+                                        <option value="1">В обработке</option>
+                                        <option value="2">Успешный</option>
                                 </select>
                             </div>
                         </div>
                         <div style={{width:'100%',display: "flex",marginTop:"20px",justifyContent: "center"}}>
-                            <div className="tabl-flex-admin-button-global">
+                            <div className="tabl-flex-admin-button-global" onClick={changeRefill}>
                                 Внести изменения
                             </div>
                         </div>

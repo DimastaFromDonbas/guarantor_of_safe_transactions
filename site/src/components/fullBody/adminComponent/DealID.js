@@ -19,7 +19,6 @@ function DealID() {
     const [ descriptionDeal,setDescriptionDeal ] = useState('')
 
     async function getAllDeals(){
-        if(allDeals[0]) return;
         const data = await axiosGetAllDeal();
         if(data) {
         dispatch({

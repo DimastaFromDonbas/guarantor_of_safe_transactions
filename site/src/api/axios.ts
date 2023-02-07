@@ -224,9 +224,10 @@ export const axiosUpdateRefill = async (id: number,
   score: number,
   status: number, 
   uniqueId: number, 
+  userEmail: string,
   creatorEmail: string, 
   creatorPassword: string) => {
- try{const {data} = await axios.post('api/refill/update', {id, time, score, status, uniqueId, creatorEmail, creatorPassword}, getConfig());
+ try{const {data} = await axios.post('api/refill/update', {id, time, score, status, uniqueId, userEmail, creatorEmail, creatorPassword}, getConfig());
  console.log('update refill', data)
  return data}
  catch (e) {console.log(e)}

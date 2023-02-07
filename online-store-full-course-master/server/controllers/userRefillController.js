@@ -30,11 +30,11 @@ class UserRefillController {
     }
 
     async changeRefill(req, res, next) {
-        const {id, time, score, status, uniqueId, creatorEmail, creatorPassword} = req.body
-        if (!id || !time || !score || !status || !userEmail || !uniqueId || !creatorEmail || !creatorPassword) {
+        const {id, time, score, status, uniqueId, userEmail, creatorEmail, creatorPassword} = req.body
+        if (!id || !time || !score || !status || !uniqueId || !userEmail || !creatorEmail || !creatorPassword) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const creator = User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({where: {email: creatorEmail}})
         if (!creator) {
             return next(ApiError.badRequest('Админ с таким email не найден'))
         }
@@ -45,7 +45,16 @@ class UserRefillController {
         if(creator.role === 'USER'){
             return next(ApiError.badRequest('Нет доступа'))
         }
-
+        const checkRefill = await UserRefill.findOne({where: {uniqueId}})
+        if(!checkRefill){
+            return next(ApiError.badRequest('Пополнение не найдено'))
+        }
+          const checkUser = await User.findOne({where: {email: userEmail}})
+          if(!checkUser) {
+            return next(ApiError.badRequest('Пользователь не найден'))
+        }
+            console.log(1, checkUser.score - checkRefill.score + score, checkUser.score, )
+          const updatedUser = await User.update({score: checkUser.score - checkRefill.score + score}, {where: {email: userEmail}})
           const refill = await UserRefill.update({id, time, score, status}, {where: {uniqueId}})
            return res.json(refill)
     }
