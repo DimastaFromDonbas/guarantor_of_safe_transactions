@@ -194,6 +194,9 @@ class UserController {
             minimumTransferAmount, 
             creatorEmail, 
             creatorPassword} = req.body
+            if (!id || !creatorEmail || !creatorPassword) {
+                return next(ApiError.badRequest('Введите все данные'))
+            }
         const user = await User.findOne({where: {id}})
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
@@ -220,6 +223,9 @@ class UserController {
 
     async deleteUsers(req, res, next) {
         const {id, creatorEmail, creatorPassword} = req.body
+        if (!id || !creatorEmail || !creatorPassword) {
+            return next(ApiError.badRequest('Введите все данные'))
+        }
         const user = await User.findOne({where: {id}})
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
