@@ -1,7 +1,7 @@
 import { Checkbox } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { axiosDeleteUser, 
     axiosGetAllUsers, 
     axiosChangeRole, 
@@ -27,6 +27,7 @@ function AllUsersID() {
     const [ blockUser, setBlockUser ] = useState('')
     const [ deleteUsers, setDeleteUsers ] = useState([]);
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     function changeDeleteUsers(checked, id) {
         if(checked) {
@@ -123,6 +124,11 @@ function AllUsersID() {
     return <>
          <div style={{display: 'flex',minHeight: '100vh',justifyContent: "center",}} className='styleAdminPanel'>
              <div style={{width: "100%",display: "flex",flexDirection: "column",alignItems: "center",background: "rgba(17, 17, 18, 0.65)"}}>
+                    <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",marginTop:'10px',color:'white'}}>
+                        <div onClick={() => navigate("/adminPanel")} className="tabl-flex-admin-button-global2">
+                            Вернуться назад 
+                        </div>
+                    </div>
                     <div style={{marginTop:'20px',color: "white"}}>
                         <div style={{borderRadius: "5px"}} className="tabl-flex-admin">
                             <div style={{textAlign: 'center' ,width:'50px'}} className="output-id">ID</div>
@@ -164,6 +170,7 @@ function AllUsersID() {
                     </div>
                     </div>
                     <div className='pages-user-box'>
+  
                         <div className='pages-user-block'>
                         <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
                             <div style={{display: "flex",gap:" 5px"}}>
