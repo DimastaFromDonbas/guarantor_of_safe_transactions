@@ -14,6 +14,7 @@ function SetNameTheSite() {
     const [nameSite, setNameSite] = useState('')
 
     async function updateName() {
+        if(!nameSite) return alert('Введите название');
         const result = await axiosUpdateName(nameSite, user?.email, user?.password);
         if(result) {
             alert('Успешно')
