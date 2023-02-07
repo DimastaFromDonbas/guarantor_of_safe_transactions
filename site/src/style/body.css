@@ -168,6 +168,8 @@ input::-webkit-inner-spin-button {
     background: rgba(17, 17, 18, 0.65);
     display: flex;
     justify-content: center;
+    display: flex;
+    flex-direction: row-reverse;
     align-items: center;
   }
 .modalContentStyles {

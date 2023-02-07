@@ -9,6 +9,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 import { StyledInput } from "../../../style/styles";
 import { axiosDeleteRefill } from "../../../api/axios";
 import { useNavigate } from "react-router-dom";
+import CloseIcon from '@mui/icons-material/Close';
 
 function AllDeposit() {
 
@@ -136,8 +137,9 @@ function AllDeposit() {
                 Создать пополнение
             </div>
           </div>
-          {isOpen ? <div className="modalStyles">
-                        <div className="modalContentStyles">
+          {isOpen ? <div onClick={() => setIsOpen(false)} className="modalStyles">
+                            <CloseIcon style={{cursor:'pointer',width:'30px',height:'30px'}} onClick={() => setIsOpen(false)}></CloseIcon>
+                        <div onClick={(e) => e.stopPropagation()} className="modalContentStyles">
                             <div style={{display: "flex",gap:'20px'}}>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
                                 <h6 style={{margin: "0",textAlign: "center"}}>Создание ID</h6>
