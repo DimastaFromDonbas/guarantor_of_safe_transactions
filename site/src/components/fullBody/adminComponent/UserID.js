@@ -10,14 +10,14 @@ function AllUsersID() {
 
     const {allUsers,user} = useAppSelector ((store) => store.user)
     const { id } = useParams()
-    const [ roleUser, setRoleUser] = useState('')
-    const [ systemMessagesUser, setSystemMessagesUser] = useState('')
-    const [ completedUser, setCompletedUser] = useState('')
-    const [ scoreUser, setscoreUser] = useState('')
-    const [ minScore , setMinScore] = useState('0')
-    const [ minRefil , setMinRefil] = useState('0')
-    const [ blockUser, setBlockUser] = useState('')
-    const [deleteUsers, setDeleteUsers] = useState([]);
+    const [ roleUser, setRoleUser ] = useState('')
+    const [ systemMessagesUser, setSystemMessagesUser ] = useState('')
+    const [ completedUser, setCompletedUser ] = useState('')
+    const [ scoreUser, setscoreUser ] = useState('')
+    const [ minScore , setMinScore ] = useState('0')
+    const [ minRefil , setMinRefil ] = useState('0')
+    const [ blockUser, setBlockUser ] = useState('')
+    const [ deleteUsers, setDeleteUsers ] = useState([]);
     const dispatch = useDispatch();
 
     function changeDeleteUsers(checked, id) {
