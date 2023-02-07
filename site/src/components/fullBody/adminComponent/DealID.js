@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useAppSelector } from "../../../store/reduxHooks"
 
@@ -6,10 +6,24 @@ function DealID() {
 
     const { id } = useParams()
     const { allDeals } = useAppSelector ((store) => store.user)
+    const [ currentDeal, setCurrentDeal ] = useState(null)
     const [ nameDeal,setNameDeal ] = useState('')
     const [ sumDeal, setSumDeal ] = useState()
     const [ statusDeal, setStatusDeal ] = useState()
-    const [ descriptionDeal,setDescriptionDeal ] = useState()
+    const [ descriptionDeal,setDescriptionDeal ] = useState('')
+    const status = ['Открыта', 'В обработке', 'Выполнена']
+
+    useEffect(() => {
+        const temporaryDeal = allDeals?.filter(item => item.id === Number(id))[0]
+        if(temporaryDeal) {
+        setCurrentDeal(temporaryDeal)
+        setNameDeal(temporaryDeal?.name)
+        setSumDeal(temporaryDeal?.sum)
+        setStatusDeal(status[temporaryDeal?.status === 0? temporaryDeal?.status : temporaryDeal?.status -1 ])
+        setDescriptionDeal(temporaryDeal?.description)
+        }
+         // eslint-disable-next-line 
+       },[allDeals])
 
     return <>
         <div style={{display: 'flex',minHeight: '100vh',justifyContent: "center",}} className='styleAdminPanel'>
@@ -26,17 +40,17 @@ function DealID() {
                         <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Статус сделки</div>
                         <div style={{textAlign: 'center' ,width:'210px'}} className="output-date">Описание</div>
                     </div>
-                    {allDeals?.filter( user => user.id === Number(id) )?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={item?.email}>
-                        <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-id">{item.id}</div>
-                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.name}</div>
-                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.buyerNickname}</div>
-                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.sellerNickname}</div>
-                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-sum">{item.buyer}p</div>
-                        <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-id">{item.seller}</div>
-                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.sum}</div>
-                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.status}</div>
-                        <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-id">{item.description}</div>
-                    </div>)}
+                    { <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={currentDeal?.email}>
+                        <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-id">{currentDeal?.id}</div>
+                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{nameDeal}</div>
+                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{currentDeal?.buyerNickname}</div>
+                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{currentDeal?.sellerNickname}</div>
+                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-sum">{currentDeal?.buyer}p</div>
+                        <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-id">{currentDeal?.seller}</div>
+                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{sumDeal}</div>
+                        <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{statusDeal}</div>
+                        <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-id">{descriptionDeal}</div>
+                    </div>}
 
                     <div className='pages-user-box-2'>
                         <div style={{flexDirection: "column"}} className='pages-user-block'>
@@ -73,10 +87,9 @@ function DealID() {
                                 className="tabl-flex-admin-user-scores " 
                                 name="select"> 
                                     <option value="" selected></option>
-                                    <option value="ADMIN">ADMIN</option>
-                                    <option value="MODERATOR">MODERATOR</option>
-                                    <option value="CHATER">CHATER</option>
-                                    <option value="USER">USER</option>
+                                    <option value="Открыта">Открыта</option>
+                                    <option value="В обработке">В обработке</option>
+                                    <option value="Закрыта">Закрыта</option>
                             </select>
                         </div>
                         <div style={{flexDirection: "column"}} className='pages-user-block'>
@@ -85,7 +98,7 @@ function DealID() {
                                 onChange={(e) => setDescriptionDeal(e.target.value)}
                                 className="tabl-flex-admin-user-scores "
                                 style={{color: "white",borderRadius: "5px"}}
-                                type="number"
+                                type="text"
                                 name="name"
                                 placeholder="Изменение денег пользователя"
                                 autoComplete="off"

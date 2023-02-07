@@ -78,7 +78,7 @@ function AllUsersID() {
                         { <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={currentUser?.email}>
                             <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-id">{currentUser?.id}</div>
                             <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{currentUser?.nickname}</div>
-                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{ roleUser}</div>
+                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{roleUser}</div>
                             <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{scoreUser ?? 0}p</div>
                             <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{currentUser?.email}</div>
                             <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{systemMessagesUser}</div>
@@ -197,7 +197,6 @@ function AllUsersID() {
                             Изменить
                             </div>
                         </div>
-                        <p style={{color: 'white'}}>Сумма пополнения: {minRefil}</p>
                     </div>
                 </div>
          </div>

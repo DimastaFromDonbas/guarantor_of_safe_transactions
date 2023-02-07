@@ -91,6 +91,7 @@ function AllUsers() {
                 <div style={{textAlign: 'center' ,width:'210px'}} className="output-date">Почта Пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Статус системного сообщения</div>
                 <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Completed</div>
+                <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Доступ</div>
                 <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Удалить</div>
             </div>
 
@@ -99,9 +100,10 @@ function AllUsers() {
                 <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-sum">{item.nickname}</div>
                 <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-date">{item.role}</div>
                 <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-sum">{item.score}</div>
-                <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-id">{item.email}</div>
+                <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer',overflowWrap: "anywhere"}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-id">{item.email}</div>
                 <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-sum">{item.systemMessage}</div>
                 <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-sum">{['Не наёбан', 'Наёбан'][item.completed]}</div>
+                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-sum">{item.checkRu === 'true'? 'Открыт': 'Закрыт'}</div>
                 <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} className="output-sum" onChange={(e) => changeDeleteUsers(e.target.checked, item.id)}><Checkbox color="error" /></div>
             </div>)}
 
