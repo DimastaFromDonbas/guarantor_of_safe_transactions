@@ -63,8 +63,8 @@
     background: rgba(39, 39, 43, 0.93);
     position: absolute;
     margin-top: 45px;
-    opacity: 0;
-    transition: ease .5s;
+    max-height: 0;
+    overflow: hidden;
     border-radius: 0 0 16px 16px;
     transition: all .5s !important;
     z-index: 10;
@@ -136,8 +136,8 @@
 }
 
 .active {
-    opacity: 1;
-    transition: all .5s !important;
+    max-height: 100%;
+    transition: all 1s !important;
 }
 
 .header-burder{

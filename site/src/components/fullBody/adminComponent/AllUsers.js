@@ -95,14 +95,14 @@ function AllUsers() {
             </div>
 
              {users?.sort((a, b) => a.id - b.id).slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={item?.email}>
-                <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-id">{item.id}</div>
-                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-sum">{item.nickname}</div>
-                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-date">{item.role}</div>
-                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-sum">{item.score}</div>
-                <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-id">{item.email}</div>
-                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-sum">{item.systemMessage}</div>
-                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-sum">{['Не наёбан', 'Наёбан'][item.completed]}</div>
-                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/allusers/${item?.id}`)} className="output-sum" onChange={(e) => changeDeleteUsers(e.target.checked, item.id)}><Checkbox color="error" /></div>
+                <div style={{width:'50px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-id">{item.id}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-sum">{item.nickname}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-date">{item.role}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-sum">{item.score}</div>
+                <div style={{width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-id">{item.email}</div>
+                <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-sum">{item.systemMessage}</div>
+                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-sum">{['Не наёбан', 'Наёбан'][item.completed]}</div>
+                <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/user/${item?.id}`)} className="output-sum" onChange={(e) => changeDeleteUsers(e.target.checked, item.id)}><Checkbox color="error" /></div>
             </div>)}
 
           <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'5px'}}>

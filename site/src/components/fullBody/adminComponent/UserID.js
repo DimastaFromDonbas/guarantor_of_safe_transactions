@@ -11,13 +11,14 @@ function AllUsersID() {
 
     const {allUsers,user} = useAppSelector ((store) => store.user)
     const { id } = useParams()
-    const [ roleUser, setRoleUser] = useState('')
-    const [ systemMessagesUser, setSystemMessagesUser] = useState('')
-    const [ completedUser, setCompletedUser] = useState('')
-    const [ scoreUser, setscoreUser] = useState('')
-    const [ minScore , setMinScore] = useState('0')
-    const [ blockUser, setBlockUser] = useState('')
-    const [deleteUsers, setDeleteUsers] = useState([]);
+    const [ roleUser, setRoleUser ] = useState('')
+    const [ systemMessagesUser, setSystemMessagesUser ] = useState('')
+    const [ completedUser, setCompletedUser ] = useState('')
+    const [ scoreUser, setscoreUser ] = useState('')
+    const [ minScore , setMinScore ] = useState('0')
+    const [ minRefil , setMinRefil ] = useState('0')
+    const [ blockUser, setBlockUser ] = useState('')
+    const [ deleteUsers, setDeleteUsers ] = useState([]);
     const dispatch = useDispatch();
 
     function changeDeleteUsers(checked, id) {
@@ -65,6 +66,10 @@ function AllUsersID() {
         if(result) alert('success')
     }
 
+    function changesRefil(e) {
+        setMinRefil(e.currentTarget.value)
+    }
+
     useEffect(() => {
         getAllUsers();
          // eslint-disable-next-line 
@@ -83,7 +88,8 @@ function AllUsersID() {
                             <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Статус системного сообщения</div>
                             <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Completed</div>
                             <div style={{textAlign: 'center' ,width:'100px'}} className="output-sum">Блокировка</div>
-                            <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Минимальная сумма</div>
+                            <div style={{textAlign: 'center' ,width:'130px'}} className="output-sum">Минимальный перевод</div>
+                            <div style={{textAlign: 'center' ,width:'130px'}} className="output-sum">Сумма пополнения</div>
                             <div style={{textAlign: 'center' ,width:'80px'}} className="output-sum">Удалить</div>
                         </div>
 
@@ -96,7 +102,8 @@ function AllUsersID() {
                             <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{systemMessagesUser || item.systemMessage}</div>
                             <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{completedUser?completedUser:['Не наёбан', 'Наёбан'][item.completed]}</div>
                             <div style={{width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{blockUser?blockUser:''}</div>
-                            <div style={{width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{minScore?minScore:''}p</div>
+                            <div style={{width:'130px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{minScore?minScore:''}p</div>
+                            <div style={{width:'130px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum">{minRefil?minRefil:''}p</div>
                             <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-sum" onChange={(e) => changeDeleteUsers(e.target.checked, item.id)}><Checkbox color="error" /></div>
                         </div>)}
                         <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'5px'}}>
@@ -193,6 +200,21 @@ function AllUsersID() {
                             type="number"
                             name="name"
                             placeholder="Изменение мин суммы вывода"
+                            autoComplete="off"
+                            required
+                            />
+                            <div className="tabl-flex-admin-button">
+                            Изменить
+                            </div>
+                        </div>
+                        <div className='pages-user-block'>
+                        <input
+                        onChange={changesRefil}
+                            className="tabl-flex-admin-user-scores "
+                            style={{color: "white",borderRadius: "5px"}}
+                            type="number"
+                            name="name"
+                            placeholder="Изменение суммы пополнения"
                             autoComplete="off"
                             required
                             />

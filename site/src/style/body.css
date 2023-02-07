@@ -101,6 +101,9 @@ input::-webkit-inner-spin-button {
 }
 
 .tabl-flex-admin-user-scores {
+    cursor: pointer;
+    -webkit-inner-spin-button: none;
+    -webkit-outer-spin-button: none;
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     background: rgba(90, 89, 89, 0.75);
