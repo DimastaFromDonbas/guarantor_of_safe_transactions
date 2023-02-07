@@ -46,7 +46,7 @@ function TransfersToUser(search) {
     <div style={{borderRadius: "5px"}} className="tabl-flex-admin">
                 <div style={{textAlign: 'center' ,width:'80px'}} className="output-id">ID</div>
                 <div style={{textAlign: 'center' ,width:'210px', cursor:'pointer'}} className="output-date" onClick={() =>setSortId(prev => !prev)}>Время создания</div>
-                <div style={{textAlign: 'center' ,width:'210px', cursor:'pointer'}} className="output-date" >Сумма</div>
+                <div style={{textAlign: 'center' ,width:'100px', cursor:'pointer'}} className="output-date" >Сумма</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Почта пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Имя пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Почта получателя</div>
@@ -56,8 +56,8 @@ function TransfersToUser(search) {
 
             {transfersToUser?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={item.id}>
             <div style={{textAlign: 'center',width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.id}</div>
-            <div style={{textAlign: 'center',width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.time}</div>
-            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.score}</div>
+            <div style={{textAlign: 'center',width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.time}</div>
+            <div style={{textAlign: 'center',width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-id">{item.score}</div>
             <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.userEmail}</div>
             <div style={{textAlign: 'center',width:'210px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{item.userNickname}</div>
             <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{item.receiverEmail}</div>
