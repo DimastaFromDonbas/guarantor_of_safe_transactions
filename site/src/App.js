@@ -18,6 +18,7 @@ import BlockMaseges from "./components/fullBody/BlockMaseges";
 import Sertificates from './components/fullBody/Sertificates'
 import UserID from "./components/fullBody/adminComponent/UserID";
 import DealID from "./components/fullBody/adminComponent/DealID";
+import RefillID from "./components/fullBody/adminComponent/RefillID";
 //import {Helmet} from "react-helmet";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/" element = {<Main/>}/>
         <Route path="/adminPanel/user/:id" element={<UserID />}/>
         <Route path="/adminPanel/deal/:id" element={<DealID />}/>
+        <Route path="/adminPanel/refill/:id" element={<RefillID />}/>
         <Route path="/deal/:id" element={<Deal />}/>
         <Route path="/systemmessages" element={<SystemMessages />}/>
         <Route path="/blockMaseges" element={<BlockMaseges />}/>
