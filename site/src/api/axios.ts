@@ -23,6 +23,25 @@ export const getConfig = () => ({
       "Content-type": `application/json`,
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     }})
+// SITE NAME
+
+export const axiosGetName = async () => {
+  try {const {data} = await axios.get('api/name/get');
+  console.log('site name', data)
+  return data}
+  catch (error: any){
+    console.error(error)
+  }
+}
+
+export const axiosUpdateName = async (name: string, email: string, password: string) => {
+  try {const {data} = await axios.post('api/name/update', {name, email, password}, getConfig());
+  console.log('update site name', data)
+  return data}
+  catch (error: any){
+    console.error(error)
+  }
+}
 
 //USER
 
@@ -281,15 +300,13 @@ export const axiosGetRefill = async (id: number) => {
 
 export const axiosChangeUserTransfer = async (
   id: number,
-  paymantSystem: string,
-  walletNumber: string,
-  status: string, 
+  score: number,
+  status: number, 
   creatorEmail: string,
   creatorPassword: string) => {
  try{const {data} = await axios.post('api/transfer/update', {
   id, 
-  paymantSystem, 
-  walletNumber, 
+  score, 
   status, 
   creatorEmail, 
   creatorPassword}, getConfig());
@@ -339,11 +356,13 @@ export const axiosGetAllUserTransfers = async () => {
 
 export const axiosChangeUserToUserTransfer = async (
   id: number,
-  status: string, 
+  score: number,
+  status: number, 
   creatorEmail: string,
   creatorPassword: string) => {
  try{const {data} = await axios.post('api/touser/update', {
   id, 
+  score,
   status, 
   creatorEmail, 
   creatorPassword}, getConfig());
