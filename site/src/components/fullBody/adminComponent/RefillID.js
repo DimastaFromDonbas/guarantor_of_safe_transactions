@@ -31,6 +31,7 @@ function RefillID() {
 
       async function changeRefill() {
         if(!timeRefill || !scoreRefiil || !scoreRefiil) return alert('Введите все данные');
+        if(scoreRefiil < 0) return alert('Значение меньше 0')
         const result = await axiosUpdateRefill(Number(idRefill), timeRefill, Number(scoreRefiil), Number(statusRefill), Number(uniqueID), currentRefill?.userEmail, user?.email, user?.password);
         if(result) {
             getAllRefills();
