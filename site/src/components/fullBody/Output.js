@@ -127,7 +127,7 @@ function Output() {
         <Header />
         <Chat />
             <div style={{minHeight: '80vh'}} className="container">
-                <div className="page-container page-container--bg_transparent">
+                <div className="page-container-2 page-container--bg_transparent">
                     <div className="account-wrap__heading">
                         <h2>Мой счет</h2>
                         <div className="account-wrap__sum sum-account">

@@ -838,6 +838,12 @@ input::-webkit-inner-spin-button {
     padding-bottom: 30px;
 }
 
+.page-container-2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+
 .main-section--about {
     margin-bottom: 140px;
 }

@@ -69,7 +69,6 @@ function DealID() {
                         <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{statusDeal}</div>
                         <div style={{width:'210px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-id">{descriptionDeal}</div>
                     </div>}
-
                     <div className='pages-user-box-2'>
                         <div style={{flexDirection: "column"}} className='pages-user-block'>
                             <h6 style={{margin: "0",textAlign: "center"}}>Изменение названия сделки</h6>
