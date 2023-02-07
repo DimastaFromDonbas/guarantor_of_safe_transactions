@@ -52,6 +52,8 @@ function RefillID() {
                     <div style={{marginTop:'20px',color: "white"}}>
                         <div style={{borderRadius: "5px"}} className="tabl-flex-admin">
                             <div style={{textAlign: 'center' ,width:'50px'}} className="output-id">ID</div>
+                            <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Имя пользователя</div>
+                            <div style={{textAlign: 'center' ,width:'210px'}} className="output-sum">Почта пользователя</div>
                             <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Время создания</div>
                             <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Сумма пополнения</div>
                             <div style={{textAlign: 'center' ,width:'120px'}} className="output-date">Сутатус</div>
@@ -59,6 +61,8 @@ function RefillID() {
                         </div> 
                         {<div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={currentRefill?.email}>
                             <div style={{width:'50px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}}  className="output-id">{idRefill}</div>
+                            <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{currentRefill?.userNickname}</div>
+                            <div style={{width:'210px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-sum">{currentRefill?.userEmail}</div>
                             <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{timeRefill}</div>
                             <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum">{scoreRefiil}p</div>
                             <div style={{width:'120px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{statusRefill}</div>
