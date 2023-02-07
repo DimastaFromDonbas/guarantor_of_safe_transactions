@@ -30,8 +30,8 @@ class UserRefillController {
     }
 
     async changeRefill(req, res, next) {
-        const {id, time, score, status, userEmail, userNickname, creatorEmail, creatorPassword} = req.body
-        if (!id || !time || !score || !status || !userEmail || !creatorEmail || !creatorPassword) {
+        const {id, time, score, status, uniqueId, creatorEmail, creatorPassword} = req.body
+        if (!id || !time || !score || !status || !userEmail || !uniqueId || !creatorEmail || !creatorPassword) {
             return next(ApiError.badRequest('Введите все данные'))
         }
         const creator = User.findOne({where: {email: creatorEmail}})
@@ -42,16 +42,12 @@ class UserRefillController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role !== 'ADMIN'){
+        if(creator.role === 'USER'){
             return next(ApiError.badRequest('Нет доступа'))
         }
-        const chechUser = await User.findOne({where: {email: userEmail}})
-        if (!chechUser) {
-            return next(ApiError.badRequest('Пользователь с таким email не найден'))
-        }
 
-          const refill = await UserRefill.update({id, time, score, status}, {where: {userEmail}})
-           return res.json({...refill.dataValues, id, time, score, status})
+          const refill = await UserRefill.update({id, time, score, status}, {where: {uniqueId}})
+           return res.json(refill)
     }
 
     async getAll(req, res) {
