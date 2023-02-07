@@ -37,6 +37,7 @@ function AllUsersID() {
       }
 
     async function getAllUsers(){
+        if(allUsers[0]) return;
         const data = await axiosGetAllUsers();
         dispatch({
           type: reducerTypes.GET_ALL_USERS,

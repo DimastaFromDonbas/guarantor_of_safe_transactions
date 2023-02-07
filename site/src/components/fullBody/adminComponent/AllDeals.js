@@ -48,8 +48,8 @@ function AllDeals() {
                 el?.buyerNickname?.toLowerCase()?.includes(search) ||
                 el?.seller?.toLowerCase()?.includes(search) ||
                 el?.sellerNickname?.toLowerCase()?.includes(search)): true)
-                ?.filter((checkbox) => (checkbox?.status === 0 && filterOpen) ||
-                (checkbox?.status === 1 && filterComplete))
+                ?.filter((checkbox) => (checkbox?.status === 1 && filterOpen) ||
+                (checkbox?.status === 3 && filterComplete))
                 ?.sort((a, b) => sortId ? a.id - b.id : b.id - a.id))
        },[allDeals, search, filterOpen, filterComplete, sortId])
 
