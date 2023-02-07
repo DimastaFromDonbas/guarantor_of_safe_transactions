@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt')
 
 class UserRefillController {
     async create(req, res, next) {
-        const {id, time, score, status, userEmail, userNickname, creatorEmail, creatorPassword} = req.body
-        if (!id || !time || !score || !status || !userEmail || !userNickname || !creatorEmail) {
+        const {id, time, score, user, creatorEmail, creatorPassword} = req.body
+        if (!id || !time || !score || !user || !creatorEmail) {
             return next(ApiError.badRequest('Введите все данные'))
         }
         const creator = await User.findOne({where: {email: creatorEmail}})
@@ -16,22 +16,23 @@ class UserRefillController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role !== 'ADMIN'){
+        if(creator.role === 'USER'){
             return next(ApiError.badRequest('Нет доступа'))
         }
-        const checkUser = await User.findOne({where: {email: userEmail}})
+        const checkUser = await User.findOne({where: {email: user}}) || await User.findOne({where: {nickname: user}})
         if (!checkUser) {
-            return next(ApiError.badRequest('Пользователь с таким email не найден'))
+            return next(ApiError.badRequest('Пользователь не найден'))
         }
-        const userRefill = await UserRefill.create({id, time, score, status, userEmail, userNickname})
-        const userUpdate = await User.update({score: checkUser.score + score}, {where: {email: userEmail}})
+        const userRefill = await UserRefill.create({id, time, score, status: 1, userEmail: checkUser.email, userNickname: checkUser.nickname})
+        const userUpdate = await User.update({score: checkUser.score + score}, {where: {email: checkUser.email}})
 
         return res.json(userRefill)
     }
 
     async changeRefill(req, res, next) {
         const {id, time, score, status, uniqueId, userEmail, creatorEmail, creatorPassword} = req.body
-        if (!id || !time || !score || !status || !uniqueId || !userEmail || !creatorEmail || !creatorPassword) {
+        console.log(1, typeof score)
+        if (!id || !time || typeof score !== 'number' || !status || !uniqueId || !userEmail || !creatorEmail || !creatorPassword) {
             return next(ApiError.badRequest('Введите все данные'))
         }
         const creator = await User.findOne({where: {email: creatorEmail}})

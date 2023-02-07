@@ -2,12 +2,11 @@ import { useAppSelector } from "../../../store/reduxHooks";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../../store/Users/types";
-import { axiosGetAllRefills } from "../../../api/axios";
 import Checkbox from '@mui/material/Checkbox';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import { StyledInput } from "../../../style/styles";
-import { axiosDeleteRefill } from "../../../api/axios";
+import { axiosGetAllRefills, axiosDeleteRefill, axiosCreateRefill } from "../../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { refillStatusMock } from "../../mock/OutputMock";
 
@@ -15,8 +14,8 @@ function AllDeposit() {
 
     const dispatch = useDispatch();
     const {user, allRefills} = useAppSelector ((store) => store.user)
-    const [newID, setnewID] = useState();
-    const [newSumDep, setNewSumDep] = useState();
+    const [newID, setnewID] = useState(0);
+    const [newSumDep, setNewSumDep] = useState(0);
     const [emailUser, setEmailUser] = useState('');
     const [search, setSearch] = useState('');
     const [sortId, setSortId] = useState(true);
@@ -34,6 +33,20 @@ function AllDeposit() {
           type: reducerTypes.GET_ALL_REFILLS,
           payload: data,
         });}
+      }
+
+      async function createRefill() {
+        if(!newID || !newSumDep || !emailUser) return alert('Введите все данные');
+        const result = await axiosCreateRefill(Number(newID), Number(newSumDep), emailUser, user?.email, user?.password);
+        if(result) {
+          alert('Успешно');
+          getAllRefills();
+          setnewID(0);
+          setNewSumDep(0);
+          setEmailUser('');
+        } else {
+          alert('Что-то пошло не так')
+        }
       }
 
       function changeDeleteRefills(checked, id) {
@@ -84,13 +97,15 @@ function AllDeposit() {
             </div>
 
             {refills?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={item.uniqueId}>
-                <div style={{textAlign: 'center',width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.id}`)} className="output-id">{item.uniqueId}</div>
-                <div style={{textAlign: 'center',width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.id}`)} className="output-id">{item.id}</div>
-                <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.id}`)} className="output-id">{item.time}</div>
-                <div style={{textAlign: 'center',width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.id}`)} className="output-date">{item.score}</div>
-                <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.id}`)} className="output-date">{item.userEmail}</div>
-                <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.id}`)} className="output-sum">{item.userNickname}</div>
-                <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.id}`)} className="output-sum">{refillStatusMock[item.status - 1]}</div>
+                <div style={{textAlign: 'center',width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => {
+                  console.log('unique', item, item?.uniqueId)
+                  navigate(`/adminPanel/refill/${item?.uniqueId}`)}} className="output-id">{item.uniqueId}</div>
+                <div style={{textAlign: 'center',width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueIdid}`)} className="output-id">{item.id}</div>
+                <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)} className="output-id">{item.time}</div>
+                <div style={{textAlign: 'center',width:'100px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)} className="output-date">{item.score}</div>
+                <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)} className="output-date">{item.userEmail}</div>
+                <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)} className="output-sum">{item.userNickname}</div>
+                <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)} className="output-sum">{refillStatusMock[item.status - 1]}</div>
                 <div style={{width:'80px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-sum" onChange={(e) => changeDeleteRefills(e.target.checked, item.uniqueId)}><Checkbox color="error" /></div>
         </div>)}
         <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'5px'}}>
@@ -143,20 +158,21 @@ function AllDeposit() {
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
                                 <h6 style={{margin: "0",textAlign: "center"}}>Создание ID</h6>
                                 <input
-                                    onChange={(e) => setnewID(e.target.value)}
+                                    onChange={(e) => setnewID(e.target.value || 0)}
                                     className="tabl-flex-admin-user-scores "
                                     style={{color: "white",borderRadius: "5px"}}
                                     type="number"
                                     name="name"
-                                    placeholder="Изменение денег пользователя"
+                                    placeholder="Изменение ID пополнения"
                                     autoComplete="off"
                                     required
+                                    value={newID}
                                 />
                             </div>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
                                 <h6 style={{margin: "0",textAlign: "center"}}>Создание суммы пополнения</h6>
                                 <input
-                                    onChange={(e) => setNewSumDep(e.target.value)}
+                                    onChange={(e) => setNewSumDep(Number(e.target.value) || 0)}
                                     className="tabl-flex-admin-user-scores "
                                     style={{color: "white",borderRadius: "5px"}}
                                     type="number"
@@ -164,23 +180,25 @@ function AllDeposit() {
                                     placeholder="Изменение денег пользователя"
                                     autoComplete="off"
                                     required
+                                    value={newSumDep}
                                 />
                             </div>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
-                                <h6 style={{margin: "0",textAlign: "center"}}>Добавление email </h6>
+                                <h6 style={{margin: "0",textAlign: "center"}}>Email пользователя</h6>
                                 <input
                                     onChange={(e) => setEmailUser(e.target.value)}
                                     className="tabl-flex-admin-user-scores "
                                     style={{color: "white",borderRadius: "5px"}}
                                     type="text"
                                     name="name"
-                                    placeholder="Изменение денег пользователя"
+                                    placeholder="Изменение email пользователя"
                                     autoComplete="off"
                                     required
+                                    value={emailUser}
                                 />
                             </div>
                             </div>
-                            <div className="tabl-flex-admin-button-global2">
+                            <div className="tabl-flex-admin-button-global2" onClick={createRefill}>
                                 Создать пополнение
                             </div>
                         </div>

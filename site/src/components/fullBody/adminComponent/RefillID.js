@@ -39,7 +39,7 @@ function RefillID() {
      }
 
     useEffect(() => {
-        const temporaryRefill = allRefills?.filter(item => item.id === Number(id))[0]
+        const temporaryRefill = allRefills?.filter(item => item.uniqueId === Number(id))[0]
         if(temporaryRefill) {
         setCurrentRefill(temporaryRefill)
         setIdRefil(temporaryRefill?.id)

@@ -225,14 +225,12 @@ export const axiosDeleteDeal = async (id: number, creatorEmail: string, creatorP
 // REFILL
 
 export const axiosCreateRefill = async (id: number,
-   time: string, 
    score: number,
-   status: number, 
-   userEmail: string, 
-   userNickname: string,
+   user: string, 
    creatorEmail: string, 
    creatorPassword: string) => {
-  try{const {data} = await axios.post('api/refill/create', {id, time, score, status, userEmail, userNickname, creatorEmail, creatorPassword}, getConfig());
+    const time = new Date().toLocaleString().replaceAll(',', '');
+  try{const {data} = await axios.post('api/refill/create', {id, time, score, user, creatorEmail, creatorPassword}, getConfig());
   console.log('create refill', data)
   return data}
   catch (e) {console.log(e)}
