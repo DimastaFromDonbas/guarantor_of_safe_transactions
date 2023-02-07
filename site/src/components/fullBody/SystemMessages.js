@@ -75,7 +75,7 @@ function SystemMessages() {
                         Данная сумма устанавливается автоматически, исходя из сделки/сделок на момент первого перевода. 
                         <div style={{color: 'red', margin: '0px', padding:'0px'}}>Для Вас установлена сумма минимального перевода {user?.minimumTransferAmount || fullSummDon} RUB</div>
                         <br />
-                        <div style={{color: 'red', margin: '0px', padding:'0px'}}> Сумма пополнения для Вас составляет: {dopSummDon} RUB. </div>
+                        <div style={{color: 'red', margin: '0px', padding:'0px'}}> Сумма пополнения для Вас составляет: {user?.sumTransferAmoumt || dopSummDon} RUB. </div>
                         Данную сумму возможно дополнить только новым платёжем, после чего, 
                         вам будет доступен перевод всей суммы, включая пополненные средства.<span style={{color: 'red', margin: '0px', padding:'0px'}}>Так же доносим до вашего ведома, что по истечению 10 рабочих дней, будет взиматься комиссия в размере 1.5% каждые последующие сутки.</span>
                         <br />

@@ -3,6 +3,7 @@ const router = new Router()
 const userController = require('../controllers/userController')
 const authMiddleware = require('../middleware/authMiddleware')
 
+router.post('/change', authMiddleware, userController.changeUser)
 router.post('/delete', authMiddleware, userController.deleteUsers)
 router.post('/registration', userController.registration)
 router.post('/login', userController.login)

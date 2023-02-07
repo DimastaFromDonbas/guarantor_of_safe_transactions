@@ -78,12 +78,25 @@ export const axiosGetAllUsers = async () => {
   return data.users;
 }
 
+export const axiosChangeUser = async (id: number, 
+  role: string, 
+  score: number, 
+  systemMessage: string, 
+  checkRu: string, 
+  minimumTransferAmount: number, 
+  completed: number, 
+  creatorEmail: string, 
+  creatorPassword: string) => {
+  const {data} = await axios.post('api/user/change', {id, role, score, systemMessage, checkRu, minimumTransferAmount, completed, creatorEmail, creatorPassword}, getConfig());
+  console.log('change user', data);
+  return data;
+}
+
 export const axiosDeleteUser = async (id: number, creatorEmail: string, creatorPassword: string) => {
   const {data} = await axios.post('api/user/delete', {id, creatorEmail, creatorPassword}, getConfig());
   console.log('delete user', data);
   return data;
 }
-
 // DEAL
 
 export const axiosCreateDeal = async (
