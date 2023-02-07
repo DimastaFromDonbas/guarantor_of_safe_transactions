@@ -16,7 +16,7 @@ function RefillID() {
     const [ statusRefill, setStatusRefill ] = useState('')
     const [ userID, setUserID ] = useState()
     const status = ['В обработке', 'Успешный']
-    const {user, allRefills} = useAppSelector ((store) => store.user)
+    const { allRefills} = useAppSelector ((store) => store.user)
 
     async function getAllRefills(){
         const data = await axiosGetAllRefills();

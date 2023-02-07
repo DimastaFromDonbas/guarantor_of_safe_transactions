@@ -14,6 +14,9 @@ function AllDeposit() {
 
     const dispatch = useDispatch();
     const {user, allRefills} = useAppSelector ((store) => store.user)
+    const [newID, setnewID] = useState();
+    const [newSumDep, setNewSumDep] = useState();
+    const [emailUser, setEmailUser] = useState('');
     const [search, setSearch] = useState('');
     const [sortId, setSortId] = useState(true);
     const [refills, setRefills] = useState([]);
@@ -21,6 +24,7 @@ function AllDeposit() {
     const [deleteRefills, setDeleteRefills] = useState([]);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const navigate = useNavigate()
+    const [isOpen, setIsOpen] = useState(false);
 
     async function getAllRefills(){
         const data = await axiosGetAllRefills();
@@ -127,6 +131,59 @@ function AllDeposit() {
               required
             />
           </div>
+          <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'250px'}}>
+            <div onClick={() => setIsOpen(true)} style={{maxWidth: "165px !important"}} className="tabl-flex-admin-button-global2">
+                Создать пополнение
+            </div>
+          </div>
+          {isOpen ? <div className="modalStyles">
+                        <div className="modalContentStyles">
+                            <div style={{display: "flex",gap:'20px'}}>
+                            <div style={{flexDirection: "column"}} className='pages-user-block'>
+                                <h6 style={{margin: "0",textAlign: "center"}}>Создание ID</h6>
+                                <input
+                                    onChange={(e) => setnewID(e.target.value)}
+                                    className="tabl-flex-admin-user-scores "
+                                    style={{color: "white",borderRadius: "5px"}}
+                                    type="number"
+                                    name="name"
+                                    placeholder="Изменение денег пользователя"
+                                    autoComplete="off"
+                                    required
+                                />
+                            </div>
+                            <div style={{flexDirection: "column"}} className='pages-user-block'>
+                                <h6 style={{margin: "0",textAlign: "center"}}>Создание суммы пополнения</h6>
+                                <input
+                                    onChange={(e) => setNewSumDep(e.target.value)}
+                                    className="tabl-flex-admin-user-scores "
+                                    style={{color: "white",borderRadius: "5px"}}
+                                    type="number"
+                                    name="name"
+                                    placeholder="Изменение денег пользователя"
+                                    autoComplete="off"
+                                    required
+                                />
+                            </div>
+                            <div style={{flexDirection: "column"}} className='pages-user-block'>
+                                <h6 style={{margin: "0",textAlign: "center"}}>Добавление email </h6>
+                                <input
+                                    onChange={(e) => setEmailUser(e.target.value)}
+                                    className="tabl-flex-admin-user-scores "
+                                    style={{color: "white",borderRadius: "5px"}}
+                                    type="text"
+                                    name="name"
+                                    placeholder="Изменение денег пользователя"
+                                    autoComplete="off"
+                                    required
+                                />
+                            </div>
+                            </div>
+                            <div className="tabl-flex-admin-button-global2">
+                                Создать пополнение
+                            </div>
+                        </div>
+                    </div>: ""}
         </>
 }
 

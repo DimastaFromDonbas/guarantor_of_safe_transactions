@@ -17,6 +17,8 @@ function DealID() {
     const [ sumDeal, setSumDeal ] = useState()
     const [ statusDeal, setStatusDeal ] = useState()
     const [ descriptionDeal,setDescriptionDeal ] = useState('')
+    const [errorDescription,setErrorDescription] = useState('')
+    const [errorSumDeal,setErrorSumDeal] = useState('')
 
     async function getAllDeals(){
         if(allDeals[0]) return;
@@ -27,6 +29,28 @@ function DealID() {
           payload: data,
         });}
       }
+
+    function setDescpittions(e) {
+        setDescriptionDeal(e.target.value)
+        if (e.target.value?.length < 30 ) {
+            setErrorDescription('Минимальное количествое 30 символов')
+        } else if(!e.target.value) {
+            setErrorDescription('Поле не может быть пустым')
+        } else {
+            setErrorDescription('')
+        }
+    }
+
+    function sumFull(e) {
+        setSumDeal(e.currentTarget.value)
+          if(!e.target.value){
+            setErrorSumDeal('Введите сумму') 
+        }else if(e.target.value < 2000) {
+            setErrorSumDeal('Минимальная сумма 2000р') 
+        }else {
+            setErrorSumDeal('')
+        }
+    }
 
       async function changeDeal() {
         if(descriptionDeal?.length < 30) return alert('Описание должно состоять минимум из 30 символов');
@@ -101,7 +125,7 @@ function DealID() {
                         <div style={{flexDirection: "column"}} className='pages-user-block'>
                             <h6 style={{margin: "0",textAlign: "center"}}>Изменение суммы сделки</h6>
                             <input
-                                onChange={(e) => setSumDeal(e.target.value)}
+                                onChange={sumFull}
                                 className="tabl-flex-admin-user-scores "
                                 style={{color: "white",borderRadius: "5px"}}
                                 type="number"
@@ -111,6 +135,7 @@ function DealID() {
                                 required
                                 value={sumDeal || 0}
                             />
+                            <h6 style={{overflowWrap: "anywhere"}}>{errorSumDeal}</h6>
                         </div>
                         <div style={{flexDirection: "column"}} className='pages-user-block'>
                             <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса сделки</h6>
@@ -128,7 +153,7 @@ function DealID() {
                         <div style={{flexDirection: "column"}} className='pages-user-block'>
                             <h6 style={{margin: "0",textAlign: "center"}}>Изменение описания сделки</h6>
                             <input
-                                onChange={(e) => setDescriptionDeal(e.target.value)}
+                                onChange={setDescpittions}
                                 className="tabl-flex-admin-user-scores "
                                 style={{color: "white",borderRadius: "5px"}}
                                 type="text"
@@ -138,6 +163,7 @@ function DealID() {
                                 required
                                 value={descriptionDeal || ''}
                             />
+                            <h6 style={{overflowWrap: "anywhere"}}>{errorDescription}</h6>
                         </div>
                     </div>
                     <div style={{width:'100%',display: "flex",marginTop:"20px",justifyContent: "center"}}>

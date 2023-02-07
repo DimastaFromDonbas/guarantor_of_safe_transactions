@@ -159,6 +159,26 @@ input::-webkit-inner-spin-button {
     border-radius: 5px;
 }
 
+.modalStyles {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(17, 17, 18, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.modalContentStyles {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
 .tabl-flex-admin-button-global {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
@@ -176,6 +196,31 @@ input::-webkit-inner-spin-button {
     border-radius: 5px;
     transition: all .3s;
 }
+
+.tabl-flex-admin-button-global2 {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: rgba(90, 89, 89, 0.75);
+    border: 1px solid rgba(255,255,255,0.01);
+    padding: 10px 10px;
+    text-align: center;
+    box-shadow:  0 4px 30px rgba(35,35,35,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+    max-width: 165px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all .3s;
+}
+
+.tabl-flex-admin-button-global2:hover {
+    color: green;
+    transition: all .3s;
+    transform: scale(1.05);
+}
+
 .tabl-flex-admin-button-global:hover {
     color: red;
     transition: all .3s;

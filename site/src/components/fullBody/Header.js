@@ -152,7 +152,7 @@ function Header() {
                 <Link className="color-nav-link color header-home" to="/"><HomeIcon></HomeIcon></Link>
                 <FormatListBulletedIcon onClick={() => setSideBar(true)} className="color-nav-link color header-burder"></FormatListBulletedIcon>
               { user?.id? 
-                <div className="header-navBar" style={{ marginLeft: "25px",display: "flex",width: "640px",justifyContent: "space-between",alignItems: "center"}} >
+                <div className="header-navBar" style={{ marginLeft: "25px",display: "flex",width: "666px",justifyContent: "space-between",alignItems: "center"}} >
                 <Link className="color-nav-link color" to="/deals">МОИ СДЕЛКИ</Link>
                 <Link className="color-nav-link color" to="/output">МОЙ СЧЕТ:{user.score} РУБ.</Link>
                 <Link className="color-nav-link color" to="/howitwork">ПОМОЩЬ</Link>
