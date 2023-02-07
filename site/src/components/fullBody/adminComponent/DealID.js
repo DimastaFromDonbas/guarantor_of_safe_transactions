@@ -100,7 +100,7 @@ function DealID() {
                         <div style={{flexDirection: "column"}} className='pages-user-block'>
                             <h6 style={{margin: "0",textAlign: "center"}}>Изменение суммы сделки</h6>
                             <input
-                                onChange={(e) => setSumDeal(e.target.value)}
+                                onChange={(e) => setSumDeal(e.target.value || 0)}
                                 className="tabl-flex-admin-user-scores "
                                 style={{color: "white",borderRadius: "5px"}}
                                 type="number"

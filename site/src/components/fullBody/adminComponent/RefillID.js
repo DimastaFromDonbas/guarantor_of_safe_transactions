@@ -83,7 +83,7 @@ function RefillID() {
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
                                 <h6 style={{margin: "0",textAlign: "center"}}>Изменение ID пополнения</h6>
                                 <input
-                                    onChange={(e) => setIdRefil(e.target.value)}
+                                    onChange={(e) => setIdRefil(e.target.value || 0)}
                                     className="tabl-flex-admin-user-scores "
                                     style={{color: "white",borderRadius: "5px"}}
                                     type="number"
@@ -111,7 +111,7 @@ function RefillID() {
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
                                 <h6 style={{margin: "0",textAlign: "center"}}>Изменение суммы пополнения</h6>
                                 <input
-                                    onChange={(e) => setScoreRefill(e.target.value)}
+                                    onChange={(e) => setScoreRefill(e.target.value || 0)}
                                     className="tabl-flex-admin-user-scores "
                                     style={{color: "white",borderRadius: "5px"}}
                                     type="number"

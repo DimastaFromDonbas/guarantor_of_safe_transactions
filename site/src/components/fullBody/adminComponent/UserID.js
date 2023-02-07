@@ -182,7 +182,7 @@ function AllUsersID() {
                         </div>
                         <div className='pages-user-block'>
                         <input
-                        onChange={(e) => setscoreUser(e.currentTarget.value)}
+                        onChange={(e) => setscoreUser(e.currentTarget.value || 0)}
                             className="tabl-flex-admin-user-scores "
                             style={{color: "white",borderRadius: "5px"}}
                             type="number"
@@ -190,7 +190,7 @@ function AllUsersID() {
                             placeholder="Изменение денег пользователя"
                             autoComplete="off"
                             required
-                            value={scoreUser}
+                            value={scoreUser || 0}
                             />
                             <div className="tabl-flex-admin-button" onClick={changeScore}>
                             Изменить
@@ -244,7 +244,7 @@ function AllUsersID() {
                         <div className='pages-user-block'>
                         <input
                         onChange={(e) => {
-                            setMinScore(e.currentTarget.value)
+                            setMinScore(e.currentTarget.value || 0)
                             setMinRefil((e.currentTarget.value - scoreUser < 0) ? 0 : e.currentTarget.value - scoreUser )
                         }}
                             className="tabl-flex-admin-user-scores "
@@ -254,7 +254,7 @@ function AllUsersID() {
                             placeholder="Изменение мин суммы вывода"
                             autoComplete="off"
                             required
-                            value={minScore || 0}
+                            value={minScore}
                             />
                             <div className="tabl-flex-admin-button" onClick={changeTransferAmount}>
                             Изменить

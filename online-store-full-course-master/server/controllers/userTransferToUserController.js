@@ -32,7 +32,7 @@ class UserTransferToUserController {
         if (!id || !score || !status || !creatorEmail || !creatorPassword) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const creator = User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({where: {email: creatorEmail}})
         if (!creator) {
             return next(ApiError.badRequest('Админ с таким email не найден'))
         }

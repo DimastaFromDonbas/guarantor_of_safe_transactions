@@ -40,7 +40,7 @@ class SiteNameController {
             return next(ApiError.badRequest('Нет доступа'))
         }
            const siteName = await SiteName.update({siteName: name}, {where: {id: 1}})
-           return res.json(siteName)
+           return res.json(name)
     }
 
     async getAllNames(req, res, next) {
