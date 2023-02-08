@@ -117,7 +117,7 @@ function TransfersID() {
                                     name="select"
                                     value={String(statusTransfers || 1)}> 
                                     <option value="1">В обработке</option>
-                                    <option value="2">Успешный</option>
+                                    <option value="2">Отмененный</option>
                                     </select>
                             </div>
                         </div>

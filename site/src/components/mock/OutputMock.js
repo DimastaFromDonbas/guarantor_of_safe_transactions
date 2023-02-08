@@ -98,4 +98,4 @@ export const paymant = [
 
 export const dealStatusMock = ['Открыта', 'В обработке', 'Выполнена'];
 export const refillStatusMock = ['В обработке', 'Успешный'];
-export const transferStatusMock = ['В обработке', 'Успешный'];
+export const transferStatusMock = ['В обработке', 'Отмененный'];
