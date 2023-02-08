@@ -27,12 +27,12 @@ function SetNameTheSite() {
 
     async function getName() {
         const result = await axiosGetName();
-        console.log('result', result)
         if(result) {
         dispatch({
             type: reducerTypes.GET_NAME_THE_SITE,
             payload: {name: result},
           });
+          localStorage.setItem('siteName', result)
         }
     }
 

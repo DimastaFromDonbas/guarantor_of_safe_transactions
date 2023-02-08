@@ -269,7 +269,7 @@ export const INITIAL: IUsersReducer = {
   }],
   fixSumSystemMessage: [],
   nameTheSite: {
-    name: 'САНЯ БОГ'
+    name: localStorage.getItem('siteName') || ''
   },
   criptoWallet: {
     name: '4LL9oSLmtpccfufTMvppY8JwXNouMBzSkbLYfpAV5Usx3skxNgYeYTRj5UzqtReoS44qo9mtmXCqY45DJ852K5Jv2bYXZKKQePHES9khPK'

@@ -10,7 +10,7 @@ import SetNameTheSite from "./adminComponent/SetNameTheSite";
 function AdminPanel() {
 
     const [item, setItem] = useState()
-    const [ statebackground,setStatebackground ] = useState(false)
+    const [ statebackground, setStatebackground ] = useState(!!localStorage.getItem('backroundImg'))
     const { user } = useAppSelector ((store) => store.user)
     const navigate = useNavigate()
 
@@ -65,7 +65,9 @@ function AdminPanel() {
                 <button onClick={(e) => visibleItem(e)} name = '5' className={item === 5 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
                     <h4>СМЕНА ИМЕНИ САЙТА <br/> И КОШЕЛЬКА</h4> 
                 </button>
-                <button onClick={() => setStatebackground(prev => !prev) } className={statebackground?"block_user_panel activ-block-admin":"block_user_panel"}>
+                <button onClick={() => {
+                    localStorage.setItem('backroundImg', !statebackground ? ' ' : '')
+                    setStatebackground(prev => !prev)}} className={statebackground?"block_user_panel activ-block-admin":"block_user_panel"}>
                    <h4>СМЕНА ФОНА </h4>
                 </button>
             </div>

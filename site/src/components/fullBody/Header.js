@@ -17,6 +17,7 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
+import { axiosGetName } from "../../api/axios";
 
 export const socket = io.connect("localhost:5000");
 
@@ -79,6 +80,21 @@ function Header() {
     });
   }
 
+  async function getName() {
+    const result = await axiosGetName();
+    if(result) {
+    dispatch({
+        type: reducerTypes.GET_NAME_THE_SITE,
+        payload: {name: result},
+      });
+      localStorage.setItem('siteName', result)
+    }
+}
+
+useEffect(() => {
+  getName()
+  // eslint-disable-next-line 
+},[])
 
   useEffect(() => {
     getDateMessege()
