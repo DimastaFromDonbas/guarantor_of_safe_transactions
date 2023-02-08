@@ -21,6 +21,7 @@ import DealID from "./components/fullBody/adminComponent/DealID";
 import RefillID from "./components/fullBody/adminComponent/RefillID";
 import TransfersID from "./components/fullBody/adminComponent/TransfersID";
 import TransfersToUserID from "./components/fullBody/adminComponent/TransfersToUserID";
+import Disputes from "./components/fullBody/Disputes";
 //import {Helmet} from "react-helmet";
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
         <Route path="/rules" element = {<UserSoglos />}/>
         <Route path="/test" element = {<MainChat />}/>
         <Route path="/chat" element={<Chat />} />
+        <Route path="/disputes" element={<Disputes />} />
       </Routes>
      </>
 }
