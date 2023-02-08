@@ -8,7 +8,7 @@ import Chat from "./Chat";
 import { useNavigate, useParams } from "react-router-dom";
 import { socket } from "./Header";
 import { reducerTypes } from "../../store/Users/types";
-import { axiosGetDealMessages, axiosGetOneDeal, axiosChangeDealStatus, axiosDecreaseScore} from "../../api/axios";
+import { axiosGetDealMessages, axiosGetOneDeal, axiosChangeDealStatus, axiosDecreaseScore, axiosIncreaseScore} from "../../api/axios";
 import { dealStatusMock } from "../mock/OutputMock";
 
 function Deal() { 
@@ -24,6 +24,12 @@ function Deal() {
       const time = new Date().toLocaleString().replaceAll(',', '')
       socket.emit("sendMessage", { dealId: deal.id, nickname: user.nickname, email: user.email, message: messages, time, role: user.role });
       setMessages('')
+    }
+
+    function sendAdminMessage(message) {
+      if(!deal?.id || !message) return alert('Сделка не найдена');
+      const time = new Date().toLocaleString().replaceAll(',', '')
+      socket.emit("sendAdminMessage", { dealId: deal.id, message, time});
     }
 
     async function getDealMessages() {
@@ -46,6 +52,7 @@ async function changeDealStatus(status) {
   const result = await axiosChangeDealStatus(Number(id), Number(status || 1), user?.email, user?.password)
   if(result) {
     setDeal(prev => ({...prev, status: result?.status}))
+    return true;
   } else alert('Что-то пошло не так')
 }
 
@@ -58,8 +65,24 @@ async function pay() {
       type: reducerTypes.GET_USER,
       payload: resultUser,
     });
+    sendAdminMessage('Сделка оплачена. Теперь вы  должны испольнить обязательства в рамках этой суммы. Для передачи информации и общения используйте данный чат');
     await changeDealStatus(3);
   } else alert('Что-то пошло не так')
+}
+
+async function getPay() {
+  if(!user?.email) return alert('Войдите в аккаунт')
+  if(!deal?.seller) return alert('Продавец не найден')
+  if(!deal?.sum || !deal?.id) return alert('Сделка не найдена')
+  const result = await changeDealStatus(4);
+  if(result) {
+    sendAdminMessage(`Покупатель принял работу и подтвердил платёж. На ваш счет поступила оплата в размере: ${deal?.sum || ''}₽`)
+    sendAdminMessage(`Какой отзыв вы хотели бы добавить на наш сайт? (Через 24 часа ваш отзыв автоматически обновится на сайте)`)
+   const receiver = await axiosIncreaseScore(deal?.id, user?.email, user?.password, deal?.seller);
+   if(receiver) {
+    socket.emit("getPay", { dealId: deal.id, receiver});
+   }
+  }
 }
 
     useEffect(() => {
@@ -83,12 +106,36 @@ async function pay() {
 
       useEffect(() => {
         socket.on("message", ({ data }) => {
-            console.log('data', data)
             dispatch({
                 type: reducerTypes.GET_DEAL_MESSAGES,
                 payload: [...dealMessages, data]
               });
         });
+        // eslint-disable-next-line
+      }, [dealMessages]);
+
+      useEffect(() => {
+        socket.on("setPay", ({ receiver }) => {
+          console.log(1, receiver)
+          if(receiver?.email === user?.email){
+            console.log(2, receiver)
+            dispatch({
+                type: reducerTypes.GET_USER,
+                payload: {...user, score: receiver.score}
+              });
+            }
+        });
+        // eslint-disable-next-line
+      }, []);
+
+      useEffect(() => {
+        socket.on("adminMessage", ({ data }) => {
+            dispatch({
+                type: reducerTypes.GET_DEAL_MESSAGES,
+                payload: [...dealMessages, data]
+              });
+        });
+        getDeal();
         // eslint-disable-next-line
       }, [dealMessages]);
 
@@ -104,10 +151,15 @@ async function pay() {
             <div style={{marginBottom: '20px',marginTop:"30px"}} className='container heiggg'>
                 <div className="message-body">
                     <div style={{paddingBottom: '5px'}}>Статус сделки: { dealStatusMock[deal?.status - 1] }</div>
-                    { (deal?.status === 1 && deal?.creator !== user?.email) ? <button onClick={() => changeDealStatus(2)}>Подтвердить участие</button> : null}
+                    { (deal?.status === 1 && deal?.creator !== user?.email) ? <button onClick={async () => {
+                      const result = await changeDealStatus(2);
+                      if(result) sendAdminMessage('Второй участник сделки подтвердил свое участие')}}>Подтвердить участие</button> : null}
                     { (deal?.status === 2 && deal?.buyer === user?.email) ? <button onClick={pay}>Оплатить</button> : null}
-                    { (deal?.status === 3 && deal?.buyer === user?.email) ? <button onClick={() => changeDealStatus(4)}>Подтвердить выполнение сделки</button> : null}
-                    { (deal?.status === 3) ? <button onClick={() => changeDealStatus(5)}>Арбитраж</button> : null}
+                    { (deal?.status === 3 && deal?.buyer === user?.email) ? <button onClick={getPay}>Подтвердить выполнение сделки</button> : null}
+                    { (deal?.status === 3) ? <button onClick={async () => {
+                      const result = await changeDealStatus(5);
+                      if(result) sendAdminMessage('Был вызван арбитраж. Опишите пожалуйста вашу проблему и сотрудники сервиса вам помогут');
+                    }}>Арбитраж</button> : null}
                     {(deal?.status !== 5) ? <LinearProgress variant="determinate" value={progress} /> : null}
                 </div>
                 <div className="message-body">
@@ -145,18 +197,23 @@ async function pay() {
                    <h4 style={{textAlign: 'center'}}>{deal?.buyer === user?.email ? deal?.sellerNickname: deal?.buyerNickname}</h4>
                    <div className="scrollDiv" style={{overflow: 'overlay', maxHeight: '70vh'}}>
                    {dealMessages?.map((item, index) => {
-                   if (item.dealId !== Number(id)) return null;
+                      if (item.dealId !== Number(id)) return null;
 
-                   return item.nickname === user.nickname? 
-                   <div style={{textAlign: 'end', paddingRight: '30px'}}>
-                        <p 
-                        style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere'}}
-                        >{item.message} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span></p>
-                   </div> 
-                   : <div style={{textAlign: 'start'}}>
-                   <p style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere'}}
-                   >{`${item.nickname}: ${item.message}`} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span> </p>
-              </div> })}
+                      return item.role === 'ADMIN' ? 
+                      <div style={{textAlign: 'start',}}>
+                              <p 
+                              style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere', color: '#59DBFF'}}
+                              >{item.message} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span></p>
+                            </div> :
+                          item.nickname === user.nickname? 
+                            <div style={{textAlign: 'end', paddingRight: '30px'}}>
+                              <p style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere'}}
+                              >{item.message} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span></p>
+                            </div> 
+                          : <div style={{textAlign: 'start'}}>
+                          <p style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere'}}
+                          >{`${item.nickname}: ${item.message}`} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span> </p>
+                      </div> })}
               </div>
                 <div style={{width: '100%', display: 'flex',marginTop: '40px'}}>
                 <input

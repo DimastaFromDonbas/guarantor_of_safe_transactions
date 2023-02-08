@@ -1,7 +1,7 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {User, Basket} = require('../models/models')
+const {User, Deal} = require('../models/models')
 
 const generateJwt = (id, email, role, nickname, score, password, systemMessage, checkRu, minimumTransferAmount, sumTransferAmoumt, completed) => {
     return jwt.sign(
@@ -291,6 +291,9 @@ class UserController {
 
     async decreaseUserScore(req, res, next) {
         const {score, email, password} = req.body
+        if (!score || !email || !password) {
+            return next(ApiError.internal('Введите все данные'))
+        }
         const user = await User.findOne({where: {email}})
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
@@ -303,7 +306,29 @@ class UserController {
             return next(ApiError.internal('Недостаточно средств'))
         }
            await User.update({score: user.score - score}, {where: {email}})
-           return res.json({...user.dataValues, score: user.score - score})
+           return res.json({...user.dataValues, score: user.score - score, password})
+    }
+
+    async increaseUserScore(req, res, next) {
+        const {id, email, password, receiver} = req.body
+        if (!id || !email || !password || !receiver) {
+            return next(ApiError.internal('Введите все данные'))
+        }
+        const user = await User.findOne({where: {email}})
+        const userReceiver = await User.findOne({where: {email: receiver}})
+        if (!user || !userReceiver) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(password, user.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        const deal = await Deal.findOne({where: {id}})
+        if (!deal) {
+            return next(ApiError.internal('Сделка не найдена'))
+        }
+           await User.update({score: userReceiver.score + deal.sum}, {where: {email: receiver}})
+           return res.json({...userReceiver.dataValues, score: userReceiver.score + deal.sum})
     }
 
     async deleteUsers(req, res, next) {

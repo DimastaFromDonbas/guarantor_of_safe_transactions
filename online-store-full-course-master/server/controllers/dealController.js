@@ -116,6 +116,9 @@ class DealController {
         if (!deal) {
             return next(ApiError.internal('Сделка не найдена'))
         }
+        if(!(deal.status + 1 === status) && status !== 5) {
+            return next(ApiError.internal('Неверный статус'))
+        }
         const updatedDeal = await Deal.update({status}, {where: {id}})
 
         return res.json({...updatedDeal, status})

@@ -116,6 +116,15 @@ export const axiosChangeScore = async (score: number, id: number, creatorEmail: 
   }
 }
 
+export const axiosIncreaseScore = async (id: number, email: string, password: string, receiver: string) => {
+  try {const {data} = await axios.post('api/user/increaseScore', {id, email, password, receiver}, getConfig());
+  console.log('increase score', data);
+  return data;}
+  catch (e) {
+    console.error(e)
+  }
+}
+
 export const axiosDecreaseScore = async (score: number, email: string, password: string) => {
   try {const {data} = await axios.post('api/user/decreaseScore', {score, email, password}, getConfig());
   console.log('decrease score', data);

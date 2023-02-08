@@ -4,6 +4,7 @@ const userController = require('../controllers/userController')
 const authMiddleware = require('../middleware/authMiddleware')
 
 router.post('/change', authMiddleware, userController.changeUser)
+router.post('/increaseScore', authMiddleware, userController.increaseUserScore)
 router.post('/decreaseScore', authMiddleware, userController.decreaseUserScore)
 router.post('/delete', authMiddleware, userController.deleteUsers)
 router.post('/registration', userController.registration)

@@ -41,9 +41,24 @@ io.on("connection", (socket) => {
     socket.on("sendMessage", ({ dealId, nickname, email, message, time, role }) => {
 
       if (dealId && message && nickname && email && time && role) {
-        io.to(String(dealId)).emit("message", { data: { dealId, nickname, email, message, time, role } });
-
         dealMessageController.create({body: {dealId, nickname, email, message, time, role}})
+        io.to(String(dealId)).emit("message", { data: { dealId, nickname, email, message, time, role } });
+      } else console.log('Send message fail')
+    });
+
+    socket.on("sendAdminMessage", ({ dealId, message, time}) => {
+
+      if (dealId && message && time) {
+        dealMessageController.create({body: {dealId, nickname: 'Admin', email: 'admin@gmail.com', message, time, role: "ADMIN"}})
+        io.to(String(dealId)).emit("adminMessage", { data: { dealId, nickname: 'Admin', email: 'admin@gmail.com', message, time, role: "ADMIN" } });
+      } else console.log('Send message fail')
+    });
+
+    socket.on("getPay", ({ dealId, receiver}) => {
+
+      if (receiver) {
+
+        io.to(String(dealId)).emit("setPay", { receiver });
       } else console.log('Send message fail')
     });
   

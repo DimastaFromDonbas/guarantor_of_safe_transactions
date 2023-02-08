@@ -7,9 +7,11 @@ class DealMessageController {
         if (!dealId || !nickname || !email || !message || !time || !role) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const user = await User.findOne({where: {email}})
-        if (!user) {
-            return next(ApiError.badRequest('Пользователь с таким email не найден'))
+        if (role !== 'ADMIN') {
+            const user = await User.findOne({where: {email}})
+            if (!user) {
+                return next(ApiError.badRequest('Пользователь с таким email не найден'))
+        }
         }
         const deal = await Deal.findOne({where: {id: dealId}})
         if (!deal) {
