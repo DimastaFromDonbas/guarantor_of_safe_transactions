@@ -129,7 +129,7 @@ function Header() {
                 <Link className="color-nav-link color" to="/deals"><ListAltIcon></ListAltIcon> МОИ СДЕЛКИ</Link>
                 <Link className="color-nav-link color" to="/output"><AccountBalanceIcon></AccountBalanceIcon> МОЙ СЧЕТ:{user.score} РУБ.</Link>
                 <Link className="color-nav-link color" to="/howitwork"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
-                <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
+                <Link className="color-nav-link color" to="/disputes"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates"><DocumentScannerIcon></DocumentScannerIcon> СЕРТИФИКАТЫ</Link>
                 <div style={{cursor:'pointer'}} onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
                     })} className="color-nav-link color" ><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ
@@ -140,7 +140,7 @@ function Header() {
               <div style={{display: "flex",flexDirection: "column",padding:'20px',gap: "15px", fontSize: "18px", background: "#191919", height: '100%'}}>
                 <Link className="color-nav-link color" to="/"><HomeIcon></HomeIcon> НА ГЛАВНУЮ</Link>
                 <Link className="color-nav-link color" to="/howitwork"><HelpIcon></HelpIcon> ПОМОЩЬ</Link>
-                <Link className="color-nav-link color" to="#"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
+                <Link className="color-nav-link color" to="/disputes"><GavelIcon></GavelIcon> РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates"><DocumentScannerIcon></DocumentScannerIcon> СЕРТИФИКАТЫ</Link>
                 <div style={{cursor:'pointer'}} onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
                     })} className="color-nav-link color" ><ReviewsIcon></ReviewsIcon> ОТЗЫВЫ
@@ -156,7 +156,7 @@ function Header() {
                 <Link className="color-nav-link color" to="/deals">МОИ СДЕЛКИ</Link>
                 <Link className="color-nav-link color" to="/output">МОЙ СЧЕТ:{user.score} РУБ.</Link>
                 <Link className="color-nav-link color" to="/howitwork">ПОМОЩЬ</Link>
-                <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
+                <Link className="color-nav-link color" to="/disputes">РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates">СЕРТИФИКАТЫ</Link>
                   <div style={{cursor:'pointer'}} onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
                     })} className="color-nav-link color" > ОТЗЫВЫ
@@ -165,7 +165,7 @@ function Header() {
               :
               <div className="flex-nav-link header-navBar">
                 <Link className="color-nav-link color" to="/howitwork">ПОМОЩЬ</Link>
-                <Link className="color-nav-link color" to="#">РАЗРЕШЕНИЕ СПОРОВ</Link>
+                <Link className="color-nav-link color" to="/disputes">РАЗРЕШЕНИЕ СПОРОВ</Link>
                 <Link className="color-nav-link color" to="/sertificates">СЕРТИФИКАТЫ</Link>
                 <div style={{cursor:'pointer'}} onClick={() => navigate('/', {state: {key: 'revievs',value: 'true',},
                     })} className="color-nav-link color" > ОТЗЫВЫ
