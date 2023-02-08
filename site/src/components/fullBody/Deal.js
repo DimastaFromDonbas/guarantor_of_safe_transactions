@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { socket } from "./Header";
 import { reducerTypes } from "../../store/Users/types";
 import { axiosGetDealMessages } from "../../api/axios";
+import { dealStatusMock } from "../mock/OutputMock";
 
 function Deal() { 
     const navigate = useNavigate()
@@ -72,7 +73,7 @@ function Deal() {
         <Chat />
             <div style={{marginBottom: '20px',marginTop:"30px"}} className='container heiggg'>
                 <div className="message-body">
-                    <div style={{paddingBottom: '5px'}}>Статус сделки: { statuses[deal?.status === 0? deal?.status: deal?.status - 1] }</div>
+                    <div style={{paddingBottom: '5px'}}>Статус сделки: { dealStatusMock[deal?.status - 1] }</div>
                     <LinearProgress variant="determinate" value={progress} />
                 </div>
                 <div className="message-body">

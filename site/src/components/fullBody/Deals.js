@@ -9,15 +9,12 @@ import { axiosGetDeal } from "../../api/axios";
 import { reducerTypes } from "../../store/Users/types";
 import { useDispatch } from 'react-redux';
 import Chat from "./Chat";
-
-
+import { dealStatusMock } from "../mock/OutputMock";
 
 function Deals() {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const {user, deals,checkAlertSystemMessage} = useAppSelector ((store) => store.user)
-    const status = ['Открыта', 'В обработке', 'Выполнена']
-
 
     async function getDeal() {
         if(!user.email) return alert('Войдите в аккаунт');
@@ -75,12 +72,12 @@ function Deals() {
                             </tr>
                         </thead>
                             <tbody>
-                                {deals?.map((item, index) => <tr key={index}>
+                                {deals?.sort((a, b) => a.id - b.id)?.map((item, index) => <tr key={index}>
                                     <th className="dilit-block">{index+1}</th>
                                     <th ><Link style={{color: '#f25322' ,textDecoration: "none" }} to = {`/deal/${item.id}`}>{item?.name}</Link></th>
                                     <th>{item?.id}</th>
                                     <th>{item?.sum}</th>
-                                    <th>{status[item?.status === 0? item?.status : item?.status -1 ]}</th>
+                                    <th>{dealStatusMock[item?.status -1]}</th>
                                 </tr>)}
                             </tbody>
                         </table>

@@ -96,6 +96,6 @@ export const paymant = [
       }},
 ];
 
-export const dealStatusMock = ['Открыта', 'В обработке', 'Выполнена'];
+export const dealStatusMock = ['На согласовании', 'Ожидает оплаты', 'Оплачена', 'Завершена', 'Арбитраж'];
 export const refillStatusMock = ['В обработке', 'Успешный'];
 export const transferStatusMock = ['В обработке', 'Отмененный'];
