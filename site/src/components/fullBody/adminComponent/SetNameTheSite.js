@@ -46,7 +46,7 @@ function SetNameTheSite() {
        },[])
 
     return <>
-             <h3 style={{textAlign: 'center'}}>{nameTheSite?.name}</h3> 
+             <h3 style={{textAlign: 'center'}}>Предыдущее название: {nameTheSite?.name}</h3> 
          <h3 style={{textAlign: 'center'}}>СМЕНА НАЗВАНИЯ САЙТА </h3> 
 
          <div style={{display: 'flex',justifyContent: "center",marginTop: "20px",gap: "10px"}}>
