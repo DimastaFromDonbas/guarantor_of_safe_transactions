@@ -23,7 +23,7 @@ class UserRefillController {
         if (!checkUser) {
             return next(ApiError.badRequest('Пользователь не найден'))
         }
-        const userRefill = await UserRefill.create({id, time, score, status: 1, userEmail: checkUser.email, userNickname: checkUser.nickname})
+        const userRefill = await UserRefill.create({id, time, score, status: 2, userEmail: checkUser.email, userNickname: checkUser.nickname})
         const userUpdate = await User.update({score: checkUser.score + score}, {where: {email: checkUser.email}})
 
         return res.json(userRefill)
