@@ -5,6 +5,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+
 function Chat() {
 
     const [checked, setChecked] = useState(false)
@@ -24,29 +26,37 @@ function Chat() {
                         <div></div>
                         <div className='body-chat-sms'>
                         <input
-                            style={{padding: '.375rem .75rem', border: '.5px solid #ced4da', width: '100%', marginRight: '1px',borderRadius: '0 0 0 9px'}}
+                            style={{padding: '.375rem .75rem', border: '.5px solid #ced4da', width: '80%', marginRight: '1px',borderRadius: '0 0 0 9px'}}
                             type={'text'}
                             placeholder='Введите сообщение'
                             >
                             </input>
+                          <input className='fileInput' name='file' id='file' multiple type={'file'}>
+                          </input>
+                          <label
+                          for='file'
+                          >
+                            <span>+</span>
+                          </label>
                             <Button
                             size='large'
                             sx={{
                             border: '1px black',
                             borderRadius: '0 0 9px 0',
-                            width: "60%",
+                            width: "20%",
                             background: "black",
                             alignSelf: 'flex-end',
                             color: '#FFFFFF',
+                            height: '41px',
                             borderColor: '#FFF',
                             marginLeft: 'auto',
-                            }}>Отправить</Button>
+                            }}><KeyboardDoubleArrowUpIcon></KeyboardDoubleArrowUpIcon></Button>
                         </div>
                         </div>
                     </div>:
                 ''}
                 {/* {!checked?<HeadsetMicIcon onClick={() => setChecked(!checked)} className='chat-icon icon-chat-sizes'></HeadsetMicIcon> : ''} */}
-                {!checked?<div className='chat-icon'><Badge style={{color:'white'}} onClick={() => setChecked(!checked)} badgeContent={4} className='icon-chat-sizes2' color="primary">
+                {!checked?<div className='chat-icon'><Badge style={{color:'white'}} onClick={() => setChecked(!checked)} badgeContent={'!'} className='icon-chat-sizes2' color="error">
                     <MailIcon color="action" />
                 </Badge> </div>: ''}
             </>
