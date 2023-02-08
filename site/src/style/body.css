@@ -1210,7 +1210,6 @@ input::-webkit-inner-spin-button {
 }
 .trades-table-deals tr th {
     font-weight: 700;
-    text-transform: uppercase;
     text-align: center;
     padding: 15px 10px;
 }
