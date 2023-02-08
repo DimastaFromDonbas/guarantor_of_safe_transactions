@@ -3,6 +3,8 @@ import { Button } from '@mui/material';
 import { useState } from 'react';
 import Helper from '../../image/helper.png'
 import CloseIcon from '@mui/icons-material/Close';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 
 function Chat() {
 
@@ -44,7 +46,10 @@ function Chat() {
                         </div>
                     </div>:
                 ''}
-                {!checked?<HeadsetMicIcon onClick={() => setChecked(!checked)} className='chat-icon icon-chat-sizes'></HeadsetMicIcon> : ''}
+                {/* {!checked?<HeadsetMicIcon onClick={() => setChecked(!checked)} className='chat-icon icon-chat-sizes'></HeadsetMicIcon> : ''} */}
+                {!checked?<div className='chat-icon'><Badge style={{color:'white'}} onClick={() => setChecked(!checked)} badgeContent={4} className='icon-chat-sizes2' color="primary">
+                    <MailIcon color="action" />
+                </Badge> </div>: ''}
             </>
 }
 

@@ -188,7 +188,7 @@ function AllDeposit() {
                                 />
                             </div>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
-                                <h6 style={{margin: "0",textAlign: "center"}}>Email пользователя</h6>
+                                <h6 style={{margin: "0",textAlign: "center",overflowWrap: "anywhere"}}>Email пользователя или Login</h6>
                                 <input
                                     onChange={(e) => setEmailUser(e.target.value)}
                                     className="tabl-flex-admin-user-scores "

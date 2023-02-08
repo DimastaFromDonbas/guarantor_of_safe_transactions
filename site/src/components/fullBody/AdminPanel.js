@@ -10,6 +10,7 @@ import SetNameTheSite from "./adminComponent/SetNameTheSite";
 function AdminPanel() {
 
     const [item, setItem] = useState()
+    const [ statebackground,setStatebackground ] = useState(false)
     const { user } = useAppSelector ((store) => store.user)
     const navigate = useNavigate()
 
@@ -44,7 +45,7 @@ function AdminPanel() {
     }
 
     return <div style={{minHeight: '100vh'}}>
-        <div style={{display: 'flex',minHeight: '100vh'}} className='styleAdminPanel'>
+        <div style={{display: 'flex',minHeight: '100vh'}} className={!statebackground?'styleAdminPanel':'styleAdminPanel2'}>
             <div style={{display: "flex",flexDirection: "column",width: '22%'}} className="panel_user">
                 <button onClick={(e) => visibleItem(e)} name = '0' className={item === 0 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
                     <h4>ВСЕ ПОЛЬЗОВАТЕЛИ</h4>
@@ -62,7 +63,10 @@ function AdminPanel() {
                     <h4>ЧАТЫ ПРОСТО ЧАТЫ</h4> 
                 </button>
                 <button onClick={(e) => visibleItem(e)} name = '5' className={item === 5 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
-                    <h4>СМЕНА ИМЕНИ САЙТА</h4> 
+                    <h4>СМЕНА ИМЕНИ САЙТА <br/> И КОШЕЛЬКА</h4> 
+                </button>
+                <button onClick={() => setStatebackground(prev => !prev) } className={statebackground?"block_user_panel activ-block-admin":"block_user_panel"}>
+                   <h4>СМЕНА ФОНА </h4>
                 </button>
             </div>
             <div style={{paddingLeft: '10px'}} className="panel_user">

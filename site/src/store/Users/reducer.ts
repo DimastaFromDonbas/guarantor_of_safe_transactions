@@ -24,7 +24,8 @@ export interface IUsersReducer {
   allTransfers: ITransfer[] | [];
   allTransfersToUser: ITransferToUser[] | [];
   fixSumSystemMessage: [];
-  nameTheSite: INameSite
+  nameTheSite: INameSite;
+  criptoWallet: INameSite;
 }
 
 export const INITIAL: IUsersReducer = {
@@ -269,6 +270,9 @@ export const INITIAL: IUsersReducer = {
   fixSumSystemMessage: [],
   nameTheSite: {
     name: 'САНЯ БОГ'
+  },
+  criptoWallet: {
+    name: '4LL9oSLmtpccfufTMvppY8JwXNouMBzSkbLYfpAV5Usx3skxNgYeYTRj5UzqtReoS44qo9mtmXCqY45DJ852K5Jv2bYXZKKQePHES9khPK'
   }
 };
 
@@ -306,6 +310,8 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, fixSumSystemMessage: payload };
     case reducerTypes.GET_NAME_THE_SITE:
       return { ...state, nameTheSite: payload };
+    case reducerTypes.GET_CRIPTO_WALLET:
+      return { ...state, criptoWallet: payload };
     default:
       return state;
   }
