@@ -154,8 +154,8 @@ function AllDeposit() {
             </div>
           </div>
           {isOpen ? <div onClick={() => setIsOpen(false)} className="modalStyles">
-                          <div style={{display:'flex',width: "59%",flexDirection: "row-reverse",cursor:'pointer'}}>
-                            <CloseIcon onClick={() => setIsOpen(false)} ></CloseIcon>  
+                          <div onClick={(e) => e.stopPropagation()} style={{display:'flex',width: "59%",flexDirection: "row-reverse"}}>
+                            <CloseIcon style={{cursor:'pointer'}} onClick={() => setIsOpen(false)} ></CloseIcon>  
                           </div>
                         <div onClick={(e) => e.stopPropagation()} className="modalContentStyles">
                             <div style={{display: "flex",gap:'20px'}}>
