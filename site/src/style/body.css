@@ -234,7 +234,7 @@ input::-webkit-inner-spin-button {
 }
 
 .tabl-flex-admin-button-global:hover {
-    color: red;
+    color: rgb(255, 43, 43);
     transition: all .3s;
     transform: scale(1.05);
 }

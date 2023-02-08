@@ -106,12 +106,12 @@ export const INITIAL: IUsersReducer = {
   checkAlertSystemMessage: false,
   updateHeaderAlert: false,
   transfers: [    
-    {
-    id: 1,
+   {
+    id: 2,
     paymantSystem: 'Сбербанк',
     walletNumber: '0000 1488 0420 0228',
-    score: 5000,
-    time: '2023.01.24 15:41',
+    score: 6000,
+    time: '2023.02.08 11:41',
     status: 1,
     userEmail: 'user120@gmail.com',
     userNickname: 'ua god',
