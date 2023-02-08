@@ -154,8 +154,8 @@ function AllDeposit() {
             </div>
           </div>
           {isOpen ? <div onClick={() => setIsOpen(false)} className="modalStyles">
-                          <div style={{display:'flex',width: "59%",flexDirection: "row-reverse",cursor:'pointer'}}>
-                            <CloseIcon onClick={() => setIsOpen(false)} ></CloseIcon>  
+                          <div onClick={(e) => e.stopPropagation()} style={{display:'flex',width: "59%",flexDirection: "row-reverse"}}>
+                            <CloseIcon style={{cursor:'pointer'}} onClick={() => setIsOpen(false)} ></CloseIcon>  
                           </div>
                         <div onClick={(e) => e.stopPropagation()} className="modalContentStyles">
                             <div style={{display: "flex",gap:'20px'}}>
@@ -188,7 +188,7 @@ function AllDeposit() {
                                 />
                             </div>
                             <div style={{flexDirection: "column"}} className='pages-user-block'>
-                                <h6 style={{margin: "0",textAlign: "center"}}>Email пользователя</h6>
+                                <h6 style={{margin: "0",textAlign: "center",overflowWrap: "anywhere"}}>Email пользователя или Login</h6>
                                 <input
                                     onChange={(e) => setEmailUser(e.target.value)}
                                     className="tabl-flex-admin-user-scores "

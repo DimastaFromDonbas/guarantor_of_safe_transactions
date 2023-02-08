@@ -12,7 +12,7 @@ import { axiosGetUserToUserTransfers } from "../../api/axios";
 import { reducerTypes } from "../../store/Users/types";
 import { useDispatch } from "react-redux";
 import Chat from "./Chat";
-import { paymant } from "../mock/OutputMock";
+import { paymant, transferStatusMock } from "../mock/OutputMock";
 
 
 function Output() {
@@ -213,7 +213,7 @@ function Output() {
                             <div style={{width: '280px',display: 'flex' ,justifyContent: 'center'}} className="output-date">{item.walletNumber}</div>
                             <div style={{width: '170px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.score}</div>
                             <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{item.time}</div>
-                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{statuses[item?.status === 0? item?.status: item?.status - 1]}</div>
+                            <div style={{width: '231px',display: 'flex' ,justifyContent: 'center'}} className="output-sum">{transferStatusMock[item?.status === 0? item?.status: item?.status - 1]}</div>
                         </div>)}
                         </>
                         :

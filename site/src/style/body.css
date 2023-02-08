@@ -46,6 +46,10 @@
     background-size: cover;
 }
 
+.styleAdminPanel2 {
+    background: linear-gradient(122deg, #3c3b3b, #4d4d4b, #716f6f,#979793);
+}
+
 .tabl-flex-admin {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
@@ -228,13 +232,13 @@ input::-webkit-inner-spin-button {
 }
 
 .tabl-flex-admin-button-global2:hover {
-    color: green;
+    color: rgb(49, 241, 49);
     transition: all .3s;
     transform: scale(1.05);
 }
 
 .tabl-flex-admin-button-global:hover {
-    color: red;
+    color: rgb(255, 43, 43);
     transition: all .3s;
     transform: scale(1.05);
 }
@@ -621,9 +625,22 @@ input::-webkit-inner-spin-button {
     height: 60px !important;
 }
 
+.icon-chat-sizes2 {
+    width: 60px !important;
+    height: 60px !important;
+    bottom: -8px;
+    right: -7.5px;
+}
+
+.css-11pbyhm-MuiSvgIcon-root{
+    color: white !important;
+    width: 45px !important;
+    height: 45px !important;
+}
+
 .chat-icon {
-    color: aliceblue;
-    position: fixed;
+    color: aliceblue !important;
+    position: fixed !important;
     z-index: 100;
     bottom: 1.4285714286em;
     right: 1.4285714286em;
@@ -638,6 +655,7 @@ input::-webkit-inner-spin-button {
     -o-transition: visibility 0s linear .2s,opacity linear .2s;
     transition: visibility 0s linear .2s,opacity linear .2s;
     transition: ease .5s !important;
+    background: rgba(90, 89, 89, 0.75);
 }
 
 .chat-icon:hover {
@@ -2174,10 +2192,6 @@ input::-webkit-inner-spin-button {
         flex-direction: column;
         align-items: center;
         padding: 0px;
-    }
-
-    .chat-icon {
-        bottom: 0.428571em;
     }
 
 }

@@ -15,6 +15,7 @@ export const reducerTypes = {
     GET_ALL_TRANSFERS_TO_USER: 'reducer/GET_ALL_TRANSFERS_TO_USER',
     GET_FIX_SUM_SYSTEM_MESSAGE:'reducer/GET_FIX_SUM_SYSTEM_MESSAGE',
     GET_NAME_THE_SITE: 'reducer/GET_NAME_THE_SITE',
+    GET_CRIPTO_WALLET: 'reducer/GET_CRIPTO_WALLET',
   };
   
   export const sagaTypes = {

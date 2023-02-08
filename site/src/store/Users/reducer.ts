@@ -24,7 +24,8 @@ export interface IUsersReducer {
   allTransfers: ITransfer[] | [];
   allTransfersToUser: ITransferToUser[] | [];
   fixSumSystemMessage: [];
-  nameTheSite: INameSite
+  nameTheSite: INameSite;
+  criptoWallet: INameSite;
 }
 
 export const INITIAL: IUsersReducer = {
@@ -33,7 +34,7 @@ export const INITIAL: IUsersReducer = {
     email: "user104@gmail.com",
     password: "1234567a" || null,
     role: "ADMIN",
-    score: 0,
+    score: 100000,
     nickname: "test",
     systemMessage: null,
     checkRu: 'true',
@@ -106,12 +107,12 @@ export const INITIAL: IUsersReducer = {
   checkAlertSystemMessage: false,
   updateHeaderAlert: false,
   transfers: [    
-    {
-    id: 1,
+   {
+    id: 2,
     paymantSystem: 'Сбербанк',
     walletNumber: '0000 1488 0420 0228',
-    score: 5000,
-    time: '2023.01.24 15:41',
+    score: 6000,
+    time: '2023.02.08 11:41',
     status: 1,
     userEmail: 'user120@gmail.com',
     userNickname: 'ua god',
@@ -269,6 +270,9 @@ export const INITIAL: IUsersReducer = {
   fixSumSystemMessage: [],
   nameTheSite: {
     name: 'САНЯ БОГ'
+  },
+  criptoWallet: {
+    name: '4LL9oSLmtpccfufTMvppY8JwXNouMBzSkbLYfpAV5Usx3skxNgYeYTRj5UzqtReoS44qo9mtmXCqY45DJ852K5Jv2bYXZKKQePHES9khPK'
   }
 };
 
@@ -306,6 +310,8 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, fixSumSystemMessage: payload };
     case reducerTypes.GET_NAME_THE_SITE:
       return { ...state, nameTheSite: payload };
+    case reducerTypes.GET_CRIPTO_WALLET:
+      return { ...state, criptoWallet: payload };
     default:
       return state;
   }

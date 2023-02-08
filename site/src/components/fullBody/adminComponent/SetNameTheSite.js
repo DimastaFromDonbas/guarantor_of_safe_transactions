@@ -46,10 +46,10 @@ function SetNameTheSite() {
        },[])
 
     return <>
-             <h3 style={{textAlign: 'center'}}>{nameTheSite?.name}</h3> 
-         <h3 style={{textAlign: 'center'}}>СМЕНА НАЗВАНИЯ САЙТА </h3> 
+        <h3 style={{textAlign: 'center'}}>Предыдущее название: {nameTheSite?.name}</h3> 
+        <h3 style={{textAlign: 'center'}}>СМЕНА НАЗВАНИЯ САЙТА И КОШЕЛЬКА</h3> 
 
-         <div style={{display: 'flex',justifyContent: "center",marginTop: "20px",gap: "10px"}}>
+        <div style={{display: 'flex',justifyContent: "center",marginTop: "20px",gap: "10px"}}>
             <StyledInput className="tabl-flex-admin-search"
                 style={{color: "white",borderRadius: "5px", paddingLeft: '10px'}}
                 type="search"
@@ -61,6 +61,20 @@ function SetNameTheSite() {
                 required />
             <div className="tabl-flex-admin-button-changes" onClick={updateName}>
             Изменить имя сайта 
+            </div>
+        </div>
+        <div style={{display: 'flex',justifyContent: "center",marginTop: "20px",gap: "18px"}}>
+            <StyledInput className="tabl-flex-admin-search"
+                style={{color: "white",borderRadius: "5px", paddingLeft: '10px'}}
+                type="search"
+                id='Search'
+                value={nameSite}
+                placeholder="Смена кошелька"
+                onChange={changesNameSite}
+                autoComplete="off"
+                required />
+            <div className="tabl-flex-admin-button-changes" onClick={updateName}>
+                Изменить кошелек
             </div>
         </div>
     </>
