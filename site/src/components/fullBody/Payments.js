@@ -32,7 +32,7 @@ function Payments() {
                         <h2 className="header-title-thre mt-5"><img alt="img-monero" style={{width: "25px"}} src={Monero}></img> Пополнение счета Monero (XMR)</h2>
                         <div className="text-free">
                             Кошелек Monero (XMR) для пополнения: 
-                            <h2> </h2>
+                            <h2 style={{fontSize:'18px',overflowWrap: "anywhere",marginTop:'5px'}}>4LL9oSLmtpccfufTMvppY8JwXNouMBzSkbLYfpAV5Usx3skxNgYeYTRj5UzqtReoS44qo9mtmXCqY45DJ852K5Jv2bYXZKKQePHES9khPK </h2>
                         </div>
                     </div>
                     <div className="header-title-thre">
