@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css?family=Anton");
 
 
-*::-webkit-scrollbar {
+*::-webkit-scrollbar:hover {
     width: 8px;
   }
 *::-webkit-scrollbar-track {
