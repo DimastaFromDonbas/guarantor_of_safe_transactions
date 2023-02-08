@@ -10,6 +10,7 @@ import { axiosGetAllRefills, axiosDeleteRefill, axiosCreateRefill } from "../../
 import { useNavigate } from "react-router-dom";
 import { refillStatusMock } from "../../mock/OutputMock";
 import CloseIcon from '@mui/icons-material/Close';
+import AlertError from "../AlertError";
 
 function AllDeposit() {
 
@@ -46,7 +47,7 @@ function AllDeposit() {
           setNewSumDep(0);
           setEmailUser('');
         } else {
-          alert('Что-то пошло не так')
+          return <AlertError message={'Что-то пошло не так'}/>
         }
       }
 
@@ -71,7 +72,7 @@ function AllDeposit() {
        },[])
 
     return <>
-                    <div style={{marginBottom: "20px",display: "flex",justifyContent: "space-between",alignItems: "center"}}>
+   <div style={{marginBottom: "20px",display: "flex",justifyContent: "space-between",alignItems: "center"}}>
         <StyledInput className="tabl-flex-admin-search"
               style={{color: "white",borderRadius: "5px", paddingLeft: '10px'}}
               type="search"
@@ -149,8 +150,8 @@ function AllDeposit() {
             />
           </div>
           <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",alignItems: "center",marginTop:'250px'}}>
-            <div onClick={() => setIsOpen(true)} style={{maxWidth: "165px !important"}} className="tabl-flex-admin-button-global2">
-                Создать пополнение
+            <div onClick={() => setIsOpen(true)} style={{maxWidth: "205px !important"}} className="tabl-flex-admin-button-global2">
+                Новое пополнение
             </div>
           </div>
           {isOpen ? <div onClick={() => setIsOpen(false)} className="modalStyles">
@@ -207,6 +208,7 @@ function AllDeposit() {
                             </div>
                         </div>
                     </div>: ""}
+
         </>
 }
 

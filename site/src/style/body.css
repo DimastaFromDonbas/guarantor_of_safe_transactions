@@ -46,6 +46,10 @@
     background-size: cover;
 }
 
+.css-1vooibu-MuiSvgIcon-root {
+    display: none !important;
+}
+
 .styleAdminPanel2 {
     background: linear-gradient(122deg, #3c3b3b, #4d4d4b, #716f6f,#979793);
 }
