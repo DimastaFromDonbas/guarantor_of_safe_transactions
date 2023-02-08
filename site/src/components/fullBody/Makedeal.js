@@ -96,12 +96,15 @@ function Makedeal() {
         let sellerNickname = '';
         console.log('role', role)
         if(role === 'Покупатель') {
-            buyerNickname = user.nickname
+            buyerNickname = user?.nickname
         } else {
-            sellerNickname = user.nickname
+            sellerNickname = user?.nickname
         }
 
-        await axiosCreateDeal(name, buyer, seller, suma, description, buyerNickname, sellerNickname)
+       const result = await axiosCreateDeal(name, buyer, seller, suma, description, user?.email, buyerNickname, sellerNickname)
+       if(result) {
+        alert('Сделка успешно создана')
+       } else alert('Что-то пошло не так')
     }
 
     useEffect(() => {

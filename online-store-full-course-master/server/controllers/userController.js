@@ -289,6 +289,23 @@ class UserController {
            return res.json(updatedUser)
     }
 
+    async decreaseUserScore(req, res, next) {
+        const {score, email, password} = req.body
+        const user = await User.findOne({where: {email}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(password, user.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if(score > user.score){
+            return next(ApiError.internal('Недостаточно средств'))
+        }
+           await User.update({score: user.score - score}, {where: {email}})
+           return res.json({...user.dataValues, score: user.score - score})
+    }
+
     async deleteUsers(req, res, next) {
         const {id, creatorEmail, creatorPassword} = req.body
         if (!id || !creatorEmail || !creatorPassword) {

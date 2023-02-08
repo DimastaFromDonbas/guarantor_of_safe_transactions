@@ -62,6 +62,7 @@ const Deal = sequelize.define('deal', {
     sum: {type: DataTypes.INTEGER},
     status: {type: DataTypes.INTEGER, defaultValue: 1},
     description: {type: DataTypes.STRING},
+    creator: {type: DataTypes.STRING},
 })
 
 const DealMessage = sequelize.define('deal_message', {

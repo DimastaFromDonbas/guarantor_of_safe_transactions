@@ -16,7 +16,10 @@ function AllDeals() {
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
     const [filterOpen, setFilterOpen] = useState(true);
+    const [filterCheck, setFilterCheck] = useState(true);
+    const [filterPayed, setFilterPayed] = useState(true);
     const [filterComplete, setFilterComplete] = useState(true);
+    const [filterArbitration, setFilterArbitration] = useState(true);
     const [sortId, setSortId] = useState(true);
     const {allDeals, user} = useAppSelector ((store) => store.user)
     const [deals, setDeals] = useState([]);
@@ -49,9 +52,12 @@ function AllDeals() {
                 el?.seller?.toLowerCase()?.includes(search) ||
                 el?.sellerNickname?.toLowerCase()?.includes(search)): true)
                 ?.filter((checkbox) => (checkbox?.status === 1 && filterOpen) ||
-                (checkbox?.status === 3 && filterComplete))
+                (checkbox?.status === 2 && filterCheck) ||
+                (checkbox?.status === 3 && filterPayed) ||
+                (checkbox?.status === 4 && filterComplete) ||
+                (checkbox?.status === 5 && filterArbitration))
                 ?.sort((a, b) => sortId ? a.id - b.id : b.id - a.id))
-       },[allDeals, search, filterOpen, filterComplete, sortId])
+       },[allDeals, search, filterOpen, filterCheck, filterPayed, filterComplete, filterArbitration, sortId])
 
       useEffect(() => {
         getAllDeals();
@@ -71,8 +77,11 @@ function AllDeals() {
               required />
 
             <div className="tabl-flex-admin-filtr" style={{borderRadius: "5px"}}>
-                <h5 style={{margin:'0'}}>Открыта</h5> <Checkbox value={filterOpen} defaultChecked onChange={() => setFilterOpen((prev) => !prev)} color="error" />
+                <h5 style={{margin:'0'}}>На согласовании</h5> <Checkbox value={filterOpen} defaultChecked onChange={() => setFilterOpen((prev) => !prev)} color="error" />
+                <h5 style={{margin:'0'}}>Ожидает оплаты</h5> <Checkbox value={filterCheck} defaultChecked onChange={() => setFilterCheck((prev) => !prev)} color="error" />
+                <h5 style={{margin:'0'}}>Оплачена</h5> <Checkbox value={filterPayed} defaultChecked onChange={() => setFilterPayed((prev) => !prev)} color="error" />
                 <h5 style={{margin:'0'}}>Завершена</h5> <Checkbox value={filterComplete} defaultChecked onChange={() => setFilterComplete((prev) => !prev)} color="error" />
+                <h5 style={{margin:'0'}}>Арбитраж</h5> <Checkbox value={filterArbitration} defaultChecked onChange={() => setFilterArbitration((prev) => !prev)} color="error" />
             </div>
             </div>
     

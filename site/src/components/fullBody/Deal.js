@@ -8,25 +8,68 @@ import Chat from "./Chat";
 import { useNavigate, useParams } from "react-router-dom";
 import { socket } from "./Header";
 import { reducerTypes } from "../../store/Users/types";
-import { axiosGetDealMessages } from "../../api/axios";
+import { axiosGetDealMessages, axiosGetOneDeal, axiosChangeDealStatus, axiosDecreaseScore} from "../../api/axios";
 import { dealStatusMock } from "../mock/OutputMock";
 
 function Deal() { 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [progress, setProgress] = useState(50)
+    const [progress, setProgress] = useState(0)
     const [messages, setMessages] = useState('')
     const {deals, user, dealMessages} = useAppSelector ((store) => store.user)
     const { id } = useParams();
     const [deal, setDeal] = useState(deals?.filter(item => String(item.id) === id)[0])
 
-    const statuses = [ 'Открыта' , "В процессе ", "Завершена", "Заморожена" ]
+    function sendMessage() {
+      const time = new Date().toLocaleString().replaceAll(',', '')
+      socket.emit("sendMessage", { dealId: deal.id, nickname: user.nickname, email: user.email, message: messages, time, role: user.role });
+      setMessages('')
+    }
+
+    async function getDealMessages() {
+          const result = await axiosGetDealMessages(id)
+          dispatch({
+              type: reducerTypes.GET_DEAL_MESSAGES,
+              payload: result,
+            });
+    }
+
+    async function getDeal() {
+      const result = await axiosGetOneDeal(Number(id))
+      if(result) {
+        setDeal(result)
+      }
+}
+
+async function changeDealStatus(status) {
+  if(!user?.email) return alert('Войдите в аккаунт')
+  const result = await axiosChangeDealStatus(Number(id), Number(status || 1), user?.email, user?.password)
+  if(result) {
+    setDeal(prev => ({...prev, status: result?.status}))
+  } else alert('Что-то пошло не так')
+}
+
+async function pay() {
+  if(!user?.email) return alert('Войдите в аккаунт')
+  if(!deal?.sum) return alert('Сделка не найдена')
+  const resultUser = await axiosDecreaseScore(Number((deal?.sum + deal?.sum*0.05)).toFixed(), user?.email, user?.password)
+  if(resultUser) {
+    dispatch({
+      type: reducerTypes.GET_USER,
+      payload: resultUser,
+    });
+    await changeDealStatus(3);
+  } else alert('Что-то пошло не так')
+}
 
     useEffect(() => {
-        let temporaryDeal = deals?.filter(item => String(item.id) === id)[0]
+        let temporaryDeal = deal
+        if(temporaryDeal) {
         setDeal(temporaryDeal)
-        setProgress(temporaryDeal?.status)
-    }, [deals, id])
+        const progress = temporaryDeal?.status *25 > 100 ? 0 : temporaryDeal?.status *25
+        setProgress(progress)
+        }
+    }, [id, deal])
 
     useEffect(() => {
         socket.emit("join", {name: user?.email, room: String(deal?.id)});
@@ -34,6 +77,7 @@ function Deal() {
 
       useEffect(() => {
         getDealMessages();
+          getDeal();
         // eslint-disable-next-line
       }, []);
 
@@ -48,20 +92,6 @@ function Deal() {
         // eslint-disable-next-line
       }, [dealMessages]);
 
-      function sendMessage() {
-        const time = new Date().toLocaleString().replaceAll(',', '')
-        socket.emit("sendMessage", { dealId: deal.id, nickname: user.nickname, email: user.email, message: messages, time, role: user.role });
-        setMessages('')
-      }
-
-      async function getDealMessages() {
-            const result = await axiosGetDealMessages(id)
-            dispatch({
-                type: reducerTypes.GET_DEAL_MESSAGES,
-                payload: result,
-              });
-      }
-
       useEffect(() => {
         if(user?.checkRu !== 'true') {
           navigate("/blockMaseges")
@@ -74,11 +104,16 @@ function Deal() {
             <div style={{marginBottom: '20px',marginTop:"30px"}} className='container heiggg'>
                 <div className="message-body">
                     <div style={{paddingBottom: '5px'}}>Статус сделки: { dealStatusMock[deal?.status - 1] }</div>
-                    <LinearProgress variant="determinate" value={progress} />
+                    { (deal?.status === 1 && deal?.creator !== user?.email) ? <button onClick={() => changeDealStatus(2)}>Подтвердить участие</button> : null}
+                    { (deal?.status === 2 && deal?.buyer === user?.email) ? <button onClick={pay}>Оплатить</button> : null}
+                    { (deal?.status === 3 && deal?.buyer === user?.email) ? <button onClick={() => changeDealStatus(4)}>Подтвердить выполнение сделки</button> : null}
+                    { (deal?.status === 3) ? <button onClick={() => changeDealStatus(5)}>Арбитраж</button> : null}
+                    {(deal?.status !== 5) ? <LinearProgress variant="determinate" value={progress} /> : null}
                 </div>
                 <div className="message-body">
                     <div>
                         <table className="trades-table-deals ">
+                          <tbody>
                             <tr style={{borderBottom: "1px solid"}}> 
                                 <th>Название сделки</th>
                                 <th className="dilit-block">Покупатель</th>
@@ -97,7 +132,7 @@ function Deal() {
                                 <th>{(deal?.sum* 0.05).toFixed(0)} ₽</th>
                                 <th>{(deal?.sum+ deal?.sum*0.05).toFixed()} ₽</th>
                             </tr>
-
+                            </tbody>
                         </table>
                         <div>
                         <h5 style={{padding: "20px"}}>ОПИСАНИЕ СДЕЛКИ:</h5>

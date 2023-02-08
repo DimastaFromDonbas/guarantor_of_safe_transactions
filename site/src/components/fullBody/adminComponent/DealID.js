@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, Link } from "react-router-dom"
 import { axiosGetAllDeal } from "../../../api/axios"
 import { useAppSelector } from "../../../store/reduxHooks"
 import { reducerTypes } from "../../../store/Users/types"
@@ -112,7 +112,10 @@ function DealID() {
                         <div style={{width:'155px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center"}} className="output-date">{dealStatusMock[statusDeal - 1]}</div>
                         <div style={{width:'210px',minHeight:'48px',display: "flex",alignItems: "center",justifyContent: "center",overflowWrap: "anywhere"}} className="output-id">{descriptionDeal}</div>
                     </div>}
-                    <div className='pages-user-box-2'>
+                    <div className='pages-user-box-2' style={{position: 'relative'}}>
+                    <div className="tabl-flex-admin-button-global" style={{position: 'absolute', bottom: '0px', left: '60px'}}>
+                            <Link style={{color: 'white' ,textDecoration: "none" }} to = {`/deal/${currentDeal?.id}`}>Зайти в чат</Link>
+                        </div>
                         <div style={{flexDirection: "column"}} className='pages-user-block'>
                             <h6 style={{margin: "0",textAlign: "center"}}>Изменение названия сделки</h6>
                             <input
@@ -150,9 +153,11 @@ function DealID() {
                                 className="tabl-flex-admin-user-scores " 
                                 name="select"
                                 value={String(statusDeal || 1)}> 
-                                    <option value='1'>Открыта</option>
-                                    <option value='2'>В обработке</option>
-                                    <option value='3'>Закрыта</option>
+                                    <option value='1'>{dealStatusMock[0]}</option>
+                                    <option value='2'>{dealStatusMock[1]}</option>
+                                    <option value='3'>{dealStatusMock[2]}</option>
+                                    <option value='4'>{dealStatusMock[3]}</option>
+                                    <option value='5'>{dealStatusMock[4]}</option>
                             </select>
                         </div>
                         <div style={{flexDirection: "column"}} className='pages-user-block'>

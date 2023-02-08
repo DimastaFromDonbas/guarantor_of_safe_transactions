@@ -116,6 +116,15 @@ export const axiosChangeScore = async (score: number, id: number, creatorEmail: 
   }
 }
 
+export const axiosDecreaseScore = async (score: number, email: string, password: string) => {
+  try {const {data} = await axios.post('api/user/decreaseScore', {score, email, password}, getConfig());
+  console.log('decrease score', data);
+  return data;}
+  catch (e) {
+    console.error(e)
+  }
+}
+
 export const axiosChangeSystemMessage = async (systemMessage: string, id: number, creatorEmail: string, creatorPassword: string) => {
   try {const {data} = await axios.post('api/user/message', {systemMessage, id, creatorEmail, creatorPassword}, getConfig());
   console.log('change system message', data);
@@ -182,11 +191,14 @@ export const axiosCreateDeal = async (
   seller: string, 
   sum: number, 
   description: string, 
+  creator: string,
   buyerNickname?: string, 
   sellerNickname?: string) => {
-  const {data} = await axios.post('api/deal/create', {name, buyer, seller, sum, description: description, buyerNickname, sellerNickname}, getConfig());
+    try {
+  const {data} = await axios.post('api/deal/create', {name, buyer, seller, sum, description: description, buyerNickname, sellerNickname, creator}, getConfig());
   console.log('create deal', data)
-  return data;
+  return data;}
+  catch (e) {console.error(e)}
 }
 
 export const axiosGetDeal = async (email:string, password:string) => {
@@ -196,7 +208,7 @@ export const axiosGetDeal = async (email:string, password:string) => {
 }
 
 export const axiosGetOneDeal = async (id: number) => {
-  const {data} = await axios.post('api/deal/getOneDeal', {id}, getConfig());
+  const {data} = await axios.post('api/deal/getOne', {id}, getConfig());
   console.log('get one deal', data)
   return data;
 }
@@ -210,6 +222,16 @@ export const axiosGetAllDeal = async () => {
 export const axiosChangeDeal = async (id: number, name: string, sum: number, status: number, description: string, creatorEmail: string, creatorPassword: string) => {
   try {const {data} = await axios.post('api/deal/update', {id, name, sum, status, description, creatorEmail, creatorPassword}, getConfig());
   console.log('change deal', data);
+  return data;
+}
+  catch (e) {
+    console.error(e)
+  }
+}
+
+export const axiosChangeDealStatus = async (id: number, status: number, email: string, password: string) => {
+  try {const {data} = await axios.post('api/deal/updateStatus', {id, status, email, password}, getConfig());
+  console.log('change deal status', data);
   return data;
 }
   catch (e) {
