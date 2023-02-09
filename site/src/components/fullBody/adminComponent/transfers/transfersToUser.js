@@ -14,6 +14,7 @@ function TransfersToUser(search) {
     const [transfersToUser, setTransferToUser] = useState([]);
     const [page, setPage] = useState(0);
     const [sortId, setSortId] = useState(true);
+    const [sortStatus, setSortStatus] = useState(true);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const {allTransfersToUser} = useAppSelector ((store) => store.user);
     const navigate = useNavigate()
@@ -34,8 +35,8 @@ function TransfersToUser(search) {
                 el?.userNickname?.toLowerCase()?.includes(search?.search) ||
                 el?.receiverEmail?.toLowerCase()?.includes(search?.search) ||
                 el?.receiverNickname?.toLowerCase()?.includes(search?.search)): true)
-                ?.sort((a, b) => sortId ? a.id - b.id : b.id - a.id))
-       },[allTransfersToUser, search, sortId])
+                ?.sort((a, b) => sortId ? a.id - b.id : b.id - a.id).sort((a, b) => sortStatus ? a.status - b.status : b.status - a.status))
+       },[allTransfersToUser, search, sortId,sortStatus])
 
       useEffect(() => {
         getAllTransfersTouser();
@@ -49,12 +50,12 @@ function TransfersToUser(search) {
     <div style={{borderRadius: "5px"}} className="tabl-flex-admin">
                 <div style={{textAlign: 'center' ,width:'80px'}} className="output-id">ID</div>
                 <div style={{textAlign: 'center' ,width:'210px', cursor:'pointer'}} className="output-date" onClick={() =>setSortId(prev => !prev)}>Время создания</div>
-                <div style={{textAlign: 'center' ,width:'100px', cursor:'pointer'}} className="output-date" >Сумма</div>
+                <div style={{textAlign: 'center' ,width:'100px'}} className="output-date" >Сумма</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Почта пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Имя пользователя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-date">Почта получателя</div>
                 <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Имя получателя</div>
-                <div style={{textAlign: 'center' ,width:'155px'}} className="output-sum">Статус</div>
+                <div style={{textAlign: 'center' ,width:'155px', cursor:'pointer'}} className="output-sum" onClick={() => setSortStatus(prev => !prev)}>Статус</div>
             </div>
 
             {transfersToUser?.slice(page*itemsPerPage, (page + 1)*itemsPerPage)?.map((item, index) => <div style={{marginTop:'5px',borderRadius:'5px'}} className="tabl-flex-admin-user" key={item.id}>
