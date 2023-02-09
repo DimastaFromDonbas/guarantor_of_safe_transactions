@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
 import Chat from "./Chat";
+import { axiosGetUserTransfers, axiosGetUserToUserTransfers } from "../../api/axios";
 
 function SystemMessages() {
 
@@ -22,6 +23,28 @@ function SystemMessages() {
     let dateParceUser2 = new Date(dateUser2)
     const triggerTime = new Date(dateParceUser.getFullYear(), dateParceUser.getMonth(), dateParceUser.getDate()+1, 9, 0, 0).toLocaleDateString();
     const triggerTime2 = new Date(dateParceUser2.getFullYear(), dateParceUser2.getMonth(), dateParceUser2.getDate()+1, 9, 0, 0).toLocaleDateString();
+
+    async function getUserTransfers (){
+        if(!user?.email) return;
+        let result = await axiosGetUserTransfers(user?.email)
+        if(result){
+        dispatch({type: reducerTypes.GET_TRANSFERS,
+        payload: result})}
+    }
+
+    async function getUserTransfersToUser (){
+        if(!user?.email) return;
+        let result = await axiosGetUserToUserTransfers(user?.email)
+        if(result){
+        dispatch({type: reducerTypes.GET_TRANSFERS_TO_USER,
+        payload: result})}
+    }
+
+    useEffect(() => {
+        getUserTransfers()
+        getUserTransfersToUser()               // Обернуть в промис чтобы вызывались одновременно все axios
+        // eslint-disable-next-line
+    }, [user])
 
     useEffect(() => {
         if(checkAlertSystemMessage) {
@@ -58,7 +81,7 @@ function SystemMessages() {
                 setFullSummDon(user.score + 0); 
         }
         // eslint-disable-next-line 
-    },[checkAlertSystemMessage, dispatch,user])
+    },[checkAlertSystemMessage, dispatch, user])
 
     return <div className="bg-img">
         <Header />

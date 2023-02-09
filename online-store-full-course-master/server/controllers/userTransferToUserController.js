@@ -22,9 +22,13 @@ class UserTransferToUserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
+        if(user.score < score){
+            return next(ApiError.internal('Недостаточно средств'))
+        }
         const userTransfertoUser = await UserTransferToUser.create({userEmail, userNickname, receiverEmail, receiverNickname: receiver.nickname ,score , time, status: 1})
+        const updatedUser = await User.update({score: user.score - score}, {where: {id: user.id}})
 
-        return res.json({userTransfertoUser: userTransfertoUser})
+        return res.json({userTransfertoUser: userTransfertoUser, user: {...user.dataValues, score: user.score - score, password: password}})
     }
 
     async changeTransfer(req, res, next) {

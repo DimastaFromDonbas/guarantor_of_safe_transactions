@@ -16,9 +16,14 @@ class UserTransferController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const userTransfer = await UserTransfer.create({paymantSystem, walletNumber, score , time, status: 1, userEmail, userNickname})
+        if(user.score < score){
+            return next(ApiError.internal('Недостаточно средств'))
+        }
 
-        return res.json({userTransfer: userTransfer})
+        const userTransfer = await UserTransfer.create({paymantSystem, walletNumber, score , time, status: 1, userEmail, userNickname})
+        const updatedUser = await User.update({score: user.score - score}, {where: {id: user.id}})
+
+        return res.json({userTransfer: userTransfer, user: {...user.dataValues, score: user.score - score,password: password}})
     }
 
     async changeTransfer(req, res, next) {

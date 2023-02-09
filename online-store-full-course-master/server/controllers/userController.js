@@ -1,7 +1,7 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {User, Deal} = require('../models/models')
+const {User, Deal, UserTransfer, UserTransferToUser} = require('../models/models')
 
 const generateJwt = (id, email, role, nickname, score, password, systemMessage, checkRu, minimumTransferAmount, sumTransferAmoumt, completed) => {
     return jwt.sign(
@@ -67,16 +67,28 @@ class UserController {
     }
 
     async check(req, res, next) {
-        const token = generateJwt(req.user.id, 
-            req.user.email, 
-            req.user.role, 
-            req.user.nickname, 
-            req.user.score, 
-            req.user.password, 
-            req.user.checkRu, 
-            req.user.minimumTransferAmount, 
-            req.user.sumTransferAmoumt,
-            req.user.completed)
+        const {email, password} = req.user
+        const user = await User.findOne({where: {email}}) ?? await User.findOne({where: {nickname: email}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(password, user.password)
+        if (!comparePassword) {
+
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+
+        const token = generateJwt(user.id, 
+            user.email, 
+            user.role, 
+            user.nickname, 
+            user.score, 
+            password, 
+            user.systemMessage, 
+            user.checkRu, 
+            user.minimumTransferAmount, 
+            user.sumTransferAmoumt,
+            user.completed)
         return res.json({token})
     }
 
@@ -186,7 +198,25 @@ class UserController {
             return next(ApiError.badRequest('Нет доступа'))
         }
             await User.update({systemMessage}, {where: {id}})
+            await UserTransfer.update({status: systemMessage === 'true'? 2 : 1}, {where: {userEmail: user.email}})
+            await UserTransferToUser.update({status: systemMessage === 'true'? 2 : 1}, {where: {userEmail: user.email}})
            return res.json({...user.dataValues, systemMessage})
+    }
+
+    async changeSystemMessageAtUser(req, res, next) {
+        const {email, password} = req.body
+        const user = await User.findOne({where: {email}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(password, user.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+            await User.update({systemMessage: 'true'}, {where: {email}})
+            await UserTransfer.update({status: 2}, {where: {userEmail: email}})
+            await UserTransferToUser.update({status: 2}, {where: {userEmail: email}})
+           return res.json({...user.dataValues, systemMessage: 'true', password})
     }
 
     async changeCompleted(req, res, next) {
@@ -229,6 +259,24 @@ class UserController {
         }
             await User.update({checkRu}, {where: {id}})
            return res.json({...user.dataValues, checkRu})
+    }
+
+    async changeCheckRuUser(req, res, next) {
+        const {checkRu, email, password} = req.body
+        if (!checkRu || !email || !password) {
+            return next(ApiError.internal('Введите все данные'))
+        }
+        const user = await User.findOne({where: {email}})
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(password, user.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+
+           await User.update({checkRu}, {where: {email}})
+           return res.json({...user.dataValues, password, checkRu})
     }
 
     async changeTransferAmount(req, res, next) {

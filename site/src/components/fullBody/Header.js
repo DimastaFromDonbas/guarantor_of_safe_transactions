@@ -17,7 +17,7 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
-import { axiosGetName } from "../../api/axios";
+import { axiosGetName, check, axiosChangeSystemMessageAtUser } from "../../api/axios";
 
 export const socket = io.connect("localhost:5000");
 
@@ -32,7 +32,7 @@ function Header() {
   const [checked, setChecked] = useState(false)
   const dispatch = useDispatch();
 
-  function getDateMessege() {
+  async function getDateMessege() {
     let now = new Date();
     let dateParceNow = Date.parse(now)
     if(!transfers[0]?.time && !transfersToUser[0]?.time) return;
@@ -48,8 +48,15 @@ function Header() {
 
     if(triggerTime > triggerTime2) time = triggerTime2;
     if(dateParceNow - time > 0) {
+      if(!user?.email) return;
+      if(user?.systemMessage !== 'true'){
+      const result = await axiosChangeSystemMessageAtUser(user?.email, user?.password);
+      dispatch({
+        type: reducerTypes.GET_USER,
+        payload: result,
+      });
+      }
       setBellState(true)
-
       dispatch({
         type: reducerTypes.GET_CHECK_SYSTEM,
         payload: true,
@@ -69,13 +76,13 @@ function Header() {
     document.getElementById('reviews').scrollIntoView({behavior: 'smooth'})
   }
 
-  /*async function auth() {
+ async function auth() {
     const getUsers = await check()
     dispatch({
       type: reducerTypes.GET_USER,
       payload: getUsers,
     });
-  }*/
+  }
 
   async function getUsers(e) {
     dispatch({
@@ -97,6 +104,10 @@ function Header() {
 
 useEffect(() => {
   getName()
+  const checkLocation = window.location.href.includes('registr') || window.location.href.includes('login')
+  if(!user?.email && !checkLocation){
+  auth()
+  }
   // eslint-disable-next-line 
 },[])
 
@@ -197,13 +208,13 @@ useEffect(() => {
                 <div style={{display: "flex",justifyContent: "space-between"}}>
                 <Link onClick = {clickArrowdown} className="color-nav-link color" to="#" style={{display: 'flex', flexDirection: 'row'}}>{user.nickname}</Link>
                 <KeyboardArrowDownIcon onClick = {clickArrowdown} className={!checked? "hoverArrow" : "transformArrow"}></KeyboardArrowDownIcon>
-                {(bellState && !checkReadMessage) || user?.systemMessage === 'true' ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}
+                {(bellState && !checkReadMessage) || (user?.systemMessage === 'true' && !checkReadMessage) ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}
                   <div onClick={(e) => e.stopPropagation()} className={checked?"user-profile-block js-profile-block_open active": "user-profile-block js-profile-block_open"}>
                         <ul className="nav-detail_list">
                               {user?.role === 'USER' || null || ''?
                               '':
                               <li className="nav-detail_item"><Link className="nav-detail_link" to="/AdminPanel">Админ панель</Link></li>}
-                              <li className="nav-detail_item"><Link className="nav-detail_link" to="/systemmessages">Системные сообщения {(bellState && !checkReadMessage) || user?.systemMessage === 'true' ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}</Link></li>
+                              <li className="nav-detail_item"><Link className="nav-detail_link" to="/systemmessages">Системные сообщения {(bellState && !checkReadMessage) || (user?.systemMessage === 'true' && !checkReadMessage) ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}</Link></li>
                               <li className="nav-detail_item"><Link className="nav-detail_link" to="/settings">Мои настройки</Link></li>
                               <li className="nav-detail_item border-exit"><Link onClick={getUsers} className="nav-detail_link" to="/">Выход</Link></li>
                            </ul>

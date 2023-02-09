@@ -161,6 +161,15 @@ export const axiosChangeSystemMessage = async (systemMessage: string, id: number
   }
 }
 
+export const axiosChangeSystemMessageAtUser = async (email: string, password: string) => {
+  try {const {data} = await axios.post('api/user/messageAtUser', {email, password}, getConfig());
+  console.log('change system message at user', data);
+  return data;}
+  catch (e) {
+    console.error(e)
+  }
+}
+
 export const axiosChangeCompleted = async (completed: number, id: number, creatorEmail: string, creatorPassword: string) => {
   try {const {data} = await axios.post('api/user/completed', {completed, id, creatorEmail, creatorPassword}, getConfig());
   console.log('change completed', data);
@@ -173,6 +182,15 @@ export const axiosChangeCompleted = async (completed: number, id: number, creato
 export const axiosChangeCheckRu = async (checkRu: string, id: number, creatorEmail: string, creatorPassword: string) => {
   try {const {data} = await axios.post('api/user/checkRu', {checkRu, id, creatorEmail, creatorPassword}, getConfig());
   console.log('change checkRu', data);
+  return data;}
+  catch (e) {
+    console.error(e)
+  }
+}
+
+export const axiosChangeCheckRuUser = async (checkRu: string, email: string, password: string) => {
+  try {const {data} = await axios.post('api/user/checkRuUser', {checkRu, email, password}, getConfig());
+  console.log('change checkRu at user', data);
   return data;}
   catch (e) {
     console.error(e)

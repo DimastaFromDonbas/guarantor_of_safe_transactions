@@ -86,7 +86,7 @@ function Login() {
 
       async function getUsers(e) {
         offReserch(e);
-        let checkRu = null;
+        let checkRu = 'false';
         let res = await fetch('https://api.db-ip.com/v2/free/self');
         let data = await res.json();
         if(data?.countryCode === 'RU') checkRu = 'true';

@@ -6,6 +6,9 @@ import AllTransfers from "./adminComponent/AllTransfers";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useNavigate } from "react-router-dom";
 import SetNameTheSite from "./adminComponent/SetNameTheSite";
+import io from "socket.io-client";
+
+export const socketAdmin = io.connect("localhost:5000");
 
 function AdminPanel() {
 

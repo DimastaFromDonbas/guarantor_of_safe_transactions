@@ -6,6 +6,7 @@ import { useAppSelector } from "../../../store/reduxHooks"
 import { reducerTypes } from "../../../store/Users/types"
 import { axiosChangeDeal } from "../../../api/axios"
 import { dealStatusMock } from "../../mock/OutputMock"
+import { socketAdmin } from "../AdminPanel"
 
 function DealID() {
 
@@ -29,6 +30,12 @@ function DealID() {
           type: reducerTypes.GET_ALL_DEALS,
           payload: data,
         });}
+      }
+
+      function sendAdminMessage(message) {
+        if(!currentDeal?.id || !message) return alert('Сделка не найдена');
+        const time = new Date().toLocaleString().replaceAll(',', '')
+        socketAdmin.emit("sendAdminMessage", { dealId: currentDeal.id, message, time});
       }
 
     function setDescpittions(e) {
@@ -59,6 +66,7 @@ function DealID() {
         if(sumDeal < 2000) return alert('Минимальная сумма 2000 рублей');
         const result = await axiosChangeDeal(currentDeal?.id, nameDeal, sumDeal, Number(statusDeal), descriptionDeal, user?.email, user?.password);
         if(result) {
+            sendAdminMessage(`Администратор сменил статус сделки на: ${dealStatusMock[statusDeal -1]?.toLowerCase()}`)
             getAllDeals();
          return alert('Успешно')
         };

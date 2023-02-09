@@ -65,6 +65,10 @@ function Output() {
         if(typeof result === 'string') {
             alert(result)
         } else {
+            dispatch({
+                type: reducerTypes.GET_USER,
+                payload: result.user
+            })
         getUserTransfers();
         alert('Перевод создан')}
     }
@@ -75,6 +79,10 @@ function Output() {
         if(typeof result === 'string') {
             alert(result)
         } else {
+            dispatch({
+                type: reducerTypes.GET_USER,
+                payload: result.user
+            })
         getUserTransfersToUser();
         alert('Перевод создан')}
     }
