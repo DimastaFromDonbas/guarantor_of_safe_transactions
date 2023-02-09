@@ -55,6 +55,78 @@
     z-index: -1;
 }
 
+.buttonDeal1 {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: rgb(45, 182, 18);
+    border: 1px solid rgb(49, 195, 20);
+    padding: 5px 10px;
+    text-align: center;
+    box-shadow:  0 4px 30px rgba(35,35,35,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+    max-width: 220px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.879);
+}
+
+.buttonDeal2 {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: rgb(217, 20, 20);
+    border: 1px solid rgb(217, 20, 20);
+    padding: 5px 10px;
+    text-align: center;
+    box-shadow:  0 4px 30px rgba(35,35,35,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+    max-width: 220px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.879);
+}
+
+.buttonDeal2:hover {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: rgb(236, 21, 21);
+    border: 1px solid rgb(236, 21, 21);
+    padding: 5px 10px;
+    text-align: center;
+    box-shadow:  0 4px 30px rgba(35,35,35,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+    max-width: 220px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.879);
+}
+
+.buttonDeal1:hover {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: rgb(52, 209, 20);
+    border: 1px solid rgb(52, 209, 20);
+    padding: 5px 10px;
+    text-align: center;
+    box-shadow:  0 4px 30px rgba(35,35,35,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+    max-width: 220px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+}
+
 .fileInput + label{
     height: 41px;
     width: 49px;
@@ -65,6 +137,11 @@
     cursor: pointer;
     transition: .5s;
     background-color: white;
+}
+
+.posishnNameButton {
+    display: flex;
+    justify-content: space-between;
 }
 
 .fileInput + label:hover{
@@ -2260,6 +2337,44 @@ input::-webkit-inner-spin-button {
 }
 
 @media  (max-width: 916px)  {
+
+    .buttonDeal2 {
+        backdrop-filter: blur(5.5px);
+        -webkit-backdrop-filter: blur(5.5px);
+        background: rgb(217, 20, 20);
+        border: 1px solid rgb(217, 20, 20);
+        padding: 2px 5px;
+        text-align: center;
+        box-shadow:  0 4px 30px rgba(35,35,35,0.1);
+        display: flex;
+        font-size: 12px;
+        justify-content: space-between;
+        align-items: center;
+        font-family: inherit;
+        max-width: 220px;
+        cursor: pointer;
+        border-radius: 5px;
+        color: rgba(255, 255, 255, 0.879);
+    }
+
+    .buttonDeal1 {
+        backdrop-filter: blur(5.5px);
+        -webkit-backdrop-filter: blur(5.5px);
+        background: rgb(45, 182, 18);
+        border: 1px solid rgb(49, 195, 20);
+        padding: 2px 5px;
+        text-align: center;
+        box-shadow:  0 4px 30px rgba(35,35,35,0.1);
+        display: flex;
+        font-size: 12px;
+        justify-content: space-between;
+        align-items: center;
+        font-family: inherit;
+        max-width: 220px;
+        cursor: pointer;
+        border-radius: 5px;
+        color: rgba(255, 255, 255, 0.879);
+    }
 
     .banner-info__img-wrap {
         max-width: 420px;

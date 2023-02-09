@@ -47,7 +47,7 @@ function RefillID() {
         setCurrentRefill(temporaryRefill)
         setIdRefil(temporaryRefill?.id)
         setTimeRefill(temporaryRefill?.time)
-        setScoreRefill(temporaryRefill.score)
+        setScoreRefill(temporaryRefill?.score)
         setStatusRefill(temporaryRefill?.status)
         setUniqueID(temporaryRefill?.uniqueId)
         }

@@ -150,16 +150,20 @@ async function getPay() {
         <Chat />
             <div style={{marginBottom: '20px',marginTop:"30px"}} className='container heiggg'>
                 <div className="message-body">
+                  <div className="posishnNameButton">
                     <div style={{paddingBottom: '5px'}}>Статус сделки: { dealStatusMock[deal?.status - 1] }</div>
-                    { (deal?.status === 1 && deal?.creator !== user?.email) ? <button onClick={async () => {
+                    <div style={{display:'flex',gap:'10px',marginBottom:'5px'}}>
+                    { (deal?.status === 1 && deal?.creator !== user?.email) ? <button className="buttonDeal1" onClick={async () => {
                       const result = await changeDealStatus(2);
                       if(result) sendAdminMessage('Второй участник сделки подтвердил свое участие')}}>Подтвердить участие</button> : null}
-                    { (deal?.status === 2 && deal?.buyer === user?.email) ? <button onClick={pay}>Оплатить</button> : null}
-                    { (deal?.status === 3 && deal?.buyer === user?.email) ? <button onClick={getPay}>Подтвердить выполнение сделки</button> : null}
-                    { (deal?.status === 3) ? <button onClick={async () => {
+                    { (deal?.status === 2 && deal?.buyer === user?.email) ? <button className="buttonDeal1" onClick={pay}>Оплатить</button> : null}
+                    { (deal?.status === 3 && deal?.buyer === user?.email) ? <button className="buttonDeal1" onClick={getPay}>Подтвердить выполнение сделки</button> : null}
+                    { (deal?.status === 3) ? <button buttonDeal2 onClick={async () => {
                       const result = await changeDealStatus(5);
                       if(result) sendAdminMessage('Был вызван арбитраж. Опишите пожалуйста вашу проблему и сотрудники сервиса вам помогут');
                     }}>Арбитраж</button> : null}
+                    </div>
+                    </div>
                     {(deal?.status !== 5) ? <LinearProgress variant="determinate" value={progress} /> : null}
                 </div>
                 <div className="message-body">
