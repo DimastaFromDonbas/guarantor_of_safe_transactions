@@ -212,17 +212,17 @@ async function getPay() {
                       if (item.dealId !== Number(id)) return null;
 
                       return item.role === 'ADMIN' ? 
-                      <div style={{textAlign: 'start'}} key={item?.id}>
+                      <div style={{textAlign: 'start'}} key={index}>
                               <p 
                               style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere', color: '#59DBFF'}}
                               >{item.message} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span></p>
                             </div> :
                           item.nickname === user.nickname? 
-                            <div style={{textAlign: 'end', paddingRight: '30px'}} key={item?.id}>
+                            <div style={{textAlign: 'end', paddingRight: '30px'}} key={index}>
                               <p style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere'}}
                               >{item.message} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span></p>
                             </div> 
-                          : <div style={{textAlign: 'start'}} key={item?.id}>
+                          : <div style={{textAlign: 'start'}} key={index}>
                           <p style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere'}}
                           >{`${item.nickname}: ${item.message}`} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span> </p>
                       </div> })}
