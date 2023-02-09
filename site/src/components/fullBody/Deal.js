@@ -211,8 +211,8 @@ async function getPay() {
                    {dealMessages?.map((item, index) => {
                       if (item.dealId !== Number(id)) return null;
 
-                      return item.role === 'ADMIN' ? 
-                      <div style={{textAlign: 'start'}} key={index}>
+                      return item.role !== 'USER' ? 
+                      <div style={{textAlign: user?.role !== 'USER' ? 'end' : 'start', paddingRight: user?.role !== 'USER' ? '30px': '0px'}} key={index}>
                               <p 
                               style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere', color: '#59DBFF'}}
                               >{item.message} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span></p>
