@@ -14,9 +14,13 @@ function SystemMessages() {
     const [fullSummDon, setFullSummDon] = useState('')
 
 
-    let dateParceUser1 = new Date(transfers[0]?.time?.replaceAll('.', '/'))
-    let dateParceUser2 = new Date(transfersToUser[0]?.time?.replaceAll('.', '/'))
-    const triggerTime = new Date(dateParceUser1.getFullYear(), dateParceUser1.getMonth(), dateParceUser1.getDate()+1, 9, 0, 0).toLocaleDateString();
+    let dateUser = transfers[0]?.time?.replaceAll('.', '/')?.split('/')
+    let dateUser2 = transfersToUser[0]?.time?.replaceAll('.', '/')?.split('/')
+    if(dateUser?.length === 3) dateUser = `${dateUser[1]}/${dateUser[0]}/${dateUser[2]}`
+    if(dateUser2?.length === 3) dateUser2 = `${dateUser2[1]}/${dateUser2[0]}/${dateUser2[2]}`
+    let dateParceUser = new Date(dateUser)
+    let dateParceUser2 = new Date(dateUser2)
+    const triggerTime = new Date(dateParceUser.getFullYear(), dateParceUser.getMonth(), dateParceUser.getDate()+1, 9, 0, 0).toLocaleDateString();
     const triggerTime2 = new Date(dateParceUser2.getFullYear(), dateParceUser2.getMonth(), dateParceUser2.getDate()+1, 9, 0, 0).toLocaleDateString();
 
     useEffect(() => {
@@ -45,7 +49,7 @@ function SystemMessages() {
                 setDopSummDon(5000)
                 setFullSummDon(user.score + 5000);
                 break;
-            case user?.score > 15000:
+            case user?.score >= 15000:
                 setDopSummDon(5000)
                 setFullSummDon(user.score + 5000);
             break;

@@ -36,8 +36,12 @@ function Header() {
     let now = new Date();
     let dateParceNow = Date.parse(now)
     if(!transfers[0]?.time && !transfersToUser[0]?.time) return;
-    let dateParceUser = new Date(transfers[0]?.time?.replaceAll('.', '/'))
-    let dateParceUser2 = new Date(transfersToUser[0]?.time?.replaceAll('.', '/'))
+    let dateUser = transfers[0]?.time?.replaceAll('.', '/')?.split('/')
+    let dateUser2 = transfersToUser[0]?.time?.replaceAll('.', '/')?.split('/')
+    if(dateUser?.length === 3) dateUser = `${dateUser[1]}/${dateUser[0]}/${dateUser[2]}`
+    if(dateUser2?.length === 3) dateUser2 = `${dateUser2[1]}/${dateUser2[0]}/${dateUser2[2]}`
+    let dateParceUser = new Date(dateUser)
+    let dateParceUser2 = new Date(dateUser2)
     const triggerTime = Date.parse(new Date(dateParceUser.getFullYear(), dateParceUser.getMonth(), dateParceUser.getDate()+1, 9, 0, 0));
     const triggerTime2 = Date.parse(new Date(dateParceUser2.getFullYear(), dateParceUser2.getMonth(), dateParceUser2.getDate()+1, 9, 0, 0));
     let time = triggerTime || triggerTime2;
