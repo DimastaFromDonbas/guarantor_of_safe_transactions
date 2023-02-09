@@ -6,6 +6,7 @@ import { axiosGetAllUserToUserTransfers} from "../../../../api/axios";
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import { useNavigate } from "react-router-dom";
+import { transferStatusMock } from "../../../mock/OutputMock";
 
 function TransfersToUser(search) {
 
@@ -64,7 +65,7 @@ function TransfersToUser(search) {
             <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-date">{item.userNickname}</div>
             <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer',overflowWrap: "anywhere"}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-sum">{item.receiverEmail}</div>
             <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-sum">{item.receiverNickname}</div>
-            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-sum">{['Открыта', 'В обработке', 'Выполнена'][item.status]}</div>
+            <div style={{textAlign: 'center',width:'155px',height:'48px',display: "flex",alignItems: "center",justifyContent: "center",cursor:'pointer'}} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-sum">{transferStatusMock[item.status - 1]}</div>
         </div>)}
 
         <Pagination

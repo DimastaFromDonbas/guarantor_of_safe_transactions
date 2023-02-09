@@ -95,10 +95,12 @@ function Login() {
           result === 'Пользователь с таким email уже существует' ? 
           setErrorEmail(result):
           setErrorLogin(result)
-        } else dispatch({
+        } else {
+          
+          dispatch({
           type: reducerTypes.GET_USER,
           payload: result
-        });
+        })};
         if (typeof result !== 'string') navigate('/')
       }
 
