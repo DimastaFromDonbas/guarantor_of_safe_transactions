@@ -158,7 +158,7 @@ async function getPay() {
                       if(result) sendAdminMessage('Второй участник сделки подтвердил свое участие')}}>Подтвердить участие</button> : null}
                     { (deal?.status === 2 && deal?.buyer === user?.email) ? <button className="buttonDeal1" onClick={pay}>Оплатить</button> : null}
                     { (deal?.status === 3 && deal?.buyer === user?.email) ? <button className="buttonDeal1" onClick={getPay}>Подтвердить выполнение сделки</button> : null}
-                    { (deal?.status === 3) ? <button buttonDeal2 onClick={async () => {
+                    { (deal?.status === 3) ? <button className="buttonDeal2" onClick={async () => {
                       const result = await changeDealStatus(5);
                       if(result) sendAdminMessage('Был вызван арбитраж. Опишите пожалуйста вашу проблему и сотрудники сервиса вам помогут');
                     }}>Арбитраж</button> : null}
