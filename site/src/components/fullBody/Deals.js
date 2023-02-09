@@ -76,7 +76,7 @@ function Deals() {
                                     <th className="dilit-block">{index+1}</th>
                                     <th ><Link style={{color: '#f25322' ,textDecoration: "none" }} to = {`/deal/${item.id}`}>{item?.name}</Link></th>
                                     <th>{item?.id}</th>
-                                    <th>{item?.sum}</th>
+                                    <th>{item?.sum}р</th>
                                     <th>{dealStatusMock[item?.status -1]}</th>
                                 </tr>)}
                             </tbody>
