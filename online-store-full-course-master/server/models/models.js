@@ -4,6 +4,7 @@ const {DataTypes} = require('sequelize')
 const SiteName = sequelize.define('site_name', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     siteName: {type: DataTypes.STRING, unique: true,},
+    wallet: {type: DataTypes.STRING},
 })
 
 const User = sequelize.define('user', {

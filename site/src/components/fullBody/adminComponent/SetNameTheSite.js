@@ -2,7 +2,7 @@ import { StyledInput } from "../../../style/styles";
 // import { useAppSelector } from "../../store/reduxHooks";
 import { useState, useEffect } from "react";
 import { useAppSelector } from "../../../store/reduxHooks";
-import { axiosGetWallet, axiosUpdateName } from "../../../api/axios";
+import { axiosGetWallet, axiosUpdateName, axiosUpdateWallet } from "../../../api/axios";
 import { axiosGetName } from "../../../api/axios";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../../store/Users/types";
@@ -28,7 +28,7 @@ function SetNameTheSite() {
 
     async function updateWallet() {
         if(!walletSite) return alert('Введите кошелек');
-        const result = await axiosUpdateName(walletSite, user?.email, user?.password);
+        const result = await axiosUpdateWallet(walletSite, user?.email, user?.password);
         if(result) {
             alert('Успешно')
         dispatch({

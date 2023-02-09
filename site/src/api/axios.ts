@@ -35,7 +35,7 @@ export const axiosGetName = async () => {
 }
 
 export const axiosGetWallet = async () => {
-  try {const {data} = await axios.get('api/wallet/get');
+  try {const {data} = await axios.get('api/name/getWallet');
   console.log('site wallet', data)
   return data}
   catch (error: any){
@@ -52,8 +52,8 @@ export const axiosUpdateName = async (name: string, email: string, password: str
   }
 }
 
-export const axiosUpdateWallet = async (name: string, email: string, password: string) => {
-  try {const {data} = await axios.post('api/name/update', {name, email, password}, getConfig());
+export const axiosUpdateWallet = async (wallet: string, email: string, password: string) => {
+  try {const {data} = await axios.post('api/name/updateWallet', {wallet, email, password}, getConfig());
   console.log('update site wallet', data)
   return data}
   catch (error: any){

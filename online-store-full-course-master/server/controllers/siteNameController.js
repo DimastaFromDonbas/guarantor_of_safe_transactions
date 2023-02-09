@@ -43,6 +43,26 @@ class SiteNameController {
            return res.json(name)
     }
 
+    async updateWallet(req, res, next) {
+        const {wallet, email, password} = req.body
+        if(!wallet || !email || !password) {
+            return next(ApiError.internal('Введите все данные'))
+        }
+        const creator = await User.findOne({where: {email}})
+        if (!creator) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(password, creator.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if(creator.role !== 'ADMIN'){
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+           const siteWallet = await SiteName.update({wallet}, {where: {id: 1}})
+           return res.json(wallet)
+    }
+
     async getAllNames(req, res, next) {
         const names = await SiteName.findAll()
         return res.json({names})
@@ -51,6 +71,11 @@ class SiteNameController {
     async getName(req, res, next) {
         const name = await SiteName.findOne({where: {id: 1}})
         return res.json(name.siteName)
+    }
+
+    async getWallet(req, res, next) {
+        const wallet = await SiteName.findOne({where: {id: 1}})
+        return res.json(wallet.wallet)
     }
 
 
