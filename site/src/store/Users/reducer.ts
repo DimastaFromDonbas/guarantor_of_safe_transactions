@@ -51,7 +51,7 @@ export const INITIAL: IUsersReducer = {
   name: "pisun",
   seller: "user4@gmail.com",
   sellerNickname: "null",
-  status: 0,
+  status: 1,
   sum: 9999,
   updatedAt: "2023-01-21T11:41:29.231Z",}],
   refill: {
