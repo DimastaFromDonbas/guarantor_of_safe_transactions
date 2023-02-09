@@ -4,8 +4,7 @@ import Helper from '../../image/helper.png'
 import CloseIcon from '@mui/icons-material/Close';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
-
-import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import SendIcon from '@mui/icons-material/Send';
 
 function Chat() {
 
@@ -50,7 +49,7 @@ function Chat() {
                             height: '41px',
                             borderColor: '#FFF',
                             marginLeft: 'auto',
-                            }}><KeyboardDoubleArrowUpIcon></KeyboardDoubleArrowUpIcon></Button>
+                            }}><SendIcon className='paperPlan'></SendIcon></Button>
                         </div>
                         </div>
                     </div>:

@@ -55,6 +55,15 @@
     z-index: -1;
 }
 
+.paperPlan {
+    transition: all .5s !important;
+}
+
+.paperPlan:hover {
+    transition: all .5s !important;
+    transform: skew(30deg);
+}
+
 .buttonDeal1 {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);

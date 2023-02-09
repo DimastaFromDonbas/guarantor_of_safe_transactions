@@ -181,7 +181,7 @@ function Output() {
                                         <Form.Label htmlFor="inputPassword5">Cумма</Form.Label>
                                             <Form.Control
                                             onChange={(e) => setScore(Number(e.target.value))}
-                                                type="text"
+                                                type="number"
                                                 id="inputText"
                                                 placeholder="0"
                                             />
@@ -259,7 +259,7 @@ function Output() {
                                         <Form.Label htmlFor="inputPassword5">Cумма:</Form.Label>
                                             <Form.Control
                                             onChange={(e) => setReceiverScore(Number(e.currentTarget.value))}
-                                                type="text"
+                                                type="number"
                                                 id="inputText"
                                                 placeholder="0.00"
                                             />
