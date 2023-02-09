@@ -33,7 +33,7 @@ function Chat() {
                           <input className='fileInput' name='file' id='file' multiple type={'file'}>
                           </input>
                           <label
-                          for='file'
+                          htmlFor='file'
                           >
                             <span>+</span>
                           </label>
