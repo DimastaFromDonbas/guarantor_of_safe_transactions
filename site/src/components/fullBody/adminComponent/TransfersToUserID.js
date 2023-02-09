@@ -11,6 +11,7 @@ function TransfersToUserID() {
 
     const { id } = useParams()
     const dispatch = useDispatch();
+    const statebackground = !!localStorage.getItem('backroundImg')
     const [ currentTransfersToUser, setCurrentTransfersToUser ] = useState(null)
     const [ transfersIDToUser, setTransfersIDToUser ] = useState()
     const [ emailTransfersToUser, setEmailTransfersToUser ] = useState('')
@@ -61,7 +62,7 @@ function TransfersToUserID() {
        },[])
 
     return <>
-            <div style={{display: 'flex',minHeight: '100vh',justifyContent: "center",}} className='styleAdminPanel'>
+            <div style={{display: 'flex',minHeight: '100vh',justifyContent: "center",}} className={!statebackground?'styleAdminPanel':'styleAdminPanel2'}>
                 <div style={{width: "100%",display: "flex",flexDirection: "column",alignItems: "center",background: "rgba(17, 17, 18, 0.65)"}}>
                     <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",marginTop:'10px',color:'white'}}>
                         <div onClick={() => navigate("/adminPanel")} className="tabl-flex-admin-button-global2">

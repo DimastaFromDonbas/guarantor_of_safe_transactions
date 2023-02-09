@@ -16,6 +16,7 @@ import { reducerTypes } from '../../../store/Users/types';
 function AllUsersID() {
 
     const {allUsers, user} = useAppSelector ((store) => store.user)
+    const statebackground = !!localStorage.getItem('backroundImg')
     const { id } = useParams()
     const [currentUser, setCurrentUser] = useState(null)
     const [ roleUser, setRoleUser ] = useState('')
@@ -122,7 +123,7 @@ function AllUsersID() {
        },[allUsers])
 
     return <>
-         <div style={{display: 'flex',minHeight: '100vh',justifyContent: "center",}} className='styleAdminPanel'>
+         <div style={{display: 'flex',minHeight: '100vh',justifyContent: "center",}} className={!statebackground?'styleAdminPanel':'styleAdminPanel2'}>
              <div style={{width: "100%",display: "flex",flexDirection: "column",alignItems: "center",background: "rgba(17, 17, 18, 0.65)"}}>
                     <div style={{display: "flex",flexDirection: "row",justifyContent: "flex-end",marginTop:'10px',color:'white'}}>
                         <div onClick={() => navigate("/adminPanel")} className="tabl-flex-admin-button-global2">
