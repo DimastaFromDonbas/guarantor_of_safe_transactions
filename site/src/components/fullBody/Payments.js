@@ -5,11 +5,15 @@ import Chat from "./Chat";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppSelector } from "../../store/reduxHooks"
+import { axiosGetWallet } from "../../api/axios";
+import { reducerTypes } from "../../store/Users/types";
+import { useDispatch } from "react-redux";
 
 
 function Payments() {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch();
     const {user,criptoWallet} = useAppSelector ((store) => store.user)
 
     useEffect(() => {
@@ -17,6 +21,23 @@ function Payments() {
           navigate("/blockMaseges")
         }
     },[user.checkRu,navigate])
+
+
+    async function getWallet() {
+        const result = await axiosGetWallet();
+        if(result) {
+        dispatch({
+            type: reducerTypes.GET_CRIPTO_WALLET,
+            payload: {wallet: result},
+          });
+          localStorage.setItem('siteWallet', result)
+        }
+    }
+
+    useEffect(() => {
+        getWallet()
+         // eslint-disable-next-line 
+       },[])
 
     return <div className="bg-img">
         <Header />
@@ -32,7 +53,7 @@ function Payments() {
                         <h2 className="header-title-thre mt-5"><img alt="img-monero" style={{width: "25px"}} src={Monero}></img> Пополнение счета Monero (XMR)</h2>
                         <div className="text-free">
                             Кошелек Monero (XMR) для пополнения: 
-                            <h2 style={{fontSize:'18px',overflowWrap: "anywhere",marginTop:'5px'}}>{criptoWallet.name}</h2>
+                            <h2 style={{fontSize:'18px',overflowWrap: "anywhere",marginTop:'5px'}}>{criptoWallet.wallet}</h2>
                         </div>
                     </div>
                     <div className="header-title-thre">

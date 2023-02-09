@@ -7,6 +7,7 @@ import { ITransfer } from "../../interfaces/transfer";
 import { INameSite } from "../../interfaces/nameSite";
 import { ITransferToUser } from "../../interfaces/transferToUser";
 import {IDealMessage} from "../../interfaces/dealMessage";
+import { IWalletSite } from "../../interfaces/wallet";
 
 export interface IUsersReducer {
   user: IUser | {};
@@ -25,7 +26,7 @@ export interface IUsersReducer {
   allTransfersToUser: ITransferToUser[] | [];
   fixSumSystemMessage: [];
   nameTheSite: INameSite;
-  criptoWallet: INameSite;
+  criptoWallet: IWalletSite;
 }
 
 export const INITIAL: IUsersReducer = {
@@ -272,7 +273,7 @@ export const INITIAL: IUsersReducer = {
     name: localStorage.getItem('siteName') || ''
   },
   criptoWallet: {
-    name: localStorage.getItem('siteWallet') || ''
+    wallet: localStorage.getItem('siteWallet') || ''
   }
 };
 

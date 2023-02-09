@@ -10,7 +10,7 @@ function SetNameTheSite() {
 
     //const {user, nameTheSite} = useAppSelector ((store) => store.user)
     const dispatch = useDispatch();
-    const {user, nameTheSite} = useAppSelector ((store) => store.user)
+    const {user, nameTheSite, criptoWallet} = useAppSelector ((store) => store.user)
     const [nameSite, setNameSite] = useState('')
     const [walletSite, setWalletSite] = useState('')
 
@@ -33,7 +33,7 @@ function SetNameTheSite() {
             alert('Успешно')
         dispatch({
             type: reducerTypes.GET_CRIPTO_WALLET,
-            payload: {name: result},
+            payload: {wallet: result},
           });
         }
     }
@@ -54,7 +54,7 @@ function SetNameTheSite() {
         if(result) {
         dispatch({
             type: reducerTypes.GET_CRIPTO_WALLET,
-            payload: {name: result},
+            payload: {wallet: result},
           });
           localStorage.setItem('siteWallet', result)
         }
@@ -92,6 +92,8 @@ function SetNameTheSite() {
             Изменить имя сайта 
             </div>
         </div>
+
+        <h3 style={{textAlign: 'center',marginTop:'20px'}}>Предыдущее название: {criptoWallet?.wallet}</h3> 
         <div style={{display: 'flex',justifyContent: "center",marginTop: "20px",gap: "18px"}}>
             <StyledInput className="tabl-flex-admin-search"
                 style={{color: "white",borderRadius: "5px", paddingLeft: '10px'}}
