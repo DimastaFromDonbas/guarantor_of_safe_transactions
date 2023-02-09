@@ -1,7 +1,7 @@
 import Footer from "./Footer";
 import Header from "./Header";
 import {LinearProgress, Button} from '@mui/material';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useDispatch } from "react-redux";
 import Chat from "./Chat";
@@ -19,6 +19,7 @@ function Deal() {
     const {deals, user, dealMessages} = useAppSelector ((store) => store.user)
     const { id } = useParams();
     const [deal, setDeal] = useState(deals?.filter(item => String(item.id) === id)[0])
+    const chatRef = useRef(null);
 
     function sendMessage() {
       const time = new Date().toLocaleString().replaceAll(',', '')
@@ -140,6 +141,13 @@ async function getPay() {
       }, [dealMessages]);
 
       useEffect(() => {
+        if (chatRef?.current) {
+          chatRef.current.scrollTop = chatRef.current.scrollHeight;
+        }
+        // eslint-disable-next-line
+      }, [dealMessages]);
+
+      useEffect(() => {
         if(user?.checkRu !== 'true') {
           navigate("/blockMaseges")
         }
@@ -199,22 +207,22 @@ async function getPay() {
                 <div className="message-body">
                     <h2 style={{textAlign: 'center'}}>Чат с партнером по сделке</h2>
                    <h4 style={{textAlign: 'center'}}>{deal?.buyer === user?.email ? deal?.sellerNickname: deal?.buyerNickname}</h4>
-                   <div className="scrollDiv" style={{overflow: 'overlay', maxHeight: '70vh'}}>
+                   <div className="scrollDiv" style={{overflow: 'overlay', maxHeight: '70vh'}} ref={chatRef}>
                    {dealMessages?.map((item, index) => {
                       if (item.dealId !== Number(id)) return null;
 
                       return item.role === 'ADMIN' ? 
-                      <div style={{textAlign: 'start',}}>
+                      <div style={{textAlign: 'start'}} key={item?.id}>
                               <p 
                               style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere', color: '#59DBFF'}}
                               >{item.message} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span></p>
                             </div> :
                           item.nickname === user.nickname? 
-                            <div style={{textAlign: 'end', paddingRight: '30px'}}>
+                            <div style={{textAlign: 'end', paddingRight: '30px'}} key={item?.id}>
                               <p style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere'}}
                               >{item.message} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span></p>
                             </div> 
-                          : <div style={{textAlign: 'start'}}>
+                          : <div style={{textAlign: 'start'}} key={item?.id}>
                           <p style={{display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere'}}
                           >{`${item.nickname}: ${item.message}`} <span style={{fontSize: '15px', color: '#59DBFF'}}>{item.time}</span> </p>
                       </div> })}
