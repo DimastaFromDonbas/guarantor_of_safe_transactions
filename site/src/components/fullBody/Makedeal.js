@@ -104,6 +104,7 @@ function Makedeal() {
        const result = await axiosCreateDeal(name, buyer, seller, suma, description, user?.email, buyerNickname, sellerNickname)
        if(result) {
         alert('Сделка успешно создана')
+        navigate('/deals')
        } else alert('Что-то пошло не так')
     }
 
