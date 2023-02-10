@@ -78,15 +78,24 @@ const DealMessage = sequelize.define('deal_message', {
 
 const MessageToAdmin = sequelize.define('message_to_admin', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    addreserNickname: {type: DataTypes.STRING},
-    addreserEmail: {type: DataTypes.STRING},
+    nickname: {type: DataTypes.STRING},
+    email: {type: DataTypes.STRING},
+    administratorName: {type: DataTypes.STRING},
     role: {type: DataTypes.STRING},
-    adminEmail: {type: DataTypes.STRING},
-    adminNickname: {type: DataTypes.STRING},
-    receiverEmail: {type: DataTypes.STRING},
-    receiverNickname: {type: DataTypes.STRING},
-    message: {type: DataTypes.STRING},
+    statusForUser: {type: DataTypes.INTEGER},
     time: {type: DataTypes.STRING},
+    message: {type: DataTypes.STRING},
+    chatId: {type: DataTypes.INTEGER},
+})
+
+const AdminChat = sequelize.define('admin_chat', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    nickname: {type: DataTypes.STRING},
+    email: {type: DataTypes.STRING},
+    statusForUser: {type: DataTypes.INTEGER},
+    deleteChatTime: {type: DataTypes.STRING},
+    rate: {type: DataTypes.INTEGER},
+    newMessage: {type: DataTypes.INTEGER},
 })
 
 const Basket = sequelize.define('basket', {
@@ -133,6 +142,12 @@ const TypeBrand = sequelize.define('type_brand', {
 User.hasOne(Basket)
 Basket.belongsTo(User)
 
+User.hasOne(AdminChat)
+AdminChat.belongsTo(User)
+
+AdminChat.hasMany(MessageToAdmin)
+MessageToAdmin.belongsTo(AdminChat)
+
 User.hasMany(UserRefill)
 UserRefill.belongsTo(User)
 
@@ -178,6 +193,7 @@ module.exports = {
     Deal,
     DealMessage,
     MessageToAdmin,
+    AdminChat,
     Basket,
     BasketDevice,
     Device,
