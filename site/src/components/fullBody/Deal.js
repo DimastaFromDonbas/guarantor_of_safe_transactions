@@ -60,7 +60,7 @@ async function changeDealStatus(status) {
 async function pay() {
   if(!user?.email) return alert('Войдите в аккаунт')
   if(!deal?.sum) return alert('Сделка не найдена')
-  const resultUser = await axiosDecreaseScore(Number((deal?.sum + deal?.sum*0.05)).toFixed(), user?.email, user?.password)
+  const resultUser = await axiosDecreaseScore(Number((deal?.sum + deal?.sum*0.07)).toFixed(), user?.email, user?.password)
   if(resultUser) {
     dispatch({
       type: reducerTypes.GET_USER,
@@ -193,8 +193,8 @@ async function getPay() {
                                 <th className="dilit-block">{deal?.buyerNickname || deal?.buyer}</th>
                                 <th className="dilit-block">{deal?.sellerNickname || deal?.seller}</th>
                                 <th>{deal?.sum} ₽</th>
-                                <th>{(deal?.sum* 0.05).toFixed(0)} ₽</th>
-                                <th>{(deal?.sum+ deal?.sum*0.05).toFixed()} ₽</th>
+                                <th>{(deal?.sum* 0.07).toFixed(0)} ₽</th>
+                                <th>{(deal?.sum+ deal?.sum*0.07).toFixed()} ₽</th>
                             </tr>
                             </tbody>
                         </table>

@@ -39,8 +39,8 @@ function Makedeal() {
 
     function calcSum(e) {
         setSum(Number(e.currentTarget.value))
-        setComis(Number(e.currentTarget.value)*0.05)
-        setFullSum(Number(e.currentTarget.value*0.05)+Number(e.currentTarget.value))
+        setComis(Number(e.currentTarget.value)*0.07)
+        setFullSum(Number(e.currentTarget.value*0.07)+Number(e.currentTarget.value))
     }
 
     function sumFull(e) {
@@ -212,13 +212,13 @@ function Makedeal() {
                     <div className="form-size-flex">
                     <div style={{display: "flex", flexDirection: "row"}}>
                     <Form.Label>Комиссия сервиса</Form.Label>
-                    <Form.Label>{comis} руб</Form.Label>
+                    <Form.Label>{comis.toFixed(0)} руб</Form.Label>
                     </div>
                     </div>
                     <div className="form-size-flex">
                     <div style={{display: "flex", flexDirection: "row"}}>
                     <Form.Label>Итоговая сумма сделки</Form.Label>
-                    <Form.Label>{fullSum} руб</Form.Label>
+                    <Form.Label>{fullSum.toFixed(0)} руб</Form.Label>
                     </div>
                     </div>
                 </div>
