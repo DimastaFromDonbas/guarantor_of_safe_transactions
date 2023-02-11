@@ -49,6 +49,11 @@ function AdminChat() {
     const time = new Date().toLocaleString().replaceAll(',', '')
     socketAdmin.emit("sendMessageFromAdmin", { administratorName: adminName, time, message, id: currentChat?.id, adminEmail: user?.email, adminPassword: user?.password });
     setMessage('')
+    const temporaryChat = adminChat?.filter(item => item.email === email)[0]
+    dispatch({
+      type: reducerTypes.GET_ADMIN_MESSAGE,
+      payload: [...adminMessage, { ...temporaryChat, newMessage: 2 }]
+    });
   }
 
   function updateAdminChatStatus() {

@@ -1,17 +1,17 @@
-import {Checkbox} from '@mui/material';
-import {StyledInput} from '../../../style/styles';
+import { Checkbox } from '@mui/material';
+import { StyledInput } from '../../../style/styles';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
-import {useAppSelector} from '../../../store/reduxHooks';
-import {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
-import {axiosGetAdminChats} from '../../../api/axios';
-import {reducerTypes} from '../../../store/Users/types';
+import { useAppSelector } from '../../../store/reduxHooks';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { axiosGetAdminChats, axiosDeleteAdminChat } from '../../../api/axios';
+import { reducerTypes } from '../../../store/Users/types';
 
 function AllChats() {
     const dispatch = useDispatch();
-    const {adminChat, user} = useAppSelector((store) => store.user);
+    const { adminChat, user } = useAppSelector((store) => store.user);
     const [chats, setChats] = useState([]);
     const navigate = useNavigate();
     const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -64,7 +64,7 @@ function AllChats() {
             >
                 <StyledInput
                     className="tabl-flex-admin-search"
-                    style={{color: 'white', borderRadius: '5px', paddingLeft: '10px'}}
+                    style={{ color: 'white', borderRadius: '5px', paddingLeft: '10px' }}
                     type="search"
                     id="Search"
                     value={search}
@@ -74,7 +74,7 @@ function AllChats() {
                     required
                 />
 
-                <div className="tabl-flex-admin-filtr" style={{borderRadius: '5px'}}>
+                <div className="tabl-flex-admin-filtr" style={{ borderRadius: '5px' }}>
                     {/* <h5 style={{margin:'0'}}>На согласовании</h5> <Checkbox value={filterOpen} defaultChecked onChange={() => setFilterOpen((prev) => !prev)} color="error" /> */}
                     {/* <h5 style={{margin:'0'}}>Ожидает оплаты</h5> <Checkbox value={filterCheck} defaultChecked onChange={() => setFilterCheck((prev) => !prev)} color="error" /> */}
                     {/* <h5 style={{margin:'0'}}>Оплачена</h5> <Checkbox value={filterPayed} defaultChecked onChange={() => setFilterPayed((prev) => !prev)} color="error" /> */}
@@ -82,32 +82,32 @@ function AllChats() {
                     {/* <h5 style={{margin:'0'}}>Арбитраж</h5> <Checkbox value={filterArbitration} defaultChecked onChange={() => setFilterArbitration((prev) => !prev)} color="error" /> */}
                 </div>
             </div>
-            <h3 style={{textAlign: 'center'}}>ВСЕ ЧАТЫ</h3>
-            <div className="tabl-flex-admin" style={{borderRadius: '5px'}}>
-                <div style={{textAlign: 'center', width: '80px', cursor: 'pointer'}} className="output-id" onClick={() => setSortId((prev) => !prev)}>
+            <h3 style={{ textAlign: 'center' }}>ВСЕ ЧАТЫ</h3>
+            <div className="tabl-flex-admin" style={{ borderRadius: '5px' }}>
+                <div style={{ textAlign: 'center', width: '80px', cursor: 'pointer' }} className="output-id" onClick={() => setSortId((prev) => !prev)}>
                     ID{' '}
                 </div>
-                <div style={{textAlign: 'center', width: '155px'}} className="output-date">
+                <div style={{ textAlign: 'center', width: '155px' }} className="output-date">
                     Имя пользователя
                 </div>
-                <div style={{textAlign: 'center', width: '155px'}} className="output-date">
+                <div style={{ textAlign: 'center', width: '155px' }} className="output-date">
                     Почта пользователя
                 </div>
-                <div style={{textAlign: 'center', width: '210px'}} className="output-sum">
+                <div style={{ textAlign: 'center', width: '210px' }} className="output-sum">
                     Новое сообщение
                 </div>
-                <div style={{textAlign: 'center', width: '155px'}} className="output-date">
+                <div style={{ textAlign: 'center', width: '155px' }} className="output-date">
                     Время удаления чата
                 </div>
-                <div style={{textAlign: 'center', width: '155px'}} className="output-sum">
+                <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
                     Оценка
                 </div>
-                <div style={{textAlign: 'center', width: '100px'}} className="output-sum">
+                <div style={{ textAlign: 'center', width: '100px' }} className="output-sum">
                     Удалить чат
                 </div>
             </div>
             {chats?.slice(page * itemsPerPage, (page + 1) * itemsPerPage)?.map((item, index) => (
-                <div style={{marginTop: '5px', borderRadius: '5px'}} className="tabl-flex-admin-user" key={item?.id}>
+                <div style={{ marginTop: '5px', borderRadius: '5px' }} className="tabl-flex-admin-user" key={item?.id}>
                     <div
                         style={{
                             textAlign: 'center',
@@ -194,7 +194,7 @@ function AllChats() {
                         {item?.rate}
                     </div>
                     <div
-                        style={{width: '100px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+                        style={{ width: '100px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                         className="output-sum"
                         onChange={(e) => changeDeleteChats(e.target.checked, item?.id)}
                     >
@@ -202,11 +202,11 @@ function AllChats() {
                     </div>
                 </div>
             ))}
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', marginTop: '5px'}}>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', marginTop: '5px' }}>
                 <div
                     className="tabl-flex-admin-button"
                     onClick={async () => {
-                        //  await Promise.all(deleteChats?.map(async (id) => await axiosDeleteDeal(Number(id), user?.email, user?.password)));
+                        await Promise.all(deleteChats?.map(async (id) => await axiosDeleteAdminChat(Number(id), user?.email, user?.password)));
                         setDeleteChats([]);
                         await getAllChats();
                         alert('Success');
@@ -216,7 +216,7 @@ function AllChats() {
                 </div>
             </div>
             <Pagination
-                style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}
+                style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}
                 count={Math.ceil(chats?.length / itemsPerPage)}
                 shape="rounded"
                 onChange={(e, value) => setPage(Number(value) - 1)}
@@ -231,10 +231,10 @@ function AllChats() {
                     marginTop: '20px'
                 }}
             >
-                <h6 style={{margin: '0px', paddingRight: '10px'}}>Кол-во</h6>
+                <h6 style={{ margin: '0px', paddingRight: '10px' }}>Кол-во</h6>
                 <input
                     className="tabl-flex-admin-pages"
-                    style={{color: 'white', borderRadius: '5px'}}
+                    style={{ color: 'white', borderRadius: '5px' }}
                     type="number"
                     name="name"
                     value={itemsPerPage}

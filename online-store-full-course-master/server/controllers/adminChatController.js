@@ -76,6 +76,32 @@ class AdminChatController {
         return 'success'
     }
 
+    async deleteAdminChats(req, res, next) {
+        const { id, adminEmail, adminPassword } = req.body
+        const adminChat = await AdminChat.findOne({ where: { id } })
+        if (!adminChat) {
+            return next(ApiError.internal('Сделка не найдена'))
+        }
+        const creator = await User.findOne({ where: { email: adminEmail } })
+        if (!creator) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(adminPassword, creator.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if (creator.role !== 'ADMIN') {
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+        await AdminChat.destroy({
+            where: { id }
+        })
+        await MessageToAdmin.destroy({
+            where: { chatId: id }
+        })
+        return res.json(adminChat)
+    }
+
 
 }
 
