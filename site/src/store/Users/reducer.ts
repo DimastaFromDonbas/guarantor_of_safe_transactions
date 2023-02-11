@@ -148,7 +148,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 2,
-    email: "use321311r123asd@gmail.com",
+    email: "use321311r123as1d@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -160,7 +160,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 3,
-    email: "use321311r123asd@gmail.com",
+    email: "use321311r123as2d@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -172,7 +172,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 4,
-    email: "use321311r123asd@gmail.com",
+    email: "use321311r123asd3@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -184,7 +184,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 5,
-    email: "use321311r123asd@gmail.com",
+    email: "use321311r123asd4@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -196,7 +196,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 6,
-    email: "use321311r123asd@gmail.com",
+    email: "use321311r123asd5@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -208,7 +208,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 7,
-    email: "use321311r123asd@gmail.com",
+    email: "use321311r123asd6@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -220,7 +220,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 8,
-    email: "use321311r123asd@gmail.com",
+    email: "use321311r123asd7@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -232,7 +232,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 9,
-    email: "use321311r123asd@gmail.com",
+    email: "use321311r123asd8@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -244,7 +244,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 10,
-    email: "use321311r123asd@gmail.com",
+    email: "use321311r123a9sd@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -256,7 +256,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 11,
-    email: "use321311r123asd@gmail.com",
+    email: "use321311r123asd10@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
@@ -268,7 +268,7 @@ export const INITIAL: IUsersReducer = {
     completed: 0,
   },{
     id: 12,
-    email: "use321311r123asd@gmail.com",
+    email: "use321311r123asd10@gmail.com",
     password: "D2023212" || null,
     role: "ADMIN",
     score: 1110,
