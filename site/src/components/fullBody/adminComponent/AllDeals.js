@@ -65,8 +65,8 @@ function AllDeals() {
        },[])
 
     return <>
-                <div style={{marginBottom: "20px",display: "flex",justifyContent: "space-between",alignItems: "center"}}>
-        <StyledInput className="tabl-flex-admin-search"
+            <div style={{marginBottom: "20px",display: "flex",justifyContent: "space-between",alignItems: "center"}}>
+           <StyledInput className="tabl-flex-admin-search"
               style={{color: "white",borderRadius: "5px", paddingLeft: '10px'}}
               type="search"
               id='Search'

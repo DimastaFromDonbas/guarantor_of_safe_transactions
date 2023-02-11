@@ -7,6 +7,8 @@ import { useAppSelector } from "../../store/reduxHooks";
 import { useNavigate } from "react-router-dom";
 import SetNameTheSite from "./adminComponent/SetNameTheSite";
 import io from "socket.io-client";
+import AllChats from "./adminComponent/AllChats";
+
 
 export const socketAdmin = io.connect("localhost:5000");
 
@@ -63,7 +65,7 @@ function AdminPanel() {
                     <h4>ПЕРЕВОДЫ</h4>
                 </button>
                 <button onClick={(e) => visibleItem(e)} name = '4' className={item === 4 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
-                    <h4>ЧАТЫ ПРОСТО ЧАТЫ</h4> 
+                    <h4>ВСЕ ЧАТЫ</h4> 
                 </button>
                 <button onClick={(e) => visibleItem(e)} name = '5' className={item === 5 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
                     <h4>СМЕНА ИМЕНИ САЙТА <br/> И КОШЕЛЬКА</h4> 
@@ -88,7 +90,7 @@ function AdminPanel() {
                     <AllTransfers />
                 </div>:''}
                 {item === 4 ? <div style={{display: 'block', width: '100%'}}>
-                    <AllDeals />
+                    <AllChats />
                 </div> : ''}
                 {item === 5 ? <div style={{display: 'block'}}>
                     <SetNameTheSite />
