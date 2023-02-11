@@ -81,11 +81,13 @@ function Chat() {
                             ></CloseIcon>
                         </div>
                         <div style={{overflow: 'overlay'}}>
-                            {messageToAdmin?.map((item) => (
-                                <div style={{color: 'white'}}>
-                                    {item?.id} / {item.message}
-                                </div>
-                            ))}
+                            {messageToAdmin
+                                ?.filter((el) => el.statusForUser !== 2)
+                                .map((item) => (
+                                    <div style={{color: 'white'}}>
+                                        {item?.id} / {item.message}
+                                    </div>
+                                ))}
                         </div>
                         <div className="body-chat-sms">
                             <input
