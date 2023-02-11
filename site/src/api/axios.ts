@@ -82,6 +82,7 @@ export const axiosLogin = async (email:string, password:string) => {
 }
 
 export const check = async () => {
+  if(!localStorage.getItem('token')) return;
   const {data} = await axios.get('api/user/auth', getConfig());
   localStorage.setItem('token', data.token);
   console.log('check', jwt_decode(data.token));
