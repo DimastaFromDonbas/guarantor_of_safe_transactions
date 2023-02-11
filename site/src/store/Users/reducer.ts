@@ -38,7 +38,7 @@ export const INITIAL: IUsersReducer = {
     score: 10000,
     nickname: "Dimasta",
     systemMessage: 'true' ,
-    checkRu: "RU" ,
+    checkRu: "true" ,
     minimumTransferAmount: 5000 ,
     sumTransferAmoumt: 1000,
     completed: 0,
