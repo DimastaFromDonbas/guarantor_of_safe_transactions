@@ -393,7 +393,7 @@ input::-webkit-inner-spin-button {
     border-radius: 4px;
     margin-top: 20px;
     backdrop-filter: blur(5.5px);
-    order: 0.5px solid rgba(90, 89, 89, 0.75);
+    border: 0.5px solid rgba(90, 89, 89, 0.75);
     overflow: overlay;
     max-height: 100vh;
     color: white;
