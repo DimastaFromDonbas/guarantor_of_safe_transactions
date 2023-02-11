@@ -486,3 +486,32 @@ export const axiosGetDealMessages = async (
   console.log(e);
   return []}
 }
+
+//  ADMIN CHAT
+
+export const axiosGetAdminChats = async (
+  adminEmail: string,
+  adminPassword: string,
+  ) => {
+ try{
+  const {data} = await axios.post('api/adminChat/get', {adminEmail, adminPassword}, getConfig());
+ console.log('get admin chats', data)
+ return data}
+ catch (e) {
+  console.log(e);
+  return []}
+}
+
+// ADMIN MESSAGE
+
+export const axiosGetMessagestoAdmin = async (
+  email: string,
+  ) => {
+ try{
+  const {data} = await axios.post('api/messagesToAdmin/get', {email}, getConfig());
+ console.log('get admin messages', data)
+ return data}
+ catch (e) {
+  console.log(e);
+  return []}
+}

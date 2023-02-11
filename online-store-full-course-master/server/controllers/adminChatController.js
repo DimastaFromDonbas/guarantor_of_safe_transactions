@@ -18,7 +18,7 @@ class AdminChatController {
         }
 
         const adminChat = await AdminChat.create({nickname, email, statusForUser: 1, newMessage: 1})
-        return adminChat
+        return res.json(adminChat)
     }
 
     async getAdminChats(req, res, next) {

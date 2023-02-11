@@ -18,9 +18,9 @@ class MessageToAdminController {
         if(!adminChat){
             return next(ApiError.badRequest('Ошибка создания чата'))
         }
-
+        await AdminChat.update({statusForUser: 1, newMessage: 1}, {where: {id: adminChat.id}})
         const messageToAdmin = await MessageToAdmin.create({nickname, email, role: 'USER', administratorName: '', message, time, statusForUser: 1, chatId: adminChat.id})
-        return messageToAdmin
+        return res.json(messageToAdmin)
     }
 
     async createForAdmin(req, res, next) {
@@ -44,9 +44,9 @@ class MessageToAdminController {
         if(!adminChat){
             return next(ApiError.badRequest('Чат не найден'))
         }
-
+        await AdminChat.update({statusForUser: 1, newMessage: 2}, {where: {id: adminChat.id}})
         const messageToAdmin = await MessageToAdmin.create({nickname: '', email: '', role: 'ADMIN', administratorName, message, time, statusForUser: 1, chatId: adminChat.id})
-        return messageToAdmin
+        return res.json(messageToAdmin)
     }
 
     async getMessagesToAdmin(req, res, next) {
@@ -58,7 +58,11 @@ class MessageToAdminController {
         if (!user) {
             return next(ApiError.badRequest('Пользователь не найден'))
         }
-        const messages = await MessageToAdmin.findAll({where: {email}})
+        let adminChat = await AdminChat.findOne({where: {email}})
+        if(!adminChat){
+            return next(ApiError.badRequest('Чат не найден'))
+        }
+        const messages = await MessageToAdmin.findAll({where: {chatId: adminChat.id}})
         if (!messages) {
             return next(ApiError.internal('Сообщения не найдены'))
         }

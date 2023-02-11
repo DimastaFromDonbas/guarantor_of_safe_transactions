@@ -1,14 +1,36 @@
 import { Button } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Helper from '../../image/helper.png'
 import CloseIcon from '@mui/icons-material/Close';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 import SendIcon from '@mui/icons-material/Send';
+import { axiosGetMessagestoAdmin } from '../../api/axios';
+import { useAppSelector } from '../../store/reduxHooks';
+import { useDispatch } from 'react-redux';
+import { reducerTypes } from '../../store/Users/types';
 
 function Chat() {
 
+    const dispatch = useDispatch();
     const [checked, setChecked] = useState(false)
+    const {user, messageToAdmin} = useAppSelector ((store) => store.user)
+
+    async function getMessagesToAdmin() {
+        if(!user?.email) return;
+        const result = await axiosGetMessagestoAdmin(user?.email)
+        if(result){
+            dispatch({
+                type: reducerTypes.GET_MESSAGE_TO_ADMIN,
+                payload: result,
+              });
+        }
+    }
+
+    useEffect(() => {
+        getMessagesToAdmin()
+        // eslint-disable-next-line 
+      },[user])
 
     return  <>
                 {checked?
