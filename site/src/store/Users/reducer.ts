@@ -434,8 +434,8 @@ export const INITIAL: IUsersReducer = {
     adminChat: [
         {
             id: 1,
-            nickname: 'string',
-            email: 'string',
+            nickname: 'Dima Lobanov',
+            email: 'DimaLobanov@gmail.com',
             statusForUser: 1,
             deleteChatTime: 'string',
             rate: 1,
@@ -448,13 +448,13 @@ export const INITIAL: IUsersReducer = {
     adminMessage: [
         {
             id: 1,
-            nickname: 'string',
-            email: 'string',
-            administratorName: 'string',
+            nickname: 'Dima Lobanov',
+            email: 'DimaLobanov@gmail.com',
+            administratorName: 'Dima Lobanov',
             role: 'string',
             statusForUser: 1,
-            time: 'string',
-            message: 'string',
+            time: 'сейчас',
+            message: 'Привет',
             chatId: 1,
             createdAt: 'string',
             updatedAt: 'string'

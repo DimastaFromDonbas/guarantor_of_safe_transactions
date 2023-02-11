@@ -236,23 +236,22 @@ function AdminChat() {
                     </div>
 
                     <div className="blockMassegesAdminPanel">
-                        <div style={{display: 'flex', justifyContent: 'center'}}>
-                            {' '}
+                        <div style={{display: 'flex', justifyContent: 'center', background: 'rgba(90, 89, 89, 0.75)'}}>
                             <h2>Чат с {currentChat?.nickname}</h2>
                         </div>
                         <div style={{display: 'flex', flexDirection: 'column'}}>
                             {adminMessage?.map((item) => (
                                 <div key={item?.id}>
                                     {item?.role === 'USER' ? (
-                                        <div style={{display: 'flex', flexDirection: 'column'}}>
+                                        <div className="massegeStyleAdminChat">
                                             <p>
-                                                {item?.nickname}: {item?.message} {item?.time}
+                                                {item?.nickname}: {item?.message} <div className="posMassegeses">{item?.time}</div>
                                             </p>
                                         </div>
                                     ) : (
-                                        <div style={{display: 'flex', flexDirection: 'column'}}>
+                                        <div className="massegeStyleAdminChat">
                                             <p>
-                                                {item?.administratorName}: {item?.message} {item?.time}
+                                                {item?.administratorName}: {item?.message} <div className="posMassegeses">{item?.time}</div>
                                             </p>
                                         </div>
                                     )}
@@ -266,7 +265,9 @@ function AdminChat() {
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
                                 ></input>
-                                <button onClick={sendMessageToAdmin}>Отправить</button>
+                                <button className="buttonAdminChat" onClick={sendMessageToAdmin}>
+                                    Отправить
+                                </button>
                             </div>
                         </div>
                     </div>
