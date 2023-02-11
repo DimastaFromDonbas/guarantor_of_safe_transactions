@@ -55,6 +55,11 @@ function AdminChat() {
             adminPassword: user?.password
         });
         setMessage('');
+        const temporaryChat = adminChat?.filter((item) => item.email === email)[0];
+        dispatch({
+            type: reducerTypes.GET_ADMIN_MESSAGE,
+            payload: [...adminMessage, {...temporaryChat, newMessage: 2}]
+        });
     }
 
     function updateAdminChatStatus() {
@@ -231,7 +236,10 @@ function AdminChat() {
                     </div>
 
                     <div className="blockMassegesAdminPanel">
-                        <h1>Чат с {currentChat?.nickname}</h1>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
+                            {' '}
+                            <h2>Чат с {currentChat?.nickname}</h2>
+                        </div>
                         <div style={{display: 'flex', flexDirection: 'column'}}>
                             {adminMessage?.map((item) => (
                                 <div key={item?.id}>
@@ -250,8 +258,9 @@ function AdminChat() {
                                     )}
                                 </div>
                             ))}
-                            <div>
+                            <div style={{position: 'absolute', bottom: '0px', width: '100%'}}>
                                 <input
+                                    className="tabl-flex-admin-masseges"
                                     type="text"
                                     placeholder="Введите сообщение"
                                     value={message}
