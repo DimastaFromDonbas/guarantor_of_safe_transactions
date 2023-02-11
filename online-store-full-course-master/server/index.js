@@ -3,15 +3,14 @@ const express = require('express')
 const http = require('http')
 const { Server } = require('socket.io')
 const sequelize = require('./db')
-const models = require('./models/models')
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
 const router = require('./routes/index')
 const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 const path = require('path')
-const ChatController = require('./controllers/chatController')
 const dealMessageController = require('./controllers/dealMessageController')
 const messageToAdminController = require('./controllers/messageToAdminController')
+const adminChatController = require('./controllers/adminChatController')
 
 const PORT = process.env.PORT || 5000
 
@@ -73,9 +72,19 @@ io.on("connection", (socket) => {
   socket.on("sendMessageFromAdmin", async ({ administratorName, time, message, id, adminEmail, adminPassword }) => {
     if (administratorName, time, message, id, adminEmail, adminPassword) {
       const messagefromAdmin = await messageToAdminController.createForAdmin({ body: { administratorName, time, message, id, adminEmail, adminPassword } })
-      console.log(1, messagefromAdmin.email)
       io.to(String(messagefromAdmin.email)).emit("messageToAdmin", { data: messagefromAdmin });
     } else console.log('Send messageFromAdmin fail')
+  });
+
+  socket.on("updateAdminChatStatus", async ({ status, email, adminEmail, adminPassword }) => {
+    if (status, email, adminEmail, adminPassword) {
+      const checkUpdate = await adminChatController.updateAdminChats({ body: { status, email, adminEmail, adminPassword } })
+      if (checkUpdate) {
+        io.to(String(email)).emit("updateChatStatus", { data: checkUpdate });
+      } else {
+        console.log(`update adminChatStatus fail ${checkUpdate}`)
+      }
+    } else console.log('update adminChatStatus fail')
   });
 
   socket.on("leftRoom", ({ params }) => {

@@ -36,7 +36,7 @@ function AdminChat() {
     if (data) {
       dispatch({
         type: reducerTypes.GET_ADMIN_MESSAGE,
-        payload: data,
+        payload: data.sort((a, b) => a.id - b.id),
       });
     }
   }
@@ -49,6 +49,12 @@ function AdminChat() {
     const time = new Date().toLocaleString().replaceAll(',', '')
     socketAdmin.emit("sendMessageFromAdmin", { administratorName: adminName, time, message, id: currentChat?.id, adminEmail: user?.email, adminPassword: user?.password });
     setMessage('')
+  }
+
+  function updateAdminChatStatus() {
+    if (!user?.email) return alert('Войдите в аккаунт');
+    if (!currentChat?.email) return alert('Чат не найден')
+    socketAdmin.emit("updateAdminChatStatus", { status: Number(statusForUserChat), email: currentChat?.email, adminEmail: user?.email, adminPassword: user?.password });
   }
 
   useEffect(() => {
@@ -78,7 +84,6 @@ function AdminChat() {
 
   useEffect(() => {
     socketAdmin.on("messageToAdmin", ({ data }) => {
-      console.log('data', data)
       dispatch({
         type: reducerTypes.GET_ADMIN_MESSAGE,
         payload: [...adminMessage, data]
@@ -86,6 +91,16 @@ function AdminChat() {
     });
     // eslint-disable-next-line
   }, [adminMessage]);
+
+  useEffect(() => {
+    socketAdmin.on("updateChatStatus", ({ data }) => {
+      if (data) {
+        console.log(1)
+        console.log(1, data)
+      }
+    });
+    // eslint-disable-next-line
+  }, []);
 
   return <>
     <div style={{ display: 'flex', minHeight: '100vh', justifyContent: "center", }} className={!statebackground ? 'styleAdminPanel' : 'styleAdminPanel2'}>
@@ -127,7 +142,7 @@ function AdminChat() {
                 <option value="1">{adminChatStatusMock[0]}</option>
                 <option value="2">{adminChatStatusMock[1]}</option>
               </select>
-              <button>Изменить</button>
+              <button onClick={updateAdminChatStatus}>Изменить</button>
             </div>
           </div>
         </div>

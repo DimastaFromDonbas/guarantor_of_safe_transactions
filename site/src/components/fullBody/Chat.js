@@ -24,7 +24,7 @@ function Chat() {
     if (result) {
       dispatch({
         type: reducerTypes.GET_MESSAGE_TO_ADMIN,
-        payload: result,
+        payload: result.sort((a, b) => a.id - b.id),
       });
     }
   }
@@ -56,6 +56,14 @@ function Chat() {
     // eslint-disable-next-line
   }, [messageToAdmin]);
 
+  useEffect(() => {
+    socket.on("updateChatStatus", ({ data }) => {
+      if (data) {
+        getMessagesToAdmin();
+      }
+    });
+    // eslint-disable-next-line
+  }, []);
 
 
   return <>

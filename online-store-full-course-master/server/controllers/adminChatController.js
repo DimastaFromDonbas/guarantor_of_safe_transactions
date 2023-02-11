@@ -1,33 +1,33 @@
 const ApiError = require('../error/ApiError');
-const {User, AdminChat} = require('../models/models')
+const { User, AdminChat, MessageToAdmin } = require('../models/models')
 const bcrypt = require('bcrypt')
 
 class AdminChatController {
     async create(req, res, next) {
-        const {nickname, email} = req.body
+        const { nickname, email } = req.body
         if (!nickname || !email) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const user = await User.findOne({where: {email: email}})
+        const user = await User.findOne({ where: { email: email } })
         if (!user) {
             return next(ApiError.badRequest('Пользователь не найден'))
         }
 
-        const checkAdminChat = await AdminChat.findOne({where: {email}})
-        if(checkAdminChat) {
+        const checkAdminChat = await AdminChat.findOne({ where: { email } })
+        if (checkAdminChat) {
             return next(ApiError.badRequest('Чат уже существует'))
         }
 
-        const adminChat = await AdminChat.create({nickname, email, statusForUser: 1, newMessage: 1})
+        const adminChat = await AdminChat.create({ nickname, email, statusForUser: 1, newMessage: 1 })
         return res.json(adminChat)
     }
 
     async getAdminChats(req, res, next) {
-        const {adminEmail, adminPassword} = req.body
+        const { adminEmail, adminPassword } = req.body
         if (!adminEmail || !adminPassword) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const admin = await User.findOne({where: {email: adminEmail}})
+        const admin = await User.findOne({ where: { email: adminEmail } })
         if (!admin) {
             return next(ApiError.internal('Админ не найден'))
         }
@@ -35,7 +35,7 @@ class AdminChatController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(admin.role === 'USER'){
+        if (admin.role === 'USER') {
             return next(ApiError.badRequest('Нет доступа'))
         }
         const adminChats = await AdminChat.findAll()
@@ -43,6 +43,37 @@ class AdminChatController {
             return next(ApiError.internal('Чаты не найдены'))
         }
         return res.json(adminChats)
+    }
+
+    async updateAdminChats(req, res, next) {
+        const { status, email, adminEmail, adminPassword } = req.body
+        if (!status || !email || !adminEmail || !adminPassword) {
+            return next(ApiError.badRequest('Введите все данные'))
+        }
+        const user = await User.findOne({ where: { email } })
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        const admin = await User.findOne({ where: { email: adminEmail } })
+        if (!admin) {
+            return next(ApiError.internal('Админ не найден'))
+        }
+        let comparePassword = bcrypt.compareSync(adminPassword, admin.password)
+        if (!comparePassword) {
+            return next(ApiError.internal('Указан неверный пароль'))
+        }
+        if (admin.role === 'USER') {
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+        let adminChat = await AdminChat.findOne({ where: { email } })
+        if (!adminChat) {
+            return next(ApiError.badRequest('Чат не найден'))
+        }
+        await AdminChat.update({ statusForUser: status }, { where: { id: adminChat.id } })
+        if (status === 2) {
+            await MessageToAdmin.update({ statusForUser: status }, { where: { chatId: adminChat.id } })
+        }
+        return 'success'
     }
 
 
