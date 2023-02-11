@@ -36,9 +36,9 @@
     width: 20px !important;
     background: rgb(218, 218, 218);
   }
-  .scrollDiv::-webkit-scrollbar-thumb {
+.scrollDiv::-webkit-scrollbar-thumb {
     background: rgb(0, 0, 0);
-  }
+}
 
 .styleAdminPanel {
     /* background: linear-gradient(122deg, #3c3b3b, #4d4d4b, #716f6f,#979793); */
