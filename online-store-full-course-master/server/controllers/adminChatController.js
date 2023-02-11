@@ -1,5 +1,6 @@
 const ApiError = require('../error/ApiError');
 const {User, AdminChat} = require('../models/models')
+const bcrypt = require('bcrypt')
 
 class AdminChatController {
     async create(req, res, next) {
@@ -18,7 +19,7 @@ class AdminChatController {
         }
 
         const adminChat = await AdminChat.create({nickname, email, statusForUser: 1, newMessage: 1})
-        return adminChat
+        return res.json(adminChat)
     }
 
     async getAdminChats(req, res, next) {

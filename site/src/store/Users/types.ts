@@ -16,6 +16,9 @@ export const reducerTypes = {
     GET_FIX_SUM_SYSTEM_MESSAGE:'reducer/GET_FIX_SUM_SYSTEM_MESSAGE',
     GET_NAME_THE_SITE: 'reducer/GET_NAME_THE_SITE',
     GET_CRIPTO_WALLET: 'reducer/GET_CRIPTO_WALLET',
+    GET_ADMIN_CHAT: 'reducer/GET_ADMIN_CHAT',
+    GET_ADMIN_MESSAGE: 'reducer/GET_ADMIN_MESSAGE',
+    GET_MESSAGE_TO_ADMIN: 'reducer/GET_MESSAGE_TO_ADMIN',
   };
   
   export const sagaTypes = {

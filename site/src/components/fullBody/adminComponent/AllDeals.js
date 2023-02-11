@@ -62,7 +62,7 @@ function AllDeals() {
       useEffect(() => {
         getAllDeals();
          // eslint-disable-next-line 
-       },[])
+       },[user])
 
     return <>
             <div style={{marginBottom: "20px",display: "flex",justifyContent: "space-between",alignItems: "center"}}>

@@ -9,19 +9,13 @@ import {reducerTypes} from '../../../store/Users/types';
 function SetNameTheSite() {
     //const {user, nameTheSite} = useAppSelector ((store) => store.user)
     const dispatch = useDispatch();
-    const {user, nameTheSite, criptoWallet} = useAppSelector(
-        (store) => store.user
-    );
+    const {user, nameTheSite, criptoWallet} = useAppSelector((store) => store.user);
     const [nameSite, setNameSite] = useState('');
     const [walletSite, setWalletSite] = useState('');
 
     async function updateName() {
         if (!nameSite) return alert('Введите название');
-        const result = await axiosUpdateName(
-            nameSite,
-            user?.email,
-            user?.password
-        );
+        const result = await axiosUpdateName(nameSite, user?.email, user?.password);
         if (result) {
             alert('Успешно');
             dispatch({
@@ -33,11 +27,7 @@ function SetNameTheSite() {
 
     async function updateWallet() {
         if (!walletSite) return alert('Введите кошелек');
-        const result = await axiosUpdateName(
-            walletSite,
-            user?.email,
-            user?.password
-        );
+        const result = await axiosUpdateName(walletSite, user?.email, user?.password);
         if (result) {
             alert('Успешно');
             dispatch({
@@ -81,16 +71,12 @@ function SetNameTheSite() {
         getName();
         getWallet();
         // eslint-disable-next-line
-    }, []);
+    }, [user]);
 
     return (
         <>
-            <h3 style={{textAlign: 'center'}}>
-                Предыдущее название: {nameTheSite?.name}
-            </h3>
-            <h3 style={{textAlign: 'center'}}>
-                СМЕНА НАЗВАНИЯ САЙТА И КОШЕЛЬКА
-            </h3>
+            <h3 style={{textAlign: 'center'}}>Предыдущее название: {nameTheSite?.name}</h3>
+            <h3 style={{textAlign: 'center'}}>СМЕНА НАЗВАНИЯ САЙТА И КОШЕЛЬКА</h3>
 
             <div
                 style={{
@@ -115,17 +101,12 @@ function SetNameTheSite() {
                     autoComplete="off"
                     required
                 />
-                <div
-                    className="tabl-flex-admin-button-changes"
-                    onClick={updateName}
-                >
+                <div className="tabl-flex-admin-button-changes" onClick={updateName}>
                     Изменить имя сайта
                 </div>
             </div>
 
-            <h3 style={{textAlign: 'center', marginTop: '20px'}}>
-                Предыдущее название: {criptoWallet?.wallet}
-            </h3>
+            <h3 style={{textAlign: 'center', marginTop: '20px'}}>Предыдущее название: {criptoWallet?.wallet}</h3>
             <div
                 style={{
                     display: 'flex',
@@ -149,10 +130,7 @@ function SetNameTheSite() {
                     autoComplete="off"
                     required
                 />
-                <div
-                    className="tabl-flex-admin-button-changes"
-                    onClick={updateWallet}
-                >
+                <div className="tabl-flex-admin-button-changes" onClick={updateWallet}>
                     Изменить кошелек
                 </div>
             </div>

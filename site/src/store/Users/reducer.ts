@@ -8,6 +8,8 @@ import { INameSite } from "../../interfaces/nameSite";
 import { ITransferToUser } from "../../interfaces/transferToUser";
 import {IDealMessage} from "../../interfaces/dealMessage";
 import { IWalletSite } from "../../interfaces/wallet";
+import { IAdminChat } from "../../interfaces/adminChat";
+import { IMessageToAdmin } from "../../interfaces/messageToAdmin";
 
 export interface IUsersReducer {
   user: IUser | {};
@@ -27,16 +29,19 @@ export interface IUsersReducer {
   fixSumSystemMessage: [];
   nameTheSite: INameSite;
   criptoWallet: IWalletSite;
+  adminChat: IAdminChat[] | [];
+  adminMessage: IMessageToAdmin[] | [];
+  messageToAdmin: IMessageToAdmin[] | [];
 }
 
 export const INITIAL: IUsersReducer = {
   user: {
     id: 1,
-    email: "string",
-    password: "2313Dimas",
+    email: "user104@gmail.com",
+    password: "1234567a",
     role: "ADMIN",
     score: 10000,
-    nickname: "Dimasta",
+    nickname: "Sasha",
     systemMessage: 'true' ,
     checkRu: "true" ,
     minimumTransferAmount: 5000 ,
@@ -394,7 +399,10 @@ export const INITIAL: IUsersReducer = {
   },
   criptoWallet: {
     wallet: localStorage.getItem('siteWallet') || ''
-  }
+  },
+  adminChat: [],
+  adminMessage: [],
+  messageToAdmin: [],
 };
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
@@ -433,6 +441,12 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
       return { ...state, nameTheSite: payload };
     case reducerTypes.GET_CRIPTO_WALLET:
       return { ...state, criptoWallet: payload };
+    case reducerTypes.GET_ADMIN_CHAT:
+      return { ...state, adminChat: payload };
+      case reducerTypes.GET_ADMIN_MESSAGE:
+        return { ...state, adminMessage: payload };
+        case reducerTypes.GET_MESSAGE_TO_ADMIN:
+          return { ...state, messageToAdmin: payload };
     default:
       return state;
   }

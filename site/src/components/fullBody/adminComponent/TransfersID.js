@@ -63,7 +63,7 @@ function TransfersID() {
     useEffect(() => {
         getAllTransfers();
          // eslint-disable-next-line 
-       },[])
+       },[user])
 
     return <>
             <div style={{display: 'flex',minHeight: '100vh',justifyContent: "center",}} className={!statebackground?'styleAdminPanel':'styleAdminPanel2'}>
