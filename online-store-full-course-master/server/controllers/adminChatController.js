@@ -1,5 +1,6 @@
 const ApiError = require('../error/ApiError');
 const {User, AdminChat} = require('../models/models')
+const bcrypt = require('bcrypt')
 
 class AdminChatController {
     async create(req, res, next) {

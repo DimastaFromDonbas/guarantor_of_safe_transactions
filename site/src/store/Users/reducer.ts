@@ -8,7 +8,7 @@ import { INameSite } from "../../interfaces/nameSite";
 import { ITransferToUser } from "../../interfaces/transferToUser";
 import {IDealMessage} from "../../interfaces/dealMessage";
 import { IWalletSite } from "../../interfaces/wallet";
-import { IAdminChat } from "../../interfaces/adminCgat";
+import { IAdminChat } from "../../interfaces/adminChat";
 import { IMessageToAdmin } from "../../interfaces/messageToAdmin";
 
 export interface IUsersReducer {
@@ -37,11 +37,11 @@ export interface IUsersReducer {
 export const INITIAL: IUsersReducer = {
   user: {
     id: 1,
-    email: "string",
-    password: "2313Dimas",
+    email: "user104@gmail.com",
+    password: "1234567a",
     role: "ADMIN",
     score: 10000,
-    nickname: "Dimasta",
+    nickname: "Sasha",
     systemMessage: 'true' ,
     checkRu: "true" ,
     minimumTransferAmount: 5000 ,

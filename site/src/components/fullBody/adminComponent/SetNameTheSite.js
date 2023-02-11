@@ -72,7 +72,7 @@ function SetNameTheSite() {
         getName()
         getWallet()
          // eslint-disable-next-line 
-       },[])
+       },[user])
 
     return <>
         <h3 style={{textAlign: 'center'}}>Предыдущее название: {nameTheSite?.name}</h3> 
