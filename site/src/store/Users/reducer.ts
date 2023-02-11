@@ -431,8 +431,35 @@ export const INITIAL: IUsersReducer = {
     criptoWallet: {
         wallet: localStorage.getItem('siteWallet') || ''
     },
-    adminChat: [],
-    adminMessage: [],
+    adminChat: [
+        {
+            id: 1,
+            nickname: 'string',
+            email: 'string',
+            statusForUser: 1,
+            deleteChatTime: 'string',
+            rate: 1,
+            newMessage: 1,
+            userId: 1,
+            createdAt: 'string',
+            updatedAt: 'string'
+        }
+    ],
+    adminMessage: [
+        {
+            id: 1,
+            nickname: 'string',
+            email: 'string',
+            administratorName: 'string',
+            role: 'string',
+            statusForUser: 1,
+            time: 'string',
+            message: 'string',
+            chatId: 1,
+            createdAt: 'string',
+            updatedAt: 'string'
+        }
+    ],
     messageToAdmin: []
 };
 
