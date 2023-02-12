@@ -381,7 +381,7 @@ input::-webkit-inner-spin-button {
     color: white;
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: 5px 15px;
 }
 
 .massegeStyleAdminChat {
