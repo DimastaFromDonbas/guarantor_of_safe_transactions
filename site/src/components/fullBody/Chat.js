@@ -21,11 +21,10 @@ function Chat() {
     const chatRef = useRef(null);
     const [image, setImage] = useState(null);
     const [close, setClose] = useState(false);
-    const [chatStatus, setChatStatus] = useState(2);
+    const [chatStatus, setChatStatus] = useState(1);
 
     const handleChange = e => {
         setImage(e.target.files[0]);
-        console.log(1, e.target.files)
     };
 
     async function getChatStatus() {
@@ -51,7 +50,6 @@ function Chat() {
     }
 
     function sendMessageToAdmin(message) {
-        if (!message) return alert('Сообщение не может быть пустым');
         if (!user?.email || !user?.nickname) return alert('Войдите в аккаунт');
         const time = new Date().toLocaleString().replaceAll(',', '');
         const reader = new FileReader();
@@ -61,6 +59,8 @@ function Chat() {
                 setImage(null)
                 return alert("Отправлять можно только изображения!")
             }
+            console.log('reader?.result', reader?.result)
+            if (!message && reader?.result == 'data: ') return alert('Сообщение не может быть пустым');
             socket.emit('sendMessageToAdmin', { nickname: user?.nickname, email: user?.email, time, message, image: reader?.result || null });
             localStorage.setItem('chatrate', '')
             setUserMessage('');
@@ -99,6 +99,7 @@ function Chat() {
                 payload: [...messageToAdmin, data]
             });
             setNewMessage(true);
+            setChatStatus(1);
         });
         // eslint-disable-next-line
     }, [messageToAdmin]);
@@ -107,6 +108,7 @@ function Chat() {
         socket.on('updateChatStatus', ({ data }) => {
             if (data) {
                 getMessagesToAdmin();
+                getChatStatus();
             }
         });
         // eslint-disable-next-line
@@ -166,7 +168,7 @@ function Chat() {
                                         )}
                                     </div>
                                 ))}
-                            {!!localStorage.getItem('chatrate') && !!close || Number(chatStatus) === 1 ? null : <div style={{ background: "#ffffff33", display: 'flex', padding: '15px 5px', gap: '10px', justifyContent: "center" }}>
+                            {(!!localStorage.getItem('chatrate') || !!close) || (chatStatus == 1) ? null : <div style={{ background: "#ffffff33", display: 'flex', padding: '15px 5px', gap: '10px', justifyContent: "center" }}>
                                 <h3 style={{ color: 'black', fontSize: '18px', margin: '0px', padding: '0px' }}>Оцените нашу работу</h3> <RadioGroupRating setClose={setClose} />
                             </div>}
                         </div>

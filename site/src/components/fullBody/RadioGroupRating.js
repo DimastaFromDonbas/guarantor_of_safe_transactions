@@ -62,7 +62,7 @@ export default function RadioGroupRating({ setClose }) {
           if (result) {
             alert('Успешно')
             setClose(true)
-            localStorage.setItem('chatrate', ' ')
+            localStorage.setItem('chatrate', 'true')
           }
         } else {
           alert('Войдите в аккаунт')

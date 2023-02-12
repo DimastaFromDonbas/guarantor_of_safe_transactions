@@ -6,7 +6,7 @@ const fs = require('fs')
 class MessageToAdminController {
     async create(req, res, next) {
         const { nickname, email, time, message, image } = req.body
-        if (!nickname || !email || !time || !message) {
+        if (!nickname || !email || !time) {
             return next(ApiError.badRequest('Введите все данные'))
         }
         const user = await User.findOne({ where: { email } })
@@ -21,7 +21,7 @@ class MessageToAdminController {
             return next(ApiError.badRequest('Ошибка создания чата'))
         }
         await AdminChat.update({ statusForUser: 1, newMessage: 1 }, { where: { id: adminChat.id } })
-        const messageToAdmin = await MessageToAdmin.create({ nickname, email, role: 'USER', administratorName: '', message, time, statusForUser: 1, chatId: adminChat.id })
+        const messageToAdmin = await MessageToAdmin.create({ nickname, email, role: 'USER', administratorName: '', message: message || '', time, statusForUser: 1, chatId: adminChat.id })
         if (!messageToAdmin) {
             return next(ApiError.badRequest('Ошибка отправки сообщение'))
         }
@@ -75,7 +75,6 @@ class MessageToAdminController {
         if (!messages) {
             return next(ApiError.internal('Сообщения не найдены'))
         }
-        console.log('messages', messages)
         return res.json(messages)
     }
 
