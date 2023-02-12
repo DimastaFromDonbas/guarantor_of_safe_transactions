@@ -97,7 +97,7 @@ function Header() {
     });
     dispatch({
       type: reducerTypes.GET_REFILL,
-      payload: []
+      payload: {}
     });
     dispatch({
       type: reducerTypes.GET_MY_REFILLS,
@@ -130,6 +130,14 @@ function Header() {
     dispatch({
       type: reducerTypes.GET_MESSAGE_TO_ADMIN,
       payload: []
+    });
+    dispatch({
+      type: reducerTypes.GET_CHECK_SYSTEM,
+      payload: false
+    });
+    dispatch({
+      type: reducerTypes.GET_UPDATE_HEADER_ALERT,
+      payload: false
     });
     localStorage.removeItem('token')
   }
