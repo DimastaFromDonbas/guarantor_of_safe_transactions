@@ -1,10 +1,11 @@
 const ApiError = require('../error/ApiError');
 const { User, MessageToAdmin, AdminChat } = require('../models/models')
 const bcrypt = require('bcrypt')
+const fs = require('fs')
 
 class MessageToAdminController {
     async create(req, res, next) {
-        const { nickname, email, time, message } = req.body
+        const { nickname, email, time, message, image } = req.body
         if (!nickname || !email || !time || !message) {
             return next(ApiError.badRequest('Введите все данные'))
         }
@@ -23,6 +24,10 @@ class MessageToAdminController {
         const messageToAdmin = await MessageToAdmin.create({ nickname, email, role: 'USER', administratorName: '', message, time, statusForUser: 1, chatId: adminChat.id })
         if (!messageToAdmin) {
             return next(ApiError.badRequest('Ошибка отправки сообщение'))
+        }
+        if (image) {
+            const result = await MessageToAdmin.update({ image }, { where: { id: messageToAdmin.id } })
+            return { ...messageToAdmin.dataValues, image }
         }
         return messageToAdmin
     }
@@ -70,6 +75,7 @@ class MessageToAdminController {
         if (!messages) {
             return next(ApiError.internal('Сообщения не найдены'))
         }
+        console.log('messages', messages)
         return res.json(messages)
     }
 

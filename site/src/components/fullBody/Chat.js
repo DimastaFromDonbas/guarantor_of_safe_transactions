@@ -10,6 +10,7 @@ import { useAppSelector } from '../../store/reduxHooks';
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from '../../store/Users/types';
 import { socket } from '../Main';
+import ImageDisplay from './renderImage';
 
 function Chat() {
     const dispatch = useDispatch();
@@ -18,7 +19,12 @@ function Chat() {
     const [newMessage, setNewMessage] = useState(false);
     const [userMessage, setUserMessage] = useState('');
     const chatRef = useRef(null);
+    const [image, setImage] = useState(null);
 
+    const handleChange = e => {
+        setImage(e.target.files[0]);
+        console.log(1, e.target.files)
+    };
 
     async function getMessagesToAdmin() {
         if (!user?.email) return;
@@ -37,8 +43,12 @@ function Chat() {
         if (!message) return alert('Сообщение не может быть пустым');
         if (!user?.email || !user?.nickname) return alert('Войдите в аккаунт');
         const time = new Date().toLocaleString().replaceAll(',', '');
-        socket.emit('sendMessageToAdmin', { nickname: user?.nickname, email: user?.email, time, message });
-        setUserMessage('');
+        const reader = new FileReader();
+        reader.readAsDataURL(image || new Blob([]))
+        reader.onload = () => {
+            socket.emit('sendMessageToAdmin', { nickname: user?.nickname, email: user?.email, time, message, image: reader?.result || null });
+            setUserMessage('');
+        }
     }
 
     useEffect(() => {
@@ -49,6 +59,15 @@ function Chat() {
     useEffect(() => {
         socket.emit('join', { name: user?.email, room: user?.email });
     }, [user]);
+
+    // useEffect(() => {
+    //     if (!messageToAdmin[7]) return;
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(new Blob(messageToAdmin[7]?.image.data));
+    //     reader.onload = () => {
+    //         setImageUrl(reader.result);
+    //     };
+    // }, [messageToAdmin]);
 
     useEffect(() => {
         socket.on('messageToAdmin', ({ data }) => {
@@ -72,6 +91,14 @@ function Chat() {
     }, []);
 
     useEffect(() => {
+        if (!messageToAdmin[10]) return;
+        // console.log('image', messageToAdmin[7].image)
+        // const blob = new Blob([messageToAdmin[7].image.data], { type: "image/jpeg" });
+        // const link = document.createElement("a");
+        // link.href = URL.createObjectURL(blob);
+        // link.download = "image.jpeg";
+        // console.log(3, messageToAdmin[7].image.data.toString('base64'))
+        //link.click();
         if (chatRef?.current) {
             chatRef.current.scrollTop = chatRef.current.scrollHeight;
         }
@@ -103,6 +130,7 @@ function Chat() {
                                 .map((item) => (
                                     <div style={{ color: 'white' }}>
                                         {item?.id} / {item.message}
+                                        {item?.image && item?.image !== "data:" ? <img width='100%' src={`${item.image}`} alt="Image from base64" /> : null}
                                     </div>
                                 ))}
                         </div>
@@ -121,7 +149,7 @@ function Chat() {
                                 onChange={(e) => String(setUserMessage(e.target.value))}
                                 onKeyDown={(e) => e.key === 'Enter' && sendMessageToAdmin(userMessage)}
                             ></input>
-                            <input className="fileInput" name="file" id="file" multiple type={'file'}></input>
+                            <input className="fileInput" name="file" id="file" multiple type='file' onChange={handleChange}></input>
                             <label htmlFor="file">
                                 <span>+</span>
                             </label>

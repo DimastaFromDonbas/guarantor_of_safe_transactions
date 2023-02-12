@@ -61,10 +61,10 @@ io.on("connection", (socket) => {
     } else console.log('Send message fail')
   });
 
-  socket.on("sendMessageToAdmin", async ({ nickname, email, time, message }) => {
+  socket.on("sendMessageToAdmin", async ({ nickname, email, time, message, image }) => {
 
     if (nickname && email && time && message) {
-      const messageToAdmin = await messageToAdminController.create({ body: { nickname, email, time, message } })
+      const messageToAdmin = await messageToAdminController.create({ body: { nickname, email, time, message, image } })
       io.to(String(email)).emit("messageToAdmin", { data: messageToAdmin });
       io.to('1').emit("newMessage", { data: true });
     } else console.log('Send messageToAdmin fail')
