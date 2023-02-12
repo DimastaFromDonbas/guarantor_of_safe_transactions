@@ -232,7 +232,7 @@ function AdminChat() {
                             <h2>Чат с {currentChat?.nickname}</h2>
                         </div>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', overflow: 'overlay', height: '688px' }} ref={chatRef}>
+                        <div style={{ display: 'flex', flexDirection: 'column', overflow: 'overlay', height: '688px', paddingBottom: '40px' }} ref={chatRef}>
                             {adminMessage
                                 ?.filter((item) => !!item.message)
                                 ?.map((item) => (
