@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { axiosGetAdminChats, axiosGetMessagestoAdmin } from '../../../api/axios';
@@ -17,6 +17,7 @@ function AdminChat() {
     const [message, setMessage] = useState('');
     const [adminName, setAdminName] = useState('ЛизОчка');
     const navigate = useNavigate();
+    const chatRef = useRef(null);
 
     async function getAllChats() {
         if (!user?.email) return alert('Войдите в аккаунт');
@@ -119,6 +120,13 @@ function AdminChat() {
         });
         // eslint-disable-next-line
     }, []);
+
+    useEffect(() => {
+        if (chatRef?.current) {
+            chatRef.current.scrollTop = chatRef.current.scrollHeight;
+        }
+        // eslint-disable-next-line
+    }, [adminMessage]);
 
     return (
         <>
@@ -241,7 +249,7 @@ function AdminChat() {
                         <div style={{ display: 'flex', justifyContent: 'center', background: 'rgba(90, 89, 89, 0.75)' }}>
                             <h2>Чат с {currentChat?.nickname}</h2>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', overflow: 'overlay', height: '85vh' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', overflow: 'overlay', height: '85vh' }} ref={chatRef}>
                             {adminMessage?.filter(item => !!item.message)?.map((item) => (
                                 <div key={item?.id}>
                                     {item?.role === 'USER' ? (
