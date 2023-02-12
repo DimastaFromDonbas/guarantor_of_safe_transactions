@@ -6,6 +6,8 @@ import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
 import { socketAdmin } from '../AdminPanel';
 import { adminChatStatusMock, adminChatNewMessageMock } from '../../mock/OutputMock';
+import useSound from 'use-sound';
+import sound from '../../../sound/newMessage.mp3';
 
 function AdminChat() {
     const { email } = useParams();
@@ -18,6 +20,11 @@ function AdminChat() {
     const [adminName, setAdminName] = useState('ЛизОчка');
     const navigate = useNavigate();
     const chatRef = useRef(null);
+    const audioPlayer = useRef(null);
+
+    function playAudio() {
+        audioPlayer.current.play();
+    }
 
     async function getAllChats() {
         if (!user?.email) return alert('Войдите в аккаунт');
@@ -106,6 +113,7 @@ function AdminChat() {
                 type: reducerTypes.GET_ADMIN_MESSAGE,
                 payload: [...adminMessage, data]
             });
+            if (data?.nickname) playAudio();
         });
         // eslint-disable-next-line
     }, [adminMessage]);
@@ -143,6 +151,7 @@ function AdminChat() {
                         <div style={{ borderRadius: '5px' }} className="tabl-flex-admin">
                             <div style={{ textAlign: 'center', width: '50px' }} className="output-id">
                                 ID
+                                <audio ref={audioPlayer} src={sound} />
                             </div>
                             <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
                                 Имя пользователя
