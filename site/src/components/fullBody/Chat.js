@@ -1,21 +1,24 @@
-import {Button} from '@mui/material';
-import {useState, useEffect} from 'react';
+import { Button } from '@mui/material';
+import { useState, useEffect, useRef } from 'react';
 import Helper from '../../image/helper.png';
 import CloseIcon from '@mui/icons-material/Close';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 import SendIcon from '@mui/icons-material/Send';
-import {axiosGetMessagestoAdmin} from '../../api/axios';
-import {useAppSelector} from '../../store/reduxHooks';
-import {useDispatch} from 'react-redux';
-import {reducerTypes} from '../../store/Users/types';
-import {socket} from './Header';
+import { axiosGetMessagestoAdmin } from '../../api/axios';
+import { useAppSelector } from '../../store/reduxHooks';
+import { useDispatch } from 'react-redux';
+import { reducerTypes } from '../../store/Users/types';
+import { socket } from '../Main';
 
 function Chat() {
     const dispatch = useDispatch();
-    const {user, messageToAdmin} = useAppSelector((store) => store.user);
+    const { user, messageToAdmin } = useAppSelector((store) => store.user);
     const [checked, setChecked] = useState(false);
+    const [newMessage, setNewMessage] = useState(false);
     const [userMessage, setUserMessage] = useState('');
+    const chatRef = useRef(null);
+
 
     async function getMessagesToAdmin() {
         if (!user?.email) return;
@@ -25,6 +28,8 @@ function Chat() {
                 type: reducerTypes.GET_MESSAGE_TO_ADMIN,
                 payload: result.sort((a, b) => a.id - b.id)
             });
+            const resultLength = Number(localStorage.getItem('messagetoadminLength')) || 0;
+            if (result?.length > resultLength) setNewMessage(true)
         }
     }
 
@@ -32,7 +37,7 @@ function Chat() {
         if (!message) return alert('Сообщение не может быть пустым');
         if (!user?.email || !user?.nickname) return alert('Войдите в аккаунт');
         const time = new Date().toLocaleString().replaceAll(',', '');
-        socket.emit('sendMessageToAdmin', {nickname: user?.nickname, email: user?.email, time, message});
+        socket.emit('sendMessageToAdmin', { nickname: user?.nickname, email: user?.email, time, message });
         setUserMessage('');
     }
 
@@ -42,27 +47,36 @@ function Chat() {
     }, [user]);
 
     useEffect(() => {
-        socket.emit('join', {name: user?.email, room: user?.email});
+        socket.emit('join', { name: user?.email, room: user?.email });
     }, [user]);
 
     useEffect(() => {
-        socket.on('messageToAdmin', ({data}) => {
+        socket.on('messageToAdmin', ({ data }) => {
+            if (messageToAdmin?.includes(data)) return;
             dispatch({
                 type: reducerTypes.GET_MESSAGE_TO_ADMIN,
                 payload: [...messageToAdmin, data]
             });
+            setNewMessage(true)
         });
         // eslint-disable-next-line
     }, [messageToAdmin]);
 
     useEffect(() => {
-        socket.on('updateChatStatus', ({data}) => {
+        socket.on('updateChatStatus', ({ data }) => {
             if (data) {
                 getMessagesToAdmin();
             }
         });
         // eslint-disable-next-line
     }, []);
+
+    useEffect(() => {
+        if (chatRef?.current) {
+            chatRef.current.scrollTop = chatRef.current.scrollHeight;
+        }
+        // eslint-disable-next-line
+    }, [messageToAdmin]);
 
     return (
         <>
@@ -72,19 +86,22 @@ function Chat() {
                         <div className="chat-header">
                             <img alt="img-helper" className="img-helper" src={Helper}></img>
                             <div className="helper-nickName">
-                                <div style={{fontWeight: 'bold'}}>Служба поддержки</div>
-                                <div style={{fontSize: '12px'}}>Онлайн</div>
+                                <div style={{ fontWeight: 'bold' }}>Служба поддержки</div>
+                                <div style={{ fontSize: '12px' }}>Онлайн</div>
                             </div>
                             <CloseIcon
-                                onClick={() => setChecked(false)}
-                                style={{color: 'white', position: 'absolute', right: '15px', width: '30px', height: '30px'}}
+                                onClick={() => {
+                                    localStorage.setItem('messagetoadminLength', String(messageToAdmin?.length))
+                                    setChecked(false)
+                                }}
+                                style={{ color: 'white', position: 'absolute', right: '15px', width: '30px', height: '30px' }}
                             ></CloseIcon>
                         </div>
-                        <div style={{overflow: 'overlay', height: '341px'}}>
+                        <div style={{ overflow: 'overlay', height: '341px' }} ref={chatRef}>
                             {messageToAdmin
                                 ?.filter((el) => el.statusForUser !== 2)
                                 .map((item) => (
-                                    <div style={{color: 'white'}}>
+                                    <div style={{ color: 'white' }}>
                                         {item?.id} / {item.message}
                                     </div>
                                 ))}
@@ -135,9 +152,13 @@ function Chat() {
             {!checked ? (
                 <div className="chat-icon">
                     <Badge
-                        style={{color: 'white'}}
-                        onClick={() => setChecked(!checked)}
-                        badgeContent={'!'}
+                        style={{ color: 'white' }}
+                        onClick={() => {
+                            setNewMessage(false)
+                            setChecked(!checked)
+                            localStorage.setItem('messagetoadminLength', String(messageToAdmin?.length))
+                        }}
+                        badgeContent={newMessage ? '!' : null}
                         className="icon-chat-sizes2"
                         color="error"
                     >
