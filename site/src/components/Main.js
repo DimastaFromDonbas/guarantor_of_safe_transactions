@@ -5,9 +5,13 @@ import '../style/body.css'
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from "../store/reduxHooks";
 import { axiosGetUserTransfers, axiosGetUserToUserTransfers } from "../api/axios";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { reducerTypes } from "../store/Users/types";
- 
+import io from "socket.io-client";
+import sound from '../sound/newMessage.mp3';
+
+export const socket = io.connect("localhost:5000");
+
 // const ScrollDemo = () => {
 //   const myRef = useRef(null)
 
@@ -23,35 +27,51 @@ import { reducerTypes } from "../store/Users/types";
 // }
 
 function Main() {
-    const dispatch = useDispatch();
-    const {user} = useAppSelector ((store) => store.user)
+  const dispatch = useDispatch();
+  const { user } = useAppSelector((store) => store.user)
+  const audioPlayer = useRef(null);
 
-    async function getTransfers() {
-        if(!user?.email) return;
-        let transfers = await axiosGetUserTransfers(user?.email)
-        if(transfers) {
-        dispatch({
-          type: reducerTypes.GET_TRANSFERS,
-          payload: transfers
-        });}
-        let transfersToUser = await axiosGetUserToUserTransfers(user?.email)
-        if(transfersToUser) {
-        dispatch({
-          type: reducerTypes.GET_TRANSFERS_TO_USER,
-          payload: transfersToUser
-        });}
-        
-      }
+  function playAudio() {
+    audioPlayer.current.play();
+  }
 
-    useEffect(() => {
-      getTransfers();
-        // eslint-disable-next-line
-      },[user])
-    return <div className="bg-img" >
-        <Header />
-        <Body />
-        <Footer />
-    </div>
+  async function getTransfers() {
+    if (!user?.email) return;
+    let transfers = await axiosGetUserTransfers(user?.email)
+    if (transfers) {
+      dispatch({
+        type: reducerTypes.GET_TRANSFERS,
+        payload: transfers
+      });
+    }
+    let transfersToUser = await axiosGetUserToUserTransfers(user?.email)
+    if (transfersToUser) {
+      dispatch({
+        type: reducerTypes.GET_TRANSFERS_TO_USER,
+        payload: transfersToUser
+      });
+    }
+
+  }
+
+  useEffect(() => {
+    getTransfers();
+    // eslint-disable-next-line
+  }, [user])
+
+  useEffect(() => {
+    socket.on('messageToAdmin', ({ data }) => {
+      if (!data?.nickname) playAudio();
+    });
+    // eslint-disable-next-line
+  }, []);
+
+  return <div className="bg-img" >
+    <audio ref={audioPlayer} src={sound} />
+    <Header />
+    <Body />
+    <Footer />
+  </div>
 }
 
 export default Main;

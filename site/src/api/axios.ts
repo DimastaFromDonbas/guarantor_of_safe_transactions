@@ -533,6 +533,16 @@ export const axiosDeleteAdminChat = async (id: number, adminEmail: string, admin
     }
 };
 
+export const axiosUpdateAdminChatRate = async (rate: number, email: string) => {
+    try {
+        const { data } = await axios.post('api/adminChat/rate', { rate, email }, getConfig());
+        console.log('update admin chat rate', data);
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 // ADMIN MESSAGE
 
 export const axiosGetMessagestoAdmin = async (email: string) => {

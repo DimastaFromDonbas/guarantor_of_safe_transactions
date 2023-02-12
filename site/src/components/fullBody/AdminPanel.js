@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import AllDeposit from "./adminComponent/AllDeposit";
 import AllDeals from "./adminComponent/AllDeals";
 import AllUsers from "./adminComponent/AllUsers";
@@ -11,6 +11,7 @@ import AllChats from "./adminComponent/AllChats";
 import { axiosGetAdminChats } from "../../api/axios";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
+import sound from '../../sound/newMessage.mp3';
 
 
 export const socketAdmin = io.connect("localhost:5000");
@@ -23,6 +24,11 @@ function AdminPanel() {
     const [statebackground, setStatebackground] = useState(!!localStorage.getItem('backroundImg'))
     const { user, adminChat } = useAppSelector((store) => store.user)
     const navigate = useNavigate()
+    const audioPlayer = useRef(null);
+
+    function playAudio() {
+        audioPlayer.current.play();
+    }
 
     async function getAllChats() {
         if (!user?.email) return alert('Войдите в аккаунт');
@@ -85,12 +91,20 @@ function AdminPanel() {
     }, []);
 
     useEffect(() => {
+        socketAdmin.on('newMessage', ({ data }) => {
+            playAudio();
+        });
+        // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
         if (user?.email) {
             socketAdmin.emit('join', { name: '1', room: '1' });
         }
     }, [user]);
 
     return <div style={{ minHeight: '100vh' }}>
+        <audio ref={audioPlayer} src={sound} />
         <div style={{ display: 'flex', minHeight: '100vh' }} className={!statebackground ? 'styleAdminPanel' : 'styleAdminPanel2'}>
             <div style={{ display: "flex", flexDirection: "column", width: '22%' }} className="panel_user">
                 <button onClick={(e) => visibleItem(e)} name='0' className={item === 0 ? "block_user_panel activ-block-admin" : "block_user_panel"}>

@@ -75,6 +75,22 @@ class AdminChatController {
         }
         return 'success'
     }
+    async updateAdminChatRate(req, res, next) {
+        const { rate, email } = req.body
+        if (!rate || !email) {
+            return next(ApiError.badRequest('Введите все данные'))
+        }
+        const user = await User.findOne({ where: { email } })
+        if (!user) {
+            return next(ApiError.internal('Пользователь не найден'))
+        }
+        let adminChat = await AdminChat.findOne({ where: { email } })
+        if (!adminChat) {
+            return next(ApiError.badRequest('Чат не найден'))
+        }
+        await AdminChat.update({ rate }, { where: { id: adminChat.id } })
+        return res.json({ ...adminChat, rate })
+    }
 
     async deleteAdminChats(req, res, next) {
         const { id, adminEmail, adminPassword } = req.body
