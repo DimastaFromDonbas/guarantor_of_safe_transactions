@@ -1,15 +1,15 @@
-import {IAction} from '../utils';
-import {reducerTypes} from './types';
-import {IUser} from '../../interfaces/users';
-import {IDeal} from '../../interfaces/deal';
-import {IRefill} from '../../interfaces/refill';
-import {ITransfer} from '../../interfaces/transfer';
-import {INameSite} from '../../interfaces/nameSite';
-import {ITransferToUser} from '../../interfaces/transferToUser';
-import {IDealMessage} from '../../interfaces/dealMessage';
-import {IWalletSite} from '../../interfaces/wallet';
-import {IAdminChat} from '../../interfaces/adminChat';
-import {IMessageToAdmin} from '../../interfaces/messageToAdmin';
+import { IAction } from '../utils';
+import { reducerTypes } from './types';
+import { IUser } from '../../interfaces/users';
+import { IDeal } from '../../interfaces/deal';
+import { IRefill } from '../../interfaces/refill';
+import { ITransfer } from '../../interfaces/transfer';
+import { INameSite } from '../../interfaces/nameSite';
+import { ITransferToUser } from '../../interfaces/transferToUser';
+import { IDealMessage } from '../../interfaces/dealMessage';
+import { IWalletSite } from '../../interfaces/wallet';
+import { IAdminChat } from '../../interfaces/adminChat';
+import { IMessageToAdmin } from '../../interfaces/messageToAdmin';
 
 export interface IUsersReducer {
     user: IUser | {};
@@ -46,7 +46,7 @@ export const INITIAL: IUsersReducer = {
         checkRu: 'true',
         minimumTransferAmount: 5000,
         sumTransferAmoumt: 1000,
-        completed: 0
+        completed: 0,
     },
     deals: [],
     refill: {},
@@ -68,8 +68,8 @@ export const INITIAL: IUsersReducer = {
             checkRu: 'true',
             minimumTransferAmount: 5000,
             sumTransferAmoumt: 1000,
-            completed: 0
-        }
+            completed: 0,
+        },
     ],
     allDeals: [],
     allRefills: [],
@@ -77,10 +77,10 @@ export const INITIAL: IUsersReducer = {
     allTransfersToUser: [],
     fixSumSystemMessage: [],
     nameTheSite: {
-        name: localStorage.getItem('siteName') || ''
+        name: localStorage.getItem('siteName') || '',
     },
     criptoWallet: {
-        wallet: localStorage.getItem('siteWallet') || ''
+        wallet: localStorage.getItem('siteWallet') || '',
     },
     adminChat: [
         {
@@ -93,83 +93,55 @@ export const INITIAL: IUsersReducer = {
             newMessage: 1,
             userId: 1,
             createdAt: 'string',
-            updatedAt: 'string'
-        }
+            updatedAt: 'string',
+        },
     ],
-    adminMessage: [
-        {
-            id: 1,
-            nickname: 'ivarBoneless',
-            email: 'ivarBoneless',
-            administratorName: 'ivarBoneless',
-            role: 'ivarBoneless',
-            statusForUser: 1,
-            time: 'сейчас',
-            message: 'Привет',
-            chatId: 1,
-            createdAt: 'string',
-            updatedAt: 'string'
-        }
-    ],
-    messageToAdmin: [
-        {
-            id: 1,
-            nickname: 'ivarBoneless',
-            email: 'ivarBoneless',
-            administratorName: 'ivarBoneless',
-            role: 'ivarBoneless',
-            statusForUser: 1,
-            time: 'сейчас',
-            message: 'Привет',
-            chatId: 1,
-            createdAt: 'string',
-            updatedAt: 'string'
-        }
-    ]
+    adminMessage: [],
+    messageToAdmin: [],
 };
 
-export const UserReducer = (state = INITIAL, {type, payload}: IAction) => {
+export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
     switch (type) {
         case reducerTypes.GET_USER:
-            return {...state, user: payload};
+            return { ...state, user: payload };
         case reducerTypes.GET_DEAL:
-            return {...state, deals: payload};
+            return { ...state, deals: payload };
         case reducerTypes.GET_REFILL:
-            return {...state, refill: payload};
+            return { ...state, refill: payload };
         case reducerTypes.GET_MY_REFILLS:
-            return {...state, myRefills: payload};
+            return { ...state, myRefills: payload };
         case reducerTypes.GET_CHECK_SYSTEM:
-            return {...state, checkAlertSystemMessage: payload};
+            return { ...state, checkAlertSystemMessage: payload };
         case reducerTypes.GET_UPDATE_HEADER_ALERT:
-            return {...state, updateHeaderAlert: payload};
+            return { ...state, updateHeaderAlert: payload };
         case reducerTypes.GET_TRANSFERS:
-            return {...state, transfers: payload};
+            return { ...state, transfers: payload };
         case reducerTypes.GET_TRANSFERS_TO_USER:
-            return {...state, transfersToUser: payload};
+            return { ...state, transfersToUser: payload };
         case reducerTypes.GET_DEAL_MESSAGES:
-            return {...state, dealMessages: payload};
+            return { ...state, dealMessages: payload };
         case reducerTypes.GET_ALL_USERS:
-            return {...state, allUsers: payload};
+            return { ...state, allUsers: payload };
         case reducerTypes.GET_ALL_DEALS:
-            return {...state, allDeals: payload};
+            return { ...state, allDeals: payload };
         case reducerTypes.GET_ALL_REFILLS:
-            return {...state, allRefills: payload};
+            return { ...state, allRefills: payload };
         case reducerTypes.GET_ALL_TRANSFERS:
-            return {...state, allTransfers: payload};
+            return { ...state, allTransfers: payload };
         case reducerTypes.GET_ALL_TRANSFERS_TO_USER:
-            return {...state, allTransfersToUser: payload};
+            return { ...state, allTransfersToUser: payload };
         case reducerTypes.GET_FIX_SUM_SYSTEM_MESSAGE:
-            return {...state, fixSumSystemMessage: payload};
+            return { ...state, fixSumSystemMessage: payload };
         case reducerTypes.GET_NAME_THE_SITE:
-            return {...state, nameTheSite: payload};
+            return { ...state, nameTheSite: payload };
         case reducerTypes.GET_CRIPTO_WALLET:
-            return {...state, criptoWallet: payload};
+            return { ...state, criptoWallet: payload };
         case reducerTypes.GET_ADMIN_CHAT:
-            return {...state, adminChat: payload};
+            return { ...state, adminChat: payload };
         case reducerTypes.GET_ADMIN_MESSAGE:
-            return {...state, adminMessage: payload};
+            return { ...state, adminMessage: payload };
         case reducerTypes.GET_MESSAGE_TO_ADMIN:
-            return {...state, messageToAdmin: payload};
+            return { ...state, messageToAdmin: payload };
         default:
             return state;
     }

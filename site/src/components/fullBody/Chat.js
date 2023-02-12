@@ -126,7 +126,7 @@ function Chat() {
                                 style={{ color: 'white', position: 'absolute', right: '15px', width: '30px', height: '30px' }}
                             ></CloseIcon>
                         </div>
-                        <div style={{ overflow: 'overlay', maxHeight: '341px' }} ref={chatRef}>
+                        <div style={{ overflow: 'overlay', maxHeight: '400px' }} ref={chatRef}>
                             {messageToAdmin
                                 ?.filter((el) => el.statusForUser !== 2)
                                 .map((item) => (

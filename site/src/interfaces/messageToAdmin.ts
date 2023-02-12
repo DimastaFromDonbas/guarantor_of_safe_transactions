@@ -8,7 +8,7 @@ export interface IMessageToAdmin {
     time: string;
     message: string;
     chatId: number;
-    image: any;
+    image: string;
     createdAt: string;
     updatedAt: string;
 }
