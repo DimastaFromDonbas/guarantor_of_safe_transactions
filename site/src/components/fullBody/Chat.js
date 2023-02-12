@@ -84,8 +84,26 @@ function Chat() {
                             {messageToAdmin
                                 ?.filter((el) => el.statusForUser !== 2)
                                 .map((item) => (
-                                    <div style={{color: 'white'}}>
-                                        {item?.id} / {item.message}
+                                    <div key={item?.id}>
+                                        {item?.role === 'USER' ? (
+                                            <div className="massegeStyleAdminChat">
+                                                <p className="boxStyle1">
+                                                    <span className="styleSizeChat">
+                                                        {item?.message}: {item?.nickname}{' '}
+                                                    </span>{' '}
+                                                    <span className="posMassegeses">{item?.time}</span>
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            <div className="massegeStyleUserChat">
+                                                <p className="boxStyle2">
+                                                    <span className="styleSizeChat">
+                                                        {item?.administratorName}: <span style={{color: 'red'}}>{item?.message}</span>
+                                                    </span>
+                                                    <span className="posMassegeses">{item?.time}</span>
+                                                </p>
+                                            </div>
+                                        )}
                                     </div>
                                 ))}
                         </div>
