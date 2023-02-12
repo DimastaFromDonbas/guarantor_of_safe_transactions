@@ -254,9 +254,6 @@ function AdminChat() {
                                     <option value="Виктория">Виктория</option>
                                     <option value="Стелла">Стелла</option>
                                 </select>
-                                <button className="tabl-flex-admin-button-global" onClick={updateAdminChatStatus}>
-                                    Изменить
-                                </button>
                             </div>
                         </div>
                     </div>
