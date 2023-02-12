@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { axiosGetAdminChats, axiosGetMessagestoAdmin } from '../../../api/axios';
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
@@ -106,8 +106,7 @@ function AdminChat() {
                 type: reducerTypes.GET_ADMIN_MESSAGE,
                 payload: [...adminMessage, data]
             });
-        }
-        );
+        });
         // eslint-disable-next-line
     }, [adminMessage]);
 
@@ -248,24 +247,27 @@ function AdminChat() {
                         <div style={{ display: 'flex', justifyContent: 'center', background: 'rgba(90, 89, 89, 0.75)' }}>
                             <h2>Чат с {currentChat?.nickname}</h2>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', overflow: 'overlay', height: '85vh' }} ref={chatRef}>
-                            {adminMessage?.filter(item => !!item.message)?.map((item) => (
-                                <div key={item?.id}>
-                                    {item?.role === 'USER' ? (
-                                        <div className="massegeStyleAdminChat">
-                                            <p>
-                                                {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
-                                            </p>
-                                        </div>
-                                    ) : (
-                                        <div className="massegeStyleAdminChat">
-                                            <p>
-                                                {item?.administratorName}: {item?.message} <span className="posMassegeses">{item?.time}</span>
-                                            </p>
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
+
+                        <div style={{ display: 'flex', flexDirection: 'column', overflow: 'overlay', height: '482px' }} ref={chatRef}>
+                            {adminMessage
+                                ?.filter((item) => !!item.message)
+                                ?.map((item) => (
+                                    <div key={item?.id}>
+                                        {item?.role === 'USER' ? (
+                                            <div className="massegeStyleAdminChat">
+                                                <p>
+                                                    {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            <div className="massegeStyleAdminChat">
+                                                <p>
+                                                    {item?.administratorName}: {item?.message} <span className="posMassegeses">{item?.time}</span>
+                                                </p>
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
                         </div>
                         <div style={{ position: 'absolute', bottom: '0px', width: '100%' }}>
                             <input
