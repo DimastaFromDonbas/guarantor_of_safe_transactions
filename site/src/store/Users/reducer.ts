@@ -82,9 +82,50 @@ export const INITIAL: IUsersReducer = {
     criptoWallet: {
         wallet: localStorage.getItem('siteWallet') || ''
     },
-    adminChat: [],
-    adminMessage: [],
-    messageToAdmin: []
+    adminChat: [
+        {
+            id: 12,
+            nickname: 'ivarBolles',
+            email: 'string',
+            statusForUser: 1,
+            deleteChatTime: 'string',
+            rate: 1,
+            newMessage: 1,
+            userId: 1,
+            createdAt: 'string',
+            updatedAt: 'string'
+        }
+    ],
+    adminMessage: [
+        {
+            id: 1,
+            nickname: 'ivarBoneless',
+            email: 'ivarBoneless',
+            administratorName: 'ivarBoneless',
+            role: 'ivarBoneless',
+            statusForUser: 1,
+            time: 'сейчас',
+            message: 'Привет',
+            chatId: 1,
+            createdAt: 'string',
+            updatedAt: 'string'
+        }
+    ],
+    messageToAdmin: [
+        {
+            id: 1,
+            nickname: 'ivarBoneless',
+            email: 'ivarBoneless',
+            administratorName: 'ivarBoneless',
+            role: 'ivarBoneless',
+            statusForUser: 1,
+            time: 'сейчас',
+            message: 'Привет',
+            chatId: 1,
+            createdAt: 'string',
+            updatedAt: 'string'
+        }
+    ]
 };
 
 export const UserReducer = (state = INITIAL, {type, payload}: IAction) => {

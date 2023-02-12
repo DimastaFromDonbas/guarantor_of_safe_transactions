@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { reducerTypes } from '../../store/Users/types';
 import { socket } from '../Main';
 import ImageDisplay from './renderImage';
+import RadioGroupRating from './RadioGroupRating';
 
 function Chat() {
     const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function Chat() {
         console.log(1, e.target.files)
     };
 
+
     async function getMessagesToAdmin() {
         if (!user?.email) return;
         const result = await axiosGetMessagestoAdmin(user?.email);
@@ -35,7 +37,7 @@ function Chat() {
                 payload: result.sort((a, b) => a.id - b.id)
             });
             const resultLength = Number(localStorage.getItem('messagetoadminLength')) || 0;
-            if (result?.length > resultLength) setNewMessage(true)
+            if (result?.length > resultLength) setNewMessage(true);
         }
     }
 
@@ -76,7 +78,7 @@ function Chat() {
                 type: reducerTypes.GET_MESSAGE_TO_ADMIN,
                 payload: [...messageToAdmin, data]
             });
-            setNewMessage(true)
+            setNewMessage(true);
         });
         // eslint-disable-next-line
     }, [messageToAdmin]);
@@ -118,21 +120,42 @@ function Chat() {
                             </div>
                             <CloseIcon
                                 onClick={() => {
-                                    localStorage.setItem('messagetoadminLength', String(messageToAdmin?.length))
-                                    setChecked(false)
+                                    localStorage.setItem('messagetoadminLength', String(messageToAdmin?.length));
+                                    setChecked(false);
                                 }}
                                 style={{ color: 'white', position: 'absolute', right: '15px', width: '30px', height: '30px' }}
                             ></CloseIcon>
                         </div>
-                        <div style={{ overflow: 'overlay', height: '341px' }} ref={chatRef}>
+                        <div style={{ overflow: 'overlay', maxHeight: '341px' }} ref={chatRef}>
                             {messageToAdmin
                                 ?.filter((el) => el.statusForUser !== 2)
                                 .map((item) => (
-                                    <div style={{ color: 'white' }}>
-                                        {item?.id} / {item.message}
-                                        {item?.image && item?.image !== "data:" ? <img width='100%' src={`${item.image}`} alt="Image from base64" /> : null}
+                                    <div key={item?.id}>
+                                        {item?.role === 'USER' ? (
+                                            <div className="massegeStyleAdminChat">
+                                                <p className="boxStyle1">
+                                                    <span className="styleSizeChat">
+                                                        {item?.message}: {item?.nickname}{' '}
+                                                        {item?.image && item?.image !== "data:" ? <img width='100%' src={`${item.image}`} alt="Image from base64" /> : null}
+                                                    </span>{' '}
+                                                    <span className="posMassegeses">{item?.time}</span>
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            <div className="massegeStyleUserChat">
+                                                <p className="boxStyle2">
+                                                    <span className="styleSizeChat">
+                                                        {item?.administratorName}: <span style={{ color: 'red' }}>{item?.message}</span>
+                                                    </span>
+                                                    <span className="posMassegeses">{item?.time}</span>
+                                                </p>
+                                            </div>
+                                        )}
                                     </div>
                                 ))}
+                            <div style={{ background: "#ffffff33", display: 'flex', padding: '15px 5px', gap: '10px', justifyContent: "center" }}>
+                                <h3 style={{ color: 'black', fontSize: '18px', margin: '0px', padding: '0px' }}>Оцените нашу работу</h3> <RadioGroupRating />
+                            </div>
                         </div>
                         <div className="body-chat-sms">
                             <input
@@ -182,9 +205,9 @@ function Chat() {
                     <Badge
                         style={{ color: 'white' }}
                         onClick={() => {
-                            setNewMessage(false)
-                            setChecked(!checked)
-                            localStorage.setItem('messagetoadminLength', String(messageToAdmin?.length))
+                            setNewMessage(false);
+                            setChecked(!checked);
+                            localStorage.setItem('messagetoadminLength', String(messageToAdmin?.length));
                         }}
                         badgeContent={newMessage ? '!' : null}
                         className="icon-chat-sizes2"

@@ -17,13 +17,11 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Chat from './Chat';
 import {useAppSelector} from '../../store/reduxHooks';
-import {useState} from 'react';
-import {Rating} from '@mui/material';
 import {Carousel} from 'react-bootstrap';
+import StarIcon from '@mui/icons-material/Star';
 
 function Body() {
     const {user, nameTheSite} = useAppSelector((store) => store.user);
-    const [value] = useState(5);
 
     return (
         <div className="container-body-v1 bg-img">
@@ -300,7 +298,7 @@ function Body() {
                                             <p>Warface</p>
                                             <div>6000.00₽</div>
                                         </div>
-                                        <Rating name="disabled" value={value} disabled />
+                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
                                     </div>
                                     Всё происходит очень быстро. Все продавцы очень вежливы и пытаются сделать всё как можно лучше. Всем советую)
                                 </div>
@@ -316,7 +314,7 @@ function Body() {
                                             <p>CS: Global Offensive</p>
                                             <div>5100.00₽</div>
                                         </div>
-                                        <Rating name="disabled" value={value} disabled />
+                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
                                     </div>
                                     Очень хороший сервис продаж, всем рекомендую, сам продаю на ней больше года, поддержка топ, покупатели и продавцы
                                     лучшие!
@@ -333,7 +331,7 @@ function Body() {
                                             <p>World Of Warcraft</p>
                                             <div>8000.00₽</div>
                                         </div>
-                                        <Rating name="disabled" value={value} disabled />
+                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
                                     </div>
                                     Минусов нету, всё очень удобно, быстрая и вежливая тех. поддержка. Всё честно и быстро. Рекомендую!
                                 </div>
@@ -351,7 +349,7 @@ function Body() {
                                             <p>Ражабик</p>
                                             <div>9300.00₽</div>
                                         </div>
-                                        <Rating name="disabled" value={value} disabled />
+                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
                                     </div>
                                     Отличный проверенный сайт для продажи игрового имущества и т. д, сам пользуюсь и вам советую, это вам не какой-то
                                     ноунейм сайт где вас кинут и пошлют подальше.
@@ -368,7 +366,7 @@ function Body() {
                                             <p>Lineage 2</p>
                                             <div>6400.00₽</div>
                                         </div>
-                                        <Rating name="disabled" value={value} disabled />
+                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
                                     </div>
                                     Пользуюсь услугами продолжительное время. Было дело что покупал/продавал аккаунты, было дело что покупал/продавал
                                     золото. Всё отлично и всём советую.
@@ -385,7 +383,7 @@ function Body() {
                                             <p>Warface</p>
                                             <div>6000.00₽</div>
                                         </div>
-                                        <Rating name="disabled" value={value} disabled />
+                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
                                     </div>
                                     Всё происходит очень быстро. Все продавцы очень вежливы и пытаются сделать всё как можно лучше. Всем советую)
                                 </div>
@@ -403,7 +401,7 @@ function Body() {
                                             <p>Канал Telegram</p>
                                             <div>20000.00₽</div>
                                         </div>
-                                        <Rating name="disabled" value={value} disabled />
+                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
                                     </div>
                                     Со стороны покупателя площадка максимально доступна и понятна, а главное по возможности защищена, 100% Рекомендую
                                     ! Площадка свои роль в сделке выполняет.
@@ -420,7 +418,7 @@ function Body() {
                                             <p>Aion</p>
                                             <div>12000.00₽</div>
                                         </div>
-                                        <Rating name="disabled" value={value} disabled />
+                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
                                     </div>
                                     Пользуюсь от случая к случаю, покупаю иногда всякую фигню в играх или аккаунты. Выбирал всегда аккуратно продавцов
                                     и ни разу не попал на кидал.
@@ -437,7 +435,7 @@ function Body() {
                                             <p>Lost Ark</p>
                                             <div>20000.00₽</div>
                                         </div>
-                                        <Rating name="disabled" value={value} disabled />
+                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
                                     </div>
                                     Поддержка работает очень быстро, все сотрудники понимают суть своей работы и помогают в любой ситуации. Много раз
                                     совершал покупки, все понравилось, удобный интерфейс, приятный дизайн. В общем, все на уровне.

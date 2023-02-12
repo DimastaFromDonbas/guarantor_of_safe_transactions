@@ -5,7 +5,7 @@ import { axiosGetAdminChats, axiosGetMessagestoAdmin } from '../../../api/axios'
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
 import { socketAdmin } from '../AdminPanel';
-import { adminChatStatusMock } from '../../mock/OutputMock';
+import {  adminChatStatusMock } from '../../mock/OutputMock';
 import sound from '../../../sound/newMessage.mp3';
 
 function AdminChat() {
@@ -16,7 +16,7 @@ function AdminChat() {
     const [statusForUserChat, setStatusForUserChat] = useState(1);
     const [currentChat, setCurrentChat] = useState(null);
     const [message, setMessage] = useState('');
-    const [adminName, setAdminName] = useState('ЛизОчка');
+    const [adminName, setAdminName] = useState('');
     const navigate = useNavigate();
     const chatRef = useRef(null);
     const audioPlayer = useRef(null);
@@ -233,6 +233,26 @@ function AdminChat() {
                                 >
                                     <option value="1">{adminChatStatusMock[0]}</option>
                                     <option value="2">{adminChatStatusMock[1]}</option>
+                                </select>
+                                <button className="tabl-flex-admin-button-global" onClick={updateAdminChatStatus}>
+                                    Изменить
+                                </button>
+                            </div>
+                        </div>
+                        <div className="pages-user-box-2">
+                            <div style={{ flexDirection: 'column', alignItems: 'center' }} className="pages-user-block">
+                                <h6 style={{ margin: '0', textAlign: 'center' }}>Выбор имени</h6>
+                                <select
+                                    onChange={(e) => setAdminName(e.currentTarget.value)}
+                                    style={{ color: 'white', borderRadius: '5px' }}
+                                    className="tabl-flex-admin-user-scores "
+                                    name="select"
+                                >
+                                    <option value="Александра">Александра</option>
+                                    <option value="Анна">Анна</option>
+                                    <option value="Евангелина">Евангелина</option>
+                                    <option value="Виктория">Виктория</option>
+                                    <option value="Стелла">Стелла</option>
                                 </select>
                                 <button className="tabl-flex-admin-button-global" onClick={updateAdminChatStatus}>
                                     Изменить

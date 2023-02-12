@@ -125,3 +125,4 @@ export const refillStatusMock = ['В обработке', 'Успешный'];
 export const transferStatusMock = ['В обработке', 'Отмененный'];
 export const adminChatStatusMock = ['Виден пользователю', 'Удалён для пользователя'];
 export const adminChatNewMessageMock = ['Новое сообщение', 'Новых сообщений нет'];
+export const adminChatNameChater = ['Александра', 'Анна','Евангелина','Виктория','Стелла'];
