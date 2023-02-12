@@ -199,7 +199,7 @@ function Deal() {
           </table>
           <div>
             <h5 style={{ padding: "20px" }}>ОПИСАНИЕ СДЕЛКИ:</h5>
-            <div style={{ paddingLeft: "20px" }}>{deal?.description}</div>
+            <div style={{ paddingLeft: "20px", overflowWrap: 'anywhere' }}>{deal?.description}</div>
           </div>
         </div>
       </div>

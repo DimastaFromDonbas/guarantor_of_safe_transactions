@@ -1,11 +1,11 @@
 import {useEffect, useState, useRef} from 'react';
 import {useDispatch} from 'react-redux';
-import {useNavigate, useParams, Link} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {axiosGetAdminChats, axiosGetMessagestoAdmin} from '../../../api/axios';
 import {useAppSelector} from '../../../store/reduxHooks';
 import {reducerTypes} from '../../../store/Users/types';
 import {socketAdmin} from '../AdminPanel';
-import {adminChatStatusMock} from '../../mock/OutputMock';
+import {adminChatStatusMock, adminChatNewMessageMock} from '../../mock/OutputMock';
 
 function AdminChat() {
     const {email} = useParams();
@@ -100,7 +100,6 @@ function AdminChat() {
     }, [currentChat]);
 
     useEffect(() => {
-        console.log('data', adminMessage);
         socketAdmin.on('messageToAdmin', ({data}) => {
             if (adminMessage?.includes(data)) return;
             dispatch({
@@ -220,7 +219,7 @@ function AdminChat() {
                                     }}
                                     className="output-sum"
                                 >
-                                    {currentChat?.newMessage}
+                                    {adminChatNewMessageMock[currentChat?.newMessage - 1]}
                                 </div>
                             </div>
                         }
