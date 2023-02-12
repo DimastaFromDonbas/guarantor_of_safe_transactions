@@ -390,7 +390,7 @@ input::-webkit-inner-spin-button {
     display: flex;
     flex-direction: column;
     flex-direction: row-reverse;
-    padding: 15px;
+    padding: 5px 15px;
 }
 
 .posMassegeses {

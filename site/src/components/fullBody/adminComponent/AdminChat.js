@@ -261,7 +261,7 @@ function AdminChat() {
                                             </div>
                                         ) : (
                                             <div className="massegeStyleAdminChat">
-                                                <p>
+                                                <p style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-end'}}>
                                                     {item?.message}: {item?.administratorName} <span className="posMassegeses">{item?.time}</span>
                                                 </p>
                                             </div>
