@@ -522,6 +522,15 @@ export const axiosGetAdminChats = async (adminEmail: string, adminPassword: stri
         console.log(e);
     }
 };
+export const axiosGetOneChat = async (email: string, password: string) => {
+    try {
+        const { data } = await axios.post('api/adminChat/getOne', { email, password }, getConfig());
+        console.log('get admin chat', data);
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
 
 export const axiosDeleteAdminChat = async (id: number, adminEmail: string, adminPassword: string) => {
     try {

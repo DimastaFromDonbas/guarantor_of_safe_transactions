@@ -8,6 +8,7 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 import { axiosUpdateAdminChatRate } from '../../api/axios';
 import { useAppSelector } from '../../store/reduxHooks';
+import { useState } from 'react';
 
 const StyledRating = styled(Rating)(({ theme }) => ({
   '& .MuiRating-iconEmpty .MuiSvgIcon-root': {
@@ -47,7 +48,7 @@ IconContainer.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function RadioGroupRating() {
+export default function RadioGroupRating({ setClose }) {
   const { user } = useAppSelector((store) => store.user);
   return (
     <StyledRating
@@ -58,7 +59,11 @@ export default function RadioGroupRating() {
       onChange={async (e) => {
         if (user?.email) {
           const result = await axiosUpdateAdminChatRate(e.target.value, user?.email)
-          if (result) alert('Успешно')
+          if (result) {
+            alert('Успешно')
+            setClose(true)
+            localStorage.setItem('chatrate', ' ')
+          }
         } else {
           alert('Войдите в аккаунт')
         }

@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 import SendIcon from '@mui/icons-material/Send';
-import { axiosGetMessagestoAdmin } from '../../api/axios';
+import { axiosGetMessagestoAdmin, axiosGetOneChat } from '../../api/axios';
 import { useAppSelector } from '../../store/reduxHooks';
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from '../../store/Users/types';
@@ -20,11 +20,21 @@ function Chat() {
     const [userMessage, setUserMessage] = useState('');
     const chatRef = useRef(null);
     const [image, setImage] = useState(null);
+    const [close, setClose] = useState(false);
+    const [chatStatus, setChatStatus] = useState(2);
 
     const handleChange = e => {
         setImage(e.target.files[0]);
         console.log(1, e.target.files)
     };
+
+    async function getChatStatus() {
+        if (!user?.email) return;
+        const result = await axiosGetOneChat(user?.email, user?.password);
+        if (result?.statusForUser) {
+            setChatStatus(result?.statusForUser)
+        }
+    }
 
 
     async function getMessagesToAdmin() {
@@ -47,12 +57,12 @@ function Chat() {
         const reader = new FileReader();
         reader.readAsDataURL(image || new Blob([]))
         reader.onload = () => {
-            console.log('result', reader.result)
             if (reader?.result?.includes('audio')) {
                 setImage(null)
                 return alert("Отправлять можно только изображения!")
             }
             socket.emit('sendMessageToAdmin', { nickname: user?.nickname, email: user?.email, time, message, image: reader?.result || null });
+            localStorage.setItem('chatrate', '')
             setUserMessage('');
             setImage(null)
         }
@@ -60,6 +70,11 @@ function Chat() {
 
     useEffect(() => {
         getMessagesToAdmin();
+        // eslint-disable-next-line
+    }, [user]);
+
+    useEffect(() => {
+        getChatStatus();
         // eslint-disable-next-line
     }, [user]);
 
@@ -98,11 +113,11 @@ function Chat() {
     }, []);
 
     useEffect(() => {
-        if (chatRef?.current) {
+        if (chatRef.current) {
             chatRef.current.scrollTop = chatRef.current.scrollHeight;
         }
         // eslint-disable-next-line
-    }, [messageToAdmin]);
+    }, [messageToAdmin, checked]);
 
     return (
         <>
@@ -119,6 +134,7 @@ function Chat() {
                                 onClick={() => {
                                     localStorage.setItem('messagetoadminLength', String(messageToAdmin?.length));
                                     setChecked(false);
+                                    setNewMessage(false)
                                 }}
                                 style={{ color: 'white', position: 'absolute', right: '15px', width: '30px', height: '30px' }}
                             ></CloseIcon>
@@ -150,9 +166,9 @@ function Chat() {
                                         )}
                                     </div>
                                 ))}
-                            <div style={{ background: "#ffffff33", display: 'flex', padding: '15px 5px', gap: '10px', justifyContent: "center" }}>
-                                <h3 style={{ color: 'black', fontSize: '18px', margin: '0px', padding: '0px' }}>Оцените нашу работу</h3> <RadioGroupRating />
-                            </div>
+                            {!!localStorage.getItem('chatrate') && !!close || Number(chatStatus) === 1 ? null : <div style={{ background: "#ffffff33", display: 'flex', padding: '15px 5px', gap: '10px', justifyContent: "center" }}>
+                                <h3 style={{ color: 'black', fontSize: '18px', margin: '0px', padding: '0px' }}>Оцените нашу работу</h3> <RadioGroupRating setClose={setClose} />
+                            </div>}
                         </div>
                         <div className="body-chat-sms">
                             <input
