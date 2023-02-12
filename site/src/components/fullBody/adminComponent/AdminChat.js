@@ -5,8 +5,7 @@ import { axiosGetAdminChats, axiosGetMessagestoAdmin } from '../../../api/axios'
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
 import { socketAdmin } from '../AdminPanel';
-import { adminChatStatusMock, adminChatNewMessageMock } from '../../mock/OutputMock';
-import useSound from 'use-sound';
+import { adminChatStatusMock } from '../../mock/OutputMock';
 import sound from '../../../sound/newMessage.mp3';
 
 function AdminChat() {
@@ -241,21 +240,24 @@ function AdminChat() {
                             <h2>Чат с {currentChat?.nickname}</h2>
                         </div>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', overflow: 'overlay', height: '688px', paddingBottom: '40px' }} ref={chatRef}>
+                        <div
+                            style={{ display: 'flex', flexDirection: 'column', overflow: 'overlay', maxHeight: '85vh', minHeight: '80vh' }}
+                            ref={chatRef}
+                        >
                             {adminMessage
                                 ?.filter((item) => !!item.message)
                                 ?.map((item) => (
                                     <div key={item?.id}>
                                         {item?.role === 'USER' ? (
                                             <div className="massegeStyleUserChat">
-                                                <p>
+                                                <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                                                     {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
                                                 </p>
                                             </div>
                                         ) : (
                                             <div className="massegeStyleAdminChat">
-                                                <p>
-                                                    {item?.message}: {item?.administratorName} <span className="posMassegeses">{item?.time}</span>
+                                                <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                                                    {item?.message} : {item?.administratorName} <span className="posMassegeses">{item?.time}</span>
                                                 </p>
                                             </div>
                                         )}
