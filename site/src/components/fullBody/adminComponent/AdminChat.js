@@ -275,7 +275,7 @@ function AdminChat() {
                                             <div className="massegeStyleUserChat">
                                                 <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                                                     {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
-                                                    {item?.image && item?.image !== "data:" ? <img width='100%' style={{ maxWidth: '400px' }} src={`${item.image}`} alt="Image from base64" /> : null}
+                                                    {item?.image && item?.image !== "data:" ? <img width='100%' src={`${item.image}`} alt="pic from base64" /> : null}
                                                 </p>
                                             </div>
                                         ) : (

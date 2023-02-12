@@ -151,7 +151,7 @@ function Chat() {
                                                 <p className="boxStyle1">
                                                     <span className="styleSizeChat">
                                                         {item?.message}: {item?.nickname}{' '}
-                                                        {item?.image && item?.image !== "data:" ? <img width='100%' src={`${item.image}`} alt="Image from base64" /> : null}
+                                                        {item?.image && item?.image !== "data:" ? <img width='100%' src={`${item.image}`} alt="pic from base64" /> : null}
                                                     </span>{' '}
                                                     <span className="posMassegeses">{item?.time}</span>
                                                 </p>
