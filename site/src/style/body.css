@@ -395,11 +395,9 @@ input::-webkit-inner-spin-button {
     backdrop-filter: blur(5.5px);
     border: 0.5px solid rgba(90, 89, 89, 0.75);
     overflow: overlay;
-    max-height: 100vh;
     color: white;
     width: 967px;
     height: 100vh;
-    max-height: 70vh;
 }
 
 .tabl-flex-admin-button-global2 {
