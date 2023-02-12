@@ -1,14 +1,26 @@
-import Footer from "./Footer"
-import Header from "./Header"
-import Baner from '../../image/banner-img3.png'
-import Spore from '../../image/spore-img1.svg'
-import Spore2 from '../../image/spore-img2.svg'
-import Spore3 from '../../image/spore-img3.svg'
-import Spore4 from '../../image/spore-img4.svg'
+import Footer from "./Footer";
+import Header from "./Header";
+import Baner from '../../image/banner-img3.png';
+import Spore from '../../image/spore-img1.svg';
+import Spore2 from '../../image/spore-img2.svg';
+import Spore3 from '../../image/spore-img3.svg';
+import Spore4 from '../../image/spore-img4.svg';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
-import Chat from "./Chat"
+import Chat from "./Chat";
+import { useAppSelector } from "../../store/reduxHooks";
+import { useEffect } from 'react';
+import { socket } from "../Main";
 
 function Disputes() {
+    const { user } = useAppSelector((store) => store.user);
+
+    useEffect(() => {
+        if (!user?.email) return;
+        const time = new Date().toLocaleString().replaceAll(',', '');
+        socket.emit('location', { email: user?.email, location: document?.location?.pathname, time });
+        // eslint-disable-next-line
+    }, [user]);
+
     return <div className="bg-img">
         <Header />
         <Chat />
@@ -16,7 +28,7 @@ function Disputes() {
             <div className="page-container">
                 <div className="main-section main-section--disputes">
                     <div className="main-section__banner">
-                        <img className="img-cover" src={Baner} alt=""/>
+                        <img className="img-cover" src={Baner} alt="" />
                     </div>
                     <div className="main-section__heading">
                         <h2>Решение споров</h2>
@@ -30,7 +42,7 @@ function Disputes() {
                             <div className="info-list__card card-info">
                                 <div className="card-info__heading">
                                     <div className="card-info__img-wrap">
-                                        <img style={{width:'35px'}} src={Spore} alt=""/>
+                                        <img style={{ width: '35px' }} src={Spore} alt="" />
                                     </div>
                                     <p>Выставление претензии</p>
                                 </div>
@@ -43,7 +55,7 @@ function Disputes() {
                             <div className="info-list__card card-info">
                                 <div className="card-info__heading">
                                     <div className="card-info__img-wrap">
-                                         <img style={{width:'35px'}} src={Spore2} alt=""/>
+                                        <img style={{ width: '35px' }} src={Spore2} alt="" />
                                     </div>
                                     <p>Возможность частичного или полного возврата</p>
                                 </div>
@@ -56,7 +68,7 @@ function Disputes() {
                             <div className="info-list__card card-info">
                                 <div className="card-info__heading">
                                     <div className="card-info__img-wrap">
-                                         <img style={{width:'35px'}} src={Spore3} alt=""/>
+                                        <img style={{ width: '35px' }} src={Spore3} alt="" />
                                     </div>
                                     <p>Арбитраж</p>
                                 </div>
@@ -69,7 +81,7 @@ function Disputes() {
                             <div className="info-list__card card-info">
                                 <div className="card-info__heading">
                                     <div className="card-info__img-wrap">
-                                         <img style={{width:'35px'}} src={Spore4} alt=""/> 
+                                        <img style={{ width: '35px' }} src={Spore4} alt="" />
                                     </div>
                                     <p>Третейский суд</p>
                                 </div>
@@ -84,9 +96,9 @@ function Disputes() {
                 </div>
                 <div className="section-check-info">
                     <ul className="list-clip">
-                       <div style={{display: "flex"}}><AttachFileIcon style={{width:'20px'}}></AttachFileIcon> <li>Положение об Арбитражном центре при АНО “Правосудие”</li></div>
-                       <div style={{display: "flex"}}><AttachFileIcon style={{width:'20px'}}></AttachFileIcon> <li>Положение об Арбитражных сборах Арбитражного центра при АНО “Правосудие”</li></div>
-                       <div style={{display: "flex"}}><AttachFileIcon style={{width:'20px'}}></AttachFileIcon> <li>Арбитражный регламент Арбитражного центра при АНО “Правосудие”</li></div>
+                        <div style={{ display: "flex" }}><AttachFileIcon style={{ width: '20px' }}></AttachFileIcon> <li>Положение об Арбитражном центре при АНО “Правосудие”</li></div>
+                        <div style={{ display: "flex" }}><AttachFileIcon style={{ width: '20px' }}></AttachFileIcon> <li>Положение об Арбитражных сборах Арбитражного центра при АНО “Правосудие”</li></div>
+                        <div style={{ display: "flex" }}><AttachFileIcon style={{ width: '20px' }}></AttachFileIcon> <li>Арбитражный регламент Арбитражного центра при АНО “Правосудие”</li></div>
                     </ul>
                 </div>
             </div>

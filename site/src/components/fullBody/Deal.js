@@ -151,6 +151,13 @@ function Deal() {
     }
   }, [user.checkRu, navigate])
 
+  useEffect(() => {
+    if (!user?.email) return;
+    const time = new Date().toLocaleString().replaceAll(',', '');
+    socket.emit('location', { email: user?.email, location: document?.location?.pathname, time });
+    // eslint-disable-next-line
+  }, [user]);
+
   return <div className="bg-img">
     <Header />
     <Chat />

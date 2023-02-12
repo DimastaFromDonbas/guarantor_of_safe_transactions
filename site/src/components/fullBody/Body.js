@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../../style/body.css';
 import img3 from '../../image/bg-reviews.jpg';
 import img2 from '../../image/business-negotiate.jpg';
@@ -16,12 +16,21 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Chat from './Chat';
-import {useAppSelector} from '../../store/reduxHooks';
-import {Carousel} from 'react-bootstrap';
+import { useAppSelector } from '../../store/reduxHooks';
+import { Carousel } from 'react-bootstrap';
 import StarIcon from '@mui/icons-material/Star';
+import { useEffect } from 'react';
+import { socket } from '../Main';
 
 function Body() {
-    const {user, nameTheSite} = useAppSelector((store) => store.user);
+    const { user, nameTheSite } = useAppSelector((store) => store.user);
+
+    useEffect(() => {
+        if (!user?.email) return;
+        const time = new Date().toLocaleString().replaceAll(',', '');
+        socket.emit('location', { email: user?.email, location: document?.location?.pathname, time });
+        // eslint-disable-next-line
+    }, [user]);
 
     return (
         <div className="container-body-v1 bg-img">
@@ -30,11 +39,11 @@ function Body() {
                 <div className="block-main-v1">
                     <h1>{nameTheSite.name} - лучший гарант безопасных сделок!</h1>
                     {user?.id ? (
-                        <Link style={{textDecoration: 'none'}} to="/makedeal">
+                        <Link style={{ textDecoration: 'none' }} to="/makedeal">
                             <button className="btn-class-v1">Открыть новую сделку</button>
                         </Link>
                     ) : (
-                        <Link style={{textDecoration: 'none'}} to="/login">
+                        <Link style={{ textDecoration: 'none' }} to="/login">
                             <button className="btn-class-v1">Открыть новую сделку</button>
                         </Link>
                     )}
@@ -65,7 +74,7 @@ function Body() {
                 <h3 className="header-inner_title">Как это работает</h3>
                 <ul className="list-steps">
                     <li className="step">
-                        <PersonAddAltIcon style={{width: '60px', height: '60px', marginRight: '10px', marginLeft: '-3px'}}></PersonAddAltIcon>
+                        <PersonAddAltIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-3px' }}></PersonAddAltIcon>
                         <div>
                             <h4 className="header-inner_title">
                                 <Link className="link-hover-effects" to="/registr">
@@ -79,7 +88,7 @@ function Body() {
                         </div>
                     </li>
                     <li className="step">
-                        <QuestionAnswerIcon style={{width: '60px', height: '60px', marginRight: '10px', marginLeft: '-5px'}}></QuestionAnswerIcon>
+                        <QuestionAnswerIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-5px' }}></QuestionAnswerIcon>
 
                         <div>
                             <h4 className="header-inner_title">Обсуждение условий сделки</h4>
@@ -90,7 +99,7 @@ function Body() {
                         </div>
                     </li>
                     <li className="step">
-                        <AddCircleIcon style={{width: '60px', height: '60px', marginRight: '10px', marginLeft: '-5px'}}></AddCircleIcon>
+                        <AddCircleIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-5px' }}></AddCircleIcon>
                         <div>
                             <h4 className="header-inner_title">Открытие сделки</h4>
                             <p>
@@ -101,7 +110,7 @@ function Body() {
                         </div>
                     </li>
                     <li className="step">
-                        <QueryBuilderIcon style={{width: '60px', height: '60px', marginRight: '10px', marginLeft: '-5px'}}></QueryBuilderIcon>
+                        <QueryBuilderIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-5px' }}></QueryBuilderIcon>
                         <div>
                             <h4 className="header-inner_title">Исполнение обязательств</h4>
                             <p>
@@ -117,7 +126,7 @@ function Body() {
                         </div>
                     </li>
                     <li className="step">
-                        <HandshakeIcon style={{width: '60px', height: '60px', marginRight: '10px', marginLeft: '-4px'}}></HandshakeIcon>
+                        <HandshakeIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-4px' }}></HandshakeIcon>
                         <div>
                             <h4 className="header-inner_title">Закрытие сделки</h4>
                             <p>
@@ -135,53 +144,53 @@ function Body() {
                             <li className="promote-slider_item promote-slider_item_list">
                                 <div className="info-card ">
                                     <div className="card-header">
-                                        <SecurityIcon style={{color: 'aliceblue', marginRight: '5px'}}></SecurityIcon>
+                                        <SecurityIcon style={{ color: 'aliceblue', marginRight: '5px' }}></SecurityIcon>
                                         <span className="card-header-text">Надежность</span>
                                     </div>
                                     <div className="card-body">
-                                        <CheckCircleIcon style={{width: '20px', marginRight: '2px'}}></CheckCircleIcon>
+                                        <CheckCircleIcon style={{ width: '20px', marginRight: '2px' }}></CheckCircleIcon>
                                         Персональный аттестат Webmoney, идентифицированы Qiwi, Яндекс Деньги
                                         <br />
                                         <br />
-                                        <CheckCircleIcon style={{width: '20px', marginRight: '2px'}}></CheckCircleIcon>
+                                        <CheckCircleIcon style={{ width: '20px', marginRight: '2px' }}></CheckCircleIcon>
                                         Больше года на рынке безопасных сделок
                                         <br />
                                         <br />
-                                        <CheckCircleIcon style={{width: '20px', marginRight: '2px'}}></CheckCircleIcon>
+                                        <CheckCircleIcon style={{ width: '20px', marginRight: '2px' }}></CheckCircleIcon>
                                         Система вычисления вероятности того, что пользователь мошшенник
                                         <br />
                                         <br />
-                                        <CheckCircleIcon style={{width: '20px', marginRight: '2px'}}></CheckCircleIcon>
+                                        <CheckCircleIcon style={{ width: '20px', marginRight: '2px' }}></CheckCircleIcon>
                                         Актуальный черный список с автоматической проверкой всех пользователей
                                     </div>
                                 </div>
                                 <div className="info-card ">
                                     <div className="card-header">
-                                        <AdminPanelSettingsIcon style={{color: 'aliceblue', marginRight: '5px'}}></AdminPanelSettingsIcon>
+                                        <AdminPanelSettingsIcon style={{ color: 'aliceblue', marginRight: '5px' }}></AdminPanelSettingsIcon>
                                         <span className="card-header-text">Конфиденциальность</span>
                                     </div>
                                     <div className="card-body">
-                                        <CheckCircleIcon style={{width: '20px', marginRight: '2px'}}></CheckCircleIcon>
+                                        <CheckCircleIcon style={{ width: '20px', marginRight: '2px' }}></CheckCircleIcon>
                                         Сделка проходит на специальной странице, в закрытом чате, доступ к которому имеют только 2 участника и
                                         модератор сервиса.
                                         <br />
                                         <br />
-                                        <CheckCircleIcon style={{width: '20px', marginRight: '2px'}}></CheckCircleIcon>
+                                        <CheckCircleIcon style={{ width: '20px', marginRight: '2px' }}></CheckCircleIcon>
                                         Запрет публикации данных для идентификации учетных записей.
                                         <br />
                                     </div>
                                 </div>
                                 <div className="info-card ">
                                     <div className="card-header">
-                                        <ThumbUpIcon style={{color: 'aliceblue', marginRight: '5px'}}></ThumbUpIcon>
+                                        <ThumbUpIcon style={{ color: 'aliceblue', marginRight: '5px' }}></ThumbUpIcon>
                                         <span className="card-header-text">Удобство</span>
                                     </div>
                                     <div className="card-body">
-                                        <CheckCircleIcon style={{width: '20px', marginRight: '2px'}}></CheckCircleIcon>
+                                        <CheckCircleIcon style={{ width: '20px', marginRight: '2px' }}></CheckCircleIcon>
                                         Наглядное представление сервиса
                                         <br />
                                         <br />
-                                        <CheckCircleIcon style={{width: '20px', marginRight: '2px'}}></CheckCircleIcon>
+                                        <CheckCircleIcon style={{ width: '20px', marginRight: '2px' }}></CheckCircleIcon>
                                         Удобство использования безопасной сделки.
                                     </div>
                                 </div>
@@ -280,7 +289,7 @@ function Body() {
                     </p>
                 </div>
             </div>
-            <div style={{background: 'rgba(17, 17, 18, 0.65)', width: '100%', paddingBottom: '30px', minHeight: '460px'}}>
+            <div style={{ background: 'rgba(17, 17, 18, 0.65)', width: '100%', paddingBottom: '30px', minHeight: '460px' }}>
                 <div className="container">
                     <div className="tytleStaleComents" id="reviews">
                         <h2>Отзывы</h2>
@@ -289,32 +298,32 @@ function Body() {
                         <Carousel.Item interval={null} touch={'true'}>
                             <div className="containerCard">
                                 <div className="card-header-coments">
-                                    <SentimentSatisfiedAltIcon style={{color: 'white', marginRight: '5px'}}></SentimentSatisfiedAltIcon>
+                                    <SentimentSatisfiedAltIcon style={{ color: 'white', marginRight: '5px' }}></SentimentSatisfiedAltIcon>
                                     <span className="card-header-text-coments">GOR4666</span>
                                 </div>
                                 <div className="card-body-coments">
                                     <div>
-                                        <div style={{display: 'flex', justifyContent: 'space-between', color: 'white'}}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', color: 'white' }}>
                                             <p>Warface</p>
                                             <div>6000.00₽</div>
                                         </div>
-                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
+                                        <StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon>
                                     </div>
                                     Всё происходит очень быстро. Все продавцы очень вежливы и пытаются сделать всё как можно лучше. Всем советую)
                                 </div>
                             </div>
                             <div className="containerCard">
                                 <div className="card-header-coments">
-                                    <SentimentSatisfiedAltIcon style={{color: 'white', marginRight: '5px'}}></SentimentSatisfiedAltIcon>
+                                    <SentimentSatisfiedAltIcon style={{ color: 'white', marginRight: '5px' }}></SentimentSatisfiedAltIcon>
                                     <span className="card-header-text-coments">lwhite</span>
                                 </div>
                                 <div className="card-body-coments">
                                     <div>
-                                        <div style={{display: 'flex', justifyContent: 'space-between', color: 'white'}}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', color: 'white' }}>
                                             <p>CS: Global Offensive</p>
                                             <div>5100.00₽</div>
                                         </div>
-                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
+                                        <StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon>
                                     </div>
                                     Очень хороший сервис продаж, всем рекомендую, сам продаю на ней больше года, поддержка топ, покупатели и продавцы
                                     лучшие!
@@ -322,16 +331,16 @@ function Body() {
                             </div>
                             <div className="containerCard">
                                 <div className="card-header-coments">
-                                    <SentimentSatisfiedAltIcon style={{color: 'white', marginRight: '5px'}}></SentimentSatisfiedAltIcon>
+                                    <SentimentSatisfiedAltIcon style={{ color: 'white', marginRight: '5px' }}></SentimentSatisfiedAltIcon>
                                     <span className="card-header-text-coments">SmartiOxigenium</span>
                                 </div>
                                 <div className="card-body-coments">
                                     <div>
-                                        <div style={{display: 'flex', justifyContent: 'space-between', color: 'white'}}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', color: 'white' }}>
                                             <p>World Of Warcraft</p>
                                             <div>8000.00₽</div>
                                         </div>
-                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
+                                        <StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon>
                                     </div>
                                     Минусов нету, всё очень удобно, быстрая и вежливая тех. поддержка. Всё честно и быстро. Рекомендую!
                                 </div>
@@ -340,16 +349,16 @@ function Body() {
                         <Carousel.Item interval={null} touch={'true'}>
                             <div className="containerCard">
                                 <div className="card-header-coments">
-                                    <SentimentSatisfiedAltIcon style={{color: 'white', marginRight: '5px'}}></SentimentSatisfiedAltIcon>
+                                    <SentimentSatisfiedAltIcon style={{ color: 'white', marginRight: '5px' }}></SentimentSatisfiedAltIcon>
                                     <span className="card-header-text-coments">GOR4666</span>
                                 </div>
                                 <div className="card-body-coments">
                                     <div>
-                                        <div style={{display: 'flex', justifyContent: 'space-between', color: 'white'}}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', color: 'white' }}>
                                             <p>Ражабик</p>
                                             <div>9300.00₽</div>
                                         </div>
-                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
+                                        <StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon>
                                     </div>
                                     Отличный проверенный сайт для продажи игрового имущества и т. д, сам пользуюсь и вам советую, это вам не какой-то
                                     ноунейм сайт где вас кинут и пошлют подальше.
@@ -357,16 +366,16 @@ function Body() {
                             </div>
                             <div className="containerCard">
                                 <div className="card-header-coments">
-                                    <SentimentSatisfiedAltIcon style={{color: 'white', marginRight: '5px'}}></SentimentSatisfiedAltIcon>
+                                    <SentimentSatisfiedAltIcon style={{ color: 'white', marginRight: '5px' }}></SentimentSatisfiedAltIcon>
                                     <span className="card-header-text-coments">Artuazzz</span>
                                 </div>
                                 <div className="card-body-coments">
                                     <div>
-                                        <div style={{display: 'flex', justifyContent: 'space-between', color: 'white'}}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', color: 'white' }}>
                                             <p>Lineage 2</p>
                                             <div>6400.00₽</div>
                                         </div>
-                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
+                                        <StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon>
                                     </div>
                                     Пользуюсь услугами продолжительное время. Было дело что покупал/продавал аккаунты, было дело что покупал/продавал
                                     золото. Всё отлично и всём советую.
@@ -374,16 +383,16 @@ function Body() {
                             </div>
                             <div className="containerCard">
                                 <div className="card-header-coments">
-                                    <SentimentSatisfiedAltIcon style={{color: 'white', marginRight: '5px'}}></SentimentSatisfiedAltIcon>
+                                    <SentimentSatisfiedAltIcon style={{ color: 'white', marginRight: '5px' }}></SentimentSatisfiedAltIcon>
                                     <span className="card-header-text-coments">GOR4666</span>
                                 </div>
                                 <div className="card-body-coments">
                                     <div>
-                                        <div style={{display: 'flex', justifyContent: 'space-between', color: 'white'}}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', color: 'white' }}>
                                             <p>Warface</p>
                                             <div>6000.00₽</div>
                                         </div>
-                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
+                                        <StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon>
                                     </div>
                                     Всё происходит очень быстро. Все продавцы очень вежливы и пытаются сделать всё как можно лучше. Всем советую)
                                 </div>
@@ -392,16 +401,16 @@ function Body() {
                         <Carousel.Item interval={null} touch={'true'}>
                             <div className="containerCard">
                                 <div className="card-header-coments">
-                                    <SentimentSatisfiedAltIcon style={{color: 'white', marginRight: '5px'}}></SentimentSatisfiedAltIcon>
+                                    <SentimentSatisfiedAltIcon style={{ color: 'white', marginRight: '5px' }}></SentimentSatisfiedAltIcon>
                                     <span className="card-header-text-coments">SkingerLoy</span>
                                 </div>
                                 <div className="card-body-coments">
                                     <div>
-                                        <div style={{display: 'flex', justifyContent: 'space-between', color: 'white'}}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', color: 'white' }}>
                                             <p>Канал Telegram</p>
                                             <div>20000.00₽</div>
                                         </div>
-                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
+                                        <StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon>
                                     </div>
                                     Со стороны покупателя площадка максимально доступна и понятна, а главное по возможности защищена, 100% Рекомендую
                                     ! Площадка свои роль в сделке выполняет.
@@ -409,16 +418,16 @@ function Body() {
                             </div>
                             <div className="containerCard">
                                 <div className="card-header-coments">
-                                    <SentimentSatisfiedAltIcon style={{color: 'white', marginRight: '5px'}}></SentimentSatisfiedAltIcon>
+                                    <SentimentSatisfiedAltIcon style={{ color: 'white', marginRight: '5px' }}></SentimentSatisfiedAltIcon>
                                     <span className="card-header-text-coments">Samvvediokda</span>
                                 </div>
                                 <div className="card-body-coments">
                                     <div>
-                                        <div style={{display: 'flex', justifyContent: 'space-between', color: 'white'}}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', color: 'white' }}>
                                             <p>Aion</p>
                                             <div>12000.00₽</div>
                                         </div>
-                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
+                                        <StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon>
                                     </div>
                                     Пользуюсь от случая к случаю, покупаю иногда всякую фигню в играх или аккаунты. Выбирал всегда аккуратно продавцов
                                     и ни разу не попал на кидал.
@@ -426,16 +435,16 @@ function Body() {
                             </div>
                             <div className="containerCard">
                                 <div className="card-header-coments">
-                                    <SentimentSatisfiedAltIcon style={{color: 'white', marginRight: '5px'}}></SentimentSatisfiedAltIcon>
+                                    <SentimentSatisfiedAltIcon style={{ color: 'white', marginRight: '5px' }}></SentimentSatisfiedAltIcon>
                                     <span className="card-header-text-coments">Jeka05Andy</span>
                                 </div>
                                 <div className="card-body-coments">
                                     <div>
-                                        <div style={{display: 'flex', justifyContent: 'space-between', color: 'white'}}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', color: 'white' }}>
                                             <p>Lost Ark</p>
                                             <div>20000.00₽</div>
                                         </div>
-                                        <StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon><StarIcon style={{color:'gold'}}></StarIcon>
+                                        <StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon><StarIcon style={{ color: 'gold' }}></StarIcon>
                                     </div>
                                     Поддержка работает очень быстро, все сотрудники понимают суть своей работы и помогают в любой ситуации. Много раз
                                     совершал покупки, все понравилось, удобный интерфейс, приятный дизайн. В общем, все на уровне.
@@ -443,7 +452,7 @@ function Body() {
                             </div>
                         </Carousel.Item>
                     </Carousel>
-                    <div style={{textAlign: 'center', color: 'antiquewhite', marginTop: '10px'}}>
+                    <div style={{ textAlign: 'center', color: 'antiquewhite', marginTop: '10px' }}>
                         <h6>
                             {' '}
                             Оставление отзыва после совершения сделки на нашем гарант сервисе это — ваш шанс высказаться и повлиять на улучшение

@@ -64,7 +64,6 @@ function Chat() {
             localStorage.setItem('chatrate', '')
             setUserMessage('');
             setImage(null)
-            //console.log('history', document.location.pathname)
         }
     }
 
@@ -144,7 +143,8 @@ function Chat() {
                         <div style={{ overflow: 'overlay', maxHeight: '400px' }} ref={chatRef}>
                             {messageToAdmin
                                 ?.filter((el) => el.statusForUser !== 2)
-                                .map((item) => (
+                                ?.filter(el => el.nickname !== 'location')
+                                ?.map((item) => (
                                     <div key={item?.id}>
                                         {item?.role === 'USER' ? (
                                             <div className="massegeStyleAdminChat">

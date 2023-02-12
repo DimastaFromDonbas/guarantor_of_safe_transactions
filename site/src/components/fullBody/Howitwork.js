@@ -13,19 +13,28 @@ import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Chat from "./Chat";
 import { useAppSelector } from "../../store/reduxHooks";
+import { socket } from "../Main";
+import { useEffect } from 'react'
 
 function Howitwork() {
 
-    const {nameTheSite} = useAppSelector ((store) => store.user)
+    const { nameTheSite, user } = useAppSelector((store) => store.user)
+
+    useEffect(() => {
+        if (!user?.email) return;
+        const time = new Date().toLocaleString().replaceAll(',', '');
+        socket.emit('location', { email: user?.email, location: document?.location?.pathname, time });
+        // eslint-disable-next-line
+    }, [user]);
 
     return <div className="bg-img">
         <Header />
         <Chat />
-            <div className="container">
+        <div className="container">
             <div className="page-container">
                 <div className="main-section main-section--about">
                     <div className="main-section__banner">
-                    <img className="img-cover" src={Baner} alt="img"/>
+                        <img className="img-cover" src={Baner} alt="img" />
                     </div>
                     <div className="main-section__heading">
                         <h2>Что такое {nameTheSite.name}</h2>
@@ -38,7 +47,7 @@ function Howitwork() {
                         <div className="step-wrap__card card-sert">
                             <div className="card-sert__number">Шаг 1</div>
                             <div className="card-sert__img-wrap">
-                                <Handshake style={{color:'black',width:'45px',height:'45px'}}></Handshake>
+                                <Handshake style={{ color: 'black', width: '45px', height: '45px' }}></Handshake>
                             </div>
                             <div className="card-sert__content">Продавец и покупатель договариются о сделке</div>
                         </div>
@@ -47,7 +56,7 @@ function Howitwork() {
                         <div className="step-wrap__card card-sert">
                             <div className="card-sert__number">Шаг 2</div>
                             <div className="card-sert__img-wrap">
-                                <DescriptionIcon style={{color:'black',width:'45px',height:'45px'}}></DescriptionIcon>
+                                <DescriptionIcon style={{ color: 'black', width: '45px', height: '45px' }}></DescriptionIcon>
                             </div>
                             <div className="card-sert__content">Продавцом или покупателем создается сделка</div>
                         </div>
@@ -56,7 +65,7 @@ function Howitwork() {
                         <div className="step-wrap__card card-sert">
                             <div className="card-sert__number">Шаг 3</div>
                             <div className="card-sert__img-wrap">
-                                <AddShoppingCartIcon style={{color:'black',width:'45px',height:'45px'}}></AddShoppingCartIcon>
+                                <AddShoppingCartIcon style={{ color: 'black', width: '45px', height: '45px' }}></AddShoppingCartIcon>
                             </div>
                             <div className="card-sert__content">Сумма переводится на баланс сделки. Она замораживается</div>
                         </div>
@@ -65,7 +74,7 @@ function Howitwork() {
                         <div className="step-wrap__card card-sert">
                             <div className="card-sert__number">Шаг 4</div>
                             <div className="card-sert__img-wrap">
-                                <PrecisionManufacturingIcon style={{color:'black',width:'45px',height:'45px'}}></PrecisionManufacturingIcon>
+                                <PrecisionManufacturingIcon style={{ color: 'black', width: '45px', height: '45px' }}></PrecisionManufacturingIcon>
                             </div>
                             <div className="card-sert__content">Передача товара или же выполнение услуги покупателю</div>
                         </div>
@@ -74,7 +83,7 @@ function Howitwork() {
                         <div className="step-wrap__card card-sert">
                             <div className="card-sert__number">Шаг 5</div>
                             <div className="card-sert__img-wrap">
-                                <FindInPageIcon style={{color:'black',width:'45px',height:'45px'}}></FindInPageIcon>
+                                <FindInPageIcon style={{ color: 'black', width: '45px', height: '45px' }}></FindInPageIcon>
                             </div>
                             <div className="card-sert__content">Покупатель принимает и проверяет товар или же услугу на соответствие
                             </div>
@@ -84,7 +93,7 @@ function Howitwork() {
                         <div className="step-wrap__card card-sert">
                             <div className="card-sert__number">Шаг 6</div>
                             <div className="card-sert__img-wrap">
-                                <RequestQuoteIcon style={{color:'black',width:'45px',height:'45px'}}></RequestQuoteIcon>
+                                <RequestQuoteIcon style={{ color: 'black', width: '45px', height: '45px' }}></RequestQuoteIcon>
                             </div>
                             <div className="card-sert__content">Покупатель подтверждает платеж, деньги переходят на баланс продавцу
                             </div>
@@ -99,7 +108,7 @@ function Howitwork() {
                             <div className="info-list__card card-info">
                                 <div className="card-info__heading">
                                     <div className="card-info__img-wrap">
-                                        <AlarmOnIcon style={{width: '45px',height:'45px'}}></AlarmOnIcon>
+                                        <AlarmOnIcon style={{ width: '45px', height: '45px' }}></AlarmOnIcon>
                                     </div>
                                     <p>Статус “Ожидает подтверждения”</p>
                                 </div>
@@ -113,7 +122,7 @@ function Howitwork() {
                             <div className="info-list__card card-info">
                                 <div className="card-info__heading">
                                     <div className="card-info__img-wrap">
-                                      <AlarmOnIcon style={{width: '45px',height:'45px'}}></AlarmOnIcon>
+                                        <AlarmOnIcon style={{ width: '45px', height: '45px' }}></AlarmOnIcon>
                                     </div>
                                     <p>Статус “Ожидается оплата”</p>
                                 </div>
@@ -126,7 +135,7 @@ function Howitwork() {
                             <div className="info-list__card card-info">
                                 <div className="card-info__heading">
                                     <div className="card-info__img-wrap">
-                                        <RequestQuoteIcon style={{width: '45px',height:'45px'}}></RequestQuoteIcon>
+                                        <RequestQuoteIcon style={{ width: '45px', height: '45px' }}></RequestQuoteIcon>
                                     </div>
                                     <p>Статус “Оплачено”</p>
                                 </div>
@@ -138,7 +147,7 @@ function Howitwork() {
                             <div className="info-list__card card-info">
                                 <div className="card-info__heading">
                                     <div className="card-info__img-wrap">
-                                        <ReportProblemIcon style={{width: '45px',height:'45px'}}></ReportProblemIcon>
+                                        <ReportProblemIcon style={{ width: '45px', height: '45px' }}></ReportProblemIcon>
                                     </div>
                                     <p>Статус “Арбитраж”</p>
                                 </div>
@@ -152,7 +161,7 @@ function Howitwork() {
                             <div className="info-list__card card-info">
                                 <div className="card-info__heading">
                                     <div className="card-info__img-wrap">
-                                        <CheckCircleOutlineIcon style={{width: '45px',height:'45px'}}></CheckCircleOutlineIcon>
+                                        <CheckCircleOutlineIcon style={{ width: '45px', height: '45px' }}></CheckCircleOutlineIcon>
                                     </div>
                                     <p>Статус “Завершенная сделка”</p>
                                 </div>
@@ -168,7 +177,7 @@ function Howitwork() {
                 <div className="protection-period">
                     <div className="protection-period__heading">Период защиты сделки </div>
                     <div className="protection-period__description">
-                        <p>ВНИМАНИЕ!<br/>
+                        <p>ВНИМАНИЕ!<br />
                             Период защиты сделки распространяется только в случае купли-продажи материальных товаров.</p>
                         <p>Он составляет 21 день с момента отправки товара, если в условиях не указан другой срок. Если в течение
                             периода защиты сделки покупатель не осуществил действия “Принять сделку” или “Открыть претензию”, то
@@ -177,14 +186,14 @@ function Howitwork() {
                 </div>
                 <div className="banner-info">
                     <div className="banner-info__img-wrap">
-                        <img className="banner-info__img-wrap" src={OrderIcon} alt="imgOrder"/>
+                        <img className="banner-info__img-wrap" src={OrderIcon} alt="imgOrder" />
                     </div>
                     <div className="banner-info__description">Используйте наш сервис {nameTheSite.name}, не рискуя самостоятельно проверять
                         человека на честность. Мошенник никогда и ни при каких условиях не согласиться проводить безопасную
                         сделку.</div>
                 </div>
             </div>
-            </div>
+        </div>
         <Footer />
     </div>
 }

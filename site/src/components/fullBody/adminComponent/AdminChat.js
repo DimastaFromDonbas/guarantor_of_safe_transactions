@@ -118,6 +118,17 @@ function AdminChat() {
     }, [adminMessage]);
 
     useEffect(() => {
+        socketAdmin.on('location', ({ data }) => {
+            if (adminMessage?.includes(data)) return;
+            dispatch({
+                type: reducerTypes.GET_ADMIN_MESSAGE,
+                payload: [...adminMessage, data]
+            });
+        });
+        // eslint-disable-next-line
+    }, [adminMessage]);
+
+    useEffect(() => {
         socketAdmin.on('updateChatStatus', ({ data }) => {
             if (data) {
                 alert('Успешно удалено');
