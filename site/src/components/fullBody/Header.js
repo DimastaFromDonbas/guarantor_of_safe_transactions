@@ -89,6 +89,51 @@ function Header() {
     });
   }
 
+  async function logOut(e) {
+    getUsers();
+    dispatch({
+      type: reducerTypes.GET_DEAL,
+      payload: []
+    });
+    dispatch({
+      type: reducerTypes.GET_REFILL,
+      payload: []
+    });
+    dispatch({
+      type: reducerTypes.GET_MY_REFILLS,
+      payload: []
+    });
+    dispatch({
+      type: reducerTypes.GET_TRANSFERS,
+      payload: []
+    });
+    dispatch({
+      type: reducerTypes.GET_TRANSFERS_TO_USER,
+      payload: []
+    });
+    dispatch({
+      type: reducerTypes.GET_DEAL_MESSAGES,
+      payload: []
+    });
+    dispatch({
+      type: reducerTypes.GET_FIX_SUM_SYSTEM_MESSAGE,
+      payload: []
+    });
+    dispatch({
+      type: reducerTypes.GET_ADMIN_CHAT,
+      payload: []
+    });
+    dispatch({
+      type: reducerTypes.GET_ADMIN_MESSAGE,
+      payload: []
+    });
+    dispatch({
+      type: reducerTypes.GET_MESSAGE_TO_ADMIN,
+      payload: []
+    });
+    localStorage.removeItem('token')
+  }
+
   async function getName() {
     const result = await axiosGetName();
     if (result) {
@@ -219,7 +264,7 @@ function Header() {
                 <li className="nav-detail_item"><Link className="nav-detail_link" to="/AdminPanel">Админ панель</Link></li>}
               <li className="nav-detail_item"><Link className="nav-detail_link" to="/systemmessages">Системные сообщения {(bellState && !checkReadMessage) || (user?.systemMessage === 'true' && !checkReadMessage) ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}</Link></li>
               <li className="nav-detail_item"><Link className="nav-detail_link" to="/settings">Мои настройки</Link></li>
-              <li className="nav-detail_item border-exit"><Link onClick={getUsers} className="nav-detail_link" to="/">Выход</Link></li>
+              <li className="nav-detail_item border-exit"><Link onClick={logOut} className="nav-detail_link" to="/">Выход</Link></li>
             </ul>
           </div>
         </div>

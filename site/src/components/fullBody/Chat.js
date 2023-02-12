@@ -10,7 +10,6 @@ import { useAppSelector } from '../../store/reduxHooks';
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from '../../store/Users/types';
 import { socket } from '../Main';
-import ImageDisplay from './renderImage';
 import RadioGroupRating from './RadioGroupRating';
 
 function Chat() {
@@ -48,8 +47,14 @@ function Chat() {
         const reader = new FileReader();
         reader.readAsDataURL(image || new Blob([]))
         reader.onload = () => {
+            console.log('result', reader.result)
+            if (reader?.result?.includes('audio')) {
+                setImage(null)
+                return alert("Отправлять можно только изображения!")
+            }
             socket.emit('sendMessageToAdmin', { nickname: user?.nickname, email: user?.email, time, message, image: reader?.result || null });
             setUserMessage('');
+            setImage(null)
         }
     }
 
@@ -93,14 +98,6 @@ function Chat() {
     }, []);
 
     useEffect(() => {
-        if (!messageToAdmin[10]) return;
-        // console.log('image', messageToAdmin[7].image)
-        // const blob = new Blob([messageToAdmin[7].image.data], { type: "image/jpeg" });
-        // const link = document.createElement("a");
-        // link.href = URL.createObjectURL(blob);
-        // link.download = "image.jpeg";
-        // console.log(3, messageToAdmin[7].image.data.toString('base64'))
-        //link.click();
         if (chatRef?.current) {
             chatRef.current.scrollTop = chatRef.current.scrollHeight;
         }
