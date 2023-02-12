@@ -60,6 +60,7 @@ function Chat() {
                 return alert("Отправлять можно только изображения!")
             }
             console.log('reader?.result', reader?.result)
+            // eslint-disable-next-line
             if (!message && reader?.result == 'data: ') return alert('Сообщение не может быть пустым');
             socket.emit('sendMessageToAdmin', { nickname: user?.nickname, email: user?.email, time, message, image: reader?.result || null });
             localStorage.setItem('chatrate', '')
@@ -151,7 +152,7 @@ function Chat() {
                                                 <p className="boxStyle1">
                                                     <span className="styleSizeChat">
                                                         {item?.message}: {item?.nickname}{' '}
-                                                        {item?.image && item?.image !== "data:" ? <img width='100%' src={`${item.image}`} alt="Image from base64" /> : null}
+                                                        {item?.image && item?.image !== "data:" ? <img width='100%' src={`${item.image}`} alt="pic from base64" /> : null}
                                                     </span>{' '}
                                                     <span className="posMassegeses">{item?.time}</span>
                                                 </p>
@@ -167,9 +168,9 @@ function Chat() {
                                             </div>
                                         )}
                                     </div>
-                                ))}
-                            {(!!localStorage.getItem('chatrate') || !!close) || (chatStatus == 1) ? null : <div style={{ background: "#ffffff33", display: 'flex', padding: '15px 5px', gap: '10px', justifyContent: "center" }}>
-                                <h3 style={{ color: 'black', fontSize: '18px', margin: '0px', padding: '0px' }}>Оцените нашу работу</h3> <RadioGroupRating setClose={setClose} />
+                                ))} 
+                            { (!!localStorage.getItem('chatrate') || !!close) || (chatStatus == 1) ? null : <div style={{ background: "#ffffff33", display: 'flex', padding: '15px 5px', gap: '10px', justifyContent: "center" }}> 
+                               <h3 style={{ color: 'black', fontSize: '18px', margin: '0px', padding: '0px' }}>Оцените нашу работу</h3> <RadioGroupRating setClose={setClose} />
                             </div>}
                         </div>
                         <div className="body-chat-sms">
