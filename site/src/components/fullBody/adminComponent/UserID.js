@@ -99,6 +99,12 @@ function AllUsersID() {
          return alert('Успешно')}
         alert('Что-то пошло не так')
      }
+     
+     useEffect(() => {
+        if (user?.role === 'USER' || user?.role === null || user?.role === '' || user?.role === undefined) {
+            navigate("/")
+        }
+    }, [user?.role, navigate, user])
 
     useEffect(() => {
         getAllUsers();

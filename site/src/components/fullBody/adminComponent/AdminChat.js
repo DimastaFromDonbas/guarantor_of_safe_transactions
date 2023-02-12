@@ -120,6 +120,12 @@ function AdminChat() {
     }, []);
 
     useEffect(() => {
+        if (user?.role === 'USER' || user?.role === null || user?.role === '' || user?.role === undefined) {
+            navigate('/');
+        }
+    }, [user?.role, navigate, user]);
+
+    useEffect(() => {
         if (chatRef?.current) {
             chatRef.current.scrollTop = chatRef.current.scrollHeight;
         }

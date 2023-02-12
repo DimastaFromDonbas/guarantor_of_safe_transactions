@@ -44,6 +44,12 @@ function TransfersID() {
         alert('Что-то пошло не так')
      }
 
+     useEffect(() => {
+        if (user?.role === 'USER' || user?.role === null || user?.role === '' || user?.role === undefined) {
+            navigate("/")
+        }
+    }, [user?.role, navigate, user])
+
     useEffect(() => {
         const temporaryTransfers = allTransfers?.filter(item => item.id === Number(id))[0]
         if(temporaryTransfers) {

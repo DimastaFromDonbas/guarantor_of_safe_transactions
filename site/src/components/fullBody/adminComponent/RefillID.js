@@ -40,6 +40,12 @@ function RefillID() {
         };
         alert('Что-то пошло не так')
      }
+    
+     useEffect(() => {
+        if (user?.role === 'USER' || user?.role === null || user?.role === '' || user?.role === undefined) {
+            navigate("/")
+        }
+    }, [user?.role, navigate, user])
 
     useEffect(() => {
         const temporaryRefill = allRefills?.filter(item => item.uniqueId === Number(id))[0]

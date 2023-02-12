@@ -104,6 +104,12 @@ function DealID() {
   }, [allDeals]);
 
   useEffect(() => {
+    if (user?.role === 'USER' || user?.role === null || user?.role === '' || user?.role === undefined) {
+        navigate("/")
+    }
+}, [user?.role, navigate, user])
+
+  useEffect(() => {
     getAllDeals();
     // eslint-disable-next-line
   }, [user]);

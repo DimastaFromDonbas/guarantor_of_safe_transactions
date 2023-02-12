@@ -6,12 +6,14 @@ import {axiosGetWallet, axiosUpdateName} from '../../../api/axios';
 import {axiosGetName} from '../../../api/axios';
 import {useDispatch} from 'react-redux';
 import {reducerTypes} from '../../../store/Users/types';
+import {useNavigate} from 'react-router-dom';
 function SetNameTheSite() {
     //const {user, nameTheSite} = useAppSelector ((store) => store.user)
     const dispatch = useDispatch();
     const {user, nameTheSite, criptoWallet} = useAppSelector((store) => store.user);
     const [nameSite, setNameSite] = useState('');
     const [walletSite, setWalletSite] = useState('');
+    const navigate = useNavigate();
 
     async function updateName() {
         if (!nameSite) return alert('Введите название');
@@ -66,6 +68,12 @@ function SetNameTheSite() {
     function changesWalletSite(e) {
         setWalletSite(e.currentTarget.value);
     }
+
+    useEffect(() => {
+        if (user?.role === 'USER' || user?.role === null || user?.role === '' || user?.role === undefined) {
+            navigate('/');
+        }
+    }, [user?.role, navigate, user]);
 
     useEffect(() => {
         getName();
