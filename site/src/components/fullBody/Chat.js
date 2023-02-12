@@ -80,7 +80,7 @@ function Chat() {
                                 style={{color: 'white', position: 'absolute', right: '15px', width: '30px', height: '30px'}}
                             ></CloseIcon>
                         </div>
-                        <div style={{overflow: 'overlay'}}>
+                        <div style={{overflow: 'overlay', height: '341px'}}>
                             {messageToAdmin
                                 ?.filter((el) => el.statusForUser !== 2)
                                 .map((item) => (

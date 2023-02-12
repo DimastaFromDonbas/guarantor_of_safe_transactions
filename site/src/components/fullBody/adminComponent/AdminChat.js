@@ -238,7 +238,7 @@ function AdminChat() {
                         <div style={{display: 'flex', justifyContent: 'center', background: 'rgba(90, 89, 89, 0.75)'}}>
                             <h2>Чат с {currentChat?.nickname}</h2>
                         </div>
-                        <div style={{display: 'flex', flexDirection: 'column', overflow: 'overlay'}}>
+                        <div style={{display: 'flex', flexDirection: 'column', overflow: 'overlay', height: '482px'}}>
                             {adminMessage?.map((item) => (
                                 <div key={item?.id}>
                                     {item?.role === 'USER' ? (
