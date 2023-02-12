@@ -61,6 +61,13 @@ io.on("connection", (socket) => {
     } else console.log('Send message fail')
   });
 
+  socket.on("location", async ({ email, location, time }) => {
+    if (email && location && time) {
+      const messageToAdmin = await messageToAdminController.create({ body: { nickname: 'location', email, time, message: location } })
+      io.to(String(email)).emit("location", { data: messageToAdmin });
+    } else console.log('Send messageToAdmin fail')
+  });
+
   socket.on("sendMessageToAdmin", async ({ nickname, email, time, message, image }) => {
 
     if (nickname && email && time) {

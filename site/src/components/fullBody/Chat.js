@@ -59,12 +59,12 @@ function Chat() {
                 setImage(null)
                 return alert("Отправлять можно только изображения!")
             }
-            console.log('reader?.result', reader?.result)
             if (!message && reader?.result == 'data: ') return alert('Сообщение не может быть пустым');
             socket.emit('sendMessageToAdmin', { nickname: user?.nickname, email: user?.email, time, message, image: reader?.result || null });
             localStorage.setItem('chatrate', '')
             setUserMessage('');
             setImage(null)
+            //console.log('history', document.location.pathname)
         }
     }
 
