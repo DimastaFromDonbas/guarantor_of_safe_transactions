@@ -10,6 +10,10 @@ import {useAppSelector} from '../../store/reduxHooks';
 import {useDispatch} from 'react-redux';
 import {reducerTypes} from '../../store/Users/types';
 import {socket} from '../Main';
+import Rating from '@mui/material/Rating';
+import RadioGroupRating from './RadioGroupRating';
+
+
 
 function Chat() {
     const dispatch = useDispatch();
@@ -18,6 +22,8 @@ function Chat() {
     const [newMessage, setNewMessage] = useState(false);
     const [userMessage, setUserMessage] = useState('');
     const chatRef = useRef(null);
+
+
 
     async function getMessagesToAdmin() {
         if (!user?.email) return;
@@ -96,7 +102,7 @@ function Chat() {
                                 style={{color: 'white', position: 'absolute', right: '15px', width: '30px', height: '30px'}}
                             ></CloseIcon>
                         </div>
-                        <div style={{overflow: 'overlay', height: '341px'}} ref={chatRef}>
+                        <div style={{overflow: 'overlay', maxHeight: '341px'}} ref={chatRef}>
                             {messageToAdmin
                                 ?.filter((el) => el.statusForUser !== 2)
                                 .map((item) => (
@@ -122,6 +128,9 @@ function Chat() {
                                         )}
                                     </div>
                                 ))}
+                                <div style={{background: "#ffffff33",display:'flex',padding:'15px 5px',gap:'10px',justifyContent: "center"}}>
+                                    <h3 style={{color: 'black',fontSize:'18px',margin:'0px',padding:'0px'}}>Оцените нашу работу</h3> <RadioGroupRating />
+                                </div>    
                         </div>
                         <div className="body-chat-sms">
                             <input
