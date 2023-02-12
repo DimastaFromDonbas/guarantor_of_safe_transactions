@@ -111,8 +111,7 @@ function AdminChat() {
     useEffect(() => {
         socketAdmin.on('updateChatStatus', ({ data }) => {
             if (data) {
-                console.log(1);
-                console.log(1, data);
+                alert('Успешно удалено')
             }
         });
         // eslint-disable-next-line
