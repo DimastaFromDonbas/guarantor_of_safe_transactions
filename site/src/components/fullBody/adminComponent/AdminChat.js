@@ -7,6 +7,7 @@ import { reducerTypes } from '../../../store/Users/types';
 import { socketAdmin } from '../AdminPanel';
 import { adminChatStatusMock } from '../../mock/OutputMock';
 import sound from '../../../sound/newMessage.mp3';
+import { ImageModal } from './ImageForChat';
 
 function AdminChat() {
     const { email } = useParams();
@@ -22,7 +23,7 @@ function AdminChat() {
     const audioPlayer = useRef(null);
 
     function playAudio() {
-        audioPlayer.current.play();
+        audioPlayer?.current?.play();
     }
 
     async function getAllChats() {
@@ -279,14 +280,13 @@ function AdminChat() {
                             ref={chatRef}
                         >
                             {adminMessage
-                                ?.filter((item) => !!item.message)
                                 ?.map((item) => (
                                     <div key={item?.id}>
                                         {item?.role === 'USER' ? (
                                             <div className="massegeStyleUserChat">
                                                 <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                                                     {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
-                                                    {item?.image && item?.image !== "data:" ? <img width='100%' src={`${item.image}`} alt="pic from base64" /> : null}
+                                                    {item?.image && item?.image !== "data:" ? <ImageModal src={item?.image} /> : null}
                                                 </p>
                                             </div>
                                         ) : (
