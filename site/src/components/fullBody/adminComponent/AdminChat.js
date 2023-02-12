@@ -16,7 +16,7 @@ function AdminChat() {
     const [statusForUserChat, setStatusForUserChat] = useState(1);
     const [currentChat, setCurrentChat] = useState(null);
     const [message, setMessage] = useState('');
-    const [adminName, setAdminName] = useState('');
+    const [adminName, setAdminName] = useState('Александра');
     const navigate = useNavigate();
     const chatRef = useRef(null);
     const audioPlayer = useRef(null);
