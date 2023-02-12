@@ -376,11 +376,20 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+.massegeStyleUserChat {
+    font-size: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
 .massegeStyleAdminChat {
     font-size: 20px;
     color: white;
     display: flex;
     flex-direction: column;
+    flex-direction: row-reverse;
     padding: 15px;
 }
 

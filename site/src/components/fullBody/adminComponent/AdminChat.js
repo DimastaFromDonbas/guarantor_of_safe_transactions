@@ -249,13 +249,13 @@ function AdminChat() {
                             <h2>Чат с {currentChat?.nickname}</h2>
                         </div>
 
-                        <div style={{display: 'flex', flexDirection: 'column', overflow: 'overlay', height: '482px'}} ref={chatRef}>
+                        <div style={{display: 'flex', flexDirection: 'column', overflow: 'overlay', height: '688px'}} ref={chatRef}>
                             {adminMessage
                                 ?.filter((item) => !!item.message)
                                 ?.map((item) => (
                                     <div key={item?.id}>
                                         {item?.role === 'USER' ? (
-                                            <div className="massegeStyleAdminChat">
+                                            <div className="massegeStyleUserChat">
                                                 <p>
                                                     {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
                                                 </p>
@@ -263,7 +263,7 @@ function AdminChat() {
                                         ) : (
                                             <div className="massegeStyleAdminChat">
                                                 <p>
-                                                    {item?.administratorName}: {item?.message} <span className="posMassegeses">{item?.time}</span>
+                                                    {item?.message}: {item?.administratorName} <span className="posMassegeses">{item?.time}</span>
                                                 </p>
                                             </div>
                                         )}
