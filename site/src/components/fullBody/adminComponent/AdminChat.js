@@ -86,7 +86,7 @@ function AdminChat() {
         if (currentChat?.email) {
             socketAdmin.emit('join', {name: currentChat?.email, room: currentChat?.email});
         }
-    }, [user]);
+    }, [user, currentChat]);
 
     useEffect(() => {
         getAllChats();
@@ -111,8 +111,7 @@ function AdminChat() {
     useEffect(() => {
         socketAdmin.on('updateChatStatus', ({data}) => {
             if (data) {
-                console.log(1);
-                console.log(1, data);
+                alert('Успешно удалено');
             }
         });
         // eslint-disable-next-line
@@ -245,13 +244,13 @@ function AdminChat() {
                                     {item?.role === 'USER' ? (
                                         <div className="massegeStyleAdminChat">
                                             <p>
-                                                {item?.nickname}: {item?.message} <div className="posMassegeses">{item?.time}</div>
+                                                {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
                                             </p>
                                         </div>
                                     ) : (
                                         <div className="massegeStyleAdminChat">
                                             <p>
-                                                {item?.administratorName}: {item?.message} <div className="posMassegeses">{item?.time}</div>
+                                                {item?.administratorName}: {item?.message} <span className="posMassegeses">{item?.time}</span>
                                             </p>
                                         </div>
                                     )}
@@ -264,6 +263,7 @@ function AdminChat() {
                                     placeholder="Введите сообщение"
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
+                                    onKeyDown={(e) => e.key === 'Enter' && sendMessageToAdmin()}
                                 ></input>
                                 <button className="buttonAdminChat" onClick={sendMessageToAdmin}>
                                     Отправить
