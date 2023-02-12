@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { axiosGetAdminChats, axiosDeleteAdminChat } from '../../../api/axios';
 import { reducerTypes } from '../../../store/Users/types';
+import { adminChatNewMessageMock } from '../../mock/OutputMock';
 
 function AllChats() {
     const dispatch = useDispatch();
@@ -45,12 +46,12 @@ function AllChats() {
                 ?.filter((el) => (search ? el?.email?.toLowerCase()?.includes(search) || el?.nickname?.toLowerCase()?.includes(search) : true))
                 ?.sort((a, b) => (sortId ? a.id - b.id : b.id - a.id))
         );
-    }, [adminChat, search]);
+    }, [adminChat, search, sortId]);
 
-    useEffect(() => {
-        getAllChats();
-        // eslint-disable-next-line
-    }, [user]);
+    // useEffect(() => {
+    //     getAllChats();
+    //     // eslint-disable-next-line
+    // }, [user]);
 
     return (
         <>
@@ -109,6 +110,7 @@ function AllChats() {
             {chats?.slice(page * itemsPerPage, (page + 1) * itemsPerPage)?.map((item, index) => (
                 <div style={{ marginTop: '5px', borderRadius: '5px' }} className="tabl-flex-admin-user" key={item?.id}>
                     <div
+                        onClick={() => navigate(`/adminPanel/chat/${user?.email}`)}
                         style={{
                             textAlign: 'center',
                             width: '80px',
@@ -138,6 +140,7 @@ function AllChats() {
                         {item?.nickname}
                     </div>
                     <div
+                        onClick={() => navigate(`/adminPanel/chat/${user?.email}`)}
                         style={{
                             textAlign: 'center',
                             width: '155px',
@@ -152,6 +155,7 @@ function AllChats() {
                         {item?.email}
                     </div>
                     <div
+                        onClick={() => navigate(`/adminPanel/chat/${user?.email}`)}
                         style={{
                             textAlign: 'center',
                             width: '210px',
@@ -159,13 +163,15 @@ function AllChats() {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            color: (item?.newMessage === 1) ? 'red' : 'white',
                         }}
                         className="output-date"
                     >
-                        {item?.newMessage}
+                        {adminChatNewMessageMock[item?.newMessage - 1]}
                     </div>
                     <div
+                        onClick={() => navigate(`/adminPanel/chat/${user?.email}`)}
                         style={{
                             textAlign: 'center',
                             width: '155px',
@@ -180,6 +186,7 @@ function AllChats() {
                         {item?.deleteChatTime}
                     </div>
                     <div
+                        onClick={() => navigate(`/adminPanel/chat/${user?.email}`)}
                         style={{
                             textAlign: 'center',
                             width: '155px',
