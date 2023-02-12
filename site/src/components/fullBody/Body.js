@@ -17,7 +17,6 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Chat from './Chat';
 import {useAppSelector} from '../../store/reduxHooks';
-import {useState} from 'react';
 import {Carousel} from 'react-bootstrap';
 import StarIcon from '@mui/icons-material/Star';
 

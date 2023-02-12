@@ -10,7 +10,6 @@ import {useAppSelector} from '../../store/reduxHooks';
 import {useDispatch} from 'react-redux';
 import {reducerTypes} from '../../store/Users/types';
 import {socket} from '../Main';
-import Rating from '@mui/material/Rating';
 import RadioGroupRating from './RadioGroupRating';
 
 
