@@ -432,6 +432,7 @@ input::-webkit-inner-spin-button {
     color: white;
     width: 967px;
     height: 100vh;
+    position: relative;
 }
 
 .tabl-flex-admin-button-global2 {
