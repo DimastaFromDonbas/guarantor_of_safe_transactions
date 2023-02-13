@@ -6,7 +6,7 @@ import { useAppSelector } from "../../store/reduxHooks";
 import { useDispatch } from "react-redux";
 import Chat from "./Chat";
 import { useNavigate, useParams } from "react-router-dom";
-import { socket } from "../Main";
+import { socket } from "../../App";
 import { reducerTypes } from "../../store/Users/types";
 import { axiosGetDealMessages, axiosGetOneDeal, axiosChangeDealStatus, axiosDecreaseScore, axiosIncreaseScore } from "../../api/axios";
 import { dealStatusMock } from "../mock/OutputMock";

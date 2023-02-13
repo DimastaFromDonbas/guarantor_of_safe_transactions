@@ -8,7 +8,7 @@ import { useAppSelector } from '../../store/reduxHooks';
 import { axiosGetWallet } from '../../api/axios';
 import { reducerTypes } from '../../store/Users/types';
 import { useDispatch } from 'react-redux';
-import { socket } from '../Main';
+import { socket } from '../../App';
 
 function Payments() {
     const navigate = useNavigate();

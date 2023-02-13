@@ -9,7 +9,7 @@ import { axiosGetMessagestoAdmin, axiosGetOneChat } from '../../api/axios';
 import { useAppSelector } from '../../store/reduxHooks';
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from '../../store/Users/types';
-import { socket } from '../Main';
+import { socket } from '../../App';
 import RadioGroupRating from './RadioGroupRating';
 
 function Chat() {
@@ -64,6 +64,7 @@ function Chat() {
             if (!message && reader?.result == 'data: ') return alert('Сообщение не может быть пустым');
             socket.emit('sendMessageToAdmin', { nickname: user?.nickname, email: user?.email, time, message, image: reader?.result || null });
             localStorage.setItem('chatrate', '')
+            localStorage.setItem('messagetoadminLength', String(messageToAdmin?.length + 1));
             setUserMessage('');
             setImage(null)
             setNumberOfObjects("+")

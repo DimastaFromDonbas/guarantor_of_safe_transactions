@@ -127,7 +127,7 @@ function AdminChat() {
 
     useEffect(() => {
         socketAdmin.on('location', ({ data }) => {
-            if (adminMessage?.includes(data)) return;
+            if (adminMessage?.includes(data) || !data?.message) return;
             dispatch({
                 type: reducerTypes.GET_ADMIN_MESSAGE,
                 payload: [...adminMessage, data]
@@ -287,30 +287,33 @@ function AdminChat() {
                             ref={chatRef}
                         >
                             {adminMessage
-                                ?.map((item) => (
-                                    <div key={item?.id}>
-                                        {item?.role === 'USER' && item?.nickname === "location" ? (
-                                            <div className="massegeStyleUserChatLocation">
-                                                <p style={{ display: 'flex', alignItems: "center", gap: '5px', justifyContent: "center" }}>
-                                                    Посетитель открыл страницу: {getLocation(item?.message)} <span className="posMassegeses">{item?.time}</span>
-                                                </p>
-                                            </div>
-                                        ) : item?.role === 'USER' ? (
-                                            <div className="massegeStyleUserChat">
-                                                <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                                                    {item?.image && item?.image !== "data:" ? <ImageModal src={item?.image} /> : null}
-                                                    {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
-                                                </p>
-                                            </div>
-                                        ) : (
-                                            <div className="massegeStyleAdminChat">
-                                                <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                                                    {item?.message} : {item?.administratorName} <span className="posMassegeses">{item?.time}</span>
-                                                </p>
-                                            </div>
-                                        )}
-                                    </div>
-                                ))}
+                                ?.map((item) => {
+                                    if (!item?.administratorName && !item?.message && !item?.image) return;
+                                    return (
+                                        <div key={item?.id}>
+                                            {item?.role === 'USER' && item?.nickname === "location" ? (
+                                                <div className="massegeStyleUserChatLocation">
+                                                    <p style={{ display: 'flex', alignItems: "center", gap: '5px', justifyContent: "center" }}>
+                                                        Посетитель открыл страницу: {getLocation(item?.message)} <span className="posMassegeses">{item?.time}</span>
+                                                    </p>
+                                                </div>
+                                            ) : item?.role === 'USER' ? (
+                                                <div className="massegeStyleUserChat">
+                                                    <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                                                        {item?.image && item?.image !== "data:" ? <ImageModal src={item?.image} /> : null}
+                                                        {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
+                                                    </p>
+                                                </div>
+                                            ) : (
+                                                <div className="massegeStyleAdminChat">
+                                                    <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                                                        {item?.message} : {item?.administratorName} <span className="posMassegeses">{item?.time}</span>
+                                                    </p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )
+                                })}
                         </div>
                         <div style={{ position: 'absolute', bottom: '0px', width: '100%' }}>
                             <input

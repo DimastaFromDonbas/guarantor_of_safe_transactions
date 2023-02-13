@@ -13,7 +13,7 @@ import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Chat from "./Chat";
 import { useAppSelector } from "../../store/reduxHooks";
-import { socket } from "../Main";
+import { socket } from "../../App";
 import { useEffect } from 'react'
 
 function Howitwork() {

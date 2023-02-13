@@ -8,7 +8,7 @@ import { axiosCreateDeal } from "../../api/axios"
 import validator from 'validator';
 import Chat from "./Chat"
 import { useNavigate } from "react-router-dom"
-import { socket } from "../Main"
+import { socket } from "../../App"
 
 function Makedeal() {
     const navigate = useNavigate()

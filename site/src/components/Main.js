@@ -7,33 +7,10 @@ import { useAppSelector } from "../store/reduxHooks";
 import { axiosGetUserTransfers, axiosGetUserToUserTransfers } from "../api/axios";
 import { useEffect, useRef } from "react";
 import { reducerTypes } from "../store/Users/types";
-import io from "socket.io-client";
-import sound from '../sound/newMessage.mp3';
-
-export const socket = io.connect("localhost:5000");
-
-// const ScrollDemo = () => {
-//   const myRef = useRef(null)
-
-//   const executeScroll = () => myRef.current.scrollIntoView()    
-//   // run this function from an event handler or an effect to execute scroll 
-
-//   return (
-//      <> 
-//         <div ref={myRef}>Element to scroll to</div> 
-//         <button onClick={executeScroll}> Click to scroll </button> 
-//      </>
-//   )
-// }
 
 function Main() {
   const dispatch = useDispatch();
   const { user } = useAppSelector((store) => store.user)
-  const audioPlayer = useRef(null);
-
-  function playAudio() {
-    audioPlayer.current.play();
-  }
 
   async function getTransfers() {
     if (!user?.email) return;
@@ -59,15 +36,7 @@ function Main() {
     // eslint-disable-next-line
   }, [user])
 
-  useEffect(() => {
-    socket.on('messageToAdmin', ({ data }) => {
-      if (!data?.nickname) playAudio();
-    });
-    // eslint-disable-next-line
-  }, []);
-
   return <div className="bg-img" >
-    <audio ref={audioPlayer} src={sound} />
     <Header />
     <Body />
     <Footer />

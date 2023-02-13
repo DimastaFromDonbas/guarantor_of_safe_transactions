@@ -20,7 +20,7 @@ import { useAppSelector } from '../../store/reduxHooks';
 import { Carousel } from 'react-bootstrap';
 import StarIcon from '@mui/icons-material/Star';
 import { useEffect } from 'react';
-import { socket } from '../Main';
+import { socket } from '../../App';
 
 function Body() {
     const { user, nameTheSite } = useAppSelector((store) => store.user);

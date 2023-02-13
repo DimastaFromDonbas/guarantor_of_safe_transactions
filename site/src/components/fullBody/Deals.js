@@ -10,7 +10,7 @@ import { reducerTypes } from "../../store/Users/types";
 import { useDispatch } from 'react-redux';
 import Chat from "./Chat";
 import { dealStatusMock } from "../mock/OutputMock";
-import { socket } from "../Main";
+import { socket } from "../../App";
 
 function Deals() {
     const navigate = useNavigate()

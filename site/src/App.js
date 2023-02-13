@@ -23,11 +23,29 @@ import TransfersID from "./components/fullBody/adminComponent/TransfersID";
 import TransfersToUserID from "./components/fullBody/adminComponent/TransfersToUserID";
 import Disputes from "./components/fullBody/Disputes";
 import AdminChat from "./components/fullBody/adminComponent/AdminChat";
-//import {Helmet} from "react-helmet";
+import io from "socket.io-client";
+import { useEffect, useRef } from "react";
+import sound from './sound/newMessage.mp3';
+
+export const socket = io.connect("localhost:5000");
 
 function App() {
+  const audioPlayer = useRef(null);
+
+  function playAudio() {
+    audioPlayer.current.play();
+  }
+
+  useEffect(() => {
+    socket.on('messageToAdmin', ({ data }) => {
+      if (!data?.nickname) playAudio();
+    });
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <>
+      <audio ref={audioPlayer} src={sound} />
       {/* <Helmet>
         <meta charSet="utf-8" />
         <link rel="shortcut icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico" />

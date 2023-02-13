@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
 import Chat from "./Chat";
 import { axiosGetUserTransfers, axiosGetUserToUserTransfers } from "../../api/axios";
-import { socket } from "../Main";
+import { socket } from "../../App";
 
 function SystemMessages() {
 
