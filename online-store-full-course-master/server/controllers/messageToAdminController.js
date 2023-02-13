@@ -23,7 +23,9 @@ class MessageToAdminController {
         if (!adminChat) {
             return console.log('Ошибка создания чата')
         }
-        await AdminChat.update({ statusForUser: 1, newMessage: 1 }, { where: { id: adminChat.id } })
+        if (nickname !== 'location') {
+            await AdminChat.update({ statusForUser: 1, newMessage: 1 }, { where: { id: adminChat.id } })
+        }
         const messageToAdmin = await MessageToAdmin.create({ nickname, email, role: 'USER', administratorName: '', message: message || '', time, statusForUser: 1, chatId: adminChat.id })
         if (!messageToAdmin) {
             return console.log('Ошибка отправки сообщение')
