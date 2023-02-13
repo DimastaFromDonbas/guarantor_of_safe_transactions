@@ -33,7 +33,7 @@ function App() {
   const audioPlayer = useRef(null);
 
   function playAudio() {
-    audioPlayer.current.play();
+    audioPlayer?.current?.play();
   }
 
   useEffect(() => {

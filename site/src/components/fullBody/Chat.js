@@ -61,7 +61,7 @@ function Chat() {
                 setImage(null)
                 return alert("Отправлять можно только изображения!")
             }
-            if (!message && reader?.result == 'data: ') return alert('Сообщение не может быть пустым');
+            if (!message && reader?.result === 'data:') return alert('Сообщение не может быть пустым');
             socket.emit('sendMessageToAdmin', { nickname: user?.nickname, email: user?.email, time, message, image: reader?.result || null });
             localStorage.setItem('chatrate', '')
             localStorage.setItem('messagetoadminLength', String(messageToAdmin?.length + 1));
