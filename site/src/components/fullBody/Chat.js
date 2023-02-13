@@ -22,9 +22,11 @@ function Chat() {
     const [image, setImage] = useState(null);
     const [close, setClose] = useState(false);
     const [chatStatus, setChatStatus] = useState(1);
+    const [numberOfObjects, setNumberOfObjects] = useState("+")
 
     const handleChange = e => {
         setImage(e.target.files[0]);
+        setNumberOfObjects(1)
     };
 
     async function getChatStatus() {
@@ -64,6 +66,7 @@ function Chat() {
             localStorage.setItem('chatrate', '')
             setUserMessage('');
             setImage(null)
+            setNumberOfObjects("+")
         }
     }
 
@@ -189,7 +192,7 @@ function Chat() {
                             ></input>
                             <input className="fileInput" name="file" id="file" multiple type='file' onChange={handleChange}></input>
                             <label htmlFor="file">
-                                <span>+</span>
+                                <span>{numberOfObjects}</span>
                             </label>
                             <Button
                                 size="large"
