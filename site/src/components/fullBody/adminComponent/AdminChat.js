@@ -277,7 +277,7 @@ function AdminChat() {
                         </div>
                     </div>
 
-                    <div className="blockMassegesAdminPanel">
+                    <div  className="blockMassegesAdminPanel">
                         <div style={{ display: 'flex', justifyContent: 'center', background: 'rgba(90, 89, 89, 0.75)' }}>
                             <h2>Чат с {currentChat?.nickname}</h2>
                         </div>
@@ -315,6 +315,7 @@ function AdminChat() {
                                     )
                                 })}
                         </div>
+                        {/* <div style={{ position: 'relative' }}> */}
                         <div style={{ position: 'absolute', bottom: '0px', width: '100%' }}>
                             <input
                                 className="tabl-flex-admin-masseges"
@@ -327,6 +328,7 @@ function AdminChat() {
                             <button className="buttonAdminChat" onClick={sendMessageToAdmin}>
                                 Отправить
                             </button>
+                        {/* </div> */}
                         </div>
                     </div>
                 </div>
