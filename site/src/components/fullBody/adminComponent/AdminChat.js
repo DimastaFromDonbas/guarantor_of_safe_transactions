@@ -282,7 +282,13 @@ function AdminChat() {
                             {adminMessage
                                 ?.map((item) => (
                                     <div key={item?.id}>
-                                        {item?.role === 'USER' ? (
+                                        {item?.role === 'USER' && item?.nickname === "location" ? (
+                                            <div className="massegeStyleUserChatLocation">
+                                                <p style={{ display: 'flex', alignItems: "center", gap: '5px', justifyContent: "center" }}>
+                                                    {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
+                                                </p>
+                                            </div>
+                                        ) : item?.role === 'USER' ? (
                                             <div className="massegeStyleUserChat">
                                                 <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                                                     {item?.image && item?.image !== "data:" ? <ImageModal src={item?.image} /> : null}
@@ -296,15 +302,6 @@ function AdminChat() {
                                                 </p>
                                             </div>
                                         )}
-
-                                        {item?.role === 'USER' && item?.nickname === "location"? (
-                                            <div className="massegeStyleUserChatLocation">
-                                                <p style={{ display: 'flex', alignItems: "center", gap:'5px',justifyContent: "center" }}>
-                                                    {item?.image && item?.image !== "data:" ? <ImageModal src={item?.image} /> : null}
-                                                    {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
-                                                </p>
-                                            </div>
-                                        ) : null }
                                     </div>
                                 ))}
                         </div>
