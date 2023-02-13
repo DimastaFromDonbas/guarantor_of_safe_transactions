@@ -384,6 +384,15 @@ input::-webkit-inner-spin-button {
     padding: 5px 15px;
 }
 
+.massegeStyleUserChatLocation {
+    font-size: 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px 15px;
+}
+
 .styleSizeChat {
     font-size: 22px;
 }

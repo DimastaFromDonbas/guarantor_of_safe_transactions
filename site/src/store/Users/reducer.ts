@@ -96,8 +96,34 @@ export const INITIAL: IUsersReducer = {
             updatedAt: 'string',
         },
     ],
-    adminMessage: [],
-    messageToAdmin: [],
+    adminMessage: [{
+        id: 1,
+        nickname: "location",
+        email: "string",
+        administratorName: "location",
+        role: "string",
+        statusForUser: 1,
+        time: "string",
+        message: "string",
+        chatId: 1,
+        image: "string",
+        createdAt: "string",
+        updatedAt: "string"
+    }],
+    messageToAdmin: [{
+        id: 1,
+        nickname: "231",
+        email: "string",
+        administratorName: "location",
+        role: "string",
+        statusForUser: 1,
+        time: "string",
+        message: "string",
+        chatId: 1,
+        image: "string",
+        createdAt: "string",
+        updatedAt: "string"
+    }],
 };
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {

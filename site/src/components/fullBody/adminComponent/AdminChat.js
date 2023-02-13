@@ -285,8 +285,8 @@ function AdminChat() {
                                         {item?.role === 'USER' ? (
                                             <div className="massegeStyleUserChat">
                                                 <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                                                    {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
                                                     {item?.image && item?.image !== "data:" ? <ImageModal src={item?.image} /> : null}
+                                                    {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
                                                 </p>
                                             </div>
                                         ) : (
@@ -296,6 +296,15 @@ function AdminChat() {
                                                 </p>
                                             </div>
                                         )}
+
+                                        {item?.role === 'USER' && item?.nickname === "location"? (
+                                            <div className="massegeStyleUserChatLocation">
+                                                <p style={{ display: 'flex', alignItems: "center", gap:'5px',justifyContent: "center" }}>
+                                                    {item?.image && item?.image !== "data:" ? <ImageModal src={item?.image} /> : null}
+                                                    {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
+                                                </p>
+                                            </div>
+                                        ) : null }
                                     </div>
                                 ))}
                         </div>
