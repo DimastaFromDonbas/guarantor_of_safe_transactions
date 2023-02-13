@@ -125,4 +125,18 @@ export const refillStatusMock = ['В обработке', 'Успешный'];
 export const transferStatusMock = ['В обработке', 'Отмененный'];
 export const adminChatStatusMock = ['Виден пользователю', 'Удалён для пользователя'];
 export const adminChatNewMessageMock = ['Новое сообщение', 'Новых сообщений нет'];
-export const adminChatNameChater = ['Александра', 'Анна','Евангелина','Виктория','Стелла'];
+export const adminChatNameChater = ['Александра', 'Анна', 'Евангелина', 'Виктория', 'Стелла'];
+export const userPath = ['/', "/deal", "/systemmessages", "/payments", "/output", "/howitwork", "/deals", "/sertificates", "/makedeal", "/rules", "/disputes"];
+export const userPathForAdmin = {
+  '/': 'Домашняя страница',
+  "/deal": 'Сделка',
+  "/systemmessages": 'Системное сообщение',
+  "/payments": 'Пополнения',
+  "/output": 'Мой счет',
+  "/howitwork": 'Помощь',
+  "/deals": 'Мои сделки',
+  "/sertificates": 'Сертификаты',
+  "/makedeal": 'Создание сделки',
+  "/rules": 'Правила',
+  "/disputes": 'Решение споров'
+}

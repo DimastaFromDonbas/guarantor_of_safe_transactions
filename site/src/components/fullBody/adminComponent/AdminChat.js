@@ -5,7 +5,7 @@ import { axiosGetAdminChats, axiosGetMessagestoAdmin } from '../../../api/axios'
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
 import { socketAdmin } from '../AdminPanel';
-import { adminChatStatusMock } from '../../mock/OutputMock';
+import { adminChatStatusMock, userPath, userPathForAdmin } from '../../mock/OutputMock';
 import sound from '../../../sound/newMessage.mp3';
 import { ImageModal } from './ImageForChat';
 
@@ -24,6 +24,13 @@ function AdminChat() {
 
     function playAudio() {
         audioPlayer?.current?.play();
+    }
+
+    function getLocation(message) {
+        if (!message) return;
+        const locationArray = userPath.filter((el, index) => message.includes(el))
+        const location = locationArray[locationArray.length - 1]
+        return userPathForAdmin[location]
     }
 
     async function getAllChats() {
@@ -285,7 +292,7 @@ function AdminChat() {
                                         {item?.role === 'USER' && item?.nickname === "location" ? (
                                             <div className="massegeStyleUserChatLocation">
                                                 <p style={{ display: 'flex', alignItems: "center", gap: '5px', justifyContent: "center" }}>
-                                                    {item?.nickname}: {item?.message} <span className="posMassegeses">{item?.time}</span>
+                                                    Посетитель открыл страницу: {getLocation(item?.message)} <span className="posMassegeses">{item?.time}</span>
                                                 </p>
                                             </div>
                                         ) : item?.role === 'USER' ? (
