@@ -110,7 +110,7 @@ function AllChats() {
             {chats?.slice(page * itemsPerPage, (page + 1) * itemsPerPage)?.map((item, index) => (
                 <div style={{ marginTop: '5px', borderRadius: '5px' }} className="tabl-flex-admin-user" key={item?.id}>
                     <div
-                        onClick={() => navigate(`/adminPanel/chat/${user?.email}`)}
+                        onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}
                         style={{
                             textAlign: 'center',
                             width: '80px',
@@ -134,13 +134,13 @@ function AllChats() {
                             justifyContent: 'center',
                             cursor: 'pointer'
                         }}
-                        onClick={() => navigate(`/adminPanel/chat/${user?.email}`)}
+                        onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}
                         className="output-id"
                     >
                         {item?.nickname}
                     </div>
                     <div
-                        onClick={() => navigate(`/adminPanel/chat/${user?.email}`)}
+                        onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}
                         style={{
                             textAlign: 'center',
                             width: '155px',
@@ -155,7 +155,7 @@ function AllChats() {
                         {item?.email}
                     </div>
                     <div
-                        onClick={() => navigate(`/adminPanel/chat/${user?.email}`)}
+                        onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}
                         style={{
                             textAlign: 'center',
                             width: '210px',
@@ -171,7 +171,7 @@ function AllChats() {
                         {adminChatNewMessageMock[item?.newMessage - 1]}
                     </div>
                     <div
-                        onClick={() => navigate(`/adminPanel/chat/${user?.email}`)}
+                        onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}
                         style={{
                             textAlign: 'center',
                             width: '155px',
@@ -186,7 +186,7 @@ function AllChats() {
                         {item?.deleteChatTime}
                     </div>
                     <div
-                        onClick={() => navigate(`/adminPanel/chat/${user?.email}`)}
+                        onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}
                         style={{
                             textAlign: 'center',
                             width: '155px',

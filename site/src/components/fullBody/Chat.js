@@ -33,7 +33,7 @@ function Chat() {
         if (!user?.email) return;
         const result = await axiosGetOneChat(user?.email, user?.password);
         if (result?.statusForUser) {
-            setChatStatus(result?.statusForUser)
+            setChatStatus(result?.statusForUser || 1)
         }
     }
 
@@ -146,8 +146,8 @@ function Chat() {
                         </div>
                         <div style={{ overflow: 'overlay', maxHeight: '400px' }} ref={chatRef}>
                             {messageToAdmin
-                                ?.filter((el) => el.statusForUser !== 2)
-                                ?.filter(el => el.nickname !== 'location')
+                                ?.filter((el) => el?.statusForUser !== 2)
+                                ?.filter(el => el?.nickname !== 'location')
                                 ?.map((item) => (
                                     <div key={item?.id}>
                                         {item?.role === 'USER' ? (

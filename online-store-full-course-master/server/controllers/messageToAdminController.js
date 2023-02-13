@@ -14,7 +14,7 @@ class MessageToAdminController {
             return console.log('Пользователь не найден')
         }
         let adminChat = await AdminChat.findOne({ where: { email } })
-        if (!adminChat || nickname === 'location') {
+        if (!adminChat && nickname === 'location') {
             return console.log('Чат не создан')
         }
         if (!adminChat) {
