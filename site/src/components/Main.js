@@ -5,7 +5,7 @@ import '../style/body.css'
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from "../store/reduxHooks";
 import { axiosGetUserTransfers, axiosGetUserToUserTransfers } from "../api/axios";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { reducerTypes } from "../store/Users/types";
 
 function Main() {

@@ -172,6 +172,7 @@ function Chat() {
                                         )}
                                     </div>
                                 ))}
+                            {/* eslint-disable-next-line*/}
                             {(!!localStorage.getItem('chatrate') || !!close) || (chatStatus == 1) ? null : <div style={{ background: "#ffffff33", display: 'flex', padding: '15px 5px', gap: '10px', justifyContent: "center" }}>
                                 <h3 style={{ color: 'black', fontSize: '18px', margin: '0px', padding: '0px' }}>Оцените нашу работу</h3> <RadioGroupRating setClose={setClose} />
                             </div>}

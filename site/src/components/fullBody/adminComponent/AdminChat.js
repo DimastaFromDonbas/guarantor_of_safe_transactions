@@ -288,7 +288,7 @@ function AdminChat() {
                         >
                             {adminMessage
                                 ?.map((item) => {
-                                    if (!item?.administratorName && !item?.message && !item?.image) return;
+                                    if (!item?.administratorName && !item?.message && !item?.image) return '';
                                     return (
                                         <div key={item?.id}>
                                             {item?.role === 'USER' && item?.nickname === "location" ? (
