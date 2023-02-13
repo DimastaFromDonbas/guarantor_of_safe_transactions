@@ -147,7 +147,7 @@ function Makedeal() {
                                 value={name}
                                 onChange={(e) => nameFull(e)}
                             />
-                            {errorName && <div style={{ textAlign: "center", color: 'red' }}>{errorName}</div>}
+                            {errorName && <span style={{ textAlign: "center", color: 'red' }}>{errorName}</span>}
                         </div>
                     </div>
                 </div>
