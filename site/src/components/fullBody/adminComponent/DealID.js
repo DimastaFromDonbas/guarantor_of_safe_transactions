@@ -81,7 +81,7 @@ function DealID() {
     );
     if (result) {
       sendAdminMessage(
-        `Администратор сменил статус сделки на: ${dealStatusMock[
+        `Гарант сменил статус сделки на: ${dealStatusMock[
           statusDeal - 1
         ]?.toLowerCase()}`
       );
@@ -105,9 +105,9 @@ function DealID() {
 
   useEffect(() => {
     if (user?.role === 'USER' || user?.role === null || user?.role === '' || user?.role === undefined) {
-        navigate("/")
+      navigate("/")
     }
-}, [user?.role, navigate, user])
+  }, [user?.role, navigate, user])
 
   useEffect(() => {
     getAllDeals();
