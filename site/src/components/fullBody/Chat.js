@@ -44,10 +44,13 @@ function Chat() {
         if (result) {
             dispatch({
                 type: reducerTypes.GET_MESSAGE_TO_ADMIN,
-                payload: result.sort((a, b) => a.id - b.id)
+                payload: result?.filter(item => item.nickname !== 'location')?.sort((a, b) => a.id - b.id)
             });
             const resultLength = Number(localStorage.getItem('messagetoadminLength')) || 0;
-            if (result?.length > resultLength) setNewMessage(true);
+            if (result?.length > resultLength) {
+                console.log(2, result?.length, resultLength)
+                setNewMessage(true)
+            };
         }
     }
 
@@ -101,6 +104,7 @@ function Chat() {
                 type: reducerTypes.GET_MESSAGE_TO_ADMIN,
                 payload: [...messageToAdmin, data]
             });
+            console.log(1)
             setNewMessage(true);
             setChatStatus(1);
         });
@@ -123,6 +127,14 @@ function Chat() {
         }
         // eslint-disable-next-line
     }, [messageToAdmin, checked]);
+
+    useEffect(() => {
+        const length = localStorage.getItem('messagetoadminLength')
+        if (length && messageToAdmin) {
+            Number(length) >= messageToAdmin.length && setNewMessage(false)
+        }
+        // eslint-disable-next-line
+    }, [messageToAdmin]);
 
     return (
         <>
