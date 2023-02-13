@@ -44,7 +44,7 @@ function Chat() {
         if (result) {
             dispatch({
                 type: reducerTypes.GET_MESSAGE_TO_ADMIN,
-                payload: result.sort((a, b) => a.id - b.id)
+                payload: result?.filter(item => item.nickname !== 'location')?.sort((a, b) => a.id - b.id)
             });
             const resultLength = Number(localStorage.getItem('messagetoadminLength')) || 0;
             if (result?.length > resultLength) {
