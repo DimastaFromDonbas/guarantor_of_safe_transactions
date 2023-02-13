@@ -435,6 +435,12 @@ input::-webkit-inner-spin-button {
     position: relative;
 }
 
+.css-1prob85 {
+    width: 60px !important;
+    height: 60px !important;
+    color: white !important;
+}
+
 .tabl-flex-admin-button-global2 {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
