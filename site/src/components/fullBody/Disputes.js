@@ -9,7 +9,7 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import Chat from "./Chat";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useEffect } from 'react';
-import { socket } from "../Main";
+import { socket } from "../../App";
 
 function Disputes() {
     const { user } = useAppSelector((store) => store.user);

@@ -2,17 +2,18 @@ import Footer from './Footer';
 import Header from './Header';
 import Monero from '../../image/monero-xmr-logo.svg';
 import Chat from './Chat';
-import {useNavigate} from 'react-router-dom';
-import {useEffect} from 'react';
-import {useAppSelector} from '../../store/reduxHooks';
-import {axiosGetWallet} from '../../api/axios';
-import {reducerTypes} from '../../store/Users/types';
-import {useDispatch} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppSelector } from '../../store/reduxHooks';
+import { axiosGetWallet } from '../../api/axios';
+import { reducerTypes } from '../../store/Users/types';
+import { useDispatch } from 'react-redux';
+import { socket } from '../../App';
 
 function Payments() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {user, criptoWallet} = useAppSelector((store) => store.user);
+    const { user, criptoWallet } = useAppSelector((store) => store.user);
 
     useEffect(() => {
         if (user?.checkRu !== 'true') {
@@ -25,7 +26,7 @@ function Payments() {
         if (result) {
             dispatch({
                 type: reducerTypes.GET_CRIPTO_WALLET,
-                payload: {wallet: result}
+                payload: { wallet: result }
             });
             localStorage.setItem('siteWallet', result);
         }
@@ -35,6 +36,13 @@ function Payments() {
         getWallet();
         // eslint-disable-next-line
     }, []);
+
+    useEffect(() => {
+        if (!user?.email) return;
+        const time = new Date().toLocaleString().replaceAll(',', '');
+        socket.emit('location', { email: user?.email, location: document?.location?.pathname, time });
+        // eslint-disable-next-line
+    }, [user]);
 
     return (
         <div className="bg-img">
@@ -50,7 +58,7 @@ function Payments() {
                     </div>
                     <div className="payments">
                         <h2 className="header-title-thre mt-5">
-                            <img alt="img-monero" style={{width: '25px'}} src={Monero}></img> Пополнение счета Monero (XMR)
+                            <img alt="img-monero" style={{ width: '25px' }} src={Monero}></img> Пополнение счета Monero (XMR)
                         </h2>
                         <div className="text-free">
                             Кошелек Monero (XMR) для пополнения:

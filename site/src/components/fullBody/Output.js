@@ -13,7 +13,7 @@ import { reducerTypes } from "../../store/Users/types";
 import { useDispatch } from "react-redux";
 import Chat from "./Chat";
 import { paymant, transferStatusMock } from "../mock/OutputMock";
-import { socket } from "../Main";
+import { socket } from "../../App";
 
 
 function Output() {

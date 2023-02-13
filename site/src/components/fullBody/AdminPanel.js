@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import SetNameTheSite from "./adminComponent/SetNameTheSite";
 import io from "socket.io-client";
 import AllChats from "./adminComponent/AllChats";
-import { axiosGetAdminChats } from "../../api/axios";
+import { axiosGetAdminChats, axiosGetAllDeal } from "../../api/axios";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
 import sound from '../../sound/newMessage.mp3';
@@ -22,12 +22,23 @@ function AdminPanel() {
     const [item, setItem] = useState()
     const [checkNewMessage, setCheckNewMessage] = useState(false)
     const [statebackground, setStatebackground] = useState(!!localStorage.getItem('backroundImg'))
-    const { user, adminChat } = useAppSelector((store) => store.user)
+    const { user, adminChat, allDeals } = useAppSelector((store) => store.user)
     const navigate = useNavigate()
     const audioPlayer = useRef(null);
+    const [checkDeals, setCheckDeals] = useState(false)
 
     function playAudio() {
         audioPlayer.current.play();
+    }
+
+    async function getAllDeals() {
+        const data = await axiosGetAllDeal();
+        if (data) {
+            dispatch({
+                type: reducerTypes.GET_ALL_DEALS,
+                payload: data,
+            });
+        }
     }
 
     async function getAllChats() {
@@ -103,6 +114,29 @@ function AdminPanel() {
         }
     }, [user]);
 
+    useEffect(() => {
+        getAllDeals();
+        // eslint-disable-next-line 
+    }, [user])
+
+    useEffect(() => {
+        if (!allDeals) return;
+        const result = allDeals?.some(item => item?.status === 5)
+        if (result) {
+            console.log('result', result, allDeals)
+            setCheckDeals(result)
+        }
+
+        // eslint-disable-next-line 
+    }, [allDeals])
+
+    useEffect(() => {
+        socketAdmin.on("changeDealStatus", ({ data }) => {
+            if (data?.check) getAllDeals();
+        });
+        // eslint-disable-next-line
+    }, []);
+
     return <div style={{ minHeight: '100vh' }}>
         <audio ref={audioPlayer} src={sound} />
         <div style={{ display: 'flex', minHeight: '100vh' }} className={!statebackground ? 'styleAdminPanel' : 'styleAdminPanel2'}>
@@ -110,7 +144,7 @@ function AdminPanel() {
                 <button onClick={(e) => visibleItem(e)} name='0' className={item === 0 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
                     <h4>ВСЕ ПОЛЬЗОВАТЕЛИ</h4>
                 </button>
-                <button onClick={(e) => visibleItem(e)} name='1' className={item === 1 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
+                <button onClick={(e) => visibleItem(e)} name='1' className={item === 1 ? "block_user_panel activ-block-admin" : "block_user_panel"} style={{ color: checkDeals ? 'red' : 'white' }}>
                     <h4>ВСЕ СДЕЛКИ</h4>
                 </button>
                 <button onClick={(e) => visibleItem(e)} name='2' className={item === 2 ? "block_user_panel activ-block-admin" : "block_user_panel"}>

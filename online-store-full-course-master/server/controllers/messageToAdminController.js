@@ -7,23 +7,26 @@ class MessageToAdminController {
     async create(req, res, next) {
         const { nickname, email, time, message, image } = req.body
         if (!nickname || !email || !time) {
-            return next(ApiError.badRequest('Введите все данные'))
+            return console.log('Введите все данные')
         }
         const user = await User.findOne({ where: { email } })
         if (!user) {
-            return next(ApiError.badRequest('Пользователь не найден'))
+            return console.log('Пользователь не найден')
         }
         let adminChat = await AdminChat.findOne({ where: { email } })
+        if (!adminChat && nickname === 'location') {
+            return console.log('Чат не создан')
+        }
         if (!adminChat) {
             adminChat = await AdminChat.create({ nickname, email, statusForUser: 1, newMessage: 1 })
         }
         if (!adminChat) {
-            return next(ApiError.badRequest('Ошибка создания чата'))
+            return console.log('Ошибка создания чата')
         }
         await AdminChat.update({ statusForUser: 1, newMessage: 1 }, { where: { id: adminChat.id } })
         const messageToAdmin = await MessageToAdmin.create({ nickname, email, role: 'USER', administratorName: '', message: message || '', time, statusForUser: 1, chatId: adminChat.id })
         if (!messageToAdmin) {
-            return next(ApiError.badRequest('Ошибка отправки сообщение'))
+            return console.log('Ошибка отправки сообщение')
         }
         if (image) {
             const result = await MessageToAdmin.update({ image }, { where: { id: messageToAdmin.id } })
@@ -35,23 +38,23 @@ class MessageToAdminController {
     async createForAdmin(req, res, next) {
         const { administratorName, time, message, id, adminEmail, adminPassword } = req.body
         if (!administratorName || !time || !message || !id || !adminEmail || !adminPassword) {
-            return next(ApiError.badRequest('Введите все данные'))
+            return console.log('Введите все данные')
         }
 
         const admin = await User.findOne({ where: { email: adminEmail } })
         if (!admin) {
-            return next(ApiError.internal('Админ не найден'))
+            return console.log('Админ не найден')
         }
         let comparePassword = bcrypt.compareSync(adminPassword, admin.password)
         if (!comparePassword) {
-            return next(ApiError.internal('Указан неверный пароль'))
+            return console.log('Указан неверный пароль')
         }
         if (admin.role === 'USER') {
-            return next(ApiError.badRequest('Нет доступа'))
+            return console.log('Нет доступа')
         }
         let adminChat = await AdminChat.findOne({ where: { id } })
         if (!adminChat) {
-            return next(ApiError.badRequest('Чат не найден'))
+            return console.log('Чат не найден')
         }
         await AdminChat.update({ statusForUser: 1, newMessage: 2 }, { where: { id: adminChat.id } })
         const messageToAdmin = await MessageToAdmin.create({ nickname: '', email: adminChat.email, role: 'ADMIN', administratorName, message, time, statusForUser: 1, chatId: adminChat.id })

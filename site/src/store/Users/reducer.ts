@@ -35,19 +35,7 @@ export interface IUsersReducer {
 }
 
 export const INITIAL: IUsersReducer = {
-    user: {
-        id: 1,
-        email: 'user104@gmail.com',
-        password: '1234567a',
-        role: 'ADMIN',
-        score: 10000,
-        nickname: 'Sasha',
-        systemMessage: 'true',
-        checkRu: 'true',
-        minimumTransferAmount: 5000,
-        sumTransferAmoumt: 1000,
-        completed: 0,
-    },
+    user: {},
     deals: [],
     refill: {},
     myRefills: [],
@@ -56,21 +44,7 @@ export const INITIAL: IUsersReducer = {
     transfers: [],
     transfersToUser: [],
     dealMessages: [],
-    allUsers: [
-        {
-            id: 1,
-            email: 'user104@gmail.com',
-            password: '1234567a',
-            role: 'ADMIN',
-            score: 10000,
-            nickname: 'Sasha',
-            systemMessage: 'true',
-            checkRu: 'true',
-            minimumTransferAmount: 5000,
-            sumTransferAmoumt: 1000,
-            completed: 0,
-        },
-    ],
+    allUsers: [],
     allDeals: [],
     allRefills: [],
     allTransfers: [],
@@ -82,48 +56,9 @@ export const INITIAL: IUsersReducer = {
     criptoWallet: {
         wallet: localStorage.getItem('siteWallet') || '',
     },
-    adminChat: [
-        {
-            id: 12,
-            nickname: 'ivarBolles',
-            email: 'string',
-            statusForUser: 1,
-            deleteChatTime: 'string',
-            rate: 1,
-            newMessage: 1,
-            userId: 1,
-            createdAt: 'string',
-            updatedAt: 'string',
-        },
-    ],
-    adminMessage: [{
-        id: 1,
-        nickname: "location",
-        email: "string",
-        administratorName: "location",
-        role: "string",
-        statusForUser: 1,
-        time: "string",
-        message: "string",
-        chatId: 1,
-        image: "string",
-        createdAt: "string",
-        updatedAt: "string"
-    }],
-    messageToAdmin: [{
-        id: 1,
-        nickname: "231",
-        email: "string",
-        administratorName: "location",
-        role: "string",
-        statusForUser: 1,
-        time: "string",
-        message: "string",
-        chatId: 1,
-        image: "string",
-        createdAt: "string",
-        updatedAt: "string"
-    }],
+    adminChat: [],
+    adminMessage: [],
+    messageToAdmin: [],
 };
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {

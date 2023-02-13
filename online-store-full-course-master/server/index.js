@@ -50,6 +50,7 @@ io.on("connection", (socket) => {
     if (dealId && message && time) {
       dealMessageController.create({ body: { dealId, nickname: 'Admin', email: 'admin@gmail.com', message, time, role: "ADMIN" } })
       io.to(String(dealId)).emit("adminMessage", { data: { dealId, nickname: 'Admin', email: 'admin@gmail.com', message, time, role: "ADMIN" } });
+      io.to(String(1)).emit("changeDealStatus", { data: { check: true } });
     } else console.log('Send message fail')
   });
 

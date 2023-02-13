@@ -7,7 +7,7 @@ import sert3 from '../../image/pci-dss-compliant.png'
 import sert4 from '../../image/bitmap.png'
 import { useAppSelector } from "../../store/reduxHooks";
 import { useEffect } from 'react'
-import { socket } from "../Main"
+import { socket } from "../../App"
 
 function Sertificates() {
 

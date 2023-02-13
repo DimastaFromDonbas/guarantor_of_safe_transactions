@@ -9,7 +9,7 @@ import { axiosGetMessagestoAdmin, axiosGetOneChat } from '../../api/axios';
 import { useAppSelector } from '../../store/reduxHooks';
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from '../../store/Users/types';
-import { socket } from '../Main';
+import { socket } from '../../App';
 import RadioGroupRating from './RadioGroupRating';
 
 function Chat() {
@@ -33,7 +33,7 @@ function Chat() {
         if (!user?.email) return;
         const result = await axiosGetOneChat(user?.email, user?.password);
         if (result?.statusForUser) {
-            setChatStatus(result?.statusForUser)
+            setChatStatus(result?.statusForUser || 1)
         }
     }
 
@@ -61,9 +61,10 @@ function Chat() {
                 setImage(null)
                 return alert("Отправлять можно только изображения!")
             }
-            if (!message && reader?.result == 'data: ') return alert('Сообщение не может быть пустым');
+            if (!message && reader?.result === 'data:') return alert('Сообщение не может быть пустым');
             socket.emit('sendMessageToAdmin', { nickname: user?.nickname, email: user?.email, time, message, image: reader?.result || null });
             localStorage.setItem('chatrate', '')
+            localStorage.setItem('messagetoadminLength', String(messageToAdmin?.length + 1));
             setUserMessage('');
             setImage(null)
             setNumberOfObjects("+")
@@ -145,8 +146,8 @@ function Chat() {
                         </div>
                         <div style={{ overflow: 'overlay', maxHeight: '400px' }} ref={chatRef}>
                             {messageToAdmin
-                                ?.filter((el) => el.statusForUser !== 2)
-                                ?.filter(el => el.nickname !== 'location')
+                                ?.filter((el) => el?.statusForUser !== 2)
+                                ?.filter(el => el?.nickname !== 'location')
                                 ?.map((item) => (
                                     <div key={item?.id}>
                                         {item?.role === 'USER' ? (
@@ -171,6 +172,7 @@ function Chat() {
                                         )}
                                     </div>
                                 ))}
+                            {/* eslint-disable-next-line*/}
                             {(!!localStorage.getItem('chatrate') || !!close) || (chatStatus == 1) ? null : <div style={{ background: "#ffffff33", display: 'flex', padding: '15px 5px', gap: '10px', justifyContent: "center" }}>
                                 <h3 style={{ color: 'black', fontSize: '18px', margin: '0px', padding: '0px' }}>Оцените нашу работу</h3> <RadioGroupRating setClose={setClose} />
                             </div>}
