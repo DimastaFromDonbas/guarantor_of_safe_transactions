@@ -1,16 +1,16 @@
-import {StyledInput} from '../../../style/styles';
+import { StyledInput } from '../../../style/styles';
 // import { useAppSelector } from "../../store/reduxHooks";
-import {useState, useEffect} from 'react';
-import {useAppSelector} from '../../../store/reduxHooks';
-import {axiosGetWallet, axiosUpdateName} from '../../../api/axios';
-import {axiosGetName} from '../../../api/axios';
-import {useDispatch} from 'react-redux';
-import {reducerTypes} from '../../../store/Users/types';
-import {useNavigate} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useAppSelector } from '../../../store/reduxHooks';
+import { axiosGetWallet, axiosUpdateName, axiosUpdateWallet } from '../../../api/axios';
+import { axiosGetName } from '../../../api/axios';
+import { useDispatch } from 'react-redux';
+import { reducerTypes } from '../../../store/Users/types';
+import { useNavigate } from 'react-router-dom';
 function SetNameTheSite() {
     //const {user, nameTheSite} = useAppSelector ((store) => store.user)
     const dispatch = useDispatch();
-    const {user, nameTheSite, criptoWallet} = useAppSelector((store) => store.user);
+    const { user, nameTheSite, criptoWallet } = useAppSelector((store) => store.user);
     const [nameSite, setNameSite] = useState('');
     const [walletSite, setWalletSite] = useState('');
     const navigate = useNavigate();
@@ -22,19 +22,19 @@ function SetNameTheSite() {
             alert('Успешно');
             dispatch({
                 type: reducerTypes.GET_NAME_THE_SITE,
-                payload: {name: result}
+                payload: { name: result }
             });
         }
     }
 
     async function updateWallet() {
         if (!walletSite) return alert('Введите кошелек');
-        const result = await axiosUpdateName(walletSite, user?.email, user?.password);
+        const result = await axiosUpdateWallet(walletSite, user?.email, user?.password);
         if (result) {
             alert('Успешно');
             dispatch({
                 type: reducerTypes.GET_CRIPTO_WALLET,
-                payload: {wallet: result}
+                payload: { wallet: result }
             });
         }
     }
@@ -44,7 +44,7 @@ function SetNameTheSite() {
         if (result) {
             dispatch({
                 type: reducerTypes.GET_NAME_THE_SITE,
-                payload: {name: result}
+                payload: { name: result }
             });
             localStorage.setItem('siteName', result);
         }
@@ -55,7 +55,7 @@ function SetNameTheSite() {
         if (result) {
             dispatch({
                 type: reducerTypes.GET_CRIPTO_WALLET,
-                payload: {wallet: result}
+                payload: { wallet: result }
             });
             localStorage.setItem('siteWallet', result);
         }
@@ -83,8 +83,8 @@ function SetNameTheSite() {
 
     return (
         <>
-            <h3 style={{textAlign: 'center'}}>Предыдущее название: {nameTheSite?.name}</h3>
-            <h3 style={{textAlign: 'center'}}>СМЕНА НАЗВАНИЯ САЙТА И КОШЕЛЬКА</h3>
+            <h3 style={{ textAlign: 'center' }}>Предыдущее название: {nameTheSite?.name}</h3>
+            <h3 style={{ textAlign: 'center' }}>СМЕНА НАЗВАНИЯ САЙТА И КОШЕЛЬКА</h3>
 
             <div
                 style={{
@@ -114,7 +114,7 @@ function SetNameTheSite() {
                 </div>
             </div>
 
-            <h3 style={{textAlign: 'center', marginTop: '20px'}}>Предыдущее название: {criptoWallet?.wallet}</h3>
+            <h3 style={{ textAlign: 'center', marginTop: '20px' }}>Предыдущее название: {criptoWallet?.wallet}</h3>
             <div
                 style={{
                     display: 'flex',
