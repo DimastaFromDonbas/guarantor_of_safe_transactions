@@ -84,7 +84,7 @@ function SetNameTheSite() {
     return (
         <>
             <h3 style={{textAlign: 'center'}}>Предыдущее название: {nameTheSite?.name}</h3>
-            <h3 style={{textAlign: 'center'}}>СМЕНА НАЗВАНИЯ САЙТА </h3>
+            <h3 style={{textAlign: 'center',marginTop:'20px'}}>СМЕНА НАЗВАНИЯ САЙТА</h3>
 
             <div
                 style={{
@@ -115,7 +115,7 @@ function SetNameTheSite() {
             </div>
 
             <h3 style={{textAlign: 'center', marginTop: '20px'}}>Предыдущее название: {criptoWallet?.wallet}</h3>
-            <h3 style={{textAlign: 'center'}}>СМЕНА НАЗВАНИЯ КОШЕЛЬКА</h3>
+            <h3 style={{textAlign: 'center',marginTop:'20px'}}>СМЕНА НАЗВАНИЯ КОШЕЛЬКА</h3>
             <div
                 style={{
                     display: 'flex',

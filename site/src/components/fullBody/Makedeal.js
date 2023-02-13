@@ -40,8 +40,8 @@ function Makedeal() {
 
     function calcSum(e) {
         setSum(Number(e.currentTarget.value))
-        setComis(Number(e.currentTarget.value) * 0.07)
-        setFullSum(Number(e.currentTarget.value * 0.07) + Number(e.currentTarget.value))
+        setComis(Number(e.currentTarget.value) * 0.15)
+        setFullSum(Number(e.currentTarget.value * 0.15) + Number(e.currentTarget.value))
     }
 
     function sumFull(e) {
