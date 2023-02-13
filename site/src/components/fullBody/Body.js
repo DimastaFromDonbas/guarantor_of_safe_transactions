@@ -38,15 +38,9 @@ function Body() {
             <div className="promo-description container">
                 <div className="block-main-v1">
                     <h1>{nameTheSite.name} - лучший гарант безопасных сделок!</h1>
-                    {user?.id ? (
-                        <Link style={{ textDecoration: 'none' }} to="/makedeal">
-                            <button className="btn-class-v1">Открыть новую сделку</button>
-                        </Link>
-                    ) : (
-                        <Link style={{ textDecoration: 'none' }} to="/login">
-                            <button className="btn-class-v1">Открыть новую сделку</button>
-                        </Link>
-                    )}
+                    <Link style={{ textDecoration: 'none' }} to={`${user?.id ? 'makedeal' : '/login'}`}>
+                        <button className="btn-class-v1">Открыть новую сделку</button>
+                    </Link>
                 </div>
                 <ul className="ist-promo">
                     <li className="list-promo-item">
