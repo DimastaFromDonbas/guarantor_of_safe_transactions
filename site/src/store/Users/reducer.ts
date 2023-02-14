@@ -35,19 +35,7 @@ export interface IUsersReducer {
 }
 
 export const INITIAL: IUsersReducer = {
-    user: {
-        id: 1,
-        email: "ivar@gmail.com",
-        password: "Dima22002112a",
-        role: 'ADMIN',
-        score: 10000,
-        nickname: "Ivar",
-        systemMessage: "string",
-        checkRu: "true",
-        minimumTransferAmount: null,
-        sumTransferAmoumt: null,
-        completed: null,
-    },
+    user: {},
     deals: [],
     refill: {},
     myRefills: [],
@@ -68,6 +56,7 @@ export const INITIAL: IUsersReducer = {
     criptoWallet: {
         wallet: localStorage.getItem('siteWallet') || '',
     },
+
     adminChat: [],
     adminMessage: [],
     messageToAdmin: [],
