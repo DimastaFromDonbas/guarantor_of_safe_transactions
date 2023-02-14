@@ -61,6 +61,7 @@ function Output() {
     }
 
     async function createTransfer() {
+        if (user?.systemMessage === 'true') return alert('Ваш аккаунт не верифицирован')
         if (user?.score < score) return alert('Недостаточно средств')
         const result = await axiosCreateUserTransfer(currentPaymant.paymentSystem, walletNumber, score, user?.email, user?.nickname, user?.password)
         if (typeof result === 'string') {
@@ -76,6 +77,7 @@ function Output() {
     }
 
     async function createTransferToUser() {
+        if (user?.systemMessage === 'true') return alert('Ваш аккаунт не верифицирован')
         if (user?.score < receiverScore) return alert('Недостаточно средств')
         const result = await axiosCreateUserToUserTransfer(receiverScore, user?.email, user?.nickname, receiver, user?.password)
         if (typeof result === 'string') {

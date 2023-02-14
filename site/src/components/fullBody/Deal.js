@@ -10,6 +10,7 @@ import { socket } from "../../App";
 import { reducerTypes } from "../../store/Users/types";
 import { axiosGetDealMessages, axiosGetOneDeal, axiosChangeDealStatus, axiosDecreaseScore, axiosIncreaseScore } from "../../api/axios";
 import { dealStatusMock } from "../mock/OutputMock";
+import sound from '../../sound/newMessage.mp3';
 
 function Deal() {
   const navigate = useNavigate()
@@ -20,6 +21,17 @@ function Deal() {
   const { id } = useParams();
   const [deal, setDeal] = useState(deals?.filter(item => String(item.id) === id)[0])
   const chatRef = useRef(null);
+  const audioPlayer = useRef(null);
+
+  function playAudio() {
+    try {
+      if (audioPlayer) {
+        audioPlayer.current.play();
+      }
+    } catch {
+      console.log('Ошибка воспроизведения аудио, обновите страницу')
+    }
+  }
 
   function sendMessage() {
     const time = new Date().toLocaleString().replaceAll(',', '')
@@ -111,6 +123,7 @@ function Deal() {
         type: reducerTypes.GET_DEAL_MESSAGES,
         payload: [...dealMessages, data]
       });
+      if (data?.email !== user?.email) playAudio();
     });
     // eslint-disable-next-line
   }, [dealMessages]);
@@ -133,6 +146,7 @@ function Deal() {
         type: reducerTypes.GET_DEAL_MESSAGES,
         payload: [...dealMessages, data]
       });
+      if (data?.email !== user?.email) playAudio();
     });
     getDeal();
     // eslint-disable-next-line
@@ -159,6 +173,7 @@ function Deal() {
   }, [user]);
 
   return <div className="bg-img">
+    <audio ref={audioPlayer} src={sound} />
     <Header />
     <Chat />
     <div style={{ marginBottom: '20px', marginTop: "30px" }} className='container heiggg'>
