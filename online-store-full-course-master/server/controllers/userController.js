@@ -1,49 +1,49 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {User, Deal, UserTransfer, UserTransferToUser} = require('../models/models')
+const { User, Deal, UserTransfer, UserTransferToUser } = require('../models/models')
 
 const generateJwt = (id, email, role, nickname, score, password, systemMessage, checkRu, minimumTransferAmount, sumTransferAmoumt, completed) => {
     return jwt.sign(
-        {id, email, role, nickname, score, password, systemMessage, checkRu, minimumTransferAmount, sumTransferAmoumt, completed},
+        { id, email, role, nickname, score, password, systemMessage, checkRu, minimumTransferAmount, sumTransferAmoumt, completed },
         process.env.SECRET_KEY,
-        {expiresIn: '24h'}
+        { expiresIn: '24h' }
     )
 }
 
 class UserController {
     async registration(req, res, next) {
-        const {email, password, nickname, checkRu} = req.body
+        const { email, password, nickname, checkRu } = req.body
         if (!email || !password || !nickname) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const candidate = await User.findOne({where: {email}})
+        const candidate = await User.findOne({ where: { email } })
         if (candidate) {
             return next(ApiError.badRequest('Пользователь с таким email уже существует'))
         }
-        const checkNickname = await User.findOne({where: {nickname}})
+        const checkNickname = await User.findOne({ where: { nickname } })
         if (checkNickname) {
             return next(ApiError.badRequest('Пользователь с таким именем уже существует'))
         }
         const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({email, role: 'USER', password: hashPassword, nickname, checkRu})
+        const user = await User.create({ email, role: 'USER', password: hashPassword, nickname, checkRu })
         const systemMessage = 'false'
-        const token = generateJwt(user.id, 
-            user.email, 
-            user.role, 
-            user.nickname, 
-            user.score, password, 
-            systemMessage, 
-            user.checkRu, 
-            user.minimumTransferAmount, 
+        const token = generateJwt(user.id,
+            user.email,
+            user.role,
+            user.nickname,
+            user.score, password,
+            systemMessage,
+            user.checkRu,
+            user.minimumTransferAmount,
             user.sumTransferAmoumt,
             user.completed)
-        return res.json({token})
+        return res.json({ token })
     }
 
     async login(req, res, next) {
-        const {email, password} = req.body
-        const user = await User.findOne({where: {email}}) ?? await User.findOne({where: {nickname: email}})
+        const { email, password } = req.body
+        const user = await User.findOne({ where: { email } }) ?? await User.findOne({ where: { nickname: email } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
@@ -52,23 +52,23 @@ class UserController {
 
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const token = generateJwt(user.id, 
-            user.email, 
-            user.role, 
-            user.nickname, 
-            user.score, 
-            password, 
-            user.systemMessage, 
-            user.checkRu, 
-            user.minimumTransferAmount, 
+        const token = generateJwt(user.id,
+            user.email,
+            user.role,
+            user.nickname,
+            user.score,
+            password,
+            user.systemMessage,
+            user.checkRu,
+            user.minimumTransferAmount,
             user.sumTransferAmoumt,
             user.completed)
-        return res.json({token})
+        return res.json({ token })
     }
 
     async check(req, res, next) {
-        const {email, password} = req.user
-        const user = await User.findOne({where: {email}}) ?? await User.findOne({where: {nickname: email}})
+        const { email, password } = req.user
+        const user = await User.findOne({ where: { email } }) ?? await User.findOne({ where: { nickname: email } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
@@ -78,23 +78,23 @@ class UserController {
             return next(ApiError.internal('Указан неверный пароль'))
         }
 
-        const token = generateJwt(user.id, 
-            user.email, 
-            user.role, 
-            user.nickname, 
-            user.score, 
-            password, 
-            user.systemMessage, 
-            user.checkRu, 
-            user.minimumTransferAmount, 
+        const token = generateJwt(user.id,
+            user.email,
+            user.role,
+            user.nickname,
+            user.score,
+            password,
+            user.systemMessage,
+            user.checkRu,
+            user.minimumTransferAmount,
             user.sumTransferAmoumt,
             user.completed)
-        return res.json({token})
+        return res.json({ token })
     }
 
     async changeNickname(req, res, next) {
-        const {nickname, id, password} = req.body
-        const user = await User.findOne({where: {id}})
+        const { nickname, id, password } = req.body
+        const user = await User.findOne({ where: { id } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
@@ -102,21 +102,21 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const checkNickname = await User.findOne({where: {nickname}})
+        const checkNickname = await User.findOne({ where: { nickname } })
         if (checkNickname) {
             return next(ApiError.badRequest('Пользователь с таким именем уже существует'))
         }
         if (nickname) {
-            await User.update({nickname: nickname}, {where: {id: id}})
-           return res.json({...user.dataValues, nickname: nickname})
+            await User.update({ nickname: nickname }, { where: { id: id } })
+            return res.json({ ...user.dataValues, nickname: nickname })
         } else {
             return next(ApiError.internal('Указано неверное имя пользователя'))
         }
     }
 
     async changePassword(req, res, next) {
-        const {newPassword, id, password} = req.body
-        const user = await User.findOne({where: {id}})
+        const { newPassword, id, password } = req.body
+        const user = await User.findOne({ where: { id } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
@@ -126,20 +126,20 @@ class UserController {
         }
         if (newPassword) {
             const hashPassword = await bcrypt.hash(newPassword, 5)
-            await User.update({password: hashPassword}, {where: {id: id}})
-           return res.json({...user.dataValues, password: newPassword})
+            await User.update({ password: hashPassword }, { where: { id: id } })
+            return res.json({ ...user.dataValues, password: newPassword })
         } else {
             return next(ApiError.internal('Указан неверный id пользователя'))
         }
     }
 
     async changeRole(req, res, next) {
-        const {role, id, creatorEmail, creatorPassword} = req.body
-        const user = await User.findOne({where: {id}})
+        const { role, id, creatorEmail, creatorPassword } = req.body
+        const user = await User.findOne({ where: { id } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
-        const creator = await User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({ where: { email: creatorEmail } })
         if (!creator) {
             return next(ApiError.internal('Админ не найден'))
         }
@@ -147,25 +147,25 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role === 'USER' || 
-        creator.role === 'CHATER' || 
-        (role === 'MODERATOR' && creator.role !== 'ADMIN') || 
-        (user.role === 'MODERATOR' && creator.role !== 'MODERATOR') ||
-        role === 'ADMIN' || 
-        user.role === 'ADMIN'){
+        if (creator.role === 'USER' ||
+            creator.role === 'CHATER' ||
+            (role === 'MODERATOR' && creator.role !== 'ADMIN') ||
+            (user.role === 'MODERATOR' && creator.role !== 'MODERATOR') ||
+            role === 'ADMIN' ||
+            user.role === 'ADMIN') {
             return next(ApiError.badRequest('Нет доступа'))
         }
-          const updatedUser = await User.update({role}, {where: {id}})
-           return res.json(updatedUser)
+        const updatedUser = await User.update({ role }, { where: { id } })
+        return res.json(updatedUser)
     }
 
     async changeScore(req, res, next) {
-        const {score, id, creatorEmail, creatorPassword} = req.body
-        const user = await User.findOne({where: {id}})
+        const { score, id, creatorEmail, creatorPassword } = req.body
+        const user = await User.findOne({ where: { id } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
-        const creator = await User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({ where: { email: creatorEmail } })
         if (!creator) {
             return next(ApiError.internal('Админ не найден'))
         }
@@ -173,20 +173,20 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role === 'USER'){
+        if (creator.role === 'USER') {
             return next(ApiError.badRequest('Нет доступа'))
         }
-           const updatedUser = await User.update({score}, {where: {id}})
-           return res.json(updatedUser)
+        const updatedUser = await User.update({ score }, { where: { id } })
+        return res.json(updatedUser)
     }
 
     async changeSystemMessage(req, res, next) {
-        const {systemMessage, id, creatorEmail, creatorPassword} = req.body
-        const user = await User.findOne({where: {id}})
+        const { systemMessage, id, creatorEmail, creatorPassword } = req.body
+        const user = await User.findOne({ where: { id } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
-        const creator = await User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({ where: { email: creatorEmail } })
         if (!creator) {
             return next(ApiError.internal('Админ не найден'))
         }
@@ -194,18 +194,18 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role === 'USER'){
+        if (creator.role === 'USER') {
             return next(ApiError.badRequest('Нет доступа'))
         }
-            await User.update({systemMessage}, {where: {id}})
-            await UserTransfer.update({status: systemMessage === 'true'? 2 : 1}, {where: {userEmail: user.email}})
-            await UserTransferToUser.update({status: systemMessage === 'true'? 2 : 1}, {where: {userEmail: user.email}})
-           return res.json({...user.dataValues, systemMessage})
+        await User.update({ systemMessage, score: user.score + sum }, { where: { id } })
+        await UserTransfer.update({ status: systemMessage === 'true' ? 2 : 1 }, { where: { userEmail: user.email } })
+        await UserTransferToUser.update({ status: systemMessage === 'true' ? 2 : 1 }, { where: { userEmail: user.email } })
+        return res.json({ ...user.dataValues, systemMessage })
     }
 
     async changeSystemMessageAtUser(req, res, next) {
-        const {email, password} = req.body
-        const user = await User.findOne({where: {email}})
+        const { email, password } = req.body
+        const user = await User.findOne({ where: { email } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
@@ -213,19 +213,28 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-            await User.update({systemMessage: 'true'}, {where: {email}})
-            await UserTransfer.update({status: 2}, {where: {userEmail: email}})
-            await UserTransferToUser.update({status: 2}, {where: {userEmail: email}})
-           return res.json({...user.dataValues, systemMessage: 'true', password})
+        let sum = 0
+        const userTransfer = await UserTransfer.findAll({ where: { userEmail: user.email, status: 1 } })
+        if (userTransfer) {
+            sum += userTransfer.reduce((sum, item) => sum + item.score, 0)
+        }
+        const userTransferToUser = await UserTransferToUser.findAll({ where: { userEmail: user.email, status: 1 } })
+        if (userTransferToUser) {
+            sum += userTransferToUser.reduce((sum, item) => sum + item.score, 0)
+        }
+        await User.update({ systemMessage: 'true', score: user.score + sum }, { where: { email } })
+        await UserTransfer.update({ status: 2 }, { where: { userEmail: email } })
+        await UserTransferToUser.update({ status: 2 }, { where: { userEmail: email } })
+        return res.json({ ...user.dataValues, systemMessage: 'true', password })
     }
 
     async changeCompleted(req, res, next) {
-        const {completed, id, creatorEmail, creatorPassword} = req.body
-        const user = await User.findOne({where: {id}})
+        const { completed, id, creatorEmail, creatorPassword } = req.body
+        const user = await User.findOne({ where: { id } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
-        const creator = await User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({ where: { email: creatorEmail } })
         if (!creator) {
             return next(ApiError.internal('Админ не найден'))
         }
@@ -233,20 +242,20 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role === 'USER'){
+        if (creator.role === 'USER') {
             return next(ApiError.badRequest('Нет доступа'))
         }
-           const updatedUser = await User.update({completed: Number(completed)}, {where: {id}})
-           return res.json(updatedUser)
+        const updatedUser = await User.update({ completed: Number(completed) }, { where: { id } })
+        return res.json(updatedUser)
     }
 
     async changeCheckRu(req, res, next) {
-        const {checkRu, id, creatorEmail, creatorPassword} = req.body
-        const user = await User.findOne({where: {id}})
+        const { checkRu, id, creatorEmail, creatorPassword } = req.body
+        const user = await User.findOne({ where: { id } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
-        const creator = await User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({ where: { email: creatorEmail } })
         if (!creator) {
             return next(ApiError.internal('Админ не найден'))
         }
@@ -254,19 +263,19 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role === 'USER'){
+        if (creator.role === 'USER') {
             return next(ApiError.badRequest('Нет доступа'))
         }
-            await User.update({checkRu}, {where: {id}})
-           return res.json({...user.dataValues, checkRu})
+        await User.update({ checkRu }, { where: { id } })
+        return res.json({ ...user.dataValues, checkRu })
     }
 
     async changeCheckRuUser(req, res, next) {
-        const {checkRu, email, password} = req.body
+        const { checkRu, email, password } = req.body
         if (!checkRu || !email || !password) {
             return next(ApiError.internal('Введите все данные'))
         }
-        const user = await User.findOne({where: {email}})
+        const user = await User.findOne({ where: { email } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
@@ -275,17 +284,17 @@ class UserController {
             return next(ApiError.internal('Указан неверный пароль'))
         }
 
-           await User.update({checkRu}, {where: {email}})
-           return res.json({...user.dataValues, password, checkRu})
+        await User.update({ checkRu }, { where: { email } })
+        return res.json({ ...user.dataValues, password, checkRu })
     }
 
     async changeTransferAmount(req, res, next) {
-        const {minimumTransferAmount, sumTransferAmoumt, id, creatorEmail, creatorPassword} = req.body
-        const user = await User.findOne({where: {id}})
+        const { minimumTransferAmount, sumTransferAmoumt, id, creatorEmail, creatorPassword } = req.body
+        const user = await User.findOne({ where: { id } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
-        const creator = await User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({ where: { email: creatorEmail } })
         if (!creator) {
             return next(ApiError.internal('Админ не найден'))
         }
@@ -293,31 +302,31 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role === 'USER'){
+        if (creator.role === 'USER') {
             return next(ApiError.badRequest('Нет доступа'))
         }
-            await User.update({minimumTransferAmount, sumTransferAmoumt}, {where: {id}})
-           return res.json({...user.dataValues, minimumTransferAmount, sumTransferAmoumt})
+        await User.update({ minimumTransferAmount, sumTransferAmoumt }, { where: { id } })
+        return res.json({ ...user.dataValues, minimumTransferAmount, sumTransferAmoumt })
     }
 
     async changeUser(req, res, next) {
-        const {id, 
-            role, 
-            score, 
-            systemMessage, 
-            checkRu, 
-            completed, 
-            minimumTransferAmount, 
-            creatorEmail, 
-            creatorPassword} = req.body
-            if (!id || !creatorEmail || !creatorPassword) {
-                return next(ApiError.badRequest('Введите все данные'))
-            }
-        const user = await User.findOne({where: {id}})
+        const { id,
+            role,
+            score,
+            systemMessage,
+            checkRu,
+            completed,
+            minimumTransferAmount,
+            creatorEmail,
+            creatorPassword } = req.body
+        if (!id || !creatorEmail || !creatorPassword) {
+            return next(ApiError.badRequest('Введите все данные'))
+        }
+        const user = await User.findOne({ where: { id } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
-        const creator = await User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({ where: { email: creatorEmail } })
         if (!creator) {
             return next(ApiError.internal('Админ не найден'))
         }
@@ -325,24 +334,26 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role !== 'ADMIN'){
+        if (creator.role !== 'ADMIN') {
             return next(ApiError.badRequest('Нет доступа'))
         }
-       const updatedUser = await User.update({role, 
-        score, 
-        systemMessage, 
-        checkRu, 
-        completed, 
-        minimumTransferAmount}, {where: {id}})
-           return res.json(updatedUser)
+        const updatedUser = await User.update({
+            role,
+            score,
+            systemMessage,
+            checkRu,
+            completed,
+            minimumTransferAmount
+        }, { where: { id } })
+        return res.json(updatedUser)
     }
 
     async decreaseUserScore(req, res, next) {
-        const {score, email, password} = req.body
+        const { score, email, password } = req.body
         if (!score || !email || !password) {
             return next(ApiError.internal('Введите все данные'))
         }
-        const user = await User.findOne({where: {email}})
+        const user = await User.findOne({ where: { email } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
@@ -350,20 +361,20 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(score > user.score){
+        if (score > user.score) {
             return next(ApiError.internal('Недостаточно средств'))
         }
-           await User.update({score: user.score - score}, {where: {email}})
-           return res.json({...user.dataValues, score: user.score - score, password})
+        await User.update({ score: user.score - score }, { where: { email } })
+        return res.json({ ...user.dataValues, score: user.score - score, password })
     }
 
     async increaseUserScore(req, res, next) {
-        const {id, email, password, receiver} = req.body
+        const { id, email, password, receiver } = req.body
         if (!id || !email || !password || !receiver) {
             return next(ApiError.internal('Введите все данные'))
         }
-        const user = await User.findOne({where: {email}})
-        const userReceiver = await User.findOne({where: {email: receiver}})
+        const user = await User.findOne({ where: { email } })
+        const userReceiver = await User.findOne({ where: { email: receiver } })
         if (!user || !userReceiver) {
             return next(ApiError.internal('Пользователь не найден'))
         }
@@ -371,24 +382,24 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const deal = await Deal.findOne({where: {id}})
+        const deal = await Deal.findOne({ where: { id } })
         if (!deal) {
             return next(ApiError.internal('Сделка не найдена'))
         }
-           await User.update({score: userReceiver.score + deal.sum}, {where: {email: receiver}})
-           return res.json({...userReceiver.dataValues, score: userReceiver.score + deal.sum})
+        await User.update({ score: userReceiver.score + deal.sum }, { where: { email: receiver } })
+        return res.json({ ...userReceiver.dataValues, score: userReceiver.score + deal.sum })
     }
 
     async deleteUsers(req, res, next) {
-        const {id, creatorEmail, creatorPassword} = req.body
+        const { id, creatorEmail, creatorPassword } = req.body
         if (!id || !creatorEmail || !creatorPassword) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const user = await User.findOne({where: {id}})
+        const user = await User.findOne({ where: { id } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
-        const creator = await User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({ where: { email: creatorEmail } })
         if (!creator) {
             return next(ApiError.internal('Админ не найден'))
         }
@@ -396,18 +407,18 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role !== 'ADMIN'){
+        if (creator.role !== 'ADMIN') {
             return next(ApiError.badRequest('Нет доступа'))
         }
-            await User.destroy({
-                where: {id}
-            })
-           return res.json({...user.dataValues})
+        await User.destroy({
+            where: { id }
+        })
+        return res.json({ ...user.dataValues })
     }
 
     async getAllUsers(req, res, next) {
         const users = await User.findAll()
-        return res.json({users})
+        return res.json({ users })
     }
 
 }
