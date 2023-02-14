@@ -7,10 +7,12 @@ import { useDispatch } from 'react-redux';
 import { axiosLogin } from "../../api/axios";
 import { reducerTypes } from "../../store/Users/types";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from '../../store/reduxHooks';
 
 function UserInput() {
 
     const dispatch = useDispatch();
+    const { user } = useAppSelector((store) => store.user)
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [emailDirty, setEmailDirty] = useState(false);
@@ -73,6 +75,14 @@ function UserInput() {
         });
         navigate('/')
       }
+
+      useEffect(() => {
+        if (user?.email === undefined) {
+            navigate("/login")
+        } else {
+          navigate("/")
+        }
+    }, [user?.email, navigate, user])
   
     return <div className="bg-img">
         <Header/>

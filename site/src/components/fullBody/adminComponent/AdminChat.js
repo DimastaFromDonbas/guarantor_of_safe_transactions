@@ -257,8 +257,6 @@ function AdminChat() {
                                     Изменить
                                 </button>
                             </div>
-                        </div>
-                        <div className="pages-user-box-2">
                             <div style={{ flexDirection: 'column', alignItems: 'center' }} className="pages-user-block">
                                 <h6 style={{ margin: '0', textAlign: 'center' }}>Выбор имени</h6>
                                 <select
@@ -274,6 +272,11 @@ function AdminChat() {
                                     <option value="Стелла">Стелла</option>
                                 </select>
                             </div>
+                        </div>
+                        <div className="pages-user-box-2">
+                            <button className='tabl-flex-admin-button-global3'>
+                                Присоедениться в чат 
+                            </button>
                         </div>
                     </div>
 

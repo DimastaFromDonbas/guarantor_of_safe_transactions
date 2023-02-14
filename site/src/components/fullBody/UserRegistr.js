@@ -9,10 +9,12 @@ import { axiosRegistration } from "../../api/axios";
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from "../../store/Users/types";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from '../../store/reduxHooks';
 
 
 function Login() {
     const dispatch = useDispatch();
+    const { user } = useAppSelector((store) => store.user)
     const navigate = useNavigate();
     const [nickname, setNickname] = useState("");
     const [login, setLogin] = useState("");
@@ -119,6 +121,14 @@ function Login() {
           setFormValid(true)
         }
       },[emailError, errorLogin ,passwordError,passwordNoChect,checked])
+
+      useEffect(() => {
+        if (user?.email === undefined) {
+            navigate("/registr")
+        } else {
+          navigate("/")
+        }
+    }, [user?.email, navigate, user])
 
     return <div className="bg-img">
         <Header/>

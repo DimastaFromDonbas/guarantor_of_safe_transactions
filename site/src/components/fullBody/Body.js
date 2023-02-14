@@ -25,6 +25,7 @@ import { socket } from '../../App';
 function Body() {
     const { user, nameTheSite } = useAppSelector((store) => store.user);
 
+
     useEffect(() => {
         if (!user?.email) return;
         const time = new Date().toLocaleString().replaceAll(',', '');
@@ -71,7 +72,7 @@ function Body() {
                         <PersonAddAltIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-3px' }}></PersonAddAltIcon>
                         <div>
                             <h4 className="header-inner_title">
-                                <Link className="link-hover-effects" to="/registr">
+                                <Link className="link-hover-effects" to={user?.email === undefined? '/registr': '/'}>
                                     Регистрация
                                 </Link>
                             </h4>
