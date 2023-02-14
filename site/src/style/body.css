@@ -164,7 +164,9 @@
 }
 
 .styleAdminPanel2 {
-    background: linear-gradient(122deg, #3c3b3b, #4d4d4b, #716f6f, #979793);
+    /* background: linear-gradient(122deg, #3c3b3b, #4d4d4b, #716f6f, #979793); */
+    background: url(../image/wallpaperflare.com_wallpaper-4.jpg) center fixed;
+    background-size: 100%;
 }
 
 .tabl-flex-admin {
