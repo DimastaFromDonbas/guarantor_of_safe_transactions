@@ -56,7 +56,7 @@ function Makedeal() {
     }
 
     function emailFull(e) {
-        if (!validator.isEmail(e.currentTarget.value)) {
+        if (e?.currentTarget?.value?.length < 5) {
             setErrorroleEmail('Логин введен не верно')
         } else {
             setErrorroleEmail('')
@@ -204,7 +204,7 @@ function Makedeal() {
                                 }}
                                 className="inpu-summary"
                                 type="number"
-                                inputmode="numeric"
+                                inputMode="numeric"
                                 id="inputTextSumma"
                             />
                             {errorSumm && <div style={{ textAlign: "center", color: 'red' }}>{errorSumm}</div>}

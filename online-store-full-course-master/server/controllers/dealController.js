@@ -1,36 +1,31 @@
 const ApiError = require('../error/ApiError');
-const {User, Deal} = require('../models/models')
+const { User, Deal } = require('../models/models')
 const bcrypt = require('bcrypt')
 
 class DealController {
     async create(req, res, next) {
-        const {name, buyer, buyerNickname, seller, sellerNickname , sum, description, creator} = req.body
-        if (!name || !buyer || !seller || !sum || !description || !creator) {
+        const { name, buyer, buyerNickname, seller, sellerNickname, sum, description, creator } = req.body
+        if (!name || (!buyer && !buyerNickname) || (!seller && !sellerNickname) || !sum || !description || !creator) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const checkBuyer = await User.findOne({where: {email: buyer}})
-        const checkSeller = await User.findOne({where: {email: seller}})
-        const checkCreator = await User.findOne({where: {email: creator}})
+        const checkBuyer = await User.findOne({ where: { email: buyer } }) || await User.findOne({ where: { nickname: buyer } })
+        const checkSeller = await User.findOne({ where: { email: seller } }) || await User.findOne({ where: { nickname: seller } })
+        const checkCreator = await User.findOne({ where: { email: creator } })
         if (!checkBuyer || !checkSeller || !checkCreator) {
-            return next(ApiError.badRequest('Покупатель или продавец с таким email не существует'))
+            return next(ApiError.badRequest('Покупатель или продавец не найден'))
         }
-        if (!buyerNickname && !sellerNickname) {
-            return next(ApiError.badRequest('Введите имя пользователя'))
-        }
-
-        const checkBuyerNickname = buyerNickname || checkBuyer.nickname
-        const checkSellerNickname = sellerNickname || checkSeller.nickname
 
         const deal = await Deal.create({
-            name, 
-            buyer, 
-            seller, 
-            sum, 
-            status: 1, 
-            description, 
-            buyerNickname: checkBuyerNickname, 
-            sellerNickname: checkSellerNickname,
-            creator})
+            name,
+            buyer: checkBuyer.email,
+            seller: checkSeller.email,
+            sum,
+            status: 1,
+            description,
+            buyerNickname: checkBuyer.nickname,
+            sellerNickname: checkSeller.nickname,
+            creator
+        })
         return res.json(deal)
     }
 
@@ -40,11 +35,11 @@ class DealController {
     }
 
     async getUserDeal(req, res, next) {
-        const {email, password} = req.body
-        if(!email || !password) {
+        const { email, password } = req.body
+        if (!email || !password) {
             return next(ApiError.badRequest('Некорректный email или password'))
         }
-        const user = await User.findOne({where: {email}})
+        const user = await User.findOne({ where: { email } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
@@ -52,9 +47,9 @@ class DealController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const dealBuyer = await Deal.findAll({where: {buyer: email}})
-        const dealSeller = await Deal.findAll({where: {seller: email}})
-        const deals = (dealBuyer && dealSeller) ? [...dealBuyer, ...dealSeller] : 
+        const dealBuyer = await Deal.findAll({ where: { buyer: email } })
+        const dealSeller = await Deal.findAll({ where: { seller: email } })
+        const deals = (dealBuyer && dealSeller) ? [...dealBuyer, ...dealSeller] :
             dealBuyer ? dealBuyer : dealSeller
         if (!deals) {
             return next(ApiError.internal('Сделки не найдены'))
@@ -63,22 +58,22 @@ class DealController {
     }
 
     async getOneDeal(req, res, next) {
-        const {id} = req.body
+        const { id } = req.body
 
-        const deal = await Deal.findOne({where: {id}})
+        const deal = await Deal.findOne({ where: { id } })
         if (!deal) {
             return next(ApiError.internal('Сделка не найдена'))
         }
         return res.json(deal)
     }
 
-    async changeDeal (req, res, next) {
-        const {id, name, sum, status, description, creatorEmail, creatorPassword} = req.body
+    async changeDeal(req, res, next) {
+        const { id, name, sum, status, description, creatorEmail, creatorPassword } = req.body
 
         if (!id || !name || !sum || !status || !description || !creatorEmail || !creatorPassword) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const creator = await User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({ where: { email: creatorEmail } })
         if (!creator) {
             return next(ApiError.internal('Админ не найден'))
         }
@@ -86,25 +81,25 @@ class DealController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role === 'USER'){
+        if (creator.role === 'USER') {
             return next(ApiError.badRequest('Нет доступа'))
         }
-        const deal = await Deal.findOne({where: {id}})
+        const deal = await Deal.findOne({ where: { id } })
         if (!deal) {
             return next(ApiError.internal('Сделка не найдена'))
         }
-        const updatedDeal = await Deal.update({name, sum, status, description}, {where: {id}})
+        const updatedDeal = await Deal.update({ name, sum, status, description }, { where: { id } })
 
         return res.json(updatedDeal)
     }
 
-    async changeDealStatus (req, res, next) {
-        const {id, status, email, password} = req.body
+    async changeDealStatus(req, res, next) {
+        const { id, status, email, password } = req.body
 
         if (!id || !status || !email || !password) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const creator = await User.findOne({where: {email: email}})
+        const creator = await User.findOne({ where: { email: email } })
         if (!creator) {
             return next(ApiError.internal('Пользователь не найден'))
         }
@@ -112,25 +107,25 @@ class DealController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const deal = await Deal.findOne({where: {id}})
+        const deal = await Deal.findOne({ where: { id } })
         if (!deal) {
             return next(ApiError.internal('Сделка не найдена'))
         }
-        if(!(deal.status + 1 === status) && status !== 5) {
+        if (!(deal.status + 1 === status) && status !== 5) {
             return next(ApiError.internal('Неверный статус'))
         }
-        const updatedDeal = await Deal.update({status}, {where: {id}})
+        const updatedDeal = await Deal.update({ status }, { where: { id } })
 
-        return res.json({...updatedDeal, status})
+        return res.json({ ...updatedDeal, status })
     }
 
     async deleteDeals(req, res, next) {
-        const {id, creatorEmail, creatorPassword} = req.body
-        const deal = await Deal.findOne({where: {id}})
+        const { id, creatorEmail, creatorPassword } = req.body
+        const deal = await Deal.findOne({ where: { id } })
         if (!deal) {
             return next(ApiError.internal('Сделка не найдена'))
         }
-        const creator = await User.findOne({where: {email: creatorEmail}})
+        const creator = await User.findOne({ where: { email: creatorEmail } })
         if (!creator) {
             return next(ApiError.internal('Админ не найден'))
         }
@@ -138,13 +133,13 @@ class DealController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        if(creator.role !== 'ADMIN'){
+        if (creator.role !== 'ADMIN') {
             return next(ApiError.badRequest('Нет доступа'))
         }
-            await Deal.destroy({
-                where: {id}
-            })
-           return res.json({...deal.dataValues})
+        await Deal.destroy({
+            where: { id }
+        })
+        return res.json({ ...deal.dataValues })
     }
 
 }
