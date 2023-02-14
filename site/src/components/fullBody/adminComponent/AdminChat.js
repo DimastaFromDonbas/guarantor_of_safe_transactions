@@ -70,10 +70,29 @@ function AdminChat() {
             adminPassword: user?.password
         });
         setMessage('');
-        const temporaryChat = adminChat?.filter((item) => item.email === email)[0];
+        const temporaryChat = adminChat?.map((item) => item.email === email ? { ...item, newMessage: 2 } : item);
         dispatch({
-            type: reducerTypes.GET_ADMIN_MESSAGE,
-            payload: [...adminMessage, { ...temporaryChat, newMessage: 2 }]
+            type: reducerTypes.GET_ADMIN_CHAT,
+            payload: temporaryChat
+        });
+    }
+
+    function sendSystemMessage() {
+        if (!user?.email) return alert('Войдите в аккаунт');
+        if (!currentChat?.id) return alert('Чат не найден');
+        const time = new Date().toLocaleString().replaceAll(',', '');
+        socketAdmin.emit('sendMessageFromAdmin', {
+            administratorName: 'system',
+            time,
+            message: 'Спасибо, что обратились к нам! Один из наших операторов скоро вам ответит',
+            id: currentChat?.id,
+            adminEmail: user?.email,
+            adminPassword: user?.password
+        });
+        const temporaryChat = adminChat?.map((item) => item.email === email ? { ...item, newMessage: 2 } : item);
+        dispatch({
+            type: reducerTypes.GET_ADMIN_CHAT,
+            payload: temporaryChat
         });
     }
 
@@ -274,13 +293,13 @@ function AdminChat() {
                             </div>
                         </div>
                         <div className="pages-user-box-2">
-                            <button className='tabl-flex-admin-button-global3'>
-                                Присоедениться в чат 
+                            <button className='tabl-flex-admin-button-global3' onClick={sendSystemMessage}>
+                                Присоединиться в чат
                             </button>
                         </div>
                     </div>
 
-                    <div  className="blockMassegesAdminPanel">
+                    <div className="blockMassegesAdminPanel">
                         <div style={{ display: 'flex', justifyContent: 'center', background: 'rgba(90, 89, 89, 0.75)' }}>
                             <h2>Чат с {currentChat?.nickname}</h2>
                         </div>
@@ -331,7 +350,7 @@ function AdminChat() {
                             <button className="buttonAdminChat" onClick={sendMessageToAdmin}>
                                 Отправить
                             </button>
-                        {/* </div> */}
+                            {/* </div> */}
                         </div>
                     </div>
                 </div>

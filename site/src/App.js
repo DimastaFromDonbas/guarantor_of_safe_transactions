@@ -38,7 +38,11 @@ function App() {
 
   useEffect(() => {
     socket.on('messageToAdmin', ({ data }) => {
-      if (!data?.nickname) playAudio();
+      try {
+        if (!data?.nickname) playAudio();
+      } catch {
+        console.log('Ошибка воспроизведения аудио, обновите страницу')
+      }
     });
     // eslint-disable-next-line
   }, []);

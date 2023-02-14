@@ -18,7 +18,7 @@ function Deals() {
     const { user, deals, checkAlertSystemMessage } = useAppSelector((store) => store.user)
 
     async function getDeal() {
-        if (!user.email) return alert('Войдите в аккаунт');
+        if (!user.email) return;
         dispatch({
             type: reducerTypes.GET_DEAL,
             payload: await axiosGetDeal(user?.email, user?.password)

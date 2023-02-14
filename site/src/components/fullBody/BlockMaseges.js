@@ -13,7 +13,7 @@ function BlockMaseges() {
         if (user?.checkRu === 'true') {
             navigate("/")
         }
-    }, [user])
+    }, [user, navigate])
 
 
     return <div className="bg-img">
