@@ -28,6 +28,7 @@ function Login() {
     const [checked , setChecked] = useState(true)
     const [ formValid, setFormValid] = useState(false);
     const [ errorLogin, setErrorLogin] = useState('');
+    const [ errorLoginLength, setEerrorLoginLength] = useState('');
     const [ errorEmail, setErrorEmail] = useState('');
 
     const blurHandler = (e) => {
@@ -42,10 +43,22 @@ function Login() {
         }
       }
 
+      function cheakLengthLogin(e) {
+        if(e.currentTarget.value.length < 5) {
+          setErrorLogin('Минимум 5 символов')
+        } else {
+          setErrorLogin('')
+        }
+      }
+
       function changeNickname(e) {
         const pattern = /^[a-zA-Z0-9]+$/;
         setNickname(e.currentTarget.value)
-        if (pattern.test(e.currentTarget.value) || e.currentTarget.value === '') {setErrorLogin('')} else setErrorLogin('Некорректные символы')
+        if (pattern.test(e.currentTarget.value) || e.currentTarget.value === '') {
+          setEerrorLoginLength('')
+        } else {
+          setEerrorLoginLength('Некорректные символы')
+        }
       }
   
       function loginUser(e) {
@@ -115,12 +128,12 @@ function Login() {
       },[password,passwordV2])
   
       useEffect(() => {
-        if(emailError || passwordError || passwordNoChect || checked || errorLogin) {
+        if(emailError || passwordError || passwordNoChect || checked || errorLogin || errorLoginLength) {
           setFormValid(false)
         } else {
           setFormValid(true)
         }
-      },[emailError, errorLogin ,passwordError,passwordNoChect,checked])
+      },[emailError, errorLogin ,passwordError,passwordNoChect,checked,errorLoginLength])
 
       useEffect(() => {
         if (user?.email === undefined) {
@@ -138,8 +151,9 @@ function Login() {
                 <Form className="width-form">
                     <Form.Group className="mb-3" controlId="formBasicEmailV1">
                     <Form.Label className="color-input-name">Имя пользователя</Form.Label>
-                    <Form.Control name='nickname' value={nickname} onChange={changeNickname} type="text" placeholder="" />
+                    <Form.Control name='nickname' value={nickname} onChange={(e) => {changeNickname(e);cheakLengthLogin(e)}} type="text" placeholder="" />
                     {errorLogin? <div style={{color: 'red'}}>{errorLogin}</div> : ''}
+                    {errorLoginLength? <div style={{color: 'red'}}>{errorLoginLength}</div> : ''}
                         <Form.Text className="text-muted">
                         Пожалуйста, используйте только латинские буквы.
                         </Form.Text>
