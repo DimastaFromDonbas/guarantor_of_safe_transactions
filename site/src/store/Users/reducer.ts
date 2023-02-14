@@ -35,7 +35,19 @@ export interface IUsersReducer {
 }
 
 export const INITIAL: IUsersReducer = {
-    user: {},
+    user: {
+        id: 1,
+        email: '104@gmail.com',
+        password: '1234567a',
+        role: 'ADMIN',
+        score: 10000,
+        nickname: 'Sasha',
+        systemMessage: 'string',
+        checkRu: 'true',
+        minimumTransferAmount: null,
+        sumTransferAmoumt: null,
+        completed: null,
+    },
     deals: [],
     refill: {},
     myRefills: [],
