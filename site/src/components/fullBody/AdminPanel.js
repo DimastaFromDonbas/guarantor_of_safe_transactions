@@ -28,7 +28,13 @@ function AdminPanel() {
     const [checkDeals, setCheckDeals] = useState(false)
 
     function playAudio() {
-        audioPlayer.current.play();
+        try {
+            if (audioPlayer) {
+                audioPlayer.current.play();
+            }
+        } catch {
+            console.log('Ошибка воспроизведения аудио, обновите страницу')
+        }
     }
 
     async function getAllDeals() {

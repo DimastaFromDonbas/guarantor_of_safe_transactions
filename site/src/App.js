@@ -33,16 +33,18 @@ function App() {
   const audioPlayer = useRef(null);
 
   function playAudio() {
-    audioPlayer?.current?.play();
+    try {
+      if (audioPlayer) {
+        audioPlayer.current.play();
+      }
+    } catch {
+      console.log('Ошибка воспроизведения аудио, обновите страницу')
+    }
   }
 
   useEffect(() => {
     socket.on('messageToAdmin', ({ data }) => {
-      try {
-        if (!data?.nickname) playAudio();
-      } catch {
-        console.log('Ошибка воспроизведения аудио, обновите страницу')
-      }
+      if (!data?.nickname) playAudio();
     });
     // eslint-disable-next-line
   }, []);

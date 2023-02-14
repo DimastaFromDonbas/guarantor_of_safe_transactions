@@ -48,7 +48,6 @@ function Chat() {
             });
             const resultLength = Number(localStorage.getItem('messagetoadminLength')) || 0;
             if (result?.length > resultLength) {
-                console.log(2, result?.length, resultLength)
                 setNewMessage(true)
             };
         }
@@ -104,7 +103,6 @@ function Chat() {
                 type: reducerTypes.GET_MESSAGE_TO_ADMIN,
                 payload: [...messageToAdmin, data]
             });
-            console.log(1)
             setNewMessage(true);
             setChatStatus(1);
         });
