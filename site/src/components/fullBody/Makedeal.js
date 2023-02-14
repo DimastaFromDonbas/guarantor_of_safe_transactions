@@ -5,7 +5,6 @@ import Footer from "./Footer"
 import Header from "./Header"
 import { useAppSelector } from "../../store/reduxHooks"
 import { axiosCreateDeal } from "../../api/axios"
-import validator from 'validator';
 import Chat from "./Chat"
 import { useNavigate } from "react-router-dom"
 import { socket } from "../../App"
@@ -97,7 +96,6 @@ function Makedeal() {
     async function createDeal() {
         let buyerNickname = '';
         let sellerNickname = '';
-        console.log('role', role)
         if (role === 'Покупатель') {
             buyerNickname = user?.nickname
         } else {
