@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux';
 import { reducerTypes } from '../../store/Users/types';
 import { socket } from '../../App';
 import RadioGroupRating from './RadioGroupRating';
+import Face4Icon from '@mui/icons-material/Face4';
+import PortraitIcon from '@mui/icons-material/Portrait';
 
 function Chat() {
     const dispatch = useDispatch();
@@ -160,23 +162,40 @@ function Chat() {
                                 ?.filter(el => el?.nickname !== 'location')
                                 ?.map((item) => (
                                     <div key={item?.id}>
-                                        {item?.role === 'USER' ? (
-                                            <div className="massegeStyleAdminChat">
-                                                <p className="boxStyle1">
-                                                    <span className="styleSizeChat">
-                                                        {item?.message}: {item?.nickname}{' '}
-                                                        {item?.image && item?.image !== "data:" ? <img width='100%' src={`${item.image}`} alt="pic from base64" /> : null}
-                                                    </span>{' '}
-                                                    <span className="posMassegeses">{item?.time}</span>
-                                                </p>
-                                            </div>
+                                           {item?.role === 'ADMIN' && item?.administratorName === "system" ? (
+                                            item?.role === 'USER' ? (
+                                                <div className="massegeStyleAdminChat">
+                                                    <p className="boxStyle1">
+                                                     <span className="styleSizeChat">
+                                                        <div style={{display: "flex",flexDirection: "row-reverse"}}>
+                                                            <PortraitIcon style={{width:'35px',height:"35px"}}></PortraitIcon> {' '}
+                                                            <div className='flex-pos'>
+                                                                {item?.image && item?.image !== "data:" ? <img width='100%' src={`${item.image}`} alt="pic from base64" /> : null}
+                                                                {item?.message}: {item?.nickname}
+                                                            </div>
+                                                        </div>
+                                                        </span>{' '}
+                                                        <span className="posMassegeses">{item?.time} <PortraitIcon style={{width:'35px',opacity:'0'}}></PortraitIcon></span>
+                                                    </p>
+                                                </div>
+                                            ) : (
+                                                <div className="massegeStyleUserChat">
+                                                    <p className="boxStyle2">
+                                                        <span className="styleSizeChat">
+                                                          <Face4Icon style={{width:'35px',height:"35px"}}></Face4Icon> {item?.administratorName}: <span style={{ color: 'red' }}>{item?.message}</span>
+                                                        </span>
+                                                        <span className="posMassegeses">
+                                                        <Face4Icon style={{opacity:'0',width:'35px'}}></Face4Icon> {item?.time}
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            )
                                         ) : (
                                             <div className="massegeStyleUserChat">
                                                 <p className="boxStyle2">
                                                     <span className="styleSizeChat">
-                                                        {item?.administratorName}: <span style={{ color: 'red' }}>{item?.message}</span>
+                                                        <span style={{ color: 'red' }}>{item?.message}</span>
                                                     </span>
-                                                    <span className="posMassegeses">{item?.time}</span>
                                                 </p>
                                             </div>
                                         )}
