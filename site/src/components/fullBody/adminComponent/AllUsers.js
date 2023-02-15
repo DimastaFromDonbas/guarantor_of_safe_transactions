@@ -71,7 +71,7 @@ function AllUsers() {
         placeholder="Поиск"
         onChange={(e) => setSearch(e.target.value?.toLowerCase())}
         autoComplete="off"
-        required />
+        required /> 
 
       <div className="tabl-flex-admin-filtr" style={{ borderRadius: "5px" }}>
         <h5 style={{ margin: '0' }}>Админы</h5> <Checkbox value={filterAdmin} defaultChecked onChange={() => setFilterAdmin((prev) => !prev)} color="error" />

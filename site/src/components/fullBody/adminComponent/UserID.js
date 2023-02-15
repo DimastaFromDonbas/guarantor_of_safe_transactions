@@ -232,7 +232,7 @@ function AllUsersID() {
                             <div className="tabl-flex-admin-button" onClick={changeSystemMessage}>
                             Изменить
                             </div>
-                            </div>
+                        </div>
                         </div>
                         <div className='pages-user-block'>
                         <h6 style={{margin: "0",textAlign: "center"}}>Изменение статуса пользователя</h6>
