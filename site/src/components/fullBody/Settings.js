@@ -101,13 +101,13 @@ function Settings() {
 
     useEffect(() => {
         if(user.password === password) {
-            if(nickname !== ''){
+            if(nickname !== '' || errorLoginLength){
                 setFormValid(true)
             }
         } else {
             setFormValid(false)
         }
-      },[nickname, password, user.password])
+      },[nickname, password, user.password,errorLoginLength])
 
       useEffect(() => {
         if(user.password === passwordV2) {

@@ -57,7 +57,7 @@ function AdminChat() {
 
     function sendMessageToAdmin() {
         if (!message) return alert('Сообщение не может быть пустым');
-        if (!user?.email) return alert('Войдите в аккаунт');
+        if (!user?.email);
         if (!currentChat?.id) return alert('Чат не найден');
         if (!adminName) return alert('Введите имя админимстратора');
         const time = new Date().toLocaleString().replaceAll(',', '');
