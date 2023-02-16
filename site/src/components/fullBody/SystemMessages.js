@@ -54,7 +54,7 @@ function SystemMessages() {
     }, [user])
 
     useEffect(() => {
-        if (checkAlertSystemMessage) {
+        if (checkAlertSystemMessage || user?.systemMessage === 'true') {
             localStorage.setItem(`${user.email}`, 'true')
             dispatch({
                 type: reducerTypes.GET_UPDATE_HEADER_ALERT,
