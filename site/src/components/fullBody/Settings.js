@@ -18,15 +18,24 @@ function Settings() {
     const [passwordErorr,setPasswordErorr] = useState("");
     const [formValid, setFormValid] = useState(false);
     const [passwordV2, setPasswordV2] = useState("");
+    const [ errorLogin, setErrorLogin] = useState('');
     const [formValidPassword, setFormValidPassword] = useState(false);
     const [newPassword, setNewPassword] = useState('')
     const [passwordError, setPasswordError] = useState("");
     const [NewPasswordError, setNewPasswordError] = useState("");
-    const [ errorLogin, setErrorLogin] = useState('');
+    const [ errorLoginLength, setEerrorLoginLength] = useState('');
 
     function changeNickname(e) {
         setNickname(e.currentTarget.value)
     }
+
+    function cheakLengthLogin(e) {
+        if(e.currentTarget.value.length < 5) {
+            setEerrorLoginLength('Минимум 5 символов')
+        } else {
+            setEerrorLoginLength('')
+        }
+      }
 
     function getPassword(e) {
         setPassword(e.currentTarget.value)
@@ -122,8 +131,9 @@ function Settings() {
                         <Form className="width-form">
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className="color-input-name">Сменить ваше имя:</Form.Label>
-                                <Form.Control value={nickname} onChange={changeNickname} name='login' type="email" placeholder="" />
+                                <Form.Control value={nickname} onChange={(e) => {changeNickname(e);cheakLengthLogin(e)}} name='login' type="email" placeholder="" />
                                 {errorLogin? <div style={{color: 'red'}}>{errorLogin}</div> : ''}
+                                {errorLoginLength? <div style={{color: 'red'}}>{errorLoginLength}</div> : ''}
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label className="color-input-name">Введите ваш пароль:</Form.Label>

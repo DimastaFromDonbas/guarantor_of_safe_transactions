@@ -15,7 +15,7 @@ function UserInput() {
     const { user } = useAppSelector((store) => store.user)
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
-    const [ errorLoginLength, setEerrorLoginLength] = useState('');
+    const [ errorLogin, setErrorLogin] = useState('');
     const [emailDirty, setEmailDirty] = useState(false);
     const [passwordDirty, setPasswordDirty] = useState(false);
     const [emailError, setEmailError] = useState("Логин не может быть пустым");
@@ -65,12 +65,12 @@ function UserInput() {
       }
   
       useEffect(() => {
-        if(emailError || passwordError || errorLoginLength) {
+        if(emailError || passwordError || errorLogin) {
           setFormValid(false)
         } else {
           setFormValid(true)
         }
-      },[emailError, passwordError,errorLoginLength])
+      },[emailError, passwordError,errorLogin])
 
       function offReserch(e) {
         e.preventDefault()
@@ -101,9 +101,9 @@ function UserInput() {
                 <Form className="width-form">
                      <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label className="color-input-name">Логин:</Form.Label>
-                        <Form.Control onBlur={e => blurHandler(e)} name='login' value={login} onChange={loginUser} type="email" placeholder="" />
+                        <Form.Control onBlur={e => blurHandler(e)} name='login' value={login} onChange={(e) => {loginUser(e);cheakLengthLogin(e)}} type="email" placeholder="" />
                         {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div> }
-                        {errorLoginLength? <div style={{color: 'red'}}>{errorLoginLength}</div> : ''}
+                        {errorLogin? <div style={{color: 'red'}}>{errorLogin}</div> : ''}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label className="color-input-name">Пароль:</Form.Label>
