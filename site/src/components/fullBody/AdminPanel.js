@@ -14,7 +14,7 @@ import { reducerTypes } from "../../store/Users/types";
 import sound from '../../sound/newMessage.mp3';
 
 
-export const socketAdmin = io.connect("localhost:5000");
+export const socketAdmin = io.connect("https://asdasdasd-front.onrender.com");
 
 function AdminPanel() {
 

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 // const LOCAL_URL = 'https://localhost:7004/api/'
-const host = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_LOCAL_API_HOST || 'localhost:5000' : window.location.host;
+const host = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_LOCAL_API_HOST || 'asdasdasd-front.onrender.com' : window.location.host;
 
-axios.defaults.baseURL = `http://${host}/`;
+axios.defaults.baseURL = `https://${host}/`;
 
 // axios.interceptors.request.use((request:any) => {
 //

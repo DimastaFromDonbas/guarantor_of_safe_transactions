@@ -27,7 +27,7 @@ import io from "socket.io-client";
 import { useEffect, useRef } from "react";
 import sound from './sound/newMessage.mp3';
 
-export const socket = io.connect("localhost:5000");
+export const socket = io.connect("https://asdasdasd-front.onrender.com");
 
 function App() {
   const audioPlayer = useRef(null);
