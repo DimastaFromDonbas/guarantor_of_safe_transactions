@@ -15,6 +15,7 @@ function UserInput() {
     const { user } = useAppSelector((store) => store.user)
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
+    const [ errorLoginLength, setEerrorLoginLength] = useState('');
     const [emailDirty, setEmailDirty] = useState(false);
     const [passwordDirty, setPasswordDirty] = useState(false);
     const [emailError, setEmailError] = useState("Логин не может быть пустым");
@@ -31,6 +32,14 @@ function UserInput() {
             setPasswordDirty(true)
           break;
           default:
+        }
+      }
+
+      function cheakLengthLogin(e) {
+        if(e.currentTarget.value.length < 5) {
+          setErrorLogin('Минимум 5 символов')
+        } else {
+          setErrorLogin('')
         }
       }
   
@@ -56,12 +65,12 @@ function UserInput() {
       }
   
       useEffect(() => {
-        if(emailError || passwordError) {
+        if(emailError || passwordError || errorLoginLength) {
           setFormValid(false)
         } else {
           setFormValid(true)
         }
-      },[emailError, passwordError])
+      },[emailError, passwordError,errorLoginLength])
 
       function offReserch(e) {
         e.preventDefault()
@@ -94,6 +103,7 @@ function UserInput() {
                     <Form.Label className="color-input-name">Логин:</Form.Label>
                         <Form.Control onBlur={e => blurHandler(e)} name='login' value={login} onChange={loginUser} type="email" placeholder="" />
                         {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div> }
+                        {errorLoginLength? <div style={{color: 'red'}}>{errorLoginLength}</div> : ''}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label className="color-input-name">Пароль:</Form.Label>
