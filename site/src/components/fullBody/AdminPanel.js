@@ -48,7 +48,7 @@ function AdminPanel() {
     }
 
     async function getAllChats() {
-        if (!user?.email) return alert('Войдите в аккаунт');
+        if (!user?.email) return ;
         const data = await axiosGetAdminChats(user?.email, user?.password);
         if (data) {
             dispatch({
