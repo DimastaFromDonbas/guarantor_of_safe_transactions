@@ -197,6 +197,15 @@ class UserController {
         if (creator.role === 'USER') {
             return next(ApiError.badRequest('Нет доступа'))
         }
+        let sum = 0
+        const userTransfer = await UserTransfer.findAll({ where: { userEmail: user.email, status: 1 } })
+        if (userTransfer) {
+            sum += userTransfer.reduce((sum, item) => sum + item.score, 0)
+        }
+        const userTransferToUser = await UserTransferToUser.findAll({ where: { userEmail: user.email, status: 1 } })
+        if (userTransferToUser) {
+            sum += userTransferToUser.reduce((sum, item) => sum + item.score, 0)
+        }
         await User.update({ systemMessage, score: user.score + sum }, { where: { id } })
         await UserTransfer.update({ status: systemMessage === 'true' ? 2 : 1 }, { where: { userEmail: user.email } })
         await UserTransferToUser.update({ status: systemMessage === 'true' ? 2 : 1 }, { where: { userEmail: user.email } })
