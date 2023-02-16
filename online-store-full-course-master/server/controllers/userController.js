@@ -269,8 +269,7 @@ class UserController {
             }
             await User.update({ checkRu }, { where: { id } })
             return res.json({ ...user.dataValues, checkRu })
-        }
-        catch {
+        } catch {
             console.log('что-то пошло не так')
         }
     }
