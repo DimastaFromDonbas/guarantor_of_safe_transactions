@@ -168,10 +168,12 @@ function Header() {
   }, [transfers, transfersToUser, user])
 
   useEffect(() => {
-    dispatch({
-      type: reducerTypes.GET_UPDATE_HEADER_ALERT,
-      payload: true,
-    });
+    if (!updateHeaderAlert) {
+      dispatch({
+        type: reducerTypes.GET_UPDATE_HEADER_ALERT,
+        payload: true,
+      });
+    }
     setCheckReadMassage(localStorage.getItem(`${user?.email}`) === 'true') // eslint-disable-next-line 
   }, [updateHeaderAlert, dispatch, user])
 
