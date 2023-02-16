@@ -54,8 +54,7 @@ function SystemMessages() {
     }, [user])
 
     useEffect(() => {
-        if (checkAlertSystemMessage) {
-            console.log(1)
+        if (checkAlertSystemMessage || user?.systemMessage === 'true') {
             localStorage.setItem(`${user.email}`, 'true')
             dispatch({
                 type: reducerTypes.GET_UPDATE_HEADER_ALERT,
@@ -103,7 +102,7 @@ function SystemMessages() {
         <div style={{ marginTop: '30px' }} className="container heiggg">
             <Chat />
             <h3 style={{ borderBottom: "1px solid rgb(85, 85, 88)" }} className="login-inner_title" onClick={() => console.log(checkAlertSystemMessage, user?.systemMessage)}>Системные сообщения</h3>
-            {checkAlertSystemMessage && user?.systemMessage === 'true' ?
+            {checkAlertSystemMessage || user?.systemMessage === 'true' ?
                 <div className="message-flex">
                     <div className="message-header">
                         <h2>Сообщение от {nameTheSite.name}</h2>
