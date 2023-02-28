@@ -24,7 +24,6 @@ import { socket } from '../../App';
 
 function Body() {
     const { user, nameTheSite } = useAppSelector((store) => store.user);
-    const styles = { content: '123', color: 'white' }
 
     useEffect(() => {
         if (!user?.email) return;

@@ -1,5 +1,3 @@
-import Footer from "./Footer"
-import Header from "./Header"
 import Baner from '../../image/banner-img2.png'
 import Handshake from "@mui/icons-material/Handshake"
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -11,7 +9,6 @@ import OrderIcon from '../../image/circle-img.png'
 import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import Chat from "./Chat";
 import { useAppSelector } from "../../store/reduxHooks";
 import { socket } from "../../App";
 import { useEffect } from 'react'

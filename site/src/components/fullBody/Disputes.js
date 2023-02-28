@@ -1,12 +1,9 @@
-import Footer from "./Footer";
-import Header from "./Header";
 import Baner from '../../image/banner-img3.png';
 import Spore from '../../image/spore-img1.svg';
 import Spore2 from '../../image/spore-img2.svg';
 import Spore3 from '../../image/spore-img3.svg';
 import Spore4 from '../../image/spore-img4.svg';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
-import Chat from "./Chat";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useEffect } from 'react';
 import { socket } from "../../App";
@@ -21,7 +18,7 @@ function Disputes() {
         // eslint-disable-next-line
     }, [user]);
 
-    return <div className="bg-img">
+    return <div className="bg-img" style={{paddingTop:'20px',paddingBottom:'20px'}}>
         <div className="container">
             <div className="page-container">
                 <div className="main-section main-section--disputes">

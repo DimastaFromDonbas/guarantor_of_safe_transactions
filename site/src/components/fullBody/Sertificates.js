@@ -1,6 +1,3 @@
-import Chat from "./Chat"
-import Footer from "./Footer"
-import Header from "./Header"
 import sert1 from "../../image/secure-con-logo.jpg"
 import sert2 from '../../image/geotrust.png'
 import sert3 from '../../image/pci-dss-compliant.png'
@@ -20,7 +17,7 @@ function Sertificates() {
         // eslint-disable-next-line
     }, [user]);
 
-    return <div className="bg-img">
+    return <div className="bg-img" style={{paddingTop:'20px',paddingBottom:'20px'}}>
         <div className="seller-page">
             <div className="container container-marwrap">
                 <div className="block-info-sertificate">

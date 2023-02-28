@@ -1,6 +1,4 @@
 import { Link, useNavigate } from "react-router-dom"
-import Footer from "./Footer"
-import Header from "./Header"
 import { useAppSelector } from "../../store/reduxHooks";
 import { Form } from "react-bootstrap";
 import { useState, useEffect } from "react"
@@ -11,7 +9,6 @@ import { axiosGetUserTransfers } from "../../api/axios";
 import { axiosGetUserToUserTransfers } from "../../api/axios";
 import { reducerTypes } from "../../store/Users/types";
 import { useDispatch } from "react-redux";
-import Chat from "./Chat";
 import { paymant, transferStatusMock } from "../mock/OutputMock";
 import { socket } from "../../App";
 

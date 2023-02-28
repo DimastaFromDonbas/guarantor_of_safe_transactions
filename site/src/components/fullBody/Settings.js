@@ -1,13 +1,11 @@
 import { Form } from "react-bootstrap"
-import Footer from "./Footer"
-import Header from "./Header"
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from "../../store/Users/types";
 import { axiosChangeNickname, axiosChangePassword } from "../../api/axios";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../store/reduxHooks";
 import validator from 'validator';
-import Chat from "./Chat";
+
 
 function Settings() {
 

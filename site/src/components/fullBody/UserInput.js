@@ -93,7 +93,7 @@ function UserInput() {
   }, [user?.email, navigate, user])
 
   return <div className="bg-img">
-    <div style={{ marginBottom: '30px', marginTop: '30px', minHeight: '75vh' }} className="container">
+    <div style={{ paddingBottom: '30px', paddingTop: '30px', minHeight: '75vh' }} className="container">
       <h3 className="header-inner_title login-inner_title">Авторизация</h3>
       <hr className="hr-viss" />
       <Form className="width-form">

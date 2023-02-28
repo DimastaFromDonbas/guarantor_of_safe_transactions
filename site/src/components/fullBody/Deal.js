@@ -173,7 +173,7 @@ function Deal() {
 
   return <div className="bg-img">
     <audio ref={audioPlayer} src={sound} />
-    <div style={{ marginBottom: '20px', marginTop: "30px" }} className='container heiggg'>
+    <div style={{ paddingBottom: '20px', paddingTop: "30px" }} className='container heiggg'>
       <div className="message-body">
         <div className="posishnNameButton">
           <div style={{ paddingBottom: '5px' }}>Статус сделки: {dealStatusMock[deal?.status - 1]}</div>

@@ -1,6 +1,4 @@
 import Body from "./fullBody/Body";
-import Footer from "./fullBody/Footer";
-import Header from "./fullBody/Header";
 import '../style/body.css'
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from "../store/reduxHooks";

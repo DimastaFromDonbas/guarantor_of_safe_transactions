@@ -1,11 +1,8 @@
 
 import { useEffect, useState } from "react"
 import { Form } from "react-bootstrap"
-import Footer from "./Footer"
-import Header from "./Header"
 import { useAppSelector } from "../../store/reduxHooks"
 import { axiosCreateDeal } from "../../api/axios"
-import Chat from "./Chat"
 import { useNavigate } from "react-router-dom"
 import { socket } from "../../App"
 

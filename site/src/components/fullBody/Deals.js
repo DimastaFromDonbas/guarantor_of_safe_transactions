@@ -1,6 +1,4 @@
 import { Form } from "react-bootstrap"
-import Footer from "./Footer"
-import Header from "./Header"
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../store/reduxHooks";
@@ -8,7 +6,7 @@ import { useEffect } from "react";
 import { axiosGetDeal } from "../../api/axios";
 import { reducerTypes } from "../../store/Users/types";
 import { useDispatch } from 'react-redux';
-import Chat from "./Chat";
+
 import { dealStatusMock } from "../mock/OutputMock";
 import { socket } from "../../App";
 
@@ -47,7 +45,7 @@ function Deals() {
     return <div className="bg-img">
         <div className="container">
             <div className="height-box">
-                <div style={{ height: '100vh', marginTop: "20px" }} className="dial-flex_box">
+                <div style={{ height: '100vh', paddingTop: "20px" }} className="dial-flex_box">
                     <div>
                         <div style={{ display: "flex", justifyContent: "space-between" }} className="adapt-header">
                             <Form.Label htmlFor="inputPassword5">Мои сделки</Form.Label>
