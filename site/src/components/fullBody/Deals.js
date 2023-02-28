@@ -45,8 +45,6 @@ function Deals() {
 
 
     return <div className="bg-img">
-        <Header />
-        <Chat />
         <div className="container">
             <div className="height-box">
                 <div style={{ height: '100vh', marginTop: "20px" }} className="dial-flex_box">
@@ -92,7 +90,6 @@ function Deals() {
                 </div>
             </div>
         </div>
-        <Footer />
     </div>
 }
 

@@ -22,7 +22,7 @@ function AllChats() {
     const [sortId, setSortId] = useState(true);
 
     async function getAllChats() {
-        if (!user?.email) return ;
+        if (!user?.email) return alert('Войдите в аккаунт');
         const data = await axiosGetAdminChats(user?.email, user?.password);
         if (data) {
             dispatch({

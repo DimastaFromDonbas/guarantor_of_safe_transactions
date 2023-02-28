@@ -16,8 +16,10 @@ function Payments() {
     const { user, criptoWallet } = useAppSelector((store) => store.user);
 
     useEffect(() => {
-        if (user?.checkRu !== 'true') {
-            navigate('/blockMaseges');
+        if (user?.checkRu) {
+            if (user?.checkRu !== 'true') {
+                navigate("/blockMaseges")
+            }
         }
     }, [user.checkRu, navigate]);
 
@@ -46,9 +48,7 @@ function Payments() {
 
     return (
         <div className="bg-img">
-            <Header />
             <div className="container">
-                <Chat />
                 <div className="promo-description_payments">
                     <div className="alert-block alert-block_info">
                         <p className="text-alert">
@@ -115,7 +115,6 @@ function Payments() {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     );
 }

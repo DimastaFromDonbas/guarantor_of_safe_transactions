@@ -15,16 +15,16 @@ import HandshakeIcon from '@mui/icons-material/Handshake';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import Chat from './Chat';
 import { useAppSelector } from '../../store/reduxHooks';
 import { Carousel } from 'react-bootstrap';
 import StarIcon from '@mui/icons-material/Star';
 import { useEffect } from 'react';
 import { socket } from '../../App';
 
+
 function Body() {
     const { user, nameTheSite } = useAppSelector((store) => store.user);
-
+    const styles = { content: '123', color: 'white' }
 
     useEffect(() => {
         if (!user?.email) return;
@@ -35,9 +35,9 @@ function Body() {
 
     return (
         <div className="container-body-v1 bg-img">
-            <Chat />
             <div className="promo-description container">
                 <div className="block-main-v1">
+
                     <h1>{nameTheSite.name} - лучший гарант безопасных сделок!</h1>
                     <Link style={{ textDecoration: 'none' }} to={`${user?.id ? 'makedeal' : '/login'}`}>
                         <button className="btn-class-v1">Открыть новую сделку</button>
@@ -72,7 +72,7 @@ function Body() {
                         <PersonAddAltIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-3px' }}></PersonAddAltIcon>
                         <div>
                             <h4 className="header-inner_title">
-                                <Link className="link-hover-effects" to={user?.email === undefined? '/registr': '/'}>
+                                <Link className="link-hover-effects" to={user?.email === undefined ? '/registr' : '/'}>
                                     Регистрация
                                 </Link>
                             </h4>

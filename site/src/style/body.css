@@ -30,7 +30,27 @@
     align-items: center;
     font-family: inherit;
 }
-
+.adminChats {
+    overflow: scroll;
+    overflow: overlay;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+    min-height: 80vh;
+}
+.mainChat {
+    overflow: scroll;
+    overflow: overlay;
+    overflow-x: hidden;
+    max-height: 400px;
+}
+.scrollDiv {
+    overflow: scroll;
+    overflow: overlay;
+    overflow-x: hidden;
+    max-height: 70vh;
+}
 .scrollDiv::-webkit-scrollbar {
     width: 20px !important;
     background: rgb(218, 218, 218);

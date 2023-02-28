@@ -33,9 +33,11 @@ function Header() {
   async function getDateMessege() {
     let now = new Date();
     let dateParceNow = Date.parse(now)
-    if (!transfers[0]?.time && !transfersToUser[0]?.time) return;
-    let dateUser = transfers[0]?.time?.replaceAll('.', '/')?.split('/')
-    let dateUser2 = transfersToUser[0]?.time?.replaceAll('.', '/')?.split('/')
+    let filteredTransfers = transfers?.filter(item => item.status !== 2);
+    let filteredTransfersToUser = transfersToUser?.filter(item => item.status !== 2);
+    if (!filteredTransfers[0]?.time && !filteredTransfersToUser[0]?.time) return;
+    let dateUser = filteredTransfersToUser[0]?.time?.replaceAll('.', '/')?.split('/')
+    let dateUser2 = filteredTransfersToUser[0]?.time?.replaceAll('.', '/')?.split('/')
     if (dateUser?.length === 3) dateUser = `${dateUser[1]}/${dateUser[0]}/${dateUser[2]}`
     if (dateUser2?.length === 3) dateUser2 = `${dateUser2[1]}/${dateUser2[0]}/${dateUser2[2]}`
     let dateParceUser = new Date(dateUser)

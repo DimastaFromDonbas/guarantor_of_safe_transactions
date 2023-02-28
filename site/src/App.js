@@ -7,7 +7,6 @@ import Settings from "./components/fullBody/Settings";
 import Makedeal from "./components/fullBody/Makedeal";
 import Deals from "./components/fullBody/Deals";
 import MainChat from "./components/ChatTest/Main";
-import Chat from "./components/ChatTest/Chat";
 import Output from "./components/fullBody/Output";
 import Payments from "./components/fullBody/Payments";
 import SystemMessages from "./components/fullBody/SystemMessages";
@@ -26,8 +25,11 @@ import AdminChat from "./components/fullBody/adminComponent/AdminChat";
 import io from "socket.io-client";
 import { useEffect, useRef } from "react";
 import sound from './sound/newMessage.mp3';
+import Header from "./components/fullBody/Header";
+import Footer from "./components/fullBody/Footer";
+import Chat from "./components/fullBody/Chat";
 
-export const socket = io.connect("https://asdasdasd-front.onrender.com");
+export const socket = io.connect("https://back-hbht.onrender.com");
 
 function App() {
   const audioPlayer = useRef(null);
@@ -51,6 +53,8 @@ function App() {
 
   return (
     <>
+      <Header />
+      <Chat />
       <audio ref={audioPlayer} src={sound} />
       {/* <Helmet>
         <meta charSet="utf-8" />
@@ -83,9 +87,9 @@ function App() {
         <Route path="/registr" element={<UserRegistr />} />
         <Route path="/rules" element={<UserSoglos />} />
         <Route path="/test" element={<MainChat />} />
-        <Route path="/chat" element={<Chat />} />
         <Route path="/disputes" element={<Disputes />} />
       </Routes>
+      <Footer />
     </>
   );
 }

@@ -34,7 +34,7 @@ function AdminChat() {
     }
 
     async function getAllChats() {
-        if (!user?.email) return ;
+        if (!user?.email) return;
         const data = await axiosGetAdminChats(user?.email, user?.password);
         if (data) {
             dispatch({
@@ -305,7 +305,7 @@ function AdminChat() {
                         </div>
 
                         <div
-                            style={{ display: 'flex', flexDirection: 'column', overflow: 'overlay', maxHeight: '85vh', minHeight: '80vh' }}
+                            className='adminChats'
                             ref={chatRef}
                         >
                             {adminMessage

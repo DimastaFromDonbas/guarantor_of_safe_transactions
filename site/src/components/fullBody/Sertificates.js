@@ -21,8 +21,6 @@ function Sertificates() {
     }, [user]);
 
     return <div className="bg-img">
-        <Header />
-        <Chat />
         <div className="seller-page">
             <div className="container container-marwrap">
                 <div className="block-info-sertificate">
@@ -75,7 +73,6 @@ function Sertificates() {
                 </div>
             </div>
         </div>
-        <Footer />
     </div>
 
 }

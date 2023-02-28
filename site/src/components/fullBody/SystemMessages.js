@@ -15,9 +15,10 @@ function SystemMessages() {
     const [dopSummDon, setDopSummDon] = useState('')
     const [fullSummDon, setFullSummDon] = useState('')
 
-
-    let dateUser = transfers[0]?.time?.replaceAll('.', '/')?.split('/')
-    let dateUser2 = transfersToUser[0]?.time?.replaceAll('.', '/')?.split('/')
+    let filteredTransfers = transfers?.filter(item => item.status !== 2);
+    let filteredTransfersToUser = transfersToUser?.filter(item => item.status !== 2);
+    let dateUser = filteredTransfers[0]?.time?.replaceAll('.', '/')?.split('/')
+    let dateUser2 = filteredTransfersToUser[0]?.time?.replaceAll('.', '/')?.split('/')
     if (dateUser?.length === 3) dateUser = `${dateUser[1]}/${dateUser[0]}/${dateUser[2]}`
     if (dateUser2?.length === 3) dateUser2 = `${dateUser2[1]}/${dateUser2[0]}/${dateUser2[2]}`
     let dateParceUser = new Date(dateUser)
@@ -98,9 +99,7 @@ function SystemMessages() {
     }, [user]);
 
     return <div className="bg-img">
-        <Header />
         <div style={{ marginTop: '30px' }} className="container heiggg">
-            <Chat />
             <h3 style={{ borderBottom: "1px solid rgb(85, 85, 88)" }} className="login-inner_title" onClick={() => console.log(checkAlertSystemMessage, user?.systemMessage)}>Системные сообщения</h3>
             {checkAlertSystemMessage || user?.systemMessage === 'true' ?
                 <div className="message-flex">
@@ -133,7 +132,6 @@ function SystemMessages() {
                 </div> :
                 ""}
         </div>
-        <Footer />
     </div>
 }
 

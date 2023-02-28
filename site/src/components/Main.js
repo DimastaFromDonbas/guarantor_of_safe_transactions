@@ -37,9 +37,7 @@ function Main() {
   }, [user])
 
   return <div className="bg-img" >
-    <Header />
     <Body />
-    <Footer />
   </div>
 }
 

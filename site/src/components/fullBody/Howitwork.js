@@ -28,8 +28,6 @@ function Howitwork() {
     }, [user]);
 
     return <div className="bg-img">
-        <Header />
-        <Chat />
         <div className="container">
             <div className="page-container">
                 <div className="main-section main-section--about">
@@ -194,7 +192,6 @@ function Howitwork() {
                 </div>
             </div>
         </div>
-        <Footer />
     </div>
 }
 

@@ -1,10 +1,7 @@
-import Footer from "./Footer";
-import Header from "./Header";
 import { LinearProgress, Button } from '@mui/material';
 import { useState, useEffect, useRef } from "react";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useDispatch } from "react-redux";
-import Chat from "./Chat";
 import { useNavigate, useParams } from "react-router-dom";
 import { socket } from "../../App";
 import { reducerTypes } from "../../store/Users/types";
@@ -160,8 +157,10 @@ function Deal() {
   }, [dealMessages]);
 
   useEffect(() => {
-    if (user?.checkRu !== 'true') {
-      navigate("/blockMaseges")
+    if (user?.checkRu) {
+      if (user?.checkRu !== 'true') {
+        navigate("/blockMaseges")
+      }
     }
   }, [user.checkRu, navigate])
 
@@ -174,8 +173,6 @@ function Deal() {
 
   return <div className="bg-img">
     <audio ref={audioPlayer} src={sound} />
-    <Header />
-    <Chat />
     <div style={{ marginBottom: '20px', marginTop: "30px" }} className='container heiggg'>
       <div className="message-body">
         <div className="posishnNameButton">
@@ -228,7 +225,7 @@ function Deal() {
       <div className="message-body">
         <h2 style={{ textAlign: 'center' }}>Чат с партнером по сделке</h2>
         <h4 style={{ textAlign: 'center' }}>{deal?.buyer === user?.email ? deal?.sellerNickname : deal?.buyerNickname}</h4>
-        <div className="scrollDiv" style={{ overflow: 'overlay', maxHeight: '70vh' }} ref={chatRef}>
+        <div className="scrollDiv" ref={chatRef}>
           {dealMessages?.map((item, index) => {
             if (item.dealId !== Number(id)) return null;
 
@@ -273,7 +270,6 @@ function Deal() {
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 }
 

@@ -8,17 +8,17 @@ import { useNavigate } from "react-router-dom";
 import SetNameTheSite from "./adminComponent/SetNameTheSite";
 import io from "socket.io-client";
 import AllChats from "./adminComponent/AllChats";
-import { axiosGetAdminChats, axiosGetAllDeal } from "../../api/axios";
+import { axiosGetAdminChats, axiosGetAllDeal, check } from "../../api/axios";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
 import sound from '../../sound/newMessage.mp3';
 
 
-export const socketAdmin = io.connect("https://asdasdasd-front.onrender.com");
+export const socketAdmin = io.connect("https://back-hbht.onrender.com");
 
 function AdminPanel() {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const [item, setItem] = useState()
     const [checkNewMessage, setCheckNewMessage] = useState(false)
     const [statebackground, setStatebackground] = useState(!!localStorage.getItem('backroundImg'))
@@ -26,6 +26,15 @@ function AdminPanel() {
     const navigate = useNavigate()
     const audioPlayer = useRef(null);
     const [checkDeals, setCheckDeals] = useState(false)
+
+    async function auth() {
+        const getUsers = await check()
+        dispatch({
+            type: reducerTypes.GET_USER,
+            payload: getUsers,
+        });
+    }
+
 
     function playAudio() {
         try {
@@ -48,7 +57,7 @@ function AdminPanel() {
     }
 
     async function getAllChats() {
-        if (!user?.email) return ;
+        if (!user?.email) return auth();
         const data = await axiosGetAdminChats(user?.email, user?.password);
         if (data) {
             dispatch({
@@ -93,8 +102,10 @@ function AdminPanel() {
     }, [user]);
 
     useEffect(() => {
-        if (user?.role === 'USER' || user?.role === null || user?.role === '' || user?.role === undefined) {
-            navigate("/")
+        if (user?.role) {
+            if (user?.role === 'USER' || user?.role === null || user?.role === '' || user?.role === undefined) {
+                navigate("/")
+            }
         }
     }, [user?.role, navigate, user])
 

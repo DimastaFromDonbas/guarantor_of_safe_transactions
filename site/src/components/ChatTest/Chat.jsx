@@ -9,7 +9,7 @@ import icon from '../../image/emoji.svg';
 import styles from '../../styles/Chat.module.css';
 import Messages from './Messages';
 
-const socket = io.connect('https://asdasdasd-front.onrender.com');
+const socket = io.connect('https://back-hbht.onrender.com');
 
 const Chat = () => {
     const { search } = useLocation();

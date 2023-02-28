@@ -141,8 +141,10 @@ function Output() {
     }, [user, user.email])
 
     useEffect(() => {
-        if (user?.checkRu !== 'true') {
-            navigate("/blockMaseges")
+        if (user?.checkRu) {
+            if (user?.checkRu !== 'true') {
+                navigate("/blockMaseges")
+            }
         }
     }, [user.checkRu, navigate])
 
@@ -154,8 +156,6 @@ function Output() {
     }, [user]);
 
     return <div className="bg-img">
-        <Header />
-        <Chat />
         <div style={{ minHeight: '80vh' }} className="container">
             <div className="page-container-2 page-container--bg_transparent">
                 <div className="account-wrap__heading">
@@ -237,7 +237,7 @@ function Output() {
                                     <div style={{ width: '231px', display: 'flex', justifyContent: 'center' }} className="output-sum">Время перевода</div>
                                     <div style={{ width: '231px', display: 'flex', justifyContent: 'center' }} className="output-sum">Состояние перевода </div>
                                 </div>
-                                {transfers?.map((item, index) => <div style={{ justifyContent: "space-around" }} className="flex-info-block" key={index}>
+                                {transfers?.sort((a, b) => a.id - b.id)?.map((item, index) => <div style={{ justifyContent: "space-around" }} className="flex-info-block" key={index}>
                                     <div style={{ width: '180px', display: 'flex', justifyContent: 'center' }} className="output-id dilit-block">{item.id}</div>
                                     <div style={{ width: '231px', display: 'flex', justifyContent: 'center' }} className="output-date dilit-block">{item.paymantSystem}</div>
                                     <div style={{ width: '280px', display: 'flex', justifyContent: 'center' }} className="output-date">{item.walletNumber}</div>
@@ -314,7 +314,7 @@ function Output() {
                                     <div style={{ width: '231px', display: 'flex', justifyContent: 'center' }} className="output-sum">Время перевода</div>
                                     <div style={{ width: '231px', display: 'flex', justifyContent: 'center' }} className="output-sum">Состояние перевода </div>
                                 </div>
-                                {transfersToUser?.map((item, index) => <div style={{ justifyContent: "space-around" }} className="flex-info-block" key={index}>
+                                {transfersToUser?.sort((a, b) => a.id - b.id)?.map((item, index) => <div style={{ justifyContent: "space-around" }} className="flex-info-block" key={index}>
                                     <div style={{ width: '231px', display: 'flex', justifyContent: 'center' }} className="output-id dilit-block">{item.id}</div>
                                     <div style={{ width: '231px', display: 'flex', justifyContent: 'center', overflowWrap: "anywhere" }} className="output-date">{item.receiverEmail}</div>
                                     <div style={{ width: '231px', display: 'flex', justifyContent: 'center' }} className="output-sum">{item.score}</div>
@@ -329,7 +329,6 @@ function Output() {
                 </div>
             </div>
         </div>
-        <Footer />
     </div>
 }
 
