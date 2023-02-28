@@ -44,7 +44,7 @@ function Payments() {
     }, [user]);
 
     return (
-        <div className="bg-img">
+        <div className="bg-img" style={{ paddingTop: '1px', paddingBottom: '1px'}}>
             <div className="container">
                 <div className="promo-description_payments">
                     <div className="alert-block alert-block_info">

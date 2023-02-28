@@ -130,7 +130,7 @@ function Makedeal() {
     }, [user]);
 
     return <div className="bg-img">
-        <div style={{ marginTop: '20px', marginBottom: '20px' }} className="container">
+        <div style={{ paddingTop: '10px', paddingBottom: '10px' }} className="container">
             <div className="name-add_sell">
                 <div className="form-size-flex">
                     <div className="flex-adapt-makedal" style={{ display: "flex", flexDirection: "row" }}>

@@ -152,7 +152,7 @@ function Output() {
         // eslint-disable-next-line
     }, [user]);
 
-    return <div className="bg-img">
+    return <div className="bg-img" style={{ paddingTop: '10px', paddingBottom: '10px'}}>
         <div style={{ minHeight: '80vh' }} className="container">
             <div className="page-container-2 page-container--bg_transparent">
                 <div className="account-wrap__heading">

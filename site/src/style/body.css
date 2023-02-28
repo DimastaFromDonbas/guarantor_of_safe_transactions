@@ -1673,7 +1673,6 @@ input::-webkit-inner-spin-button {
     margin: 20px 0;
     text-align: left;
     background: #202020;
-    width: 850px;
 }
 
 .text-alert {
@@ -2461,7 +2460,7 @@ input::-webkit-inner-spin-button {
     }
 
     .alert-block {
-        max-width: 345px;
+        max-width: 325px !important;
         margin-right: 20px;
     }
 
