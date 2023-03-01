@@ -7,19 +7,19 @@ function TextFree() {
 
     return <>
         <motion.div 
-         initial = {{
-            y: -20,
-            opacity: 0
-         }}
-         whileInView = {{
-            y: 0,
-            opacity: 1,
-            transition: { duration: .5 },
-         }}
-         exit = {{
-            y: -20,
-            opacity: 0
-         }}
+            initial = {{
+                y: -20,
+                opacity: 0
+            }}
+            whileInView = {{
+                y: 0,
+                opacity: 1,
+                transition: { duration: .5 },
+            }}
+            exit = {{
+                y: -20,
+                opacity: 0
+            }}
             viewport = {{amount: .2, once: true}}
             className="container bg-img">
                 <div className="block-text-free">

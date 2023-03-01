@@ -28,7 +28,6 @@ function PromoDescription() {
                 <motion.div
                 initial = 'hidden'
                 whileInView = 'visible'
-                exit = 'hidden'
                 viewport = {{amount: .2, once: true}}
                 className="promo-description container"
             >
@@ -44,8 +43,16 @@ function PromoDescription() {
                 <ul 
                 className="ist-promo">
                     <motion.li 
-                    variants={AnimetionMain}
-                    viewport = {{amount: .2, once: true}}
+                        initial = {{
+                            x: -20,
+                            opacity: 0
+                        }}
+                        whileInView = {{
+                            x: 0,
+                            opacity: 1,
+                            transition: { duration: .5 },
+                        }}
+                        viewport = {{amount: .2, once: true}}
                     className="list-promo-item">
                         <SecurityIcon className="hovet-effect"></SecurityIcon>
                         <p>
@@ -55,8 +62,16 @@ function PromoDescription() {
                         </p>
                     </motion.li>
                     <motion.li 
-                    variants={AnimetionMain}
-                    viewport = {{amount: .2, once: true}}
+                        initial = {{
+                            y: 20,
+                            opacity: 0
+                        }}
+                        whileInView = {{
+                            y: 0,
+                            opacity: 1,
+                            transition: { duration: .5 },
+                        }}
+                        viewport = {{amount: .2, once: true}}
                     className="list-promo-item">
                         <CalendarMonthIcon className="hovet-effect"></CalendarMonthIcon>
                         <p>
@@ -65,8 +80,16 @@ function PromoDescription() {
                         </p>
                     </motion.li>
                     <motion.li 
-                    variants={AnimetionMain}
-                    viewport = {{amount: .2, once: true}}
+                        initial = {{
+                            x: 20,
+                            opacity: 0
+                        }}
+                        whileInView = {{
+                            x: 0,
+                            opacity: 1,
+                            transition: { duration: .5 },
+                        }}
+                        viewport = {{amount: .2, once: true}}
                     className="list-promo-item">
                         <CurrencyExchangeIcon className="hovet-effect"></CurrencyExchangeIcon>
                         <p>Комиссия меньше 10%</p>

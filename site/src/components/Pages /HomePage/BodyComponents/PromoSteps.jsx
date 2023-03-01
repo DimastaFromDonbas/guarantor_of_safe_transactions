@@ -49,12 +49,7 @@ function PromoSteps() {
                             opacity: 1,
                             transition: { duration: .5 },
                         }}
-                        exit = {{
-                            x: -20,
-                            opacity: 0,
-                            transition: { duration: .5 },
-                         }}
-                         viewport = {{amount: .2, once: true}}
+                        viewport = {{amount: .2, once: true}}
                         className="step"
                     >
                         <PersonAddAltIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-3px' }}></PersonAddAltIcon>
@@ -81,11 +76,6 @@ function PromoSteps() {
                         opacity: 1,
                         transition: { duration: .5 },
                     }}
-                    exit = {{
-                        x: -20,
-                        opacity: 0,
-                        transition: { duration: .5 },
-                     }}
                      viewport = {{amount: .2, once: true}}
                         className="step"
                     >
@@ -110,11 +100,6 @@ function PromoSteps() {
                             opacity: 1,
                             transition: { duration: .5 },
                         }}
-                        exit = {{
-                            x: -20,
-                            opacity: 0,
-                            transition: { duration: .5 },
-                         }}
                          viewport = {{amount: .2, once: true}}
                         className="step"
                     >
@@ -139,11 +124,7 @@ function PromoSteps() {
                             opacity: 1,
                             transition: { duration: .5 },
                         }}
-                        exit = {{
-                            x: -20,
-                            opacity: 0,
-                            transition: { duration: .5 },
-                         }}
+
                          viewport = {{amount: .2, once: true}}
                         className="step"
                     >
@@ -173,11 +154,6 @@ function PromoSteps() {
                             opacity: 1,
                             transition: { duration: .5 },
                         }}
-                        exit = {{
-                            x: -20,
-                            opacity: 0,
-                            transition: { duration: .5 },
-                         }}
                         viewport = {{amount: .2, once: true}}
                         className="step"
                     >
