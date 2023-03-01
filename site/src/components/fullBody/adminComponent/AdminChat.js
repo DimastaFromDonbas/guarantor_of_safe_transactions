@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { axiosGetAdminChats, axiosGetMessagestoAdmin } from '../../../api/axios';
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
-import { socketAdmin } from '../AdminPanel';
+import { socketAdmin } from '../AdminPage/AdminPanel';
 import { adminChatStatusMock, userPath, userPathForAdmin } from '../../mock/OutputMock';
 import sound from '../../../sound/newMessage.mp3';
 import { ImageModal } from './ImageForChat';

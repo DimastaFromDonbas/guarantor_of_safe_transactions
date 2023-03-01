@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import '../../style/body.css';
-import img3 from '../../image/bg-reviews.jpg';
-import img2 from '../../image/business-negotiate.jpg';
-import img1 from '../../image/support.jpg';
+import '../../../style/body.css';
+import img3 from '../../../image/bg-reviews.jpg';
+import img2 from '../../../image/business-negotiate.jpg';
+import img1 from '../../../image/support.jpg';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import SecurityIcon from '@mui/icons-material/Security';
@@ -15,11 +15,11 @@ import HandshakeIcon from '@mui/icons-material/Handshake';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { useAppSelector } from '../../store/reduxHooks';
+import { useAppSelector } from '../../../store/reduxHooks';
 import { Carousel } from 'react-bootstrap';
 import StarIcon from '@mui/icons-material/Star';
 import { useEffect } from 'react';
-import { socket } from '../../App';
+import { socket } from '../../../App';
 
 
 function Body() {

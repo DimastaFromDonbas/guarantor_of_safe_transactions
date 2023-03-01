@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../store/reduxHooks"
+import { useAppSelector } from "../../../store/reduxHooks"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 

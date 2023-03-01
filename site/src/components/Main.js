@@ -1,4 +1,4 @@
-import Body from "./fullBody/Body";
+import Body from "./fullBody/HomePage/Body";
 import '../style/body.css'
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from "../store/reduxHooks";

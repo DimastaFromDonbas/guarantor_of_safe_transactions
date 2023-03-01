@@ -118,9 +118,9 @@ function Settings() {
             setFormValidPassword(false)
         }
     }, [newPassword, passwordV2, user.password, NewPasswordError])
-
-    return <div className="bg-img">
-        <div style={{ paddingBottom: "117px", marginTop: '30px', marginBottom: '110px', minHeight: '70vh' }} className="container">
+ 
+    return <div className="bg-img" style={{ paddingBottom: "20px", paddingTop: "20px" }}>
+        <div style={{ paddingBottom: "117px", minHeight: '70vh' }} className="container">
             <h3 className="header-inner_title login-inner_title">Настройки</h3>
             <hr className="hr-viss" />
             <div className="flex-adapt" style={{ display: 'flex' }}>

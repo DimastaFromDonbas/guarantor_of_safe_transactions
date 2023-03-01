@@ -1,17 +1,17 @@
 import { useEffect, useState, useRef } from "react";
-import AllDeposit from "./adminComponent/AllDeposit";
-import AllDeals from "./adminComponent/AllDeals";
-import AllUsers from "./adminComponent/AllUsers";
-import AllTransfers from "./adminComponent/AllTransfers";
-import { useAppSelector } from "../../store/reduxHooks";
+import AllDeposit from "../adminComponent/AllDeposit";
+import AllDeals from "../adminComponent/AllDeals";
+import AllUsers from "../adminComponent/AllUsers";
+import AllTransfers from "../adminComponent/AllTransfers";
+import { useAppSelector } from "../../../store/reduxHooks";
 import { useNavigate } from "react-router-dom";
-import SetNameTheSite from "./adminComponent/SetNameTheSite";
+import SetNameTheSite from "../adminComponent/SetNameTheSite";
 import io from "socket.io-client";
-import AllChats from "./adminComponent/AllChats";
-import { axiosGetAdminChats, axiosGetAllDeal, check } from "../../api/axios";
+import AllChats from "../adminComponent/AllChats";
+import { axiosGetAdminChats, axiosGetAllDeal, check } from "../../../api/axios";
 import { useDispatch } from "react-redux";
-import { reducerTypes } from "../../store/Users/types";
-import sound from '../../sound/newMessage.mp3';
+import { reducerTypes } from "../../../store/Users/types";
+import sound from '../../../sound/newMessage.mp3';
 
 
 export const socketAdmin = io.connect("https://back-hbht.onrender.com");

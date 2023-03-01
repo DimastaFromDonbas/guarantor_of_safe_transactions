@@ -51,7 +51,7 @@ export const INITIAL: IUsersReducer = {
     allTransfersToUser: [],
     fixSumSystemMessage: [],
     nameTheSite: {
-        name: localStorage.getItem('siteName') || 'NAEBAL MAMONTA',
+        name: localStorage.getItem('siteName') || '',
     },
     criptoWallet: {
         wallet: localStorage.getItem('siteWallet') || '',

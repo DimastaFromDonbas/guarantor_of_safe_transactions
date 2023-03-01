@@ -6,7 +6,7 @@ import { useAppSelector } from "../../../store/reduxHooks";
 import { reducerTypes } from "../../../store/Users/types";
 import { axiosChangeDeal } from "../../../api/axios";
 import { dealStatusMock } from "../../mock/OutputMock";
-import { socketAdmin } from "../AdminPanel";
+import { socketAdmin } from "../AdminPage/AdminPanel";
 
 function DealID() {
   const { id } = useParams();

@@ -95,7 +95,7 @@ function SystemMessages() {
         // eslint-disable-next-line
     }, [user]);
 
-    return <div className="bg-img">
+    return <div className="bg-img" style={{ paddingBottom: "20px", paddingTop: "2px" }}>
         <div style={{ marginTop: '30px' }} className="container heiggg">
             <h3 style={{ borderBottom: "1px solid rgb(85, 85, 88)" }} className="login-inner_title" onClick={() => console.log(checkAlertSystemMessage, user?.systemMessage)}>Системные сообщения</h3>
             {checkAlertSystemMessage || user?.systemMessage === 'true' ?

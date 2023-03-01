@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { socket } from "../../App";
 
 function Disputes() {
-    const { user } = useAppSelector((store) => store.user);
+    const { user,nameTheSite } = useAppSelector((store) => store.user);
 
     useEffect(() => {
         if (!user?.email) return;
@@ -27,7 +27,7 @@ function Disputes() {
                     </div>
                     <div className="main-section__heading">
                         <h2>Решение споров</h2>
-                        <p>grandfight.ru является независимой третьей стороной и выступает объективным арбитром в урегулировании
+                        <p>{nameTheSite.name} является независимой третьей стороной и выступает объективным арбитром в урегулировании
                             конфликтов между покупателями и продавцами</p>
                     </div>
                 </div>
