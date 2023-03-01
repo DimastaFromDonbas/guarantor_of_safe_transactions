@@ -6,7 +6,7 @@ import HomePage from "./components/Pages /HomePage/HomePage";
 import Settings from "./components/Pages /SettingsPage/Settings";
 import Makedeal from "./components/Pages /MakedealPage/Makedeal";
 import Deals from "./components/Pages /DealsPage/Deals";
-import MainChat from "./components/ChatTest/Main";
+
 import Output from "./components/Pages /OutputPage/Output";
 import Payments from "./components/Pages /PaymentPage/Payments";
 import SystemMessages from "./components/Pages /SystemMassagesPage/SystemMessages";
@@ -86,7 +86,7 @@ function App() {
         <Route path="/login" element={<UserInput />} />
         <Route path="/registr" element={<UserRegistr />} />
         <Route path="/rules" element={<UserSoglos />} />
-        <Route path="/test" element={<MainChat />} />
+
         <Route path="/disputes" element={<Disputes />} />
       </Routes>
       <Footer />

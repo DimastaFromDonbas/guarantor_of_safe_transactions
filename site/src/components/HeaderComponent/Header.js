@@ -1,6 +1,6 @@
 import { Alert } from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom"
-import '../../../style/header.css'
+import '../../style/header.css'
 import HomeIcon from '@mui/icons-material/Home';
 import { useAppSelector } from "../../store/reduxHooks";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
