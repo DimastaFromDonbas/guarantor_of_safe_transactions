@@ -1,12 +1,12 @@
-import Baner from '../../image/banner-img3.png';
-import Spore from '../../image/spore-img1.svg';
-import Spore2 from '../../image/spore-img2.svg';
-import Spore3 from '../../image/spore-img3.svg';
-import Spore4 from '../../image/spore-img4.svg';
+import Baner from '../../../image/banner-img3.png';
+import Spore from '../../../image/spore-img1.svg';
+import Spore2 from '../../../image/spore-img2.svg';
+import Spore3 from '../../../image/spore-img3.svg';
+import Spore4 from '../../../image/spore-img4.svg';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
-import { useAppSelector } from "../../store/reduxHooks";
+import { useAppSelector } from "../../../store/reduxHooks";
 import { useEffect } from 'react';
-import { socket } from "../../App";
+import { socket } from "../../../App";
 
 function Disputes() {
     const { user,nameTheSite } = useAppSelector((store) => store.user);

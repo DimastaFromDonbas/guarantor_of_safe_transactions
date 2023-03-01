@@ -1,12 +1,12 @@
 import { Alert } from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom"
-import '../../style/header.css'
+import '../../../style/header.css'
 import HomeIcon from '@mui/icons-material/Home';
-import { useAppSelector } from "../../store/reduxHooks";
+import { useAppSelector } from "../../../store/reduxHooks";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useEffect, useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { reducerTypes } from "../../store/Users/types";
+import { reducerTypes } from "../../../store/Users/types";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { SwipeableDrawer } from "@mui/material";
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -16,7 +16,7 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
-import { axiosGetName, check, axiosChangeSystemMessageAtUser } from "../../api/axios";
+import { axiosGetName, check, axiosChangeSystemMessageAtUser } from "../../../api/axios";
 
 
 function Header() {

@@ -1,11 +1,11 @@
-import Monero from '../../image/monero-xmr-logo.svg';
+import Monero from '../../../image/monero-xmr-logo.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useAppSelector } from '../../store/reduxHooks';
-import { axiosGetWallet } from '../../api/axios';
-import { reducerTypes } from '../../store/Users/types';
+import { useAppSelector } from '../../../store/reduxHooks';
+import { axiosGetWallet } from '../../../api/axios';
+import { reducerTypes } from '../../../store/Users/types';
 import { useDispatch } from 'react-redux';
-import { socket } from '../../App';
+import { socket } from '../../../App';
 
 function Payments() {
     const navigate = useNavigate();

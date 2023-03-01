@@ -1,13 +1,13 @@
 import { LinearProgress, Button } from '@mui/material';
 import { useState, useEffect, useRef } from "react";
-import { useAppSelector } from "../../store/reduxHooks";
+import { useAppSelector } from "../../../store/reduxHooks";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { socket } from "../../App";
-import { reducerTypes } from "../../store/Users/types";
-import { axiosGetDealMessages, axiosGetOneDeal, axiosChangeDealStatus, axiosDecreaseScore, axiosIncreaseScore } from "../../api/axios";
-import { dealStatusMock } from "../mock/OutputMock";
-import sound from '../../sound/newMessage.mp3';
+import { socket } from "../../../App";
+import { reducerTypes } from "../../../store/Users/types";
+import { axiosGetDealMessages, axiosGetOneDeal, axiosChangeDealStatus, axiosDecreaseScore, axiosIncreaseScore } from "../../../api/axios";
+import { dealStatusMock } from "../../mock/OutputMock";
+import sound from '../../../sound/newMessage.mp3';
 
 function Deal() {
   const navigate = useNavigate()

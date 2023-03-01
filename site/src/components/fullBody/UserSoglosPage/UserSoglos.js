@@ -1,6 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../store/reduxHooks";
+import { useAppSelector } from "../../../store/reduxHooks";
 
 function UserSoglos(){
 

@@ -1,14 +1,14 @@
 import { Form } from "react-bootstrap"
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../store/reduxHooks";
+import { useAppSelector } from "../../../store/reduxHooks";
 import { useEffect } from "react";
-import { axiosGetDeal } from "../../api/axios";
-import { reducerTypes } from "../../store/Users/types";
+import { axiosGetDeal } from "../../../api/axios";
+import { reducerTypes } from "../../../store/Users/types";
 import { useDispatch } from 'react-redux';
 
-import { dealStatusMock } from "../mock/OutputMock";
-import { socket } from "../../App";
+import { dealStatusMock } from "../../mock/OutputMock";
+import { socket } from "../../../App";
 
 function Deals() {
     const navigate = useNavigate()

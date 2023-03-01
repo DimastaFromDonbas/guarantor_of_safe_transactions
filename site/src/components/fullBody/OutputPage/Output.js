@@ -1,16 +1,16 @@
 import { Link, useNavigate } from "react-router-dom"
-import { useAppSelector } from "../../store/reduxHooks";
+import { useAppSelector } from "../../../store/reduxHooks";
 import { Form } from "react-bootstrap";
 import { useState, useEffect } from "react"
-import { axiosCreateUserTransfer } from "../../api/axios";
-import { axiosCreateUserToUserTransfer } from "../../api/axios";
-import { axiosGetUserRefills } from "../../api/axios";
-import { axiosGetUserTransfers } from "../../api/axios";
-import { axiosGetUserToUserTransfers } from "../../api/axios";
-import { reducerTypes } from "../../store/Users/types";
+import { axiosCreateUserTransfer } from "../../../api/axios";
+import { axiosCreateUserToUserTransfer } from "../../../api/axios";
+import { axiosGetUserRefills } from "../../../api/axios";
+import { axiosGetUserTransfers } from "../../../api/axios";
+import { axiosGetUserToUserTransfers } from "../../../api/axios";
+import { reducerTypes } from "../../../store/Users/types";
 import { useDispatch } from "react-redux";
-import { paymant, transferStatusMock } from "../mock/OutputMock";
-import { socket } from "../../App";
+import { paymant, transferStatusMock } from "../../mock/OutputMock";
+import { socket } from "../../../App";
 
 
 function Output() {

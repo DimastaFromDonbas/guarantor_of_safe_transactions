@@ -1,10 +1,10 @@
 
 import { useEffect, useState } from "react"
 import { Form } from "react-bootstrap"
-import { useAppSelector } from "../../store/reduxHooks"
-import { axiosCreateDeal } from "../../api/axios"
+import { useAppSelector } from "../../../store/reduxHooks"
+import { axiosCreateDeal } from "../../../api/axios"
 import { useNavigate } from "react-router-dom"
-import { socket } from "../../App"
+import { socket } from "../../../App"
 
 function Makedeal() {
     const navigate = useNavigate()

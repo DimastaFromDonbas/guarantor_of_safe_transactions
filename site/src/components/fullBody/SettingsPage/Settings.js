@@ -1,9 +1,9 @@
 import { Form } from "react-bootstrap"
 import { useDispatch } from 'react-redux';
-import { reducerTypes } from "../../store/Users/types";
-import { axiosChangeNickname, axiosChangePassword } from "../../api/axios";
+import { reducerTypes } from "../../../store/Users/types";
+import { axiosChangeNickname, axiosChangePassword } from "../../../api/axios";
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../../store/reduxHooks";
+import { useAppSelector } from "../../../store/reduxHooks";
 import validator from 'validator';
 
 
