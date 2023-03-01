@@ -206,6 +206,8 @@ function Header() {
     };
   }, [state, navigate]);
 
+  if (window.location.href.includes('adminPanel')) return null;
+
   return <>
     <Alert.Heading className="alert-navBar "><span className="fade-in-out">{text}</span></Alert.Heading>
     <div className="navbar-header">
@@ -273,7 +275,7 @@ function Header() {
             <ul className="nav-detail_list">
               {user?.role === 'USER' || null || '' ?
                 '' :
-                <li className="nav-detail_item"><Link className="nav-detail_link" to="/AdminPanel">Админ панель</Link></li>}
+                <li className="nav-detail_item"><Link className="nav-detail_link" to="/adminPanel">Админ панель</Link></li>}
               <li className="nav-detail_item"><Link className="nav-detail_link" to="/systemmessages">Системные сообщения {(bellState && !checkReadMessage) || (user?.systemMessage === 'true' && !checkReadMessage) ? <NotificationsNoneIcon className="bell-color"></NotificationsNoneIcon> : ''}</Link></li>
               <li className="nav-detail_item"><Link className="nav-detail_link" to="/settings">Мои настройки</Link></li>
               <li className="nav-detail_item border-exit"><Link onClick={logOut} className="nav-detail_link" to="/">Выход</Link></li>

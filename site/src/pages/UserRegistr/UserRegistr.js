@@ -20,7 +20,7 @@ function UserRegistr() {
   const [passwordV2, setPasswordV2] = useState("");
   const [emailDirty, setEmailDirty] = useState(false);
   const [passwordDirty, setPasswordDirty] = useState(false);
-  const [emailError, setEmailError] = useState("Логин не может быть пустым");
+  const [emailError, setEmailError] = useState("Email не может быть пустым");
   const [passwordError, setPasswordError] = useState("Пароль не может быть пустым");
   const [passwordNoChect, setpasswordNoChect] = useState('Пароль не может быть пустым')
   const [checked, setChecked] = useState(true)

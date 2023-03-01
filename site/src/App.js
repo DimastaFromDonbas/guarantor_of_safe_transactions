@@ -50,16 +50,12 @@ function App() {
     // eslint-disable-next-line
   }, []);
 
+
   return (
     <>
+      <audio ref={audioPlayer} src={sound} />
       <Header />
       <Chat />
-      <audio ref={audioPlayer} src={sound} />
-      {/* <Helmet>
-        <meta charSet="utf-8" />
-        <link rel="shortcut icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico" />
-      </Helmet> */}
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/adminPanel/user/:id" element={<UserID />} />

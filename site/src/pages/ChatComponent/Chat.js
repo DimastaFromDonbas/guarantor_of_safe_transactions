@@ -136,6 +136,8 @@ function Chat() {
         // eslint-disable-next-line
     }, [messageToAdmin]);
 
+    if (window.location.href.includes('adminPanel')) return null;
+
     return (
         <>
             {checked ? (

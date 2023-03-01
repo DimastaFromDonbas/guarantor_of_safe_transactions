@@ -9,6 +9,8 @@ function Footer() {
 
     const { nameTheSite } = useAppSelector((store) => store.user)
 
+    if (window.location.href.includes('adminPanel')) return null;
+
     return <div className="footer">
         <div className="footer_panel">
             <div className="container footer_holder">
