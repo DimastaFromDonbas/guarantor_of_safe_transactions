@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import UserRegistr from "./components/fullBody/UserRegistrPage/UserRegistr";
 import UserInput from "./components/fullBody/UserInputPage/UserInput";
 import UserSoglos from "./components/fullBody/UserSoglosPage/UserSoglos";
-import Main from "./components/Main";
+import HomePage from "./components/fullBody/HomePage/HomePage";
 import Settings from "./components/fullBody/SettingsPage/Settings";
 import Makedeal from "./components/fullBody/MakedealPage/Makedeal";
 import Deals from "./components/fullBody/DealsPage/Deals";
@@ -62,7 +62,7 @@ function App() {
       </Helmet> */}
 
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/adminPanel/user/:id" element={<UserID />} />
         <Route path="/adminPanel/deal/:id" element={<DealID />} />
         <Route path="/adminPanel/refill/:id" element={<RefillID />} />
