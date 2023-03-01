@@ -52,7 +52,7 @@ function App() {
 
 
   return (
-    <>
+    <div className="bg-img">
       <audio ref={audioPlayer} src={sound} />
       <Header />
       <Chat />
@@ -84,7 +84,7 @@ function App() {
         <Route path="/disputes" element={<Disputes />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 
