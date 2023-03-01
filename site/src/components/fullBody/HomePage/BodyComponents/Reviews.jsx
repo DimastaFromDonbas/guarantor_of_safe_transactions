@@ -1,10 +1,26 @@
 import { Carousel } from 'react-bootstrap';
 import StarIcon from '@mui/icons-material/Star';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
+import { motion } from 'framer-motion';
 
 function Reviews() {
     return <>
-        <div style={{ background: 'rgba(17, 17, 18, 0.65)', width: '100%', paddingBottom: '30px', minHeight: '460px' }}>
+        <motion.div 
+        initial = {{
+            y: -20,
+            opacity: 0
+         }}
+         whileInView = {{
+            y: 0,
+            opacity: 1,
+            transition: { duration: .5 },
+         }}
+         exit = {{
+            y: -20,
+            opacity: 0
+         }}
+        viewport = {{amount: .2, once: true}}
+        style={{ background: 'rgba(17, 17, 18, 0.65)', width: '100%', paddingBottom: '30px', minHeight: '460px' }}>
                 <div className="container">
                     <div className="tytleStaleComents" id="reviews">
                         <h2>Отзывы</h2>
@@ -178,7 +194,7 @@ function Reviews() {
                         </h6>
                     </div>
                 </div>
-            </div>
+            </motion.div>
     </>
 }
 

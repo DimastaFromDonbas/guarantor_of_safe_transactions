@@ -2,15 +2,31 @@ import SecurityIcon from '@mui/icons-material/Security';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { motion } from 'framer-motion';
 
 function PromoteSlider() {
     return <>
-         <div className="promote-slider promote-slider__showcase">
+         <motion.div className="promote-slider promote-slider__showcase">
                 <div className="container">
                     <div className="promote-slider_holder">
                         <ul className="promote-slider_list">
                             <li className="promote-slider_item promote-slider_item_list">
-                                <div className="info-card ">
+                                <motion.div 
+                                initial = {{
+                                    x: -20,
+                                    opacity: 0
+                                }}
+                                whileInView = {{
+                                    x: 0,
+                                    opacity: 1,
+                                    transition: { duration: .5 },
+                                }}
+                                exit = {{
+                                    y: -20,
+                                    opacity: 0
+                                 }}
+                                viewport = {{amount: .2, once: true}}
+                                className="info-card ">
                                     <div className="card-header">
                                         <SecurityIcon style={{ color: 'aliceblue', marginRight: '5px' }}></SecurityIcon>
                                         <span className="card-header-text">Надежность</span>
@@ -31,8 +47,19 @@ function PromoteSlider() {
                                         <CheckCircleIcon style={{ width: '20px', marginRight: '2px' }}></CheckCircleIcon>
                                         Актуальный черный список с автоматической проверкой всех пользователей
                                     </div>
-                                </div>
-                                <div className="info-card ">
+                                </motion.div>
+                                <motion.div 
+                                initial = {{
+                                    y: 20,
+                                    opacity: 0
+                                }}
+                                whileInView = {{
+                                    y: 0,
+                                    opacity: 1,
+                                    transition: { duration: .5 },
+                                }}
+                                viewport = {{amount: .2, once: true}}
+                                className="info-card ">
                                     <div className="card-header">
                                         <AdminPanelSettingsIcon style={{ color: 'aliceblue', marginRight: '5px' }}></AdminPanelSettingsIcon>
                                         <span className="card-header-text">Конфиденциальность</span>
@@ -47,8 +74,19 @@ function PromoteSlider() {
                                         Запрет публикации данных для идентификации учетных записей.
                                         <br />
                                     </div>
-                                </div>
-                                <div className="info-card ">
+                                </motion.div>
+                                <motion.div 
+                                initial = {{
+                                    x: 20,
+                                    opacity: 0
+                                }}
+                                whileInView = {{
+                                    x: 0,
+                                    opacity: 1,
+                                    transition: { duration: .5 },
+                                }}
+                                viewport = {{amount: .2, once: true}}
+                                className="info-card ">
                                     <div className="card-header">
                                         <ThumbUpIcon style={{ color: 'aliceblue', marginRight: '5px' }}></ThumbUpIcon>
                                         <span className="card-header-text">Удобство</span>
@@ -61,12 +99,12 @@ function PromoteSlider() {
                                         <CheckCircleIcon style={{ width: '20px', marginRight: '2px' }}></CheckCircleIcon>
                                         Удобство использования безопасной сделки.
                                     </div>
-                                </div>
+                                </motion.div>
                             </li>
                         </ul>
                     </div>
                 </div>
-            </div>
+            </motion.div>
     </>
 }
 

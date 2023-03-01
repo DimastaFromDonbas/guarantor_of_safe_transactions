@@ -2,10 +2,26 @@ import img3 from '../../../../image/bg-reviews.jpg';
 import img2 from '../../../../image/business-negotiate.jpg';
 import img1 from '../../../../image/support.jpg';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function PromoteSliderImage(){
     return <>
-     <div className="promote-slider promote-slider__showcase bg-img">
+     <motion.div 
+      initial = {{
+        y: -20,
+        opacity: 0
+     }}
+     whileInView = {{
+        y: 0,
+        opacity: 1,
+        transition: { duration: .5 },
+     }}
+     exit ={{
+        y: -20,
+        opacity: 0
+     }}
+    viewport = {{amount: .2, once: true}}
+     className="promote-slider promote-slider__showcase bg-img">
                 <div className="container">
                     <div className="promote-slider_holder">
                         <ul className="promote-slider_list">
@@ -36,7 +52,7 @@ function PromoteSliderImage(){
                         </ul>
                     </div>
                 </div>
-            </div>
+            </motion.div>
     </>
 }
 

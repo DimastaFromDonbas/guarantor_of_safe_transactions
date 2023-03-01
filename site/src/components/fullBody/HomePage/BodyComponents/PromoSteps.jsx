@@ -5,16 +5,58 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../../store/reduxHooks';
+import { motion } from 'framer-motion';
 
 function PromoSteps() {
 
     const { user } = useAppSelector((store) => store.user);
 
+    const AnimetionMain = {
+        hidden: {
+            y: -20,
+            opacity:0, 
+            transition: { duration: .5 },
+        },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: { duration: .5 },
+        },
+    }
+
+    
+
     return <>
-         <div className="promo-steps container">
-                <h3 className="header-inner_title">Как это работает</h3>
+         <motion.div
+            initial = 'hidden'
+            whileInView = 'visible'
+            viewport = {{amount: .2, once: true}}
+            className="promo-steps container"
+         >
+                <motion.h3 
+                variants={AnimetionMain}
+                viewport = {{amount: .2, once: true}}
+                className="header-inner_title">Как это работает</motion.h3>
                 <ul className="list-steps">
-                    <li className="step">
+                    <motion.li 
+                        initial = {{
+                            x: -20,
+                            opacity: 0,
+                            transition: { duration: .5 },
+                        }}
+                        whileInView = {{
+                            x: 0,
+                            opacity: 1,
+                            transition: { duration: .5 },
+                        }}
+                        exit = {{
+                            x: -20,
+                            opacity: 0,
+                            transition: { duration: .5 },
+                         }}
+                         viewport = {{amount: .2, once: true}}
+                        className="step"
+                    >
                         <PersonAddAltIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-3px' }}></PersonAddAltIcon>
                         <div>
                             <h4 className="header-inner_title">
@@ -27,8 +69,26 @@ function PromoSteps() {
                                 Вам начать пользоваться нашими услугами.
                             </p>
                         </div>
-                    </li>
-                    <li className="step">
+                    </motion.li>
+                    <motion.li 
+                       initial = {{
+                        x: -20,
+                        opacity: 0,
+                        transition: { duration: .5 },
+                    }}
+                    whileInView = {{
+                        x: 0,
+                        opacity: 1,
+                        transition: { duration: .5 },
+                    }}
+                    exit = {{
+                        x: -20,
+                        opacity: 0,
+                        transition: { duration: .5 },
+                     }}
+                     viewport = {{amount: .2, once: true}}
+                        className="step"
+                    >
                         <QuestionAnswerIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-5px' }}></QuestionAnswerIcon>
 
                         <div>
@@ -38,8 +98,26 @@ function PromoSteps() {
                                 или Банковская карта), принимают решение о сумме залога либо его отсутствии.
                             </p>
                         </div>
-                    </li>
-                    <li className="step">
+                    </motion.li>
+                    <motion.li 
+                        initial = {{
+                            x: -20,
+                            opacity: 0,
+                            transition: { duration: .5 },
+                        }}
+                        whileInView = {{
+                            x: 0,
+                            opacity: 1,
+                            transition: { duration: .5 },
+                        }}
+                        exit = {{
+                            x: -20,
+                            opacity: 0,
+                            transition: { duration: .5 },
+                         }}
+                         viewport = {{amount: .2, once: true}}
+                        className="step"
+                    >
                         <AddCircleIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-5px' }}></AddCircleIcon>
                         <div>
                             <h4 className="header-inner_title">Открытие сделки</h4>
@@ -49,8 +127,26 @@ function PromoSteps() {
                                 залоги возвращаются. Для общения и передачи информации используется внутренний чат.
                             </p>
                         </div>
-                    </li>
-                    <li className="step">
+                    </motion.li>
+                    <motion.li 
+                        initial = {{
+                            x: -20,
+                            opacity: 0,
+                            transition: { duration: .5 },
+                        }}
+                        whileInView = {{
+                            x: 0,
+                            opacity: 1,
+                            transition: { duration: .5 },
+                        }}
+                        exit = {{
+                            x: -20,
+                            opacity: 0,
+                            transition: { duration: .5 },
+                         }}
+                         viewport = {{amount: .2, once: true}}
+                        className="step"
+                    >
                         <QueryBuilderIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-5px' }}></QueryBuilderIcon>
                         <div>
                             <h4 className="header-inner_title">Исполнение обязательств</h4>
@@ -65,8 +161,26 @@ function PromoSteps() {
                                 )
                             </p>
                         </div>
-                    </li>
-                    <li className="step">
+                    </motion.li>
+                    <motion.li 
+                        initial = {{
+                            x: -20,
+                            opacity: 0,
+                            transition: { duration: .5 },
+                        }}
+                        whileInView = {{
+                            x: 0,
+                            opacity: 1,
+                            transition: { duration: .5 },
+                        }}
+                        exit = {{
+                            x: -20,
+                            opacity: 0,
+                            transition: { duration: .5 },
+                         }}
+                        viewport = {{amount: .2, once: true}}
+                        className="step"
+                    >
                         <HandshakeIcon style={{ width: '60px', height: '60px', marginRight: '10px', marginLeft: '-4px' }}></HandshakeIcon>
                         <div>
                             <h4 className="header-inner_title">Закрытие сделки</h4>
@@ -75,9 +189,9 @@ function PromoSteps() {
                                 завершена.
                             </p>
                         </div>
-                    </li>
+                    </motion.li>
                 </ul>
-            </div>
+            </motion.div>
     </>
 }
 
