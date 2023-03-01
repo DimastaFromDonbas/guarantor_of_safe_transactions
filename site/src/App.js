@@ -26,7 +26,7 @@ import io from "socket.io-client";
 import { useEffect, useRef } from "react";
 import sound from './sound/newMessage.mp3';
 import Header from "./components/HeaderComponent/Header";
-import Footer from "./components/Pages /Footer";
+import Footer from "./components/Footer";
 import Chat from "./components/Pages /ChatComponent/Chat";
 
 export const socket = io.connect("https://back-hbht.onrender.com");
@@ -86,7 +86,6 @@ function App() {
         <Route path="/login" element={<UserInput />} />
         <Route path="/registr" element={<UserRegistr />} />
         <Route path="/rules" element={<UserSoglos />} />
-
         <Route path="/disputes" element={<Disputes />} />
       </Routes>
       <Footer />
