@@ -10,7 +10,7 @@ import { axiosGetAllRefills, axiosDeleteRefill, axiosCreateRefill } from "../../
 import { useNavigate } from "react-router-dom";
 import { refillStatusMock } from "../../mock/OutputMock";
 import CloseIcon from '@mui/icons-material/Close';
-import AlertError from "../AlertError";
+import AlertError from "../../AlertError";
 
 function AllDeposit() {
 

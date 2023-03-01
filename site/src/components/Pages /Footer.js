@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import '../../../style/footer.css'
-import { useAppSelector } from "../../../store/reduxHooks";
+import { useAppSelector } from "../../store/reduxHooks";
 
 
 function Footer() {
