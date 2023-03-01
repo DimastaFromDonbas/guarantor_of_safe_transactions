@@ -153,7 +153,7 @@ function Output() {
     }, [user]);
 
     return <div className="bg-img" style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-        <div style={{ minHeight: '80vh' }} className="container">
+        <div style={{ minHeight: '80vh' }} className="container bg-img">
             <div className="page-container-2 page-container--bg_transparent">
                 <div className="account-wrap__heading">
                     <h2>Мой счет</h2>

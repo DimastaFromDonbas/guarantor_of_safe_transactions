@@ -120,6 +120,10 @@
     color: rgba(255, 255, 255, 0.879);
 }
 
+.flex-box-2,.flex-box-1 {
+    max-width: 850px;
+}
+
 .buttonDeal2:hover {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
