@@ -26,7 +26,7 @@ import { useEffect, useRef } from "react";
 import sound from './sound/newMessage.mp3';
 import Header from "./components/HeaderComponent/Header";
 import Footer from "./components/Footer";
-import Chat from "./components/Pages /ChatComponent/Chat";
+import Chat from "./components/Pages/ChatComponent/Chat";
 
 export const socket = io.connect("https://back-hbht.onrender.com");
 
