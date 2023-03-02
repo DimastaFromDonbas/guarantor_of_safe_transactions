@@ -140,3 +140,4 @@ export const userPathForAdmin = {
   "/rules": 'Правила',
   "/disputes": 'Решение споров'
 }
+export const outputMock = ['История пополнений', 'Перевод по реквизитам', 'Перевод пользователю'];
