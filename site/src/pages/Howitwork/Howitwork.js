@@ -24,7 +24,7 @@ function Howitwork() {
         // eslint-disable-next-line
     }, [user]);
 
-    return <div className="bg-img">
+    return <div className="bg-img" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
         <div className="container">
             <div className="page-container">
                 <div className="main-section main-section--about">

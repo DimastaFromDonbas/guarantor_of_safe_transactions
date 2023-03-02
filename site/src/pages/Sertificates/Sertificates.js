@@ -19,7 +19,7 @@ function Sertificates() {
 
     return <div className="bg-img" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
         <div className="seller-page">
-            <div className="container container-marwrap">
+            <div className="container">
                 <div className="block-info-sertificate">
                     <h1 className="gen-text">Сертификаты и лицензии</h1>
                 </div>
