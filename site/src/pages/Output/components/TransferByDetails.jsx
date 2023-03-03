@@ -6,6 +6,7 @@ import { transferStatusMock } from '../../../components/mock/OutputMock';
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
 import { paymant } from '../../../components/mock/OutputMock';
+import { STransferByDetailsV1, STransferByDetailsV2, STransferByDetailsV3, STransferByDetailsV4 } from '../style/StyleComponents';
 
 function TransferByDetails() {
     const { user, transfers, nameTheSite } = useAppSelector((store) => store.user);
@@ -16,26 +17,6 @@ function TransferByDetails() {
     const [walletNumber, setWalletNumber] = useState('');
     const [visibleWalletError, setVisibleWalletError] = useState(true);
     const dispatch = useDispatch();
-    const SSizeBlockV1 = {
-        width: '80px',
-        display: 'flex',
-        justifyContent: 'center',
-    };
-    const SSizeBlockV2 = {
-        width: '231px',
-        display: 'flex',
-        justifyContent: 'center',
-    };
-    const SSizeBlockV3 = {
-        width: '280px',
-        display: 'flex',
-        justifyContent: 'center',
-    };
-    const SSizeBlockV4 = {
-        width: '170px',
-        display: 'flex',
-        justifyContent: 'center',
-    };
 
     async function createTransfer() {
         if (user?.systemMessage === 'true') return alert('Ваш аккаунт не верифицирован');
@@ -142,47 +123,47 @@ function TransferByDetails() {
                 {transfers ? (
                     <>
                         <div className="output-description-info-block">
-                            <div style={SSizeBlockV1} className="output-id dilit-block">
+                            <STransferByDetailsV1 className="dilit-block">
                                 ID
-                            </div>
-                            <div style={SSizeBlockV2} className="output-date dilit-block">
+                            </STransferByDetailsV1>
+                            <STransferByDetailsV2 className="dilit-block">
                                 Платежная система
-                            </div>
-                            <div style={SSizeBlockV3} className="output-date">
-                                Номер банковской карты{' '}
-                            </div>
-                            <div style={SSizeBlockV4} className="output-sum">
+                            </STransferByDetailsV2>
+                            <STransferByDetailsV3>
+                                Номер банковской карты
+                            </STransferByDetailsV3>
+                            <STransferByDetailsV4 >
                                 Сумма
-                            </div>
-                            <div style={SSizeBlockV2} className="output-sum">
+                            </STransferByDetailsV4>
+                            <STransferByDetailsV2>
                                 Время перевода
-                            </div>
-                            <div style={SSizeBlockV2} className="output-sum">
+                            </STransferByDetailsV2>
+                            <STransferByDetailsV2>
                                 Состояние перевода{' '}
-                            </div>
+                            </STransferByDetailsV2>
                         </div>
                         {transfers
                             ?.sort((a, b) => a.id - b.id)
                             ?.map((item, index) => (
                                 <div style={{ justifyContent: 'space-around' }} className="flex-info-block" key={index}>
-                                    <div style={SSizeBlockV1} className="output-id dilit-block">
+                                    <STransferByDetailsV1 className="dilit-block">
                                         {item.id}
-                                    </div>
-                                    <div style={SSizeBlockV2} className="output-date dilit-block">
+                                    </STransferByDetailsV1>
+                                    <STransferByDetailsV2>
                                         {item.paymantSystem}
-                                    </div>
-                                    <div style={SSizeBlockV3} className="output-date">
+                                    </STransferByDetailsV2>
+                                    <STransferByDetailsV3>
                                         {item.walletNumber}
-                                    </div>
-                                    <div style={SSizeBlockV4} className="output-sum">
+                                    </STransferByDetailsV3>
+                                    <STransferByDetailsV4>
                                         {item.score}
-                                    </div>
-                                    <div style={SSizeBlockV2} className="output-sum">
+                                    </STransferByDetailsV4>
+                                    <STransferByDetailsV2>
                                         {item.time}
-                                    </div>
-                                    <div style={SSizeBlockV2} className="output-sum">
+                                    </STransferByDetailsV2>
+                                    <STransferByDetailsV2>
                                         {transferStatusMock[item?.status === 0 ? item?.status : item?.status - 1]}
-                                    </div>
+                                    </STransferByDetailsV2>
                                 </div>
                             ))}
                     </>

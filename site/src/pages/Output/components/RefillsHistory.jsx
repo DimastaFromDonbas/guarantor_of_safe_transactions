@@ -3,15 +3,11 @@ import { axiosGetUserRefills } from '../../../api/axios';
 import { reducerTypes } from '../../../store/Users/types';
 import { useAppSelector } from '../../../store/reduxHooks';
 import { useEffect } from 'react';
+import { SRefillsHistoty } from '../style/StyleComponents';
 
 function RefillsHistory() {
     const { user, myRefills, nameTheSite } = useAppSelector((store) => store.user);
     const dispatch = useDispatch();
-    const SSizeBlock = {
-        width: '231px',
-        display: 'flex',
-        justifyContent: 'center',
-    };
 
     async function getUserRefills() {
         let result = await axiosGetUserRefills(user?.email);
@@ -37,28 +33,28 @@ function RefillsHistory() {
                 </div>
             </div>
             <div className="account-wrap__time-info">Перевод осуществляется в течении 24 ч</div>
-            <div className="output-description-info-block">
-                <div style={SSizeBlock} className="output-id">
-                    ID
+                <div className="output-description-info-block">
+                    <SRefillsHistoty>
+                        ID
+                    </SRefillsHistoty>
+                    <SRefillsHistoty>
+                        Дата
+                    </SRefillsHistoty>
+                    <SRefillsHistoty>
+                        Сумма
+                    </SRefillsHistoty>
                 </div>
-                <div style={SSizeBlock} className="output-date">
-                    Дата
-                </div>
-                <div style={SSizeBlock} className="output-sum">
-                    Сумма
-                </div>
-            </div>
-            {myRefills?.map((item, index) => (
+                {myRefills?.map((item, index) => (
                 <div className="flex-info-block" key={index}>
-                    <div style={SSizeBlock} className="output-id">
+                    <SRefillsHistoty>
                         {item.id}
-                    </div>
-                    <div style={SSizeBlock} className="output-date">
+                    </SRefillsHistoty>
+                    <SRefillsHistoty>
                         {item.time}
-                    </div>
-                    <div style={SSizeBlock} className="output-sum">
+                    </SRefillsHistoty>
+                    <SRefillsHistoty>
                         {item.score}
-                    </div>
+                    </SRefillsHistoty>
                 </div>
             ))}
         </div>

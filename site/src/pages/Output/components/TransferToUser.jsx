@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
 import { axiosCreateUserToUserTransfer, axiosGetUserToUserTransfers } from '../../../api/axios';
+import { TransferToUserV1, TransferToUserV2 } from '../style/StyleComponents';
 
 function TransferToUser() {
     const { user, transfersToUser, nameTheSite } = useAppSelector((store) => store.user);
@@ -12,17 +13,6 @@ function TransferToUser() {
     const [receiverScore, setReceiverScore] = useState(0);
     const [dataId, setDataId] = useState();
     const dispatch = useDispatch();
-    const SSizeBlock = {
-        width: '231px',
-        display: 'flex',
-        justifyContent: 'center',
-    };
-    const SSizeBlockUnickl = {
-        width: '231px',
-        display: 'flex',
-        justifyContent: 'center',
-        overflowWrap: 'anywhere',
-    };
 
     async function createTransferToUser() {
         if (user?.systemMessage === 'true') return alert('Ваш аккаунт не верифицирован');
@@ -90,41 +80,41 @@ function TransferToUser() {
                 {transfersToUser ? (
                     <>
                         <div className="output-description-info-block">
-                            <div style={SSizeBlock} className="output-id dilit-block">
+                            <TransferToUserV1 className="dilit-block">
                                 ID
-                            </div>
-                            <div style={SSizeBlock} className="output-date">
+                            </TransferToUserV1>
+                            <TransferToUserV2>
                                 Email пользователя
-                            </div>
-                            <div style={SSizeBlock} className="output-sum">
+                            </TransferToUserV2>
+                            <TransferToUserV1>
                                 Сумма
-                            </div>
-                            <div style={SSizeBlock} className="output-sum">
+                            </TransferToUserV1>
+                            <TransferToUserV1>
                                 Время перевода
-                            </div>
-                            <div style={SSizeBlock} className="output-sum">
-                                Состояние перевода{' '}
-                            </div>
+                            </TransferToUserV1>
+                            <TransferToUserV1>
+                                Состояние перевода
+                            </TransferToUserV1>
                         </div>
                         {transfersToUser
                             ?.sort((a, b) => a.id - b.id)
                             ?.map((item, index) => (
                                 <div style={{ justifyContent: 'space-around' }} className="flex-info-block" key={index}>
-                                    <div style={SSizeBlock} className="output-id dilit-block">
+                                    <TransferToUserV1 className="dilit-block">
                                         {item.id}
-                                    </div>
-                                    <div style={SSizeBlockUnickl} className="output-date">
+                                    </TransferToUserV1>
+                                    <TransferToUserV2>
                                         {item.receiverEmail}
-                                    </div>
-                                    <div style={SSizeBlock} className="output-sum">
+                                    </TransferToUserV2>
+                                    <TransferToUserV1>
                                         {item.score}
-                                    </div>
-                                    <div style={SSizeBlock} className="output-sum">
+                                    </TransferToUserV1>
+                                    <TransferToUserV1>
                                         {item.time}
-                                    </div>
-                                    <div style={SSizeBlock} className="output-sum">
+                                    </TransferToUserV1>
+                                    <TransferToUserV1>
                                         {statuses[item?.status === 0 ? item?.status : item?.status - 1]}
-                                    </div>
+                                    </TransferToUserV1>
                                 </div>
                             ))}
                     </>
