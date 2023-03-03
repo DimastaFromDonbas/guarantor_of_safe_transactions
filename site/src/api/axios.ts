@@ -510,7 +510,6 @@ export const axiosGetDealMessages = async (dealId: number) => {
 export const axiosGetAdminChats = async (adminEmail: string, adminPassword: string) => {
     try {
         const { data } = await axios.post('api/adminChat/get', { adminEmail, adminPassword }, getConfig());
-
         return data;
     } catch (e) {
         console.log(e);
@@ -519,7 +518,6 @@ export const axiosGetAdminChats = async (adminEmail: string, adminPassword: stri
 export const axiosGetOneChat = async (email: string, password: string) => {
     try {
         const { data } = await axios.post('api/adminChat/getOne', { email, password }, getConfig());
-
         return data;
     } catch (e) {
         console.log(e);
