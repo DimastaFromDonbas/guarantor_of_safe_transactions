@@ -42,4 +42,3 @@ export const TransferToUserV2 = styled.div`
     justify-content: center;
     overflow-wrap: anywhere;
 `;
-

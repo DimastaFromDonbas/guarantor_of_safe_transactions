@@ -80,41 +80,21 @@ function TransferToUser() {
                 {transfersToUser ? (
                     <>
                         <div className="output-description-info-block">
-                            <TransferToUserV1 className="dilit-block">
-                                ID
-                            </TransferToUserV1>
-                            <TransferToUserV2>
-                                Email пользователя
-                            </TransferToUserV2>
-                            <TransferToUserV1>
-                                Сумма
-                            </TransferToUserV1>
-                            <TransferToUserV1>
-                                Время перевода
-                            </TransferToUserV1>
-                            <TransferToUserV1>
-                                Состояние перевода
-                            </TransferToUserV1>
+                            <TransferToUserV1 className="dilit-block">ID</TransferToUserV1>
+                            <TransferToUserV2>Email пользователя</TransferToUserV2>
+                            <TransferToUserV1>Сумма</TransferToUserV1>
+                            <TransferToUserV1>Время перевода</TransferToUserV1>
+                            <TransferToUserV1>Состояние перевода</TransferToUserV1>
                         </div>
                         {transfersToUser
                             ?.sort((a, b) => a.id - b.id)
                             ?.map((item, index) => (
                                 <div style={{ justifyContent: 'space-around' }} className="flex-info-block" key={index}>
-                                    <TransferToUserV1 className="dilit-block">
-                                        {item.id}
-                                    </TransferToUserV1>
-                                    <TransferToUserV2>
-                                        {item.receiverEmail}
-                                    </TransferToUserV2>
-                                    <TransferToUserV1>
-                                        {item.score}
-                                    </TransferToUserV1>
-                                    <TransferToUserV1>
-                                        {item.time}
-                                    </TransferToUserV1>
-                                    <TransferToUserV1>
-                                        {statuses[item?.status === 0 ? item?.status : item?.status - 1]}
-                                    </TransferToUserV1>
+                                    <TransferToUserV1 className="dilit-block">{item.id}</TransferToUserV1>
+                                    <TransferToUserV1 style={{ overflowWrap: 'anywhere' }}>{item.receiverEmail}</TransferToUserV1>
+                                    <TransferToUserV1>{item.score}</TransferToUserV1>
+                                    <TransferToUserV1>{item.time}</TransferToUserV1>
+                                    <TransferToUserV1>{statuses[item?.status === 0 ? item?.status : item?.status - 1]}</TransferToUserV1>
                                 </div>
                             ))}
                     </>
