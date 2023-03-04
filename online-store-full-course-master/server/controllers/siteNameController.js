@@ -19,7 +19,7 @@ class SiteNameController {
         if (creator.role !== 'ADMIN') {
             return next(ApiError.badRequest('Нет доступа'))
         }
-        const siteName = await SiteName.create({ siteName: name })
+        const siteName = await SiteName.create({ siteName: name, wallet: '' })
         return res.json(siteName)
     }
 
