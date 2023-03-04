@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 // const LOCAL_URL = 'https://localhost:7004/api/'
 //const host = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_LOCAL_API_HOST || 'asdasdasd-front.onrender.com' : window.location.host;
 
-axios.defaults.baseURL = `https://back-hbht.onrender.com/`;
+axios.defaults.baseURL = `http://localhost:5000`;
 
 // axios.interceptors.request.use((request:any) => {
 //

@@ -1,40 +1,37 @@
-import { useEffect, useState, useRef } from "react";
-import AllDeposit from "./Refills/AllDeposit";
-import AllDeals from "./Deals/AllDeals";
-import AllUsers from "./Users/AllUsers";
-import AllTransfers from "./Transfers/AllTransfers";
-import { useAppSelector } from "../../store/reduxHooks";
-import { useNavigate } from "react-router-dom";
-import SetNameTheSite from "./SiteProps/SiteProps";
-import io from "socket.io-client";
-import AllChats from "./Chats/AllChats";
-import { axiosGetAdminChats, axiosGetAllDeal, check } from "../../api/axios";
-import { useDispatch } from "react-redux";
-import { reducerTypes } from "../../store/Users/types";
+import { useEffect, useState, useRef } from 'react';
+import AllDeposit from './Refills/AllDeposit';
+import AllDeals from './Deals/AllDeals';
+import AllUsers from './Users/AllUsers';
+import AllTransfers from './Transfers/AllTransfers';
+import { useAppSelector } from '../../store/reduxHooks';
+import { useNavigate } from 'react-router-dom';
+import SetNameTheSite from './SiteProps/SiteProps';
+import io from 'socket.io-client';
+import AllChats from './Chats/AllChats';
+import { axiosGetAdminChats, axiosGetAllDeal, check } from '../../api/axios';
+import { useDispatch } from 'react-redux';
+import { reducerTypes } from '../../store/Users/types';
 import sound from '../../sound/newMessage.mp3';
 
-
-export const socketAdmin = io.connect("https://back-hbht.onrender.com");
+export const socketAdmin = io.connect('http://localhost:5000');
 
 function AdminPanel() {
-
     const dispatch = useDispatch();
-    const [item, setItem] = useState()
-    const [checkNewMessage, setCheckNewMessage] = useState(false)
-    const [statebackground, setStatebackground] = useState(!!localStorage.getItem('backroundImg'))
-    const { user, adminChat, allDeals } = useAppSelector((store) => store.user)
-    const navigate = useNavigate()
+    const [item, setItem] = useState();
+    const [checkNewMessage, setCheckNewMessage] = useState(false);
+    const [statebackground, setStatebackground] = useState(!!localStorage.getItem('backroundImg'));
+    const { user, adminChat, allDeals } = useAppSelector((store) => store.user);
+    const navigate = useNavigate();
     const audioPlayer = useRef(null);
-    const [checkDeals, setCheckDeals] = useState(false)
+    const [checkDeals, setCheckDeals] = useState(false);
 
     async function auth() {
-        const getUsers = await check()
+        const getUsers = await check();
         dispatch({
             type: reducerTypes.GET_USER,
             payload: getUsers,
         });
     }
-
 
     function playAudio() {
         try {
@@ -42,7 +39,7 @@ function AdminPanel() {
                 audioPlayer.current.play();
             }
         } catch {
-            console.log('Ошибка воспроизведения аудио, обновите страницу')
+            console.log('Ошибка воспроизведения аудио, обновите страницу');
         }
     }
 
@@ -62,29 +59,29 @@ function AdminPanel() {
         if (data) {
             dispatch({
                 type: reducerTypes.GET_ADMIN_CHAT,
-                payload: data
+                payload: data,
             });
         }
     }
 
     function visibleItem(e) {
         switch (e.currentTarget.name) {
-            case "0":
+            case '0':
                 setItem(0);
                 break;
-            case "1":
+            case '1':
                 setItem(1);
                 break;
-            case "2":
+            case '2':
                 setItem(2);
                 break;
-            case "3":
+            case '3':
                 setItem(3);
                 break;
-            case "4":
+            case '4':
                 setItem(4);
                 break;
-            case "5":
+            case '5':
                 setItem(5);
                 break;
             default:
@@ -92,7 +89,7 @@ function AdminPanel() {
     }
 
     useEffect(() => {
-        setCheckNewMessage(adminChat.some(item => item.newMessage === 1));
+        setCheckNewMessage(adminChat.some((item) => item.newMessage === 1));
         // eslint-disable-next-line
     }, [adminChat]);
 
@@ -104,10 +101,10 @@ function AdminPanel() {
     useEffect(() => {
         if (user?.role) {
             if (user?.role === 'USER' || user?.role === null || user?.role === '' || user?.role === undefined) {
-                navigate("/")
+                navigate('/');
             }
         }
-    }, [user?.role, navigate, user])
+    }, [user?.role, navigate, user]);
 
     useEffect(() => {
         socketAdmin.on('newMessage', ({ data }) => {
@@ -133,84 +130,114 @@ function AdminPanel() {
 
     useEffect(() => {
         getAllDeals();
-        // eslint-disable-next-line 
-    }, [user])
+        // eslint-disable-next-line
+    }, [user]);
 
     useEffect(() => {
         if (!allDeals) return;
-        const result = allDeals?.some(item => item?.status === 5)
+        const result = allDeals?.some((item) => item?.status === 5);
         if (result) {
-            console.log('result', result, allDeals)
-            setCheckDeals(result)
+            console.log('result', result, allDeals);
+            setCheckDeals(result);
         }
 
-        // eslint-disable-next-line 
-    }, [allDeals])
+        // eslint-disable-next-line
+    }, [allDeals]);
 
     useEffect(() => {
-        socketAdmin.on("changeDealStatus", ({ data }) => {
+        socketAdmin.on('changeDealStatus', ({ data }) => {
             if (data?.check) getAllDeals();
         });
         // eslint-disable-next-line
     }, []);
 
-    return <div style={{ minHeight: '100vh' }}>
-        <audio ref={audioPlayer} src={sound} />
-        <div style={{ display: 'flex', minHeight: '100vh' }} className={!statebackground ? 'styleAdminPanel' : 'styleAdminPanel2'}>
-            <div style={{ display: "flex", flexDirection: "column", width: '22%' }} className="panel_user">
-                <button onClick={(e) => visibleItem(e)} name='0' className={item === 0 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
-                    <h4>ВСЕ ПОЛЬЗОВАТЕЛИ</h4>
-                </button>
-                <button onClick={(e) => visibleItem(e)} name='1' className={item === 1 ? "block_user_panel activ-block-admin" : "block_user_panel"} style={{ color: checkDeals ? 'red' : 'white' }}>
-                    <h4>ВСЕ СДЕЛКИ</h4>
-                </button>
-                <button onClick={(e) => visibleItem(e)} name='2' className={item === 2 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
-                    <h4>ПОПОЛНЕНИЯ</h4>
-                </button>
-                <button onClick={(e) => visibleItem(e)} name='3' className={item === 3 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
-                    <h4>ПЕРЕВОДЫ</h4>
-                </button>
-                <button onClick={(e) => visibleItem(e)} name='4' className={item === 4 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
-                    <h4 style={{ color: checkNewMessage ? 'red' : 'white' }}>ВСЕ ЧАТЫ</h4>
-                </button>
-                <button onClick={(e) => visibleItem(e)} name='5' className={item === 5 ? "block_user_panel activ-block-admin" : "block_user_panel"}>
-                    <h4>СМЕНА ИМЕНИ САЙТА <br /> И КОШЕЛЬКА</h4>
-                </button>
-                <button onClick={() => {
-                    localStorage.setItem('backroundImg', !statebackground ? ' ' : '')
-                    setStatebackground(prev => !prev)
-                }} className={statebackground ? "block_user_panel activ-block-admin" : "block_user_panel"}>
-                    <h4>СМЕНА ФОНА </h4>
-                </button>
-            </div>
-            <div style={{ paddingLeft: '10px' }} className="panel_user">
-                {item === 0 ? <div style={{ display: 'block', width: '100%' }}>
-                    <AllUsers />
-                </div> : ''}
-                {item === 1 ? <div style={{ display: 'block', width: '100%' }}>
-                    <AllDeals />
-                </div> : ''}
-                {item === 2 ? <div style={{ display: 'block' }}>
-                    <AllDeposit />
-                </div> : ''}
-                {item === 3 ? <div style={{ display: 'block', width: '100%' }}>
-                    <AllTransfers />
-                </div> : ''}
-                {item === 4 ? <div style={{ display: 'block', width: '100%' }}>
-                    <AllChats />
-                </div> : ''}
-                {item === 5 ? <div style={{ display: 'block' }}>
-                    <SetNameTheSite />
-                </div> : ''}
-                <div style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end", marginTop: '10px', color: 'white' }}>
-                    <div onClick={() => navigate("/")} className="tabl-flex-admin-button-global2">
-                        Вернуться назад
+    return (
+        <div style={{ minHeight: '100vh' }}>
+            <audio ref={audioPlayer} src={sound} />
+            <div style={{ display: 'flex', minHeight: '100vh' }} className={!statebackground ? 'styleAdminPanel' : 'styleAdminPanel2'}>
+                <div style={{ display: 'flex', flexDirection: 'column', width: '22%' }} className="panel_user">
+                    <button onClick={(e) => visibleItem(e)} name="0" className={item === 0 ? 'block_user_panel activ-block-admin' : 'block_user_panel'}>
+                        <h4>ВСЕ ПОЛЬЗОВАТЕЛИ</h4>
+                    </button>
+                    <button onClick={(e) => visibleItem(e)} name="1" className={item === 1 ? 'block_user_panel activ-block-admin' : 'block_user_panel'} style={{ color: checkDeals ? 'red' : 'white' }}>
+                        <h4>ВСЕ СДЕЛКИ</h4>
+                    </button>
+                    <button onClick={(e) => visibleItem(e)} name="2" className={item === 2 ? 'block_user_panel activ-block-admin' : 'block_user_panel'}>
+                        <h4>ПОПОЛНЕНИЯ</h4>
+                    </button>
+                    <button onClick={(e) => visibleItem(e)} name="3" className={item === 3 ? 'block_user_panel activ-block-admin' : 'block_user_panel'}>
+                        <h4>ПЕРЕВОДЫ</h4>
+                    </button>
+                    <button onClick={(e) => visibleItem(e)} name="4" className={item === 4 ? 'block_user_panel activ-block-admin' : 'block_user_panel'}>
+                        <h4 style={{ color: checkNewMessage ? 'red' : 'white' }}>ВСЕ ЧАТЫ</h4>
+                    </button>
+                    <button onClick={(e) => visibleItem(e)} name="5" className={item === 5 ? 'block_user_panel activ-block-admin' : 'block_user_panel'}>
+                        <h4>
+                            СМЕНА ИМЕНИ САЙТА <br /> И КОШЕЛЬКА
+                        </h4>
+                    </button>
+                    <button
+                        onClick={() => {
+                            localStorage.setItem('backroundImg', !statebackground ? ' ' : '');
+                            setStatebackground((prev) => !prev);
+                        }}
+                        className={statebackground ? 'block_user_panel activ-block-admin' : 'block_user_panel'}
+                    >
+                        <h4>СМЕНА ФОНА </h4>
+                    </button>
+                </div>
+                <div style={{ paddingLeft: '10px' }} className="panel_user">
+                    {item === 0 ? (
+                        <div style={{ display: 'block', width: '100%' }}>
+                            <AllUsers />
+                        </div>
+                    ) : (
+                        ''
+                    )}
+                    {item === 1 ? (
+                        <div style={{ display: 'block', width: '100%' }}>
+                            <AllDeals />
+                        </div>
+                    ) : (
+                        ''
+                    )}
+                    {item === 2 ? (
+                        <div style={{ display: 'block' }}>
+                            <AllDeposit />
+                        </div>
+                    ) : (
+                        ''
+                    )}
+                    {item === 3 ? (
+                        <div style={{ display: 'block', width: '100%' }}>
+                            <AllTransfers />
+                        </div>
+                    ) : (
+                        ''
+                    )}
+                    {item === 4 ? (
+                        <div style={{ display: 'block', width: '100%' }}>
+                            <AllChats />
+                        </div>
+                    ) : (
+                        ''
+                    )}
+                    {item === 5 ? (
+                        <div style={{ display: 'block' }}>
+                            <SetNameTheSite />
+                        </div>
+                    ) : (
+                        ''
+                    )}
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', marginTop: '10px', color: 'white' }}>
+                        <div onClick={() => navigate('/')} className="tabl-flex-admin-button-global2">
+                            Вернуться назад
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>
+    );
 }
 
-export default AdminPanel
+export default AdminPanel;

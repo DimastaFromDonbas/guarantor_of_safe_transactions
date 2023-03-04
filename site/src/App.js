@@ -28,7 +28,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Chat from "./pages/ChatComponent/Chat";
 
-export const socket = io.connect("https://back-hbht.onrender.com");
+export const socket = io.connect("http://localhost:5000");
 
 function App() {
   const audioPlayer = useRef(null);

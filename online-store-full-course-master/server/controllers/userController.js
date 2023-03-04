@@ -207,8 +207,10 @@ class UserController {
             sum += userTransferToUser.reduce((sum, item) => sum + item.score, 0)
         }
         await User.update({ systemMessage, score: user.score + sum }, { where: { id } })
-        await UserTransfer.update({ status: systemMessage === 'true' ? 2 : 1 }, { where: { userEmail: user.email } })
-        await UserTransferToUser.update({ status: systemMessage === 'true' ? 2 : 1 }, { where: { userEmail: user.email } })
+        if (systemMessage === 'true') {
+            await UserTransfer.update({ status: 2 }, { where: { userEmail: user.email } })
+            await UserTransferToUser.update({ status: 2 }, { where: { userEmail: user.email } })
+        }
         return res.json({ ...user.dataValues, systemMessage })
     }
 
