@@ -5,7 +5,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { socket } from "../../App";
 import { reducerTypes } from "../../store/Users/types";
-import { axiosGetDealMessages, axiosGetOneDeal, axiosChangeDealStatus, axiosDecreaseScore, axiosIncreaseScore } from "../../api/axios";
+import { axiosGetOneDeal, axiosChangeDealStatus } from "../../api/deal";
+import { axiosGetDealMessages } from '../../api/dealMessages';
+import { axiosDecreaseScore, axiosIncreaseScore } from '../../api/user';
 import { dealStatusMock } from "../../components/mock/OutputMock";
 import sound from '../../sound/newMessage.mp3';
 

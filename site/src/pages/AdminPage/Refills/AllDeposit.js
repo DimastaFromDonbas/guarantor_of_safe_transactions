@@ -6,7 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import { StyledInput } from "../../../style/styles";
-import { axiosGetAllRefills, axiosDeleteRefill, axiosCreateRefill } from "../../../api/axios";
+import { axiosGetAllRefills, axiosDeleteRefill, axiosCreateRefill } from "../../../api/refill";
 import { useNavigate } from "react-router-dom";
 import { refillStatusMock } from "../../../components/mock/OutputMock";
 import CloseIcon from '@mui/icons-material/Close';

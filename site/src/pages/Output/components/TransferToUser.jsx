@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
-import { axiosCreateUserToUserTransfer, axiosGetUserToUserTransfers } from '../../../api/axios';
+import { axiosCreateUserToUserTransfer, axiosGetUserToUserTransfers } from '../../../api/transferToUser';
 import { TransferToUserV1, TransferToUserV2 } from '../style/StyleComponents';
 
 function TransferToUser() {

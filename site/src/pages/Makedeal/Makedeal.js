@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import { Form } from "react-bootstrap"
 import { useAppSelector } from "../../store/reduxHooks"
-import { axiosCreateDeal } from "../../api/axios"
+import { axiosCreateDeal } from "../../api/deal"
 import { useNavigate } from "react-router-dom"
 import { socket } from "../../App"
 

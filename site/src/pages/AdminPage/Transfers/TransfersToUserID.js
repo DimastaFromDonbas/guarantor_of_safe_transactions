@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { axiosGetAllUserToUserTransfers } from '../../../api/axios';
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
 import { transferStatusMock } from '../../../components/mock/OutputMock';
-import { axiosChangeUserToUserTransfer } from '../../../api/axios';
+import { axiosChangeUserToUserTransfer, axiosGetAllUserToUserTransfers } from '../../../api/transferToUser';
 
 function TransfersToUserID() {
     const { id } = useParams();

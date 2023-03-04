@@ -2,10 +2,11 @@ import { StyledInput } from '../../../style/styles';
 // import { useAppSelector } from "../../store/reduxHooks";
 import { useState, useEffect } from 'react';
 import { useAppSelector } from '../../../store/reduxHooks';
-import { axiosGetName, axiosGetWallet, axiosUpdateName, axiosUpdateWallet } from '../../../api/axios';
+import { axiosUpdateName, axiosUpdateWallet, axiosGetWallet, axiosGetName } from '../../../api/siteName';
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from '../../../store/Users/types';
 import { useNavigate } from 'react-router-dom';
+
 function SetNameTheSite() {
     //const {user, nameTheSite} = useAppSelector ((store) => store.user)
     const dispatch = useDispatch();

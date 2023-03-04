@@ -10,7 +10,8 @@ import PromoteSliderImage from './BodyComponents/PromoteSliderImage';
 import BlockTextFree from './BodyComponents/BlockTextFree';
 import Reviews from './BodyComponents/Reviews';
 import { useDispatch } from 'react-redux';
-import { axiosGetUserTransfers, axiosGetUserToUserTransfers } from '../../api/axios';
+import { axiosGetUserTransfers } from '../../api/transfer';
+import { axiosGetUserToUserTransfers } from '../../api/transferToUser';
 import { reducerTypes } from '../../store/Users/types';
 
 function Body() {

@@ -2,7 +2,7 @@ import { useAppSelector } from "../../../../store/reduxHooks";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../../../store/Users/types";
-import { axiosGetAllUserTransfers } from "../../../../api/axios";
+import { axiosGetAllUserTransfers } from "../../../../api/transfer";
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import { useNavigate } from "react-router-dom";

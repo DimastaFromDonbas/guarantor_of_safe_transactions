@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom"
-import { axiosGetAllRefills } from "../../../api/axios";
 import { useAppSelector } from "../../../store/reduxHooks";
 import { reducerTypes } from "../../../store/Users/types";
 import { refillStatusMock } from "../../../components/mock/OutputMock";
-import { axiosUpdateRefill } from "../../../api/axios";
+import { axiosUpdateRefill, axiosGetAllRefills } from "../../../api/refill";
 
 function RefillID() {
 

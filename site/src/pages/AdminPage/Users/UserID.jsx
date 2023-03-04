@@ -2,16 +2,7 @@ import { Checkbox } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-    axiosDeleteUser,
-    axiosGetAllUsers,
-    axiosChangeRole,
-    axiosChangeScore,
-    axiosChangeSystemMessage,
-    axiosChangeCompleted,
-    axiosChangeCheckRu,
-    axiosChangeTransferAmount,
-} from '../../../api/axios';
+import { axiosDeleteUser, axiosGetAllUsers, axiosChangeRole, axiosChangeScore, axiosChangeSystemMessage, axiosChangeCompleted, axiosChangeCheckRu, axiosChangeTransferAmount } from '../../../api/user';
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
 import ChangeUserProps from './component/ChangeUserProps';

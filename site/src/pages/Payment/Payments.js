@@ -2,7 +2,7 @@ import Monero from '../../image/monero-xmr-logo.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppSelector } from '../../store/reduxHooks';
-import { axiosGetWallet } from '../../api/axios';
+import { axiosGetWallet } from '../../api/siteName';
 import { reducerTypes } from '../../store/Users/types';
 import { useDispatch } from 'react-redux';
 import { socket } from '../../App';

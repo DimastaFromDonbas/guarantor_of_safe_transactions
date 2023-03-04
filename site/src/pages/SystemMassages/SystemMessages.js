@@ -2,7 +2,8 @@ import { useAppSelector } from "../../store/reduxHooks";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { reducerTypes } from "../../store/Users/types";
-import { axiosGetUserTransfers, axiosGetUserToUserTransfers } from "../../api/axios";
+import { axiosGetUserTransfers } from "../../api/transfer";
+import { axiosGetUserToUserTransfers } from "../../api/transferToUser";
 import { socket } from "../../App";
 
 function SystemMessages() {

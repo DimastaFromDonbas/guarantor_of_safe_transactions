@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
-import { axiosLogin } from "../../api/axios";
+import { axiosLogin } from "../../api/user";
 import { reducerTypes } from "../../store/Users/types";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from '../../store/reduxHooks';

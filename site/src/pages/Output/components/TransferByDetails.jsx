@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { axiosCreateUserTransfer, axiosGetUserTransfers } from '../../../api/axios';
+import { axiosCreateUserTransfer, axiosGetUserTransfers } from '../../../api/transfer';
 import { transferStatusMock } from '../../../components/mock/OutputMock';
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
@@ -123,47 +123,23 @@ function TransferByDetails() {
                 {transfers ? (
                     <>
                         <div className="output-description-info-block">
-                            <STransferByDetailsV1 className="dilit-block">
-                                ID
-                            </STransferByDetailsV1>
-                            <STransferByDetailsV2 className="dilit-block">
-                                Платежная система
-                            </STransferByDetailsV2>
-                            <STransferByDetailsV3>
-                                Номер банковской карты
-                            </STransferByDetailsV3>
-                            <STransferByDetailsV4 >
-                                Сумма
-                            </STransferByDetailsV4>
-                            <STransferByDetailsV2>
-                                Время перевода
-                            </STransferByDetailsV2>
-                            <STransferByDetailsV2>
-                                Состояние перевода{' '}
-                            </STransferByDetailsV2>
+                            <STransferByDetailsV1 className="dilit-block">ID</STransferByDetailsV1>
+                            <STransferByDetailsV2 className="dilit-block">Платежная система</STransferByDetailsV2>
+                            <STransferByDetailsV3>Номер банковской карты</STransferByDetailsV3>
+                            <STransferByDetailsV4>Сумма</STransferByDetailsV4>
+                            <STransferByDetailsV2>Время перевода</STransferByDetailsV2>
+                            <STransferByDetailsV2>Состояние перевода </STransferByDetailsV2>
                         </div>
                         {transfers
                             ?.sort((a, b) => a.id - b.id)
                             ?.map((item, index) => (
                                 <div style={{ justifyContent: 'space-around' }} className="flex-info-block" key={index}>
-                                    <STransferByDetailsV1 className="dilit-block">
-                                        {item.id}
-                                    </STransferByDetailsV1>
-                                    <STransferByDetailsV2>
-                                        {item.paymantSystem}
-                                    </STransferByDetailsV2>
-                                    <STransferByDetailsV3>
-                                        {item.walletNumber}
-                                    </STransferByDetailsV3>
-                                    <STransferByDetailsV4>
-                                        {item.score}
-                                    </STransferByDetailsV4>
-                                    <STransferByDetailsV2>
-                                        {item.time}
-                                    </STransferByDetailsV2>
-                                    <STransferByDetailsV2>
-                                        {transferStatusMock[item?.status === 0 ? item?.status : item?.status - 1]}
-                                    </STransferByDetailsV2>
+                                    <STransferByDetailsV1 className="dilit-block">{item.id}</STransferByDetailsV1>
+                                    <STransferByDetailsV2>{item.paymantSystem}</STransferByDetailsV2>
+                                    <STransferByDetailsV3>{item.walletNumber}</STransferByDetailsV3>
+                                    <STransferByDetailsV4>{item.score}</STransferByDetailsV4>
+                                    <STransferByDetailsV2>{item.time}</STransferByDetailsV2>
+                                    <STransferByDetailsV2>{transferStatusMock[item?.status === 0 ? item?.status : item?.status - 1]}</STransferByDetailsV2>
                                 </div>
                             ))}
                     </>

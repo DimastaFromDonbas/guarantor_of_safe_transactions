@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import validator from 'validator';
 import { useState } from "react";
 import { useEffect } from "react";
-import { axiosRegistration } from "../../api/axios";
+import { axiosRegistration } from "../../api/user";
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from "../../store/Users/types";
 import { useNavigate } from "react-router-dom";

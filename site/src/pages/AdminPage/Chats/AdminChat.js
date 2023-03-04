@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { axiosGetAdminChats, axiosGetMessagestoAdmin } from '../../../api/axios';
+import { axiosGetMessagestoAdmin } from '../../../api/adminMessages';
+import { axiosGetAdminChats } from '../../../api/adminChat';
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
 import { socketAdmin } from '../AdminPanel';

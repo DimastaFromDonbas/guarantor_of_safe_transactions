@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { axiosGetUserRefills } from '../../../api/axios';
+import { axiosGetUserRefills } from '../../../api/refill';
 import { reducerTypes } from '../../../store/Users/types';
 import { useAppSelector } from '../../../store/reduxHooks';
 import { useEffect } from 'react';
@@ -33,28 +33,16 @@ function RefillsHistory() {
                 </div>
             </div>
             <div className="account-wrap__time-info">Перевод осуществляется в течении 24 ч</div>
-                <div className="output-description-info-block">
-                    <SRefillsHistoty>
-                        ID
-                    </SRefillsHistoty>
-                    <SRefillsHistoty>
-                        Дата
-                    </SRefillsHistoty>
-                    <SRefillsHistoty>
-                        Сумма
-                    </SRefillsHistoty>
-                </div>
-                {myRefills?.map((item, index) => (
+            <div className="output-description-info-block">
+                <SRefillsHistoty>ID</SRefillsHistoty>
+                <SRefillsHistoty>Дата</SRefillsHistoty>
+                <SRefillsHistoty>Сумма</SRefillsHistoty>
+            </div>
+            {myRefills?.map((item, index) => (
                 <div className="flex-info-block" key={index}>
-                    <SRefillsHistoty>
-                        {item.id}
-                    </SRefillsHistoty>
-                    <SRefillsHistoty>
-                        {item.time}
-                    </SRefillsHistoty>
-                    <SRefillsHistoty>
-                        {item.score}
-                    </SRefillsHistoty>
+                    <SRefillsHistoty>{item.id}</SRefillsHistoty>
+                    <SRefillsHistoty>{item.time}</SRefillsHistoty>
+                    <SRefillsHistoty>{item.score}</SRefillsHistoty>
                 </div>
             ))}
         </div>

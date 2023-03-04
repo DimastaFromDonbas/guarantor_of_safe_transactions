@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { axiosGetAllDeal } from "../../../api/axios";
 import { useAppSelector } from "../../../store/reduxHooks";
 import { reducerTypes } from "../../../store/Users/types";
-import { axiosChangeDeal } from "../../../api/axios";
+import { axiosChangeDeal, axiosGetAllDeal } from "../../../api/deal";
 import { dealStatusMock } from "../../../components/mock/OutputMock";
 import { socketAdmin } from "../AdminPanel";
 
@@ -151,7 +150,7 @@ function DealID() {
           </div>
           <div style={{ marginTop: "20px", color: "white" }}>
             <div style={{ borderRadius: "5px" }} className="tabl-flex-admin">
-              <div style={{ textAlign: "center", width: "50px" }}className="output-id" >
+              <div style={{ textAlign: "center", width: "50px" }} className="output-id" >
                 ID
               </div>
               <div style={{ textAlign: "center", width: "155px" }} className="output-sum" >
@@ -185,95 +184,104 @@ function DealID() {
                 className="tabl-flex-admin-user"
                 key={currentDeal?.email}
               >
-                <div style={{width: "50px",
-                    minHeight: "48px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                <div style={{
+                  width: "50px",
+                  minHeight: "48px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
                   className="output-id"
                 >
                   {currentDeal?.id}
                 </div>
-                <div style={{width: "155px",
-                    minHeight: "48px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                <div style={{
+                  width: "155px",
+                  minHeight: "48px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
                   className="output-sum"
                 >
                   {nameDeal}
                 </div>
-                <div style={{ width: "155px",
-                    minHeight: "48px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                <div style={{
+                  width: "155px",
+                  minHeight: "48px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
                   className="output-sum"
                 >
                   {currentDeal?.buyerNickname}
                 </div>
-                <div style={{width: "155px",
-                    minHeight: "48px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                <div style={{
+                  width: "155px",
+                  minHeight: "48px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
                   className="output-date"
                 >
                   {currentDeal?.sellerNickname}
                 </div>
-                <div style={{ width: "210px",
-                    minHeight: "48px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    overflowWrap: "anywhere",
-                  }}
+                <div style={{
+                  width: "210px",
+                  minHeight: "48px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflowWrap: "anywhere",
+                }}
                   className="output-sum"
                 >
                   {currentDeal?.buyer}p
                 </div>
-                <div style={{width: "155px",
-                    minHeight: "48px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    overflowWrap: "anywhere",
-                  }}
+                <div style={{
+                  width: "155px",
+                  minHeight: "48px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflowWrap: "anywhere",
+                }}
                   className="output-id"
                 >
                   {currentDeal?.seller}
                 </div>
-                <div style={{ width: "155px",
-                    minHeight: "48px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                <div style={{
+                  width: "155px",
+                  minHeight: "48px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
                   className="output-sum"
                 >
                   {sumDeal}
                 </div>
-                <div style={{ width: "155px",
-                    minHeight: "48px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                <div style={{
+                  width: "155px",
+                  minHeight: "48px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
                   className="output-date"
                 >
                   {dealStatusMock[statusDeal - 1]}
                 </div>
-                <div style={{  width: "210px",
-                    minHeight: "48px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    overflowWrap: "anywhere",
-                  }}
+                <div style={{
+                  width: "210px",
+                  minHeight: "48px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflowWrap: "anywhere",
+                }}
                   className="output-id"
                 >
                   {descriptionDeal}

@@ -6,7 +6,7 @@ import { useAppSelector } from '../../../store/reduxHooks';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { axiosGetAdminChats, axiosDeleteAdminChat } from '../../../api/axios';
+import { axiosGetAdminChats, axiosDeleteAdminChat } from '../../../api/adminChat';
 import { reducerTypes } from '../../../store/Users/types';
 import { adminChatNewMessageMock } from '../../../components/mock/OutputMock';
 

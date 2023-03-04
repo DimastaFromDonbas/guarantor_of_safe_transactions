@@ -3,7 +3,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../store/reduxHooks";
 import { useEffect } from "react";
-import { axiosGetDeal } from "../../api/axios";
+import { axiosGetDeal } from "../../api/deal";
 import { reducerTypes } from "../../store/Users/types";
 import { useDispatch } from 'react-redux';
 
