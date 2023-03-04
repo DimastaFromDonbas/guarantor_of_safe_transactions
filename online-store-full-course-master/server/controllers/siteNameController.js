@@ -25,7 +25,6 @@ class SiteNameController {
 
     async update(req, res, next) {
         const { name, email, password } = req.body
-        console.log('name', name, email, password)
         if (!name || !email || !password) {
             return next(ApiError.internal('Введите все данные'))
         }
