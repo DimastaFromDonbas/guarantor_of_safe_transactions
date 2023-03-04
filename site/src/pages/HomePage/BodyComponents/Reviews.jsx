@@ -33,8 +33,8 @@ function Reviews() {
                         <h2>Отзывы</h2>
                     </div>
                     <Carousel fade={true} slide={true} touch={'true'}>
-                        {carouselItem.map((el) => (
-                            <Carousel.Item interval={null} touch={'true'}>
+                        {carouselItem.map((el,index) => (
+                            <Carousel.Item key={index} interval={null} touch={'true'}>
                                 {CarouselMock.slice(el.from, el.to).map((item, index) => (
                                     <CarouselItem key={index} {...item} />
                                 ))}
