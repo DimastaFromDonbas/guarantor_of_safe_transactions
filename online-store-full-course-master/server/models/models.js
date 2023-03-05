@@ -7,6 +7,12 @@ const SiteName = sequelize.define('site_name', {
     wallet: { type: DataTypes.STRING },
 })
 
+const TelegramUsers = sequelize.define('telegram_user', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, unique: true, },
+    chatid: { type: DataTypes.STRING, unique: true, },
+})
+
 const User = sequelize.define('user', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     email: { type: DataTypes.STRING, unique: true, },
@@ -203,6 +209,7 @@ module.exports = {
     Rating,
     TypeBrand,
     DeviceInfo,
+    TelegramUsers,
 }
 
 
