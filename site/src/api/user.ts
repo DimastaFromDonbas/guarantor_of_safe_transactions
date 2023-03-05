@@ -1,7 +1,6 @@
 import axios from './axios';
 import { getConfig } from './axios';
 import jwt_decode from 'jwt-decode';
-import { sendMessage } from './telegram';
 
 export const axiosRegistration = async (email: string, password: string, nickname: string, checkRu: string | null) => {
     try {

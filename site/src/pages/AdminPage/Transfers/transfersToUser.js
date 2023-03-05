@@ -7,6 +7,7 @@ import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import { useNavigate } from "react-router-dom";
 import { transferStatusMock } from "../../../components/mock/OutputMock";
+import { StyledDiv, StyledDivHeader } from '../Users/style';
 
 function TransfersToUser(search) {
 
@@ -48,25 +49,25 @@ function TransfersToUser(search) {
     <div style={{ display: "flex", justifyContent: "center" }}> <h2>ПЕРЕВОДЫ ПО РЕКВИЗИТАМ</h2></div>
 
     <div style={{ borderRadius: "5px" }} className="tabl-flex-admin">
-      <div style={{ textAlign: 'center', width: '80px' }} className="output-id">ID</div>
-      <div style={{ textAlign: 'center', width: '210px', cursor: 'pointer' }} className="output-date" onClick={() => setSortId(prev => !prev)}>Время создания</div>
-      <div style={{ textAlign: 'center', width: '100px' }} className="output-date" >Сумма</div>
-      <div style={{ textAlign: 'center', width: '155px' }} className="output-date">Почта пользователя</div>
-      <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">Имя пользователя</div>
-      <div style={{ textAlign: 'center', width: '155px' }} className="output-date">Почта получателя</div>
-      <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">Имя получателя</div>
-      <div style={{ textAlign: 'center', width: '155px', cursor: 'pointer' }} className="output-sum" onClick={() => setSortStatus(prev => !prev)}>Статус</div>
+      <StyledDivHeader size='80px'>ID</StyledDivHeader>
+      <StyledDivHeader size='210px' style={{cursor: 'pointer' }} onClick={() => setSortId(prev => !prev)}>Время создания</StyledDivHeader>
+      <StyledDivHeader size='100px' >Сумма</StyledDivHeader>
+      <StyledDivHeader size='155px' >Почта пользователя</StyledDivHeader>
+      <StyledDivHeader size='155px' >Имя пользователя</StyledDivHeader>
+      <StyledDivHeader size='155px' >Почта получателя</StyledDivHeader>
+      <StyledDivHeader size='155px' >Имя получателя</StyledDivHeader>
+      <StyledDivHeader size='155px' style={{cursor: 'pointer' }} onClick={() => setSortStatus(prev => !prev)}>Статус</StyledDivHeader>
     </div>
 
     {transfersToUser?.slice(page * itemsPerPage, (page + 1) * itemsPerPage)?.map((item, index) => <div style={{ marginTop: '5px', borderRadius: '5px' }} className="tabl-flex-admin-user" key={item.id}>
-      <div style={{ textAlign: 'center', width: '80px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-id">{item.id}</div>
-      <div style={{ textAlign: 'center', width: '210px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer', overflowWrap: "anywhere" }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-id">{item.time}</div>
-      <div style={{ textAlign: 'center', width: '100px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-id">{item.score}</div>
-      <div style={{ textAlign: 'center', width: '155px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer', overflowWrap: "anywhere" }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-date">{item.userEmail}</div>
-      <div style={{ textAlign: 'center', width: '155px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-date">{item.userNickname}</div>
-      <div style={{ textAlign: 'center', width: '155px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer', overflowWrap: "anywhere" }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-sum">{item.receiverEmail}</div>
-      <div style={{ textAlign: 'center', width: '155px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-sum">{item.receiverNickname}</div>
-      <div style={{ textAlign: 'center', width: '155px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} className="output-sum">{transferStatusMock[item.status - 1]}</div>
+      <StyledDiv size='80px'  style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} >{item.id}</StyledDiv>
+      <StyledDiv size='210px' style={{cursor: 'pointer', overflowWrap: "anywhere" }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} >{item.time}</StyledDiv>
+      <StyledDiv size='100px' style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} >{item.score}</StyledDiv>
+      <StyledDiv size='155px' style={{cursor: 'pointer', overflowWrap: "anywhere" }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} >{item.userEmail}</StyledDiv>
+      <StyledDiv size='155px' style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} >{item.userNickname}</StyledDiv>
+      <StyledDiv size='155px' style={{cursor: 'pointer', overflowWrap: "anywhere" }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} >{item.receiverEmail}</StyledDiv>
+      <StyledDiv size='155px' style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} >{item.receiverNickname}</StyledDiv>
+      <StyledDiv size='155px' style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/transferstouser/${item?.id}`)} >{transferStatusMock[item.status - 1]}</StyledDiv>
     </div>)}
 
     <Pagination

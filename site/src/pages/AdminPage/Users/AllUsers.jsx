@@ -8,6 +8,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 import { StyledInput } from '../../../style/styles';
 import { axiosDeleteUser, axiosGetAllUsers } from '../../../api/user';
 import { useNavigate } from 'react-router-dom';
+import { StyledDiv, StyledDivHeader } from './style';
 
 function AllUsers() {
     const dispatch = useDispatch();
@@ -91,33 +92,33 @@ function AllUsers() {
             </div>
 
             <div style={{ borderRadius: '5px' }} className="tabl-flex-admin">
-                <div style={{ textAlign: 'center', width: '50px' }} className="output-id">
+                <StyledDivHeader size='50px'  >
                     ID
-                </div>
-                <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
+                </StyledDivHeader>
+                <StyledDivHeader size='155px' >
                     Имя пользователя
-                </div>
-                <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
+                </StyledDivHeader>
+                <StyledDivHeader size='155px' >
                     Роль пользователя
-                </div>
-                <div style={{ textAlign: 'center', width: '155px' }} className="output-date">
+                </StyledDivHeader>
+                <StyledDivHeader size='155px'  >
                     Деньги пользователя
-                </div>
-                <div style={{ textAlign: 'center', width: '210px' }} className="output-date">
+                </StyledDivHeader>
+                <StyledDivHeader size='210px' >
                     Почта Пользователя
-                </div>
-                <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
+                </StyledDivHeader>
+                <StyledDivHeader size='155px' >
                     Статус системного сообщения
-                </div>
-                <div style={{ textAlign: 'center', width: '80px' }} className="output-sum">
+                </StyledDivHeader>
+                <StyledDivHeader size='80px' >
                     Completed
-                </div>
-                <div style={{ textAlign: 'center', width: '80px' }} className="output-sum">
+                </StyledDivHeader>
+                <StyledDivHeader size='80px' >
                     Доступ
-                </div>
-                <div style={{ textAlign: 'center', width: '80px' }} className="output-sum">
+                </StyledDivHeader>
+                <StyledDivHeader size='80px' >
                     Удалить
-                </div>
+                </StyledDivHeader>
             </div>
 
             {users
@@ -125,69 +126,69 @@ function AllUsers() {
                 .slice(page * itemsPerPage, (page + 1) * itemsPerPage)
                 ?.map((item, index) => (
                     <div style={{ marginTop: '5px', borderRadius: '5px' }} className="tabl-flex-admin-user" key={item?.email}>
-                        <div
-                            style={{ width: '50px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                        <StyledDiv
+                            size="50px"
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-id"
                         >
                             {item?.id}
-                        </div>
-                        <div
-                            style={{ width: '155px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                        </StyledDiv>
+                        <StyledDiv
+                            size='155px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-sum"
                         >
                             {item?.nickname}
-                        </div>
-                        <div
-                            style={{ width: '155px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                        </StyledDiv>
+                        <StyledDiv
+                            size='155px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-date"
                         >
                             {item?.role}
-                        </div>
-                        <div
-                            style={{ width: '155px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                        </StyledDiv>
+                        <StyledDiv
+                            size='155px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-sum"
                         >
                             {item?.score}
-                        </div>
-                        <div
-                            style={{ width: '210px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', overflowWrap: 'anywhere' }}
+                        </StyledDiv>
+                        <StyledDiv
+                            size='210px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-id"
                         >
                             {item?.email}
-                        </div>
-                        <div
-                            style={{ width: '155px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                        </StyledDiv>
+                        <StyledDiv
+                            size='155px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-sum"
                         >
                             {item?.systemMessage}
-                        </div>
-                        <div
-                            style={{ width: '80px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                        </StyledDiv>
+                        <StyledDiv
+                            size='80px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-sum"
                         >
                             {['Не наёбан', 'Наёбан'][item?.completed]}
-                        </div>
-                        <div
-                            style={{ width: '80px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                        </StyledDiv>
+                        <StyledDiv
+                            size= '80px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-sum"
                         >
                             {item?.checkRu === 'true' ? 'Открыт' : 'Закрыт'}
-                        </div>
-                        <div
-                            style={{ width: '80px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                        </StyledDiv>
+                        <StyledDiv
+                            size='80px'
                             className="output-sum"
                             onChange={(e) => changeDeleteUsers(e.target.checked, item?.id)}
                         >
                             <Checkbox color="error" />
-                        </div>
+                        </StyledDiv>
                     </div>
                 ))}
 

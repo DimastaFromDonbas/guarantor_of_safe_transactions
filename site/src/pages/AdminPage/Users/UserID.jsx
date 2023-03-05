@@ -6,7 +6,7 @@ import { axiosDeleteUser, axiosGetAllUsers, axiosChangeRole, axiosChangeScore, a
 import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
 import ChangeUserProps from './component/ChangeUserProps';
-import { StyledDiv } from './style';
+import { StyledDiv, StyledDivHeader } from './style';
 
 function AllUsersID() {
     const { allUsers, user } = useAppSelector((store) => store.user);
@@ -136,39 +136,39 @@ function AllUsersID() {
                     </div>
                     <div style={{ marginTop: '20px', color: 'white' }}>
                         <div style={{ borderRadius: '5px' }} className="tabl-flex-admin">
-                            <div style={{ textAlign: 'center', width: '50px' }} className="output-id">
+                            <StyledDivHeader size='50px' >
                                 ID
-                            </div>
-                            <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='155px' >
                                 Имя пользователя
-                            </div>
-                            <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='155px' >
                                 Роль пользователя
-                            </div>
-                            <div style={{ textAlign: 'center', width: '155px' }} className="output-date">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='155px' >
                                 Деньги пользователя
-                            </div>
-                            <div style={{ textAlign: 'center', width: '210px' }} className="output-date">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='210px' >
                                 Почта Пользователя
-                            </div>
-                            <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='155px' >
                                 Статус системного сообщения
-                            </div>
-                            <div style={{ textAlign: 'center', width: '80px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='80px'>
                                 Completed
-                            </div>
-                            <div style={{ textAlign: 'center', width: '100px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='100px' >
                                 Блокировка
-                            </div>
-                            <div style={{ textAlign: 'center', width: '130px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='130px' >
                                 Минимальный перевод
-                            </div>
-                            <div style={{ textAlign: 'center', width: '130px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='130px' >
                                 Сумма пополнения
-                            </div>
-                            <div style={{ textAlign: 'center', width: '80px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='80px' >
                                 Удалить
-                            </div>
+                            </StyledDivHeader>
                         </div>
 
                         {

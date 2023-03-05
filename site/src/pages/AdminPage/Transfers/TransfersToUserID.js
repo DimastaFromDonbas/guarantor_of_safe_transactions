@@ -5,6 +5,7 @@ import { useAppSelector } from '../../../store/reduxHooks';
 import { reducerTypes } from '../../../store/Users/types';
 import { transferStatusMock } from '../../../components/mock/OutputMock';
 import { axiosChangeUserToUserTransfer, axiosGetAllUserToUserTransfers } from '../../../api/transferToUser';
+import { StyledDiv, StyledDivHeader } from '../Users/style';
 
 function TransfersToUserID() {
     const { id } = useParams();
@@ -85,77 +86,45 @@ function TransfersToUserID() {
                     </div>
                     <div style={{ marginTop: '20px', color: 'white' }}>
                         <div style={{ borderRadius: '5px' }} className="tabl-flex-admin">
-                            <div style={{ textAlign: 'center', width: '50px' }} className="output-id">
+                            <StyledDivHeader size='50px'>
                                 ID
-                            </div>
-                            <div style={{ textAlign: 'center', width: '150px' }} className="output-date">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='150px'>
                                 Почта пользователя
-                            </div>
-                            <div style={{ textAlign: 'center', width: '210px' }} className="output-date">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='210px'>
                                 Почта получателя
-                            </div>
-                            <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='155px'>
                                 Сумма перевода
-                            </div>
-                            <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='155px'>
                                 Время перевода
-                            </div>
-                            <div style={{ textAlign: 'center', width: '120px' }} className="output-date">
+                            </StyledDivHeader>
+                            <StyledDivHeader size='120px'>
                                 Статус
-                            </div>
+                            </StyledDivHeader>
                         </div>
                         {
                             <div style={{ marginTop: '5px', borderRadius: '5px' }} className="tabl-flex-admin-user" key={currentTransfersToUser?.email}>
-                                <div
-                                    style={{ width: '50px', minHeight: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    className="output-id"
-                                >
+                                <StyledDiv size='50px'>
                                     {transfersIDToUser}
-                                </div>
-                                <div
-                                    style={{
-                                        width: '150px',
-                                        minHeight: '48px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        overflowWrap: 'anywhere'
-                                    }}
-                                    className="output-sum"
-                                >
+                                </StyledDiv>
+                                <StyledDiv size='150px' style={{overflowWrap: 'anywhere'}}>
                                     {emailTransfersToUser}
-                                </div>
-                                <div
-                                    style={{
-                                        width: '210px',
-                                        minHeight: '48px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        overflowWrap: 'anywhere'
-                                    }}
-                                    className="output-sum"
-                                >
+                                </StyledDiv>
+                                <StyledDiv size='210px' style={{overflowWrap: 'anywhere'}}>
                                     {emailReceiverToUser}
-                                </div>
-                                <div
-                                    style={{ width: '155px', minHeight: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    className="output-date"
-                                >
+                                </StyledDiv>
+                                <StyledDiv size='155px'>
                                     {scoreTransfers}
-                                </div>
-                                <div
-                                    style={{ width: '155px', minHeight: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    className="output-sum"
-                                >
+                                </StyledDiv>
+                                <StyledDiv size='155px' >
                                     {timeTransfersToUser}
-                                </div>
-                                <div
-                                    style={{ width: '120px', minHeight: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    className="output-date"
-                                >
+                                </StyledDiv>
+                                <StyledDiv size='120px'>
                                     {transferStatusMock[statusTransfersToUser - 1] || ''}
-                                </div>
+                                </StyledDiv>
                             </div>
                         }
                         <div className="pages-user-box-2">

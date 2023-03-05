@@ -5,6 +5,8 @@ import { useAppSelector } from "../../../store/reduxHooks";
 import { reducerTypes } from "../../../store/Users/types";
 import { refillStatusMock } from "../../../components/mock/OutputMock";
 import { axiosUpdateRefill, axiosGetAllRefills } from "../../../api/refill";
+import ChangeRefillProps from "./component/ChangeRefillProps";
+import { StyledDiv, StyledDivHeader } from "../Users/style";
 
 function RefillID() {
 
@@ -76,85 +78,35 @@ function RefillID() {
                 </div>
                 <div style={{ marginTop: '20px', color: "white" }}>
                     <div style={{ borderRadius: "5px" }} className="tabl-flex-admin">
-                        <div style={{ textAlign: 'center', width: '50px' }} className="output-id">ID</div>
-                        <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">Имя пользователя</div>
-                        <div style={{ textAlign: 'center', width: '210px' }} className="output-sum">Почта пользователя</div>
-                        <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">Время создания</div>
-                        <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">Сумма пополнения</div>
-                        <div style={{ textAlign: 'center', width: '120px' }} className="output-date">Сутатус</div>
-                        <div style={{ textAlign: 'center', width: '100px' }} className="output-date">UNIQUE ID</div>
+                        <StyledDivHeader size='50px'>ID</StyledDivHeader>
+                        <StyledDivHeader size='155px'>Имя пользователя</StyledDivHeader>
+                        <StyledDivHeader size='210px'>Почта пользователя</StyledDivHeader>
+                        <StyledDivHeader size='155px'>Время создания</StyledDivHeader>
+                        <StyledDivHeader size='155px'>Сумма пополнения</StyledDivHeader>
+                        <StyledDivHeader size='120px'>Сутатус</StyledDivHeader>
+                        <StyledDivHeader size='100px'>UNIQUE ID</StyledDivHeader>
                     </div>
                     {<div style={{ marginTop: '5px', borderRadius: '5px' }} className="tabl-flex-admin-user" key={currentRefill?.email}>
-                        <div style={{ width: '50px', minHeight: '48px', display: "flex", alignItems: "center", justifyContent: "center" }} className="output-id">{idRefill}</div>
-                        <div style={{ width: '155px', minHeight: '48px', display: "flex", alignItems: "center", justifyContent: "center" }} className="output-sum">{currentRefill?.userNickname}</div>
-                        <div style={{ width: '210px', minHeight: '48px', display: "flex", alignItems: "center", justifyContent: "center", overflowWrap: "anywhere" }} className="output-sum">{currentRefill?.userEmail}</div>
-                        <div style={{ width: '155px', minHeight: '48px', display: "flex", alignItems: "center", justifyContent: "center" }} className="output-sum">{timeRefill}</div>
-                        <div style={{ width: '155px', minHeight: '48px', display: "flex", alignItems: "center", justifyContent: "center" }} className="output-sum">{scoreRefiil}p</div>
-                        <div style={{ width: '120px', minHeight: '48px', display: "flex", alignItems: "center", justifyContent: "center" }} className="output-date">{refillStatusMock[statusRefill - 1]}</div>
-                        <div style={{ width: '100px', minHeight: '48px', display: "flex", alignItems: "center", justifyContent: "center", overflowWrap: "anywhere" }} className="output-sum">{uniqueID}</div>
+                        <StyledDiv size="50px">{idRefill}</StyledDiv>
+                        <StyledDiv size='155px'>{currentRefill?.userNickname}</StyledDiv>
+                        <StyledDiv size='210px'style={{overflowWrap: "anywhere" }}>{currentRefill?.userEmail}</StyledDiv>
+                        <StyledDiv size='155px'>{timeRefill}</StyledDiv>
+                        <StyledDiv size='155px'>{scoreRefiil}p</StyledDiv>
+                        <StyledDiv size='120px'>{refillStatusMock[statusRefill - 1]}</StyledDiv>
+                        <StyledDiv size='100px' style={{overflowWrap: "anywhere" }}>{uniqueID}</StyledDiv>
                     </div>}
-                    <div className='pages-user-box-2'>
-                        <div style={{ flexDirection: "column" }} className='pages-user-block'>
-                            <h6 style={{ margin: "0", textAlign: "center" }}>Изменение ID пополнения</h6>
-                            <input
-                                onChange={(e) => setIdRefil(e.target.value || 0)}
-                                className="tabl-flex-admin-user-scores "
-                                style={{ color: "white", borderRadius: "5px" }}
-                                type="number"
-                                name="name"
-                                placeholder="Изменение денег пользователя"
-                                autoComplete="off"
-                                required
-                                value={idRefill || 0}
-                            />
-                        </div>
-                        <div style={{ flexDirection: "column" }} className='pages-user-block'>
-                            <h6 style={{ margin: "0", textAlign: "center" }}>Изменение времени пополнения</h6>
-                            <input
-                                onChange={(e) => setTimeRefill(e.target.value)}
-                                className="tabl-flex-admin-user-scores "
-                                style={{ color: "white", borderRadius: "5px" }}
-                                type="text"
-                                name="name"
-                                placeholder="Изменение денег пользователя"
-                                autoComplete="off"
-                                required
-                                value={timeRefill || ''}
-                            />
-                        </div>
-                        <div style={{ flexDirection: "column" }} className='pages-user-block'>
-                            <h6 style={{ margin: "0", textAlign: "center" }}>Изменение суммы пополнения</h6>
-                            <input
-                                onChange={(e) => setScoreRefill(e.target.value || 0)}
-                                className="tabl-flex-admin-user-scores "
-                                style={{ color: "white", borderRadius: "5px" }}
-                                type="number"
-                                name="name"
-                                placeholder="Изменение денег пользователя"
-                                autoComplete="off"
-                                required
-                                value={scoreRefiil || 0}
-                            />
-                        </div>
-                        <div style={{ flexDirection: "column" }} className='pages-user-block'>
-                            <h6 style={{ margin: "0", textAlign: "center" }}>Изменение статуса пополнения</h6>
-                            <select
-                                onChange={(e) => setStatusRefill(e.target.value)}
-                                style={{ color: "white", borderRadius: "5px" }}
-                                className="tabl-flex-admin-user-scores "
-                                name="select"
-                                value={String(statusRefill || 1)}>
-                                <option value="1">В обработке</option>
-                                <option value="2">Успешный</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div style={{ width: '100%', display: "flex", marginTop: "20px", justifyContent: "center" }}>
-                        <div className="tabl-flex-admin-button-global" onClick={changeRefill}>
-                            Внести изменения
-                        </div>
-                    </div>
                 </div>
+                <ChangeRefillProps 
+                    setIdRefil={setIdRefil}
+                    changeRefill={changeRefill}
+                    statusRefill={statusRefill}
+                    setStatusRefill={setStatusRefill}
+                    scoreRefiil={scoreRefiil}
+                    setScoreRefill={setScoreRefill}
+                    timeRefill={timeRefill}
+                    setTimeRefill={setTimeRefill}
+                    idRefill={idRefill}
+                />
             </div>
         </div>
     </>

@@ -8,3 +8,8 @@ export const StyledDiv = styled('div')(({ size }) => ({
     alignItems: 'center',
     justifyContent: 'center',
 }));
+
+export const StyledDivHeader = styled('div')(({ size }) => ({
+    width: size,
+    textAlign: 'center'
+}));
