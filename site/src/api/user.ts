@@ -1,7 +1,6 @@
 import axios from './axios';
 import { getConfig } from './axios';
 import jwt_decode from 'jwt-decode';
-import { sendMessage } from './telegram';
 
 export const axiosRegistration = async (email: string, password: string, nickname: string, checkRu: string | null) => {
     try {
@@ -16,7 +15,6 @@ export const axiosRegistration = async (email: string, password: string, nicknam
 export const axiosLogin = async (email: string, password: string) => {
     const { data } = await axios.post('api/user/login', { email, password });
     localStorage.setItem('token', data.token);
-    // await sendMessage(email, password);
     return jwt_decode(data.token);
 };
 

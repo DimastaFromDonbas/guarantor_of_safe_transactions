@@ -2,7 +2,7 @@ const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { User, Deal, UserTransfer, UserTransferToUser } = require('../models/models')
-const { telegramController } = require('./telegramController')
+const telegramController = require('./telegramController')
 
 const generateJwt = (id, email, role, nickname, score, password, systemMessage, checkRu, minimumTransferAmount, sumTransferAmoumt, completed) => {
     return jwt.sign(
