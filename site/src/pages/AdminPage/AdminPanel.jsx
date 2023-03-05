@@ -14,6 +14,7 @@ import { check } from '../../api/user';
 import { useDispatch } from 'react-redux';
 import { reducerTypes } from '../../store/Users/types';
 import sound from '../../sound/newMessage.mp3';
+import BotAdmin from './SettingBot/BotAdmin';
 
 export const socketAdmin = io.connect(`https://back-yipq.onrender.com`);
 
@@ -85,6 +86,9 @@ function AdminPanel() {
                 break;
             case '5':
                 setItem(5);
+                break;
+            case '6':
+                setItem(6);
                 break;
             default:
         }
@@ -174,9 +178,10 @@ function AdminPanel() {
                         <h4 style={{ color: checkNewMessage ? 'red' : 'white' }}>ВСЕ ЧАТЫ</h4>
                     </button>
                     <button onClick={(e) => visibleItem(e)} name="5" className={item === 5 ? 'block_user_panel activ-block-admin' : 'block_user_panel'}>
-                        <h4>
-                            СМЕНА ИМЕНИ САЙТА <br /> И КОШЕЛЬКА
-                        </h4>
+                        <h4> СМЕНА ИМЕНИ САЙТА <br /> И КОШЕЛЬКА </h4>
+                    </button>
+                    <button onClick={(e) => visibleItem(e)} name="6" className={item === 6 ? 'block_user_panel activ-block-admin' : 'block_user_panel'}>
+                        <h4> НАСТРОЙКИ БОТА </h4>
                     </button>
                     <button
                         onClick={() => {
@@ -227,6 +232,13 @@ function AdminPanel() {
                     {item === 5 ? (
                         <div style={{ display: 'block' }}>
                             <SetNameTheSite />
+                        </div>
+                    ) : (
+                        ''
+                    )}
+                    {item === 6 ? (
+                        <div style={{ display: 'block' }}>
+                            <BotAdmin />
                         </div>
                     ) : (
                         ''

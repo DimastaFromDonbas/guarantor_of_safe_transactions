@@ -4,7 +4,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import Transfers from "./ChildPages/transfers";
+import Transfers from "./transfers";
 import TransfersToUser from "./transfersToUser";
 
 
@@ -12,8 +12,6 @@ function AllTransfers() {
 
   const [search, setSearch] = useState('');
   const [transferType, setTransferType] = useState('true');
-
-
 
   return <>
 

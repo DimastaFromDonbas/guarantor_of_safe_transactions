@@ -10,6 +10,7 @@ import { IDealMessage } from '../../interfaces/dealMessage';
 import { IWalletSite } from '../../interfaces/wallet';
 import { IAdminChat } from '../../interfaces/adminChat';
 import { IMessageToAdmin } from '../../interfaces/messageToAdmin';
+import { ITelegramUser } from '../../interfaces/telegramUser';
 
 export interface IUsersReducer {
     user: IUser | {};
@@ -32,6 +33,7 @@ export interface IUsersReducer {
     adminChat: IAdminChat[] | [];
     adminMessage: IMessageToAdmin[] | [];
     messageToAdmin: IMessageToAdmin[] | [];
+    telegramUser: ITelegramUser[] | [];
 }
 
 export const INITIAL: IUsersReducer = {
@@ -60,6 +62,7 @@ export const INITIAL: IUsersReducer = {
     adminChat: [],
     adminMessage: [],
     messageToAdmin: [],
+    telegramUser: [],
 };
 
 export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
@@ -104,6 +107,8 @@ export const UserReducer = (state = INITIAL, { type, payload }: IAction) => {
             return { ...state, adminMessage: payload };
         case reducerTypes.GET_MESSAGE_TO_ADMIN:
             return { ...state, messageToAdmin: payload };
+        case reducerTypes.GET_TELEGRAM_USER:
+            return { ...state, telegramUser: payload };
         default:
             return state;
     }

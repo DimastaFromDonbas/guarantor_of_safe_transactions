@@ -19,6 +19,7 @@ export const reducerTypes = {
     GET_ADMIN_CHAT: 'reducer/GET_ADMIN_CHAT',
     GET_ADMIN_MESSAGE: 'reducer/GET_ADMIN_MESSAGE',
     GET_MESSAGE_TO_ADMIN: 'reducer/GET_MESSAGE_TO_ADMIN',
+    GET_TELEGRAM_USER: 'reducer/GET_TELEGRAM_USER',
 };
 
 export const sagaTypes = {

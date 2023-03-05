@@ -18,7 +18,7 @@ import UserID from "./pages/AdminPage/Users/UserID";
 import DealID from "./pages/AdminPage/Deals/DealID";
 import RefillID from "./pages/AdminPage/Refills/RefillID";
 import TransfersID from "./pages/AdminPage/Transfers/ChildPages/TransfersID";
-import TransfersToUserID from "./pages/AdminPage/Transfers/TransfersToUserID";
+import TransfersToUserID from "./pages/AdminPage/Transfers/ChildPages/TransfersToUserID";
 import Disputes from "./pages/Disputes/Disputes";
 import AdminChat from "./pages/AdminPage/Chats/AdminChat";
 import io from "socket.io-client";

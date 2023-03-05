@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppSelector } from '../../../store/reduxHooks';
-import { reducerTypes } from '../../../store/Users/types';
-import { transferStatusMock } from '../../../components/mock/OutputMock';
-import { axiosChangeUserToUserTransfer, axiosGetAllUserToUserTransfers } from '../../../api/transferToUser';
-import { StyledDiv, StyledDivHeader } from '../Users/style';
+import { useAppSelector } from '../../../../store/reduxHooks';
+import { reducerTypes } from '../../../../store/Users/types';
+import { transferStatusMock } from '../../../../components/mock/OutputMock';
+import { axiosChangeUserToUserTransfer, axiosGetAllUserToUserTransfers } from '../../../../api/transferToUser';
+import { StyledDiv, StyledDivHeader } from '../../Users/style';
 
 function TransfersToUserID() {
     const { id } = useParams();

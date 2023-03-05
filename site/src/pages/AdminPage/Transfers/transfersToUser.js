@@ -46,7 +46,7 @@ function TransfersToUser(search) {
 
   return <>
 
-    <div style={{ display: "flex", justifyContent: "center" }}> <h2>ПЕРЕВОДЫ ПО РЕКВИЗИТАМ</h2></div>
+    <div style={{ display: "flex", justifyContent: "center" }}> <h2>ПЕРЕВОДЫ ПОЛЬЗОВАТЕЛЮ</h2></div>
 
     <div style={{ borderRadius: "5px" }} className="tabl-flex-admin">
       <StyledDivHeader size='80px'>ID</StyledDivHeader>
