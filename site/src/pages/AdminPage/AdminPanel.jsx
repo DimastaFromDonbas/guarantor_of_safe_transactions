@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import { reducerTypes } from '../../store/Users/types';
 import sound from '../../sound/newMessage.mp3';
 
-export const socketAdmin = io.connect('https://back-yipq.onrender.com');
+export const socketAdmin = io.connect(`https://back-yipq.onrender.com`);
 
 function AdminPanel() {
     const dispatch = useDispatch();
