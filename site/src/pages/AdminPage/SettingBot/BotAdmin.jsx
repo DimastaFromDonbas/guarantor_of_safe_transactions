@@ -41,6 +41,8 @@ function BotAdmin() {
         if (result) {
           alert('Успешно');
           getTelegramUsers();
+          setName('')
+          setChatId()
         } else {
           return <AlertError message={'Что-то пошло не так'} />
         }
