@@ -48,11 +48,11 @@ class TelegramController {
     }
 
     async delete(req, res, next) {
-        const { name, deleteName } = req.body
-        if (!name || !deleteName) {
+        const { chatid, deleteName } = req.body
+        if (!chatid || !deleteName) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const user = await TelegramUsers.findOne({ where: { name } })
+        const user = await TelegramUsers.findOne({ where: { chatid } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
