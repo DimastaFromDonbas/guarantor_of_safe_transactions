@@ -48,29 +48,22 @@ class TelegramController {
     }
 
     async delete(req, res, next) {
-        const { name, email, password } = req.body
-        if (!name || !email || !password) {
+        const { name, deleteName } = req.body
+        if (!name || !deleteName) {
             return next(ApiError.badRequest('Введите все данные'))
         }
-        const user = await User.findOne({ where: { email } })
+        const user = await TelegramUsers.findOne({ where: { name } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
-        let comparePassword = bcrypt.compareSync(password, user.password)
-        if (!comparePassword) {
-            return next(ApiError.internal('Указан неверный пароль'))
-        }
-        if (user.role === 'USER') {
-            return next(ApiError.badRequest('Нет доступа'))
-        }
-        const checkName = await TelegramUsers.findAll({ where: { name } })
+        const checkName = await TelegramUsers.findOne({ where: { deleteName } })
         if (!checkName) {
-            return next(ApiError.badRequest('Имя не найдено'))
+            return next(ApiError.badRequest('Пользователь  для удаления не найден'))
         }
 
 
         const deletedUser = await TelegramUsers.destroy({
-            where: { name }
+            where: { name: deleteName }
         })
 
         return res.json(deletedUser)
