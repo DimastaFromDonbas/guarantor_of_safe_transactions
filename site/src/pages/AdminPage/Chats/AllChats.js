@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { axiosGetAdminChats, axiosDeleteAdminChat } from '../../../api/adminChat';
 import { reducerTypes } from '../../../store/Users/types';
 import { adminChatNewMessageMock } from '../../../components/mock/OutputMock';
+import { StyledDiv, StyledDivHeader } from "../Users/style";
 
 function AllChats() {
     const dispatch = useDispatch();
@@ -85,128 +86,71 @@ function AllChats() {
             </div>
             <h3 style={{ textAlign: 'center' }}>ВСЕ ЧАТЫ</h3>
             <div className="tabl-flex-admin" style={{ borderRadius: '5px' }}>
-                <div style={{ textAlign: 'center', width: '80px', cursor: 'pointer' }} className="output-id" onClick={() => setSortId((prev) => !prev)}>
-                    ID{' '}
-                </div>
-                <div style={{ textAlign: 'center', width: '155px' }} className="output-date">
+                <StyledDivHeader size='80px' style={{cursor: 'pointer' }} onClick={() => setSortId((prev) => !prev)}>
+                    ID
+                </StyledDivHeader>
+                <StyledDivHeader size='155px'>
                     Имя пользователя
-                </div>
-                <div style={{ textAlign: 'center', width: '155px' }} className="output-date">
+                </StyledDivHeader>
+                <StyledDivHeader size='155px'>
                     Почта пользователя
-                </div>
-                <div style={{ textAlign: 'center', width: '210px' }} className="output-sum">
+                </StyledDivHeader>
+                <StyledDivHeader size='210px'>
                     Новое сообщение
-                </div>
-                <div style={{ textAlign: 'center', width: '155px' }} className="output-date">
+                </StyledDivHeader>
+                <StyledDivHeader size='155px'>
                     Время удаления чата
-                </div>
-                <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
+                </StyledDivHeader>
+                <StyledDivHeader size='155px'>
                     Оценка
-                </div>
-                <div style={{ textAlign: 'center', width: '100px' }} className="output-sum">
+                </StyledDivHeader>
+                <StyledDivHeader size='100px'>
                     Удалить чат
-                </div>
+                </StyledDivHeader>
             </div>
             {chats?.slice(page * itemsPerPage, (page + 1) * itemsPerPage)?.map((item, index) => (
                 <div style={{ marginTop: '5px', borderRadius: '5px' }} className="tabl-flex-admin-user" key={item?.id}>
-                    <div
+                    <StyledDiv
                         onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}
-                        style={{
-                            textAlign: 'center',
-                            width: '80px',
-                            height: '48px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer'
-                        }}
-                        className="output-id"
-                    >
+                        size='80px'
+                        style={{cursor: 'pointer'}}>
                         {item?.id}
-                    </div>
-                    <div
-                        style={{
-                            textAlign: 'center',
-                            width: '155px',
-                            height: '48px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer'
-                        }}
-                        onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}
-                        className="output-id"
-                    >
+                    </StyledDiv>
+                    <StyledDiv
+                        size='155px'
+                        style={{cursor: 'pointer'}}
+                        onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}>
                         {item?.nickname}
-                    </div>
-                    <div
+                    </StyledDiv>
+                    <StyledDiv
                         onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}
-                        style={{
-                            textAlign: 'center',
-                            width: '155px',
-                            height: '48px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer'
-                        }}
-                        className="output-date"
-                    >
+                        size='155px'
+                        style={{cursor: 'pointer'}}>
                         {item?.email}
-                    </div>
-                    <div
+                    </StyledDiv>
+                    <StyledDiv
                         onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}
-                        style={{
-                            textAlign: 'center',
-                            width: '210px',
-                            height: '48px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer',
-                            color: (item?.newMessage === 1) ? 'red' : 'white',
-                        }}
-                        className="output-date"
-                    >
+                        size='210px'
+                            style={{cursor: 'pointer',color: (item?.newMessage === 1) ? 'red' : 'white',}}>
                         {adminChatNewMessageMock[item?.newMessage - 1]}
-                    </div>
-                    <div
+                    </StyledDiv>
+                    <StyledDiv
                         onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}
-                        style={{
-                            textAlign: 'center',
-                            width: '155px',
-                            height: '48px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer'
-                        }}
-                        className="output-sum"
-                    >
+                        size='155px'
+                        style={{cursor: 'pointer'}} >
                         {item?.deleteChatTime}
-                    </div>
-                    <div
+                    </StyledDiv>
+                    <StyledDiv
                         onClick={() => navigate(`/adminPanel/chat/${item?.email}`)}
-                        style={{
-                            textAlign: 'center',
-                            width: '155px',
-                            height: '48px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer'
-                        }}
-                        className="output-sum"
-                    >
+                        size='155px'
+                        style={{cursor: 'pointer'}} >
                         {item?.rate}
-                    </div>
-                    <div
-                        style={{ width: '100px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                        className="output-sum"
-                        onChange={(e) => changeDeleteChats(e.target.checked, item?.id)}
-                    >
+                    </StyledDiv>
+                    <StyledDiv
+                        size='100px'
+                        onChange={(e) => changeDeleteChats(e.target.checked, item?.id)}>
                         <Checkbox color="error" />
-                    </div>
+                    </StyledDiv>
                 </div>
             ))}
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', marginTop: '5px' }}>
