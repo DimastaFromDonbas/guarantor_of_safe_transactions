@@ -9,6 +9,7 @@ import { axiosDeleteDeal, axiosGetAllDeal } from "../../../api/deal";
 import { StyledInput } from "../../../style/styles";
 import { useNavigate } from "react-router-dom";
 import { dealStatusMock } from "../../../components/mock/OutputMock";
+import { StyledDiv, StyledDivHeader } from "../Users/style";
 
 function AllDeals() {
 
@@ -88,27 +89,27 @@ function AllDeals() {
     <h3 style={{ textAlign: 'center' }}>СДЕЛКИ ВСЕХ ПОЛЬЗОВАТЕЛЕЙ НА САЙТЕ</h3>
 
     <div className="tabl-flex-admin" style={{ borderRadius: "5px" }}>
-      <div style={{ textAlign: 'center', width: '80px' }} className="output-id">ID </div>
-      <div style={{ textAlign: 'center', width: '155px', cursor: 'pointer' }} className="output-date" onClick={() => setSortId(prev => !prev)}>Время создания сделки</div>
-      <div style={{ textAlign: 'center', width: '155px' }} className="output-date">Имя продавца</div>
-      <div style={{ textAlign: 'center', width: '210px' }} className="output-sum">Почта продавца</div>
-      <div style={{ textAlign: 'center', width: '155px' }} className="output-date">Имя покупателя</div>
-      <div style={{ textAlign: 'center', width: '210px' }} className="output-sum">Почта покупателя</div>
-      <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">Сумма сделки</div>
-      <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">Статус сделки </div>
-      <div style={{ textAlign: 'center', width: '80px' }} className="output-sum">Удалить </div>
+      <StyledDivHeader size='80px'  >ID </StyledDivHeader>
+      <StyledDivHeader size='155px' style={{cursor: 'pointer' }} onClick={() => setSortId(prev => !prev)}>Время создания сделки</StyledDivHeader>
+      <StyledDivHeader size='155px' >Имя продавца</StyledDivHeader>
+      <StyledDivHeader size='210px' >Почта продавца</StyledDivHeader>
+      <StyledDivHeader size='155px' >Имя покупателя</StyledDivHeader>
+      <StyledDivHeader size='210px' >Почта покупателя</StyledDivHeader>
+      <StyledDivHeader size='155px' >Сумма сделки</StyledDivHeader>
+      <StyledDivHeader size='155px' >Статус сделки </StyledDivHeader>
+      <StyledDivHeader size='80px'  >Удалить</StyledDivHeader>
     </div>
 
     {deals?.slice(page * itemsPerPage, (page + 1) * itemsPerPage)?.map((item, index) => <div style={{ marginTop: '5px', borderRadius: '5px' }} className="tabl-flex-admin-user" key={item?.id}>
-      <div style={{ textAlign: 'center', width: '80px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-id">{item?.id}</div>
-      <div style={{ textAlign: 'center', width: '155px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-id">{item?.createdAt}</div>
-      <div style={{ textAlign: 'center', width: '155px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-date">{item?.sellerNickname}</div>
-      <div style={{ textAlign: 'center', width: '210px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-date">{item?.seller}</div>
-      <div style={{ textAlign: 'center', width: '155px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-sum">{item?.buyerNickname}</div>
-      <div style={{ textAlign: 'center', width: '210px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-sum">{item?.buyer}</div>
-      <div style={{ textAlign: 'center', width: '155px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-sum">{item?.sum}</div>
-      <div style={{ textAlign: 'center', width: '155px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} className="output-sum">{dealStatusMock[item?.status - 1]}</div>
-      <div style={{ width: '80px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center" }} className="output-sum" onChange={(e) => changeDeleteDeals(e.target.checked, item?.id)}><Checkbox color="error" /></div>
+      <StyledDiv size='80px'  style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)}>{item?.id}</StyledDiv>
+      <StyledDiv size='155px' style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)}>{item?.createdAt}</StyledDiv>
+      <StyledDiv size='155px' style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} >{item?.sellerNickname}</StyledDiv>
+      <StyledDiv size='210px' style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} >{item?.seller}</StyledDiv>
+      <StyledDiv size='155px' style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} >{item?.buyerNickname}</StyledDiv>
+      <StyledDiv size='210px' style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} >{item?.buyer}</StyledDiv>
+      <StyledDiv size='155px' style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} >{item?.sum}</StyledDiv>
+      <StyledDiv size='155px' style={{cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/deal/${item?.id}`)} >{dealStatusMock[item?.status - 1]}</StyledDiv>
+      <StyledDiv size='80px' onChange={(e) => changeDeleteDeals(e.target.checked, item?.id)}><Checkbox color="error" /></StyledDiv>
     </div>)}
     <div style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end", alignItems: "center", marginTop: '5px' }}>
       <div className="tabl-flex-admin-button"

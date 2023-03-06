@@ -6,6 +6,7 @@ import { reducerTypes } from "../../../store/Users/types";
 import { axiosChangeDeal, axiosGetAllDeal } from "../../../api/deal";
 import { dealStatusMock } from "../../../components/mock/OutputMock";
 import { socketAdmin } from "../AdminPanel";
+import { StyledDiv, StyledDivHeader } from "../Users/style";
 
 function DealID() {
   const { id } = useParams();
@@ -150,33 +151,33 @@ function DealID() {
           </div>
           <div style={{ marginTop: "20px", color: "white" }}>
             <div style={{ borderRadius: "5px" }} className="tabl-flex-admin">
-              <div style={{ textAlign: "center", width: "50px" }} className="output-id" >
+              <StyledDivHeader size="50px" >
                 ID
-              </div>
-              <div style={{ textAlign: "center", width: "155px" }} className="output-sum" >
+              </StyledDivHeader>
+              <StyledDivHeader size="155px" >
                 Название сделки
-              </div>
-              <div style={{ textAlign: "center", width: "155px" }} className="output-sum" >
+              </StyledDivHeader>
+              <StyledDivHeader size="155px" >
                 Имя покупателя
-              </div>
-              <div style={{ textAlign: "center", width: "155px" }} className="output-date" >
+              </StyledDivHeader>
+              <StyledDivHeader size="155px"  >
                 Имя продавца
-              </div>
-              <div style={{ textAlign: "center", width: "210px" }} className="output-date" >
+              </StyledDivHeader>
+              <StyledDivHeader size="210px"  >
                 Почта покупателя
-              </div>
-              <div style={{ textAlign: "center", width: "155px" }} className="output-sum" >
+              </StyledDivHeader>
+              <StyledDivHeader size="155px" >
                 Почта продавца
-              </div>
-              <div style={{ textAlign: "center", width: "155px" }} className="output-sum" >
+              </StyledDivHeader>
+              <StyledDivHeader size="155px" >
                 Cумма сделки
-              </div>
-              <div style={{ textAlign: "center", width: "155px" }} className="output-date" >
+              </StyledDivHeader>
+              <StyledDivHeader size="155px"  >
                 Статус сделки
-              </div>
-              <div style={{ textAlign: "center", width: "210px" }} className="output-date" >
+              </StyledDivHeader>
+              <StyledDivHeader size="210px"  >
                 Описание
-              </div>
+              </StyledDivHeader>
             </div>
             {
               <div
@@ -184,108 +185,33 @@ function DealID() {
                 className="tabl-flex-admin-user"
                 key={currentDeal?.email}
               >
-                <div style={{
-                  width: "50px",
-                  minHeight: "48px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                  className="output-id"
-                >
+                <StyledDiv size="50px">
                   {currentDeal?.id}
-                </div>
-                <div style={{
-                  width: "155px",
-                  minHeight: "48px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                  className="output-sum"
-                >
+                </StyledDiv>
+                <StyledDiv size="155px">
                   {nameDeal}
-                </div>
-                <div style={{
-                  width: "155px",
-                  minHeight: "48px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                  className="output-sum"
-                >
+                </StyledDiv>
+                <StyledDiv size="155px">
                   {currentDeal?.buyerNickname}
-                </div>
-                <div style={{
-                  width: "155px",
-                  minHeight: "48px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                  className="output-date"
-                >
+                </StyledDiv>
+                <StyledDiv size="155px">
                   {currentDeal?.sellerNickname}
-                </div>
-                <div style={{
-                  width: "210px",
-                  minHeight: "48px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  overflowWrap: "anywhere",
-                }}
-                  className="output-sum"
-                >
+                </StyledDiv>
+                <StyledDiv size="210px">
                   {currentDeal?.buyer}p
-                </div>
-                <div style={{
-                  width: "155px",
-                  minHeight: "48px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  overflowWrap: "anywhere",
-                }}
-                  className="output-id"
-                >
+                </StyledDiv>
+                <StyledDiv size="155px">
                   {currentDeal?.seller}
-                </div>
-                <div style={{
-                  width: "155px",
-                  minHeight: "48px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                  className="output-sum"
-                >
+                </StyledDiv>
+                <StyledDiv size="155px">
                   {sumDeal}
-                </div>
-                <div style={{
-                  width: "155px",
-                  minHeight: "48px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                  className="output-date"
-                >
+                </StyledDiv>
+                <StyledDiv size="155px">
                   {dealStatusMock[statusDeal - 1]}
-                </div>
-                <div style={{
-                  width: "210px",
-                  minHeight: "48px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  overflowWrap: "anywhere",
-                }}
-                  className="output-id"
-                >
+                </StyledDiv>
+                <StyledDiv size="210px">
                   {descriptionDeal}
-                </div>
+                </StyledDiv>
               </div>
             }
             <div className="pages-user-box-2" style={{ position: "relative" }}>
