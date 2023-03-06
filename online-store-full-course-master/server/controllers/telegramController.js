@@ -56,7 +56,7 @@ class TelegramController {
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
         }
-        const checkName = await TelegramUsers.findOne({ where: { deleteName } })
+        const checkName = await TelegramUsers.findOne({ where: { name: deleteName } })
         if (!checkName) {
             return next(ApiError.badRequest('Пользователь  для удаления не найден'))
         }
