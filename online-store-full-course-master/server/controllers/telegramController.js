@@ -74,10 +74,11 @@ class TelegramController {
         }
         const telegramUsers = await TelegramUsers.findAll()
         if (!telegramUsers) {
-            return next(ApiError.badRequest('Нет пользователя с доступом через telegram'))
+            return next(ApiError.badRequest('Нет пользователей с доступом через telegram'))
         }
 
-        if (!telegramUsers.filter(item => item === chatid)[0]) {
+        console.log(1, telegramUsers, chatid)
+        if (!telegramUsers.filter(item => String(item) === String(chatid))[0]) {
             return next(ApiError.badRequest('Нет доступа'))
         }
         const adminChats = await AdminChat.findAll()
