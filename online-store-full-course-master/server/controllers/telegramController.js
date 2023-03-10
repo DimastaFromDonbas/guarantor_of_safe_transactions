@@ -1,5 +1,5 @@
 const ApiError = require('../error/ApiError');
-const { TelegramUsers, User, AdminChat, MessageToAdmin } = require('../models/models')
+const { TelegramUsers, User, AdminChat, MessageToAdmin, Deal } = require('../models/models')
 const bcrypt = require('bcrypt')
 const axios = require('axios');
 
@@ -67,6 +67,12 @@ class TelegramController {
         return res.json(deletedUser)
     }
 
+    async getAll(req, res, next) {
+        const telegramUsers = await TelegramUsers.findAll()
+        if (!res) return telegramUsers;
+        return res.json({ telegramUsers })
+    }
+
     async getAdminChats(req, res, next) {
         const { chatid } = req.body
         if (!chatid) {
@@ -116,9 +122,16 @@ class TelegramController {
 
 
     async getMessagesToAdmin(req, res, next) {
-        const { email } = req.body
-        if (!email) {
+        const { chatid, email } = req.body
+        if (!chatid || !email) {
             return next(ApiError.badRequest('Введите все данные'))
+        }
+        const telegramUsers = await TelegramUsers.findAll()
+        if (!telegramUsers) {
+            return next(ApiError.badRequest('Нет пользователей с доступом через telegram'))
+        }
+        if (!telegramUsers.filter(item => String(item.chatid) === String(chatid))[0]) {
+            return next(ApiError.badRequest('Нет доступа'))
         }
         const user = await User.findOne({ where: { email } })
         if (!user) {
@@ -135,10 +148,17 @@ class TelegramController {
         return res.json(messages)
     }
 
-    async getAll(req, res, next) {
+    async getDeals(req, res) {
+        const { chatid } = req.body
         const telegramUsers = await TelegramUsers.findAll()
-        if (!res) return telegramUsers;
-        return res.json({ telegramUsers })
+        if (!telegramUsers) {
+            return next(ApiError.badRequest('Нет пользователей с доступом через telegram'))
+        }
+        if (!telegramUsers.filter(item => String(item.chatid) === String(chatid))[0]) {
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+        const deals = await Deal.findAll()
+        return res.json(deals)
     }
 
 }

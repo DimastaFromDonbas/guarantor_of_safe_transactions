@@ -8,5 +8,6 @@ router.post('/create', telegramController.create)
 router.get('/get', telegramController.getAll)
 router.post('/getAdminChats', telegramController.getAdminChats)
 router.post('/getAdminMessages', telegramController.getAdminMessages)
+router.post('/getDeals', telegramController.getDeals)
 
 module.exports = router
