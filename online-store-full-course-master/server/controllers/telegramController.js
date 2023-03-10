@@ -76,8 +76,6 @@ class TelegramController {
         if (!telegramUsers) {
             return next(ApiError.badRequest('Нет пользователей с доступом через telegram'))
         }
-
-        console.log(1, telegramUsers, chatid)
         if (!telegramUsers.filter(item => String(item.chatid) === String(chatid))[0]) {
             return next(ApiError.badRequest('Нет доступа'))
         }
@@ -86,6 +84,55 @@ class TelegramController {
             return next(ApiError.internal('Чаты не найдены'))
         }
         return res.json(adminChats)
+    }
+
+    async getAdminMessages(req, res, next) {
+        const { chatid, email } = req.body
+        if (!chatid || !email) {
+            return next(ApiError.badRequest('Введите все данные'))
+        }
+        const telegramUsers = await TelegramUsers.findAll()
+        if (!telegramUsers) {
+            return next(ApiError.badRequest('Нет пользователей с доступом через telegram'))
+        }
+        if (!telegramUsers.filter(item => String(item.chatid) === String(chatid))[0]) {
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+        const user = await User.findOne({ where: { email } })
+        if (!user) {
+            return next(ApiError.badRequest('Пользователь не найден'))
+        }
+        let adminChat = await AdminChat.findOne({ where: { email } })
+        if (!adminChat) {
+            return next(ApiError.badRequest('Чат не найден'))
+        }
+        const messages = await MessageToAdmin.findAll({ where: { chatId: adminChat.id } })
+        if (!messages) {
+            return next(ApiError.internal('Сообщения не найдены'))
+        }
+        return res.json(messages)
+    }
+
+
+
+    async getMessagesToAdmin(req, res, next) {
+        const { email } = req.body
+        if (!email) {
+            return next(ApiError.badRequest('Введите все данные'))
+        }
+        const user = await User.findOne({ where: { email } })
+        if (!user) {
+            return next(ApiError.badRequest('Пользователь не найден'))
+        }
+        let adminChat = await AdminChat.findOne({ where: { email } })
+        if (!adminChat) {
+            return next(ApiError.badRequest('Чат не найден'))
+        }
+        const messages = await MessageToAdmin.findAll({ where: { chatId: adminChat.id } })
+        if (!messages) {
+            return next(ApiError.internal('Сообщения не найдены'))
+        }
+        return res.json(messages)
     }
 
     async getAll(req, res, next) {
