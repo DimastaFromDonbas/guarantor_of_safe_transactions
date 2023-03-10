@@ -1,5 +1,5 @@
 const ApiError = require('../error/ApiError');
-const { TelegramUsers, User, AdminChat, MessageToAdmin, Deal } = require('../models/models')
+const { TelegramUsers, User, AdminChat, MessageToAdmin, Deal, DealMessage } = require('../models/models')
 const bcrypt = require('bcrypt')
 const axios = require('axios');
 
@@ -150,6 +150,9 @@ class TelegramController {
 
     async getDeals(req, res) {
         const { chatid } = req.body
+        if (!chatid) {
+            return next(ApiError.badRequest('Введите все данные'))
+        }
         const telegramUsers = await TelegramUsers.findAll()
         if (!telegramUsers) {
             return next(ApiError.badRequest('Нет пользователей с доступом через telegram'))
@@ -159,6 +162,29 @@ class TelegramController {
         }
         const deals = await Deal.findAll()
         return res.json(deals)
+    }
+
+    async getDealMessages(req, res) {
+        const { chatid, dealId } = req.body
+        if (!chatid || !dealId) {
+            return next(ApiError.badRequest('Введите все данные'))
+        }
+        const telegramUsers = await TelegramUsers.findAll()
+        if (!telegramUsers) {
+            return next(ApiError.badRequest('Нет пользователей с доступом через telegram'))
+        }
+        if (!telegramUsers.filter(item => String(item.chatid) === String(chatid))[0]) {
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+        const deal = await Deal.findOne({ where: { id: dealId } })
+        if (!deal) {
+            return next(ApiError.internal('Сделка не найдена'))
+        }
+        const dealMessages = await DealMessage.findAll({ where: { dealId } })
+        if (!dealMessages) {
+            return next(ApiError.internal('Сообщения не найдены'))
+        }
+        return res.json(dealMessages)
     }
 
 }
