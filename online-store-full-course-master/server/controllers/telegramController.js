@@ -1,5 +1,5 @@
 const ApiError = require('../error/ApiError');
-const { TelegramUsers, User } = require('../models/models')
+const { TelegramUsers, User, AdminChat } = require('../models/models')
 const bcrypt = require('bcrypt')
 const axios = require('axios');
 
@@ -60,13 +60,31 @@ class TelegramController {
         if (!checkName) {
             return next(ApiError.badRequest('Пользователь  для удаления не найден'))
         }
-
-
         const deletedUser = await TelegramUsers.destroy({
             where: { name: deleteName }
         })
 
         return res.json(deletedUser)
+    }
+
+    async getAdminChats(req, res, next) {
+        const { chatid } = req.body
+        if (!chatid) {
+            return next(ApiError.badRequest('Введите все данные'))
+        }
+        const telegramUsers = await TelegramUsers.findAll()
+        if (!telegramUsers) {
+            return next(ApiError.badRequest('Нет пользователя с доступом через telegram'))
+        }
+
+        if (!telegramUsers.find(item => item === chatid)[0]) {
+            return next(ApiError.badRequest('Нет доступа'))
+        }
+        const adminChats = await AdminChat.findAll()
+        if (!adminChats) {
+            return next(ApiError.internal('Чаты не найдены'))
+        }
+        return res.json(adminChats)
     }
 
     async getAll(req, res, next) {
