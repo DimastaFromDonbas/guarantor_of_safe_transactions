@@ -78,7 +78,7 @@ class TelegramController {
         }
 
         console.log(1, telegramUsers, chatid)
-        if (!telegramUsers.filter(item => String(item) === String(chatid))[0]) {
+        if (!telegramUsers.filter(item => String(item.chatid) === String(chatid))[0]) {
             return next(ApiError.badRequest('Нет доступа'))
         }
         const adminChats = await AdminChat.findAll()
