@@ -1,5 +1,5 @@
 const ApiError = require('../error/ApiError');
-const { TelegramUsers, User, AdminChat } = require('../models/models')
+const { TelegramUsers, User, AdminChat, MessageToAdmin } = require('../models/models')
 const bcrypt = require('bcrypt')
 const axios = require('axios');
 
