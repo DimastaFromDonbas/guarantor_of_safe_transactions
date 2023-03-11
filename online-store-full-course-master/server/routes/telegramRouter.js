@@ -6,5 +6,9 @@ const authMiddleware = require('../middleware/authMiddleware')
 router.post('/delete', telegramController.delete)
 router.post('/create', telegramController.create)
 router.get('/get', telegramController.getAll)
+router.post('/getAdminChats', telegramController.getAdminChats)
+router.post('/getAdminMessages', telegramController.getAdminMessages)
+router.post('/getDeals', telegramController.getDeals)
+router.post('/getDealMessages', telegramController.getDealMessages)
 
 module.exports = router

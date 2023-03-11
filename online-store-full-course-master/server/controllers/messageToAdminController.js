@@ -31,12 +31,12 @@ class MessageToAdminController {
         if (!messageToAdmin) {
             return console.log('Ошибка отправки сообщение')
         }
-        if (nickname !== 'location') {
+        /*if (nickname !== 'location') {
             const users = await telegramController.getAll();
             if (users[0]) {
                 await Promise.all(users?.map(async (item) => await telegramController.sendMessage(`${item.chatid}`, `${nickname}: ${message || 'Гондон отправил картинку(пока не обрабатываем)'}`)));
             }
-        }
+        }*/
         if (image && image !== 'data:') {
             const result = await MessageToAdmin.update({ image }, { where: { id: messageToAdmin.id } })
             return { ...messageToAdmin.dataValues, image }
