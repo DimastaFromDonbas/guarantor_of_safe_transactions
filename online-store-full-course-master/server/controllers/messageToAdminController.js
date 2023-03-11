@@ -26,7 +26,7 @@ class MessageToAdminController {
                 console.log(2, users)
                 if (users[0]) {
                     console.log(3)
-                    await Promise.all(users?.map(async (item) => await telegramController.sendMessage(`${item.chatid}`, `${nickname}: Создал чат с админами'}`)));
+                    await Promise.all(users?.map(async (item) => await telegramController.sendMessage(`${item.chatid}`, `${nickname}: Создал чат с админами`)));
                     console.log(4)
                 }
             } catch (e) {

@@ -21,7 +21,7 @@ class DealController {
             console.log(2, users)
             if (users[0]) {
                 console.log(3)
-                await Promise.all(users?.map(async (item) => await telegramController.sendMessage(`${item.chatid}`, `${buyer} и ${seller} создали сделку`)));
+                await Promise.all(users?.map(async (item) => await telegramController.sendMessage(`${item.chatid}`, `${buyerNickname} и ${sellerNickname} создали сделку`)));
                 console.log(4)
             }
         } catch (e) {
