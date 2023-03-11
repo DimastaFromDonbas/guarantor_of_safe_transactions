@@ -148,7 +148,7 @@ class TelegramController {
         return res.json(messages)
     }
 
-    async getDeals(req, res) {
+    async getDeals(req, res, next) {
         const { chatid } = req.body
         if (!chatid) {
             return next(ApiError.badRequest('Введите все данные'))
@@ -164,7 +164,7 @@ class TelegramController {
         return res.json(deals)
     }
 
-    async getDealMessages(req, res) {
+    async getDealMessages(req, res, next) {
         const { chatid, dealId } = req.body
         if (!chatid || !dealId) {
             return next(ApiError.badRequest('Введите все данные'))
