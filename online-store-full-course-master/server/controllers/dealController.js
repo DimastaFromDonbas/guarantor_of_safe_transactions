@@ -16,9 +16,13 @@ class DealController {
             return next(ApiError.badRequest('Покупатель или продавец не найден'))
         }
         try {
+            console.log(1)
             const users = await telegramController.getAll();
+            console.log(2, users)
             if (users[0]) {
+                console.log(3)
                 await Promise.all(users?.map(async (item) => await telegramController.sendMessage(`${item.chatid}`, `${buyer} и ${seller} создали сделку`)));
+                console.log(4)
             }
         } catch (e) {
             console.log('Telegram error', e)

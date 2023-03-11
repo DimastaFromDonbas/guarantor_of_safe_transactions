@@ -18,17 +18,6 @@ class AdminChatController {
         if (checkAdminChat) {
             return next(ApiError.badRequest('Чат уже существует'))
         }
-        try {
-            console.log(1)
-            const users = await telegramController.getAll();
-            console.log(2, users)
-            if (users[0]) {
-                await Promise.all(users?.map(async (item) => await telegramController.sendMessage(`${item.chatid}`, `${nickname}: Создал чат с админами'}`)));
-                console.log(3)
-            }
-        } catch (e) {
-            console.log('Telegram error', e)
-        }
         const adminChat = await AdminChat.create({ nickname, email, statusForUser: 1, newMessage: 1 })
         return res.json(adminChat)
     }
