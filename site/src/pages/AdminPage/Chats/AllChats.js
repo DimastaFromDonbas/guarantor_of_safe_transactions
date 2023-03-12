@@ -76,12 +76,8 @@ function AllChats() {
                     required
                 />
 
-                <div className="tabl-flex-admin-filtr" style={{ borderRadius: '5px' }}>
-                    {/* <h5 style={{margin:'0'}}>На согласовании</h5> <Checkbox value={filterOpen} defaultChecked onChange={() => setFilterOpen((prev) => !prev)} color="error" /> */}
-                    {/* <h5 style={{margin:'0'}}>Ожидает оплаты</h5> <Checkbox value={filterCheck} defaultChecked onChange={() => setFilterCheck((prev) => !prev)} color="error" /> */}
-                    {/* <h5 style={{margin:'0'}}>Оплачена</h5> <Checkbox value={filterPayed} defaultChecked onChange={() => setFilterPayed((prev) => !prev)} color="error" /> */}
-                    {/* <h5 style={{margin:'0'}}>Завершена</h5> <Checkbox value={filterComplete} defaultChecked onChange={() => setFilterComplete((prev) => !prev)} color="error" /> */}
-                    {/* <h5 style={{margin:'0'}}>Арбитраж</h5> <Checkbox value={filterArbitration} defaultChecked onChange={() => setFilterArbitration((prev) => !prev)} color="error" /> */}
+                <div >
+                 
                 </div>
             </div>
             <h3 style={{ textAlign: 'center' }}>ВСЕ ЧАТЫ</h3>

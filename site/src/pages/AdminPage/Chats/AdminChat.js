@@ -9,6 +9,7 @@ import { socketAdmin } from '../AdminPanel';
 import { adminChatStatusMock, userPath, userPathForAdmin } from '../../../components/mock/OutputMock';
 import sound from '../../../sound/newMessage.mp3';
 import { ImageModal } from './components/ImageForChat';
+import { StyledDiv, StyledDivHeader } from '../Users/style';
 
 function AdminChat() {
     const { email } = useParams();
@@ -193,71 +194,58 @@ function AdminChat() {
 
                     <div style={{ marginTop: '20px', color: 'white' }}>
                         <div style={{ borderRadius: '5px' }} className="tabl-flex-admin">
-                            <div style={{ textAlign: 'center', width: '50px' }} className="output-id">
+                            <StyledDivHeader size = '50px'>
                                 ID
                                 <audio ref={audioPlayer} src={sound} />
-                            </div>
-                            <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size = '155px'>
                                 Имя пользователя
-                            </div>
-                            <div style={{ textAlign: 'center', width: '210px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size = '210px'>
                                 Почта пользователя
-                            </div>
-                            <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size = '155px'>
                                 Статус для пользователя
-                            </div>
-                            <div style={{ textAlign: 'center', width: '155px' }} className="output-sum">
+                            </StyledDivHeader>
+                            <StyledDivHeader size = '155px'>
                                 Время прошлого удаления чата
-                            </div>
-                            <div style={{ textAlign: 'center', width: '120px' }} className="output-date">
+                            </StyledDivHeader>
+                            <StyledDivHeader size = '120px'>
                                 Оценка
-                            </div>
+                            </StyledDivHeader>
                         </div>
                         {
                             <div style={{ marginTop: '5px', borderRadius: '5px' }} className="tabl-flex-admin-user" key={currentChat?.email}>
-                                <div
-                                    style={{ width: '50px', minHeight: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    className="output-id"
+                                <StyledDiv
+                                    size = '50px'
                                 >
                                     {currentChat?.id}
-                                </div>
-                                <div
-                                    style={{ width: '155px', minHeight: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    className="output-sum"
+                                </StyledDiv>
+                                <StyledDiv
+                                    size = '155px'
                                 >
                                     {currentChat?.nickname}
-                                </div>
-                                <div
-                                    style={{
-                                        width: '210px',
-                                        minHeight: '48px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        overflowWrap: 'anywhere'
-                                    }}
-                                    className="output-sum"
+                                </StyledDiv>
+                                <StyledDiv
+                                        size = '210px'
                                 >
                                     {currentChat?.email}
-                                </div>
-                                <div
-                                    style={{ width: '155px', minHeight: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    className="output-sum"
+                                </StyledDiv>
+                                <StyledDiv
+                                    size = '155px'
                                 >
                                     {adminChatStatusMock[statusForUserChat - 1]}
-                                </div>
-                                <div
-                                    style={{ width: '155px', minHeight: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    className="output-sum"
+                                </StyledDiv>
+                                <StyledDiv
+                                    size = '155px'
                                 >
                                     {currentChat?.deleteChatTime}
-                                </div>
-                                <div
-                                    style={{ width: '120px', minHeight: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    className="output-date"
+                                </StyledDiv>
+                                <StyledDiv
+                                    size = '120px'
                                 >
                                     {currentChat?.rate}
-                                </div>
+                                </StyledDiv>
                             </div>
                         }
                         <div className="pages-user-box-2">
