@@ -1,6 +1,7 @@
 const ApiError = require('../error/ApiError');
 const { User, Deal } = require('../models/models')
 const bcrypt = require('bcrypt')
+const telegramController = require('./telegramController')
 
 class DealController {
     async create(req, res, next) {
@@ -14,7 +15,18 @@ class DealController {
         if (!checkBuyer || !checkSeller || !checkCreator) {
             return next(ApiError.badRequest('Покупатель или продавец не найден'))
         }
-
+        try {
+            console.log(1)
+            const users = await telegramController.getAll();
+            console.log(2, users)
+            if (users[0]) {
+                console.log(3)
+                await Promise.all(users?.map(async (item) => await telegramController.sendMessage(`${item.chatid}`, `${buyerNickname} и ${sellerNickname} создали сделку`)));
+                console.log(4)
+            }
+        } catch (e) {
+            console.log('Telegram error', e)
+        }
         const deal = await Deal.create({
             name,
             buyer: checkBuyer.email,

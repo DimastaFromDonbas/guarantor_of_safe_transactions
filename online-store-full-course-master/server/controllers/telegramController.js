@@ -8,7 +8,7 @@ class TelegramController {
     async sendMessage(chatid, text) {
         try {
             if (!chatid || !text) return console.log('Введите все данные')
-            const botToken = '6149778778:AAFPlXbrTIXD_zDG4LLaeeqTH8fbKJM7kmA';
+            const botToken = '6149778778:AAGece8KHPKtDZdlF-Xq7J1ih9Fwt8jPyd0';
             const data = await axios.get(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatid}&text=${text}`);
             return data;
             //sendMessage?chat_id=497357018&text=Пососи

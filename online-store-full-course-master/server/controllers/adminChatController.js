@@ -1,6 +1,7 @@
 const ApiError = require('../error/ApiError');
 const { User, AdminChat, MessageToAdmin } = require('../models/models')
 const bcrypt = require('bcrypt')
+const telegramController = require('./telegramController')
 
 class AdminChatController {
     async create(req, res, next) {
@@ -17,7 +18,6 @@ class AdminChatController {
         if (checkAdminChat) {
             return next(ApiError.badRequest('Чат уже существует'))
         }
-
         const adminChat = await AdminChat.create({ nickname, email, statusForUser: 1, newMessage: 1 })
         return res.json(adminChat)
     }
