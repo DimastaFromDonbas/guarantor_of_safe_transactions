@@ -90,26 +90,26 @@ function AllRefills() {
     <div style={{ display: "flex", justifyContent: "center" }}> <h2>ПОЛЬЗОВАТЕЛИ</h2></div>
 
     <div style={{ borderRadius: "5px" }} className="tabl-flex-admin">
-      <StyledDivHeader size='80px'  >UNIQUE ID</StyledDivHeader>
-      <StyledDivHeader size='80px'  >ID для пользователя</StyledDivHeader>
+      <StyledDivHeader size='80px'>UNIQUE ID</StyledDivHeader>
+      <StyledDivHeader size='80px'>ID для пользователя</StyledDivHeader>
       <StyledDivHeader size='155px' style={{ cursor: 'pointer' }} onClick={() => setSortId(prev => !prev)}>Время создания</StyledDivHeader>
-      <StyledDivHeader size='100px'  >Сумма</StyledDivHeader>
-      <StyledDivHeader size='155px'  >Почта пользователя</StyledDivHeader>
-      <StyledDivHeader size='155px'  >Имя пользователя</StyledDivHeader>
-      <StyledDivHeader size='155px'  >Статус</StyledDivHeader>
-      <StyledDivHeader size='80px'   >Удалить</StyledDivHeader>
+      <StyledDivHeader size='100px'>Сумма</StyledDivHeader>
+      <StyledDivHeader size='155px'>Почта пользователя</StyledDivHeader>
+      <StyledDivHeader size='155px'>Имя пользователя</StyledDivHeader>
+      <StyledDivHeader size='155px'>Статус</StyledDivHeader>
+      <StyledDivHeader size='80px'>Удалить</StyledDivHeader>
     </div>
 
     {refills?.slice(page * itemsPerPage, (page + 1) * itemsPerPage)?.map((item, index) => <div style={{ marginTop: '5px', borderRadius: '5px' }} className="tabl-flex-admin-user" key={item.uniqueId}>
-      <StyledDiv size={{ textAlign: 'center', width: '80px', height: '48px', display: "flex", alignItems: "center", justifyContent: "center", cursor: 'pointer' }} onClick={() => {
+      <StyledDiv size = '80px' onClick={() => {
         navigate(`/adminPanel/refill/${item?.uniqueId}`)
       }} >{item.uniqueId}</StyledDiv>
-      <StyledDiv size='80px'  style={{ cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueIdid}`)} className="output-id">{item?.id}</StyledDiv>
-      <StyledDiv size='155px' style={{ cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)} className="output-id">{item?.time}</StyledDiv>
-      <StyledDiv size='100px' style={{ cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)} className="output-date">{item?.score}</StyledDiv>
-      <StyledDiv size='155px' style={{ cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)} className="output-date">{item?.userEmail}</StyledDiv>
-      <StyledDiv size='155px' style={{ cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)} className="output-sum">{item?.userNickname}</StyledDiv>
-      <StyledDiv size='155px' style={{ cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)} className="output-sum">{refillStatusMock[item?.status - 1]}</StyledDiv>
+      <StyledDiv size='80px'  style={{ cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueIdid}`)} >{item?.id}</StyledDiv>
+      <StyledDiv size='155px' style={{ cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)} >{item?.time}</StyledDiv>
+      <StyledDiv size='100px' style={{ cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)}>{item?.score}</StyledDiv>
+      <StyledDiv size='155px' style={{ cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)}>{item?.userEmail}</StyledDiv>
+      <StyledDiv size='155px' style={{ cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)}>{item?.userNickname}</StyledDiv>
+      <StyledDiv size='155px' style={{ cursor: 'pointer' }} onClick={() => navigate(`/adminPanel/refill/${item?.uniqueId}`)}>{refillStatusMock[item?.status - 1]}</StyledDiv>
       <StyledDiv size='80px' style={{ cursor: 'pointer' }}  onChange={(e) => changeDeleteRefills(e.target.checked, item?.uniqueId)}><Checkbox color="error" /></StyledDiv>
     </div>)}
     <div style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end", alignItems: "center", marginTop: '5px' }}>
