@@ -130,6 +130,7 @@ function AllUsers() {
                             size="50px"
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-id"
+                            style={{ cursor: 'pointer' }}
                         >
                             {item?.id}
                         </StyledDiv>
@@ -137,6 +138,7 @@ function AllUsers() {
                             size='155px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-sum"
+                            style={{ cursor: 'pointer' }}
                         >
                             {item?.nickname}
                         </StyledDiv>
@@ -144,6 +146,7 @@ function AllUsers() {
                             size='155px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-date"
+                            style={{ cursor: 'pointer' }}
                         >
                             {item?.role}
                         </StyledDiv>
@@ -151,6 +154,7 @@ function AllUsers() {
                             size='155px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-sum"
+                            style={{ cursor: 'pointer' }}
                         >
                             {item?.score}
                         </StyledDiv>
@@ -158,6 +162,7 @@ function AllUsers() {
                             size='210px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-id"
+                            style={{ cursor: 'pointer' }}
                         >
                             {item?.email}
                         </StyledDiv>
@@ -165,6 +170,7 @@ function AllUsers() {
                             size='155px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-sum"
+                            style={{ cursor: 'pointer' }}
                         >
                             {item?.systemMessage}
                         </StyledDiv>
@@ -172,6 +178,7 @@ function AllUsers() {
                             size='80px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-sum"
+                            style={{ cursor: 'pointer' }}
                         >
                             {['Не наёбан', 'Наёбан'][item?.completed]}
                         </StyledDiv>
@@ -179,6 +186,7 @@ function AllUsers() {
                             size= '80px'
                             onClick={() => navigate(`/adminPanel/user/${item?.id}`)}
                             className="output-sum"
+                            style={{ cursor: 'pointer' }}
                         >
                             {item?.checkRu === 'true' ? 'Открыт' : 'Закрыт'}
                         </StyledDiv>
@@ -187,7 +195,7 @@ function AllUsers() {
                             className="output-sum"
                             onChange={(e) => changeDeleteUsers(e.target.checked, item?.id)}
                         >
-                            <Checkbox color="error" />
+                            <Checkbox  style={{ cursor: 'pointer' }} color="error" />
                         </StyledDiv>
                     </div>
                 ))}
