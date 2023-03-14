@@ -15,8 +15,7 @@ import { useDispatch } from 'react-redux';
 import { reducerTypes } from '../../store/Users/types';
 import sound from '../../sound/newMessage.mp3';
 
-
-export const socketAdmin = io.connect(`https://back-yipq.onrender.com`);
+export const socketAdmin = io.connect(`https://back-hbht.onrender.com`);
 
 function AdminPanel() {
     const dispatch = useDispatch();
@@ -87,7 +86,7 @@ function AdminPanel() {
             case '5':
                 setItem(5);
                 break;
-            
+
             default:
         }
     }
@@ -176,9 +175,12 @@ function AdminPanel() {
                         <h4 style={{ color: checkNewMessage ? 'red' : 'white' }}>ВСЕ ЧАТЫ</h4>
                     </button>
                     <button onClick={(e) => visibleItem(e)} name="5" className={item === 5 ? 'block_user_panel activ-block-admin' : 'block_user_panel'}>
-                        <h4> СМЕНА ИМЕНИ САЙТА <br /> И КОШЕЛЬКА </h4>
+                        <h4>
+                            {' '}
+                            СМЕНА ИМЕНИ САЙТА <br /> И КОШЕЛЬКА{' '}
+                        </h4>
                     </button>
-                    
+
                     <button
                         onClick={() => {
                             localStorage.setItem('backroundImg', !statebackground ? ' ' : '');
@@ -232,7 +234,7 @@ function AdminPanel() {
                     ) : (
                         ''
                     )}
-                    
+
                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', marginTop: '10px', color: 'white' }}>
                         <div onClick={() => navigate('/')} className="tabl-flex-admin-button-global2">
                             Вернуться назад
