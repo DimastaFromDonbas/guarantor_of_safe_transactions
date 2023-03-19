@@ -160,7 +160,7 @@ function AdminPanel() {
             <div style={{ display: 'flex', minHeight: '100vh' }} className={!statebackground ? 'styleAdminPanel' : 'styleAdminPanel2'}>
                 <div style={{ display: 'flex', flexDirection: 'column', width: '22%' }} className="panel_user">
                     <button onClick={(e) => visibleItem(e)} name="0" className={item === 0 ? 'block_user_panel activ-block-admin' : 'block_user_panel'}>
-                        <h4>ВСЕ ПОЛЬЗОВАТЕЛИ </h4>
+                        <h4>ВСЕ ПОЛЬЗОВАТЕЛИ</h4>
                     </button>
                     <button onClick={(e) => visibleItem(e)} name="1" className={item === 1 ? 'block_user_panel activ-block-admin' : 'block_user_panel'} style={{ color: checkDeals ? 'red' : 'white' }}>
                         <h4>ВСЕ СДЕЛКИ</h4>
